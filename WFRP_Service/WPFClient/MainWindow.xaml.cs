@@ -28,7 +28,6 @@ namespace WPFClient
     {
         //SVC holds references to the proxy and cotracts..
         SVC.WFRPClient proxy = null;
-        SVC.Client receiver = null;
         SVC.Client localClient = null;
 
         //When the communication object 
@@ -126,6 +125,7 @@ namespace WPFClient
                         break;
                     case CommunicationState.Opened:
                         loginLabelStatus.Content = "Connected";
+                        loginButtonDisconnect.IsEnabled = true;
                         break;
                     case CommunicationState.Opening:
                         break;
@@ -188,6 +188,27 @@ namespace WPFClient
             }
         }
 
+        private void Disconnect()
+        {
+            if (proxy != null)
+            {
+                try
+                {
+                    proxy.DisconnectAsync(localClient);
+                }
+                catch (Exception ex)
+                {
+                    loginTxtBoxUName.Text = ex.Message.ToString();
+                    loginLabelStatus.Content = "Uknown";
+                    loginButtonDisconnect.IsEnabled = true;
+                }
+            }
+            else
+            {
+                HandleProxy();
+            }
+        }
+
         #endregion
 
 
@@ -196,8 +217,6 @@ namespace WPFClient
         private void buttonConnect_Click(object sender, 
                                    RoutedEventArgs e)
         {
-            loginButtonConnect.IsEnabled = false;
-            loginButtonDisconnect.IsEnabled = true;
             loginLabelStatus.Content = "Connecting..";
             proxy = null;
             Connect();
@@ -210,8 +229,7 @@ namespace WPFClient
             loginButtonConnect.IsEnabled = true;
             loginButtonDisconnect.IsEnabled = true;
             loginLabelStatus.Content = "Disconnecting..";
-            proxy.Close();
-            loginLabelStatus.Content = "Disconnected";
+            Disconnect();
         }
 
         void proxy_ConnectCompleted(object sender, 

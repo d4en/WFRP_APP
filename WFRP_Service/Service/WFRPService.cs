@@ -49,6 +49,8 @@ namespace Service
         [OperationContract(IsInitiating = true)]
         bool Connect(Client client);
 
+        [OperationContract(IsOneWay = true)]
+        void Disconnect(Client client);
     }
 
     public interface IWFRPCallback
@@ -112,7 +114,7 @@ namespace Service
 
                             Message msg = new Message();
                             msg.Sender = "Server";
-                            msg.Content = "test";
+                            msg.Content = "SERWER: POŁĄCZONO";
                             callback.Receive(msg);
                         }
                         catch
@@ -121,15 +123,36 @@ namespace Service
                             return false;
                         }
 
-                    }
+                    }        
 
                 }
 
+                Console.WriteLine(client.Name + " has connected.");
                 return true;
             }
             return false;
         }
 
+        public void Disconnect(Client client)
+        {
+            this.clients.Remove(client);
+            this.clientList.Remove(client);
+            Console.WriteLine(client.Name + " has left.");
+            foreach (Client c in clients.Keys)
+            {
+                lock (syncObj)
+                {
+                    foreach (IWFRPCallback callback in clients.Values)
+                    {
+                        Message msg = new Message();
+                        msg.Sender = "Server";
+                        msg.Content = client.Name + " has left.";
+                        callback.Receive(msg);
+                    }
+                } 
+            }
+
+        }
         
 
         #endregion

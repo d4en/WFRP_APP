@@ -130,6 +130,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginConnect(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
         
         bool EndConnect(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Disconnect")]
+        void Disconnect(WPFClient.SVC.Client client);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Disconnect")]
+        System.IAsyncResult BeginDisconnect(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
+        
+        void EndDisconnect(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -177,6 +185,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onConnectCompletedDelegate;
         
+        private BeginOperationDelegate onBeginDisconnectDelegate;
+        
+        private EndOperationDelegate onEndDisconnectDelegate;
+        
+        private System.Threading.SendOrPostCallback onDisconnectCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -198,6 +212,8 @@ namespace WPFClient.SVC {
         }
         
         public event System.EventHandler<ConnectCompletedEventArgs> ConnectCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DisconnectCompleted;
         
         public bool Connect(WPFClient.SVC.Client client) {
             return base.Channel.Connect(client);
@@ -247,6 +263,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginConnectDelegate, new object[] {
                         client}, this.onEndConnectDelegate, this.onConnectCompletedDelegate, userState);
+        }
+        
+        public void Disconnect(WPFClient.SVC.Client client) {
+            base.Channel.Disconnect(client);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginDisconnect(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDisconnect(client, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndDisconnect(System.IAsyncResult result) {
+            base.Channel.EndDisconnect(result);
+        }
+        
+        private System.IAsyncResult OnBeginDisconnect(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
+            return this.BeginDisconnect(client, callback, asyncState);
+        }
+        
+        private object[] OnEndDisconnect(System.IAsyncResult result) {
+            this.EndDisconnect(result);
+            return null;
+        }
+        
+        private void OnDisconnectCompleted(object state) {
+            if ((this.DisconnectCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DisconnectCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DisconnectAsync(WPFClient.SVC.Client client) {
+            this.DisconnectAsync(client, null);
+        }
+        
+        public void DisconnectAsync(WPFClient.SVC.Client client, object userState) {
+            if ((this.onBeginDisconnectDelegate == null)) {
+                this.onBeginDisconnectDelegate = new BeginOperationDelegate(this.OnBeginDisconnect);
+            }
+            if ((this.onEndDisconnectDelegate == null)) {
+                this.onEndDisconnectDelegate = new EndOperationDelegate(this.OnEndDisconnect);
+            }
+            if ((this.onDisconnectCompletedDelegate == null)) {
+                this.onDisconnectCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDisconnectCompleted);
+            }
+            base.InvokeAsync(this.onBeginDisconnectDelegate, new object[] {
+                        client}, this.onEndDisconnectDelegate, this.onDisconnectCompletedDelegate, userState);
         }
     }
 }
