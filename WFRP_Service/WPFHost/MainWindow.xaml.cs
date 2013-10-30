@@ -23,6 +23,8 @@ namespace WPFHost
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string localhost = "localhost";//"192.168.0.11";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,9 +38,9 @@ namespace WPFHost
 
             //Define base addresses so all endPoints can go under it
 
-            Uri tcpAdrs = new Uri("net.tcp://192.168.0.11:7997/WPFHost/");
+            Uri tcpAdrs = new Uri("net.tcp://" + localhost + ":7997/WPFHost/");
 
-            Uri httpAdrs = new Uri("http://192.168.0.11:7998/WPFHost/");
+            Uri httpAdrs = new Uri("http://" + localhost + ":7998/WPFHost/");
 
             Uri[] baseAdresses = { tcpAdrs, httpAdrs };
 
@@ -84,7 +86,7 @@ namespace WPFHost
 
             host.AddServiceEndpoint(typeof(IMetadataExchange),
                 MetadataExchangeBindings.CreateMexTcpBinding(),
-                "net.tcp://192.168.0.11:7996/WPFHost/mex");
+                "net.tcp://" + localhost + ":7996/WPFHost/mex");
 
 
             try
