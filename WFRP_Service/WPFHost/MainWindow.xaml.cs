@@ -15,6 +15,7 @@ using System.ServiceModel;
 using Service;
 using System.ServiceModel.Description;
 using System.Xml;
+using System.Windows.Threading;
 
 namespace WPFHost
 {
@@ -31,9 +32,11 @@ namespace WPFHost
         }
 
         ServiceHost host;
+        //delegate void MyDelegateType();
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            
             buttonStart.IsEnabled = false;
 
             //Define base addresses so all endPoints can go under it
@@ -88,6 +91,11 @@ namespace WPFHost
                 MetadataExchangeBindings.CreateMexTcpBinding(),
                 "net.tcp://" + localhost + ":7996/WPFHost/mex");
 
+            //MyDelegateType work = delegate
+            //{
+            //    DoTheMainWorkDone();
+            //};
+            //this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, work);
 
             try
             {
@@ -131,6 +139,9 @@ namespace WPFHost
             }
         }
 
-
+        //private void DoTheMainWorkDone()
+        //{
+        //    Console.WriteLine("DoTheMainWorkDone");
+        //}
     }
 }

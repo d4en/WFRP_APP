@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 using System.Data;
 
 /////////////////////////////
@@ -36,20 +36,20 @@ using System.Data;
 
 namespace Service
 {
-    class DBConnector
-    {
-        public MySqlConnection CreateConn()
-        {
-            string connectionStr = "Server=localhost;Database=wfrp_database;Uid=root;Pwd=root";
+    //class DBConnector
+    //{
+    //    public MySqlConnection CreateConn()
+    //    {
+    //        string connectionStr = "Server=localhost;Database=wfrp_database;Uid=root;Pwd=root";
 
-            MySqlConnection connection = new MySqlConnection(connectionStr);
-
-
-            return connection;
-        }
+    //        MySqlConnection connection = new MySqlConnection(connectionStr);
 
 
-    }
+    //        return connection;
+    //    }
+
+
+    //}
 }
 
 /*EXAMPLES ONLY!!! FOR CONSTRUCTION. THERE ARE SOME MISSING EXCEPTION BLOCKS.

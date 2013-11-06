@@ -7,60 +7,6 @@ using System.Runtime.Serialization;
 
 namespace Service
 {
-
-    [DataContract]
-    public class Client
-    {
-        private string _name;
-
-        [DataMember]
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-    }
-
-    [DataContract]
-    public class Message
-    {
-        private string _sender;
-        private string _content;
-
-        [DataMember]
-        public string Sender
-        {
-            get { return _sender; }
-            set { _sender = value; }
-        }
-        [DataMember]
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; }
-        }
-    }
-
-
-    [ServiceContract(CallbackContract = typeof(IWFRPCallback), SessionMode = SessionMode.Required)]
-    public interface IWFRP
-    {
-        [OperationContract(IsInitiating = true)]
-        bool Connect(Client client);
-
-        [OperationContract(IsOneWay = true)]
-        void Disconnect(Client client);
-    }
-
-    public interface IWFRPCallback
-    {
-
-        [OperationContract(IsOneWay = true)]
-        void Receive(Message msg);
-
-    }
-
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
         ConcurrencyMode = ConcurrencyMode.Multiple,
         UseSynchronizationContext = false)]

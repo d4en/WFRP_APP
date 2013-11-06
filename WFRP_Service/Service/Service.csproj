@@ -42,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientContracts.cs" />
     <Compile Include="DataBaseConnector.cs" />
+    <Compile Include="DataContracts.cs" />
+    <Compile Include="ServerContracts.cs" />
     <Compile Include="WFRPService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

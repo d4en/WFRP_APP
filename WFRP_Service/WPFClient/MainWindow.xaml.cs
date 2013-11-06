@@ -217,6 +217,7 @@ namespace WPFClient
         private void buttonConnect_Click(object sender, 
                                    RoutedEventArgs e)
         {
+            loginButtonConnect.IsEnabled = false;
             loginLabelStatus.Content = "Connecting..";
             proxy = null;
             Connect();
