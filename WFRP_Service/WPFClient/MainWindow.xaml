@@ -3,14 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TextBox x:Name="loginTxtBoxUName" HorizontalAlignment="Left" Height="23" Margin="97,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Login" HorizontalAlignment="Left" Margin="222,90,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="loginTxtBoxIP" HorizontalAlignment="Left" Height="23" Margin="97,143,0,0" TextWrapping="Wrap" Text="89.76.59.184" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Server IP" HorizontalAlignment="Left" Margin="222,143,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="loginButtonConnect" Content="Login" HorizontalAlignment="Left" Margin="311,143,0,0" VerticalAlignment="Top" Width="75" Click="buttonConnect_Click"/>
-        <Label x:Name="loginLabelStatus" Content="Status" HorizontalAlignment="Left" Margin="97,232,0,0" VerticalAlignment="Top" Width="149" Height="29"/>
-        <Label x:Name="serverMsg" Content="Empty" HorizontalAlignment="Left" Margin="97,266,0,0" VerticalAlignment="Top" Width="348"/>
-        <Button x:Name="loginButtonDisconnect" Content="Disconnect" HorizontalAlignment="Left" Margin="311,210,0,0" VerticalAlignment="Top" Width="75" Click="buttonDisconnect_Click" IsEnabled="False"/>
-
+        <TextBox 
+            x:Name="userNameTxtBox" 
+            Text="{Binding Path=LoginModelUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Height="23" Margin="97,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label 
+            Content="Login" HorizontalAlignment="Left" Margin="222,90,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+            x:Name="serverIPtxtBox" 
+            Text="{Binding Path=LoginModelServerIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Height="23" Margin="97,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label 
+            Content="Server IP" HorizontalAlignment="Left" Margin="222,143,0,0" VerticalAlignment="Top"/>
+        <Button 
+            x:Name="connectButton" 
+            Content="Login" 
+            IsEnabled="{Binding Path=LoginModelConnectButtonIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Margin="311,143,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
+        <Label 
+            x:Name="statusLabel" 
+            Content="{Binding Path=LoginModelStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Margin="97,232,0,0" VerticalAlignment="Top" Width="149" Height="29"/>
+        <Label 
+            x:Name="serverMsgLabel" 
+            Content="{Binding Path=LoginModelMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Margin="97,266,0,0" VerticalAlignment="Top" Width="348"/>
+        <Button 
+            x:Name="disconnectButton" 
+            Content="Disconnect" 
+            IsEnabled="{Binding Path=LoginModelDisconnectButtonIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Margin="311,210,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click"/>
     </Grid>
 </Window>
