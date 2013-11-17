@@ -115,6 +115,29 @@ namespace Service
 
         }
 
+        public void LogIn(Client client)
+        {
+            IWFRPCallback callback = CurrentCallback;
+
+            DBConnector DataBase = new DBConnector();
+            Message msg = new Message();
+            msg.Sender = "SERVER";
+            msg.Content = "Wrong Credentials";
+            string response = string.Empty;
+
+            response = DataBase.LogIn(client);
+            if (Int32.Parse(response) != 0)
+            {
+                Identity accountID = new Identity();
+                accountID.AccountID = response;
+                callback.GetIdentity(accountID);
+            }
+            else
+            {
+                callback.Status(msg);
+            }
+            
+        }
         #endregion
     }
 

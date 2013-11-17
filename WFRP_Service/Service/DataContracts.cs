@@ -67,4 +67,17 @@ namespace Service
             set { _content = value; }
         }
     }
+
+    [DataContract]
+    public class Identity
+    {
+        private string _accountID;
+
+        [DataMember]
+        public string AccountID
+        {
+            get { return _accountID; }
+            set { _accountID = value; }
+        }
+    }
 }

@@ -147,7 +147,7 @@ namespace WPFHost
             Client client = new Client();
             client.Name = "asdadkjdadddafsdadasffdd";
             client.Password = "asdd";
-            Console.WriteLine(DBcon.Register(client));
+            Console.WriteLine(DBcon.LogIn(client));
 
         }
 

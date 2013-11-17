@@ -110,6 +110,67 @@ namespace Service
                 return result;
         }
 
+        public string LogIn(Client client)
+        {
+            MySqlConnection connection = CreateConn();
+            int clientId = 0;
+            int id_log = 0;
+            string result = string.Empty;
+            string acc_name = client.Name;
+            string acc_pas = client.Password;
+
+            Console.WriteLine(client.Name);
+            try
+                {
+                    connection.Open();
+                }
+                catch (MySqlException o)
+                {
+                    Console.WriteLine(o.ToString());
+                }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM account_table WHERE acc_name = @name";
+                cmd.Parameters.AddWithValue("@name", client.Name);
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                id_log = Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+                acc_name = ds.Tables[0].Rows[0][1].ToString();
+                acc_pas = ds.Tables[0].Rows[0][2].ToString();
+
+                if (acc_pas == client.Password)
+                {
+                    result = ds.Tables[0].Rows[0][0].ToString();
+                }
+                else
+                {
+                    result = "0";
+                }
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception w)
+            {
+                result = "0";
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+
+            return result;
+
+        }
     }
 }
 
