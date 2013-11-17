@@ -13,5 +13,8 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void Receive(Message msg);
 
+        [OperationContract(IsOneWay = true)]
+        void Status(Message msg);
+
     }
 }

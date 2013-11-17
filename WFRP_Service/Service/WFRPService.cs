@@ -99,7 +99,21 @@ namespace Service
             }
 
         }
-        
+
+        public void Register(Client client)
+        {
+            IWFRPCallback callback = CurrentCallback;
+
+            DBConnector DataBase = new DBConnector();
+            string response = string.Empty;
+
+            response = DataBase.Register(client);
+            Message msg = new Message();
+            msg.Sender = "SERVER";
+            msg.Content = response;
+            callback.Status(msg);
+
+        }
 
         #endregion
     }

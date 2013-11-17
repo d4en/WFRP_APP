@@ -25,6 +25,9 @@ namespace WPFClient.SVC {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -44,6 +47,19 @@ namespace WPFClient.SVC {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -138,6 +154,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginDisconnect(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
         
         void EndDisconnect(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Register")]
+        void Register(WPFClient.SVC.Client client);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Register")]
+        System.IAsyncResult BeginRegister(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
+        
+        void EndRegister(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -150,6 +174,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReceive(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
         
         void EndReceive(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Status")]
+        void Status(WPFClient.SVC.Message msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Status")]
+        System.IAsyncResult BeginStatus(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndStatus(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -191,6 +223,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onDisconnectCompletedDelegate;
         
+        private BeginOperationDelegate onBeginRegisterDelegate;
+        
+        private EndOperationDelegate onEndRegisterDelegate;
+        
+        private System.Threading.SendOrPostCallback onRegisterCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -214,6 +252,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<ConnectCompletedEventArgs> ConnectCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DisconnectCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RegisterCompleted;
         
         public bool Connect(WPFClient.SVC.Client client) {
             return base.Channel.Connect(client);
@@ -312,6 +352,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginDisconnectDelegate, new object[] {
                         client}, this.onEndDisconnectDelegate, this.onDisconnectCompletedDelegate, userState);
+        }
+        
+        public void Register(WPFClient.SVC.Client client) {
+            base.Channel.Register(client);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginRegister(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRegister(client, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndRegister(System.IAsyncResult result) {
+            base.Channel.EndRegister(result);
+        }
+        
+        private System.IAsyncResult OnBeginRegister(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
+            return this.BeginRegister(client, callback, asyncState);
+        }
+        
+        private object[] OnEndRegister(System.IAsyncResult result) {
+            this.EndRegister(result);
+            return null;
+        }
+        
+        private void OnRegisterCompleted(object state) {
+            if ((this.RegisterCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RegisterCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RegisterAsync(WPFClient.SVC.Client client) {
+            this.RegisterAsync(client, null);
+        }
+        
+        public void RegisterAsync(WPFClient.SVC.Client client, object userState) {
+            if ((this.onBeginRegisterDelegate == null)) {
+                this.onBeginRegisterDelegate = new BeginOperationDelegate(this.OnBeginRegister);
+            }
+            if ((this.onEndRegisterDelegate == null)) {
+                this.onEndRegisterDelegate = new EndOperationDelegate(this.OnEndRegister);
+            }
+            if ((this.onRegisterCompletedDelegate == null)) {
+                this.onRegisterCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRegisterCompleted);
+            }
+            base.InvokeAsync(this.onBeginRegisterDelegate, new object[] {
+                        client}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
         }
     }
 }

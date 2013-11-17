@@ -117,6 +117,8 @@ namespace WPFHost
 
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
+           
+
             if (host != null)
             {
                 try
@@ -138,6 +140,18 @@ namespace WPFHost
                 }
             }
         }
+
+        private void btn_test_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnector DBcon = new DBConnector();
+            Client client = new Client();
+            client.Name = "asdadkjdadddafsdadasffdd";
+            client.Password = "asdd";
+            Console.WriteLine(DBcon.Register(client));
+
+        }
+
+
 
         //private void DoTheMainWorkDone()
         //{
