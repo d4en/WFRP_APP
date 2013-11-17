@@ -13,9 +13,6 @@
           Click="buttonStart_Click">Start</Button>
         <Label Height="28" Margin="10,0,15,45" 
         VerticalAlignment="Bottom" Name="labelStatus">Status</Label>
-        <Label Height="37" Margin="10,18,15,0"
-         VerticalAlignment="Top" Name="labelTitle"
-          FontFamily="Jokerman" FontSize="20"
-           Foreground="White">WFRP Service</Label>
+        <Button x:Name="btn_test" Content="Test" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="117" Height="44" Click="btn_test_Click"/>
     </Grid>
 </Window>

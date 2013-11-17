@@ -99,8 +99,45 @@ namespace Service
             }
 
         }
-        
 
+        public void Register(Client client)
+        {
+            IWFRPCallback callback = CurrentCallback;
+
+            DBConnector DataBase = new DBConnector();
+            string response = string.Empty;
+
+            response = DataBase.Register(client);
+            Message msg = new Message();
+            msg.Sender = "SERVER";
+            msg.Content = response;
+            callback.Status(msg);
+
+        }
+
+        public void LogIn(Client client)
+        {
+            IWFRPCallback callback = CurrentCallback;
+
+            DBConnector DataBase = new DBConnector();
+            Message msg = new Message();
+            msg.Sender = "SERVER";
+            msg.Content = "Wrong Credentials";
+            string response = string.Empty;
+
+            response = DataBase.LogIn(client);
+            if (Int32.Parse(response) != 0)
+            {
+                Identity accountID = new Identity();
+                accountID.AccountID = response;
+                callback.GetIdentity(accountID);
+            }
+            else
+            {
+                callback.Status(msg);
+            }
+            
+        }
         #endregion
     }
 

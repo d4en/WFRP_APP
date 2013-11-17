@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System.Data;
 
 /////////////////////////////
@@ -36,20 +36,142 @@ using System.Data;
 
 namespace Service
 {
-    //class DBConnector
-    //{
-    //    public MySqlConnection CreateConn()
-    //    {
-    //        string connectionStr = "Server=localhost;Database=wfrp_database;Uid=root;Pwd=root";
+    public class DBConnector
+    {
+        public MySqlConnection CreateConn()
+        {
+            string connectionStr = "Server=localhost;Database=wfrp_database;Uid=root;Pwd=root";
 
-    //        MySqlConnection connection = new MySqlConnection(connectionStr);
-
-
-    //        return connection;
-    //    }
+            MySqlConnection connection = new MySqlConnection(connectionStr);
 
 
-    //}
+            return connection;
+        }
+
+        public string Register(Client client)
+        {
+            MySqlConnection connection = CreateConn();
+            int clientId = 0;
+            string result = string.Empty;
+            string acc_name = client.Name;
+            string acc_pas = client.Password;
+
+            Console.WriteLine(client.Name);
+            try
+                {
+                    connection.Open();
+                }
+                catch (MySqlException o)
+                {
+                    Console.WriteLine(o.ToString());
+                }
+
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+                    DataSet ds = new DataSet();
+
+                    cmd.CommandText = "SELECT id FROM account_table WHERE acc_name = @name";
+                    cmd.Parameters.AddWithValue("@name", client.Name);
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        result = "Name Already Exists";
+                        connection.Close();
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        cmd = connection.CreateCommand();
+                        cmd.CommandText = "INSERT INTO account_table(acc_name, acc_pas) VALUES(@in_name,@in_pas)";
+                        cmd.Parameters.AddWithValue("@in_name", client.Name);
+                        cmd.Parameters.AddWithValue("@in_pas", client.Password);
+                        cmd.ExecuteNonQuery();
+                        result = "Registered";
+                    }
+                    
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                catch (Exception w)
+                {
+                    Console.WriteLine(w.ToString());
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                return result;
+        }
+
+        public string LogIn(Client client)
+        {
+            MySqlConnection connection = CreateConn();
+            int clientId = 0;
+            int id_log = 0;
+            string result = string.Empty;
+            string acc_name = client.Name;
+            string acc_pas = client.Password;
+
+            Console.WriteLine(client.Name);
+            try
+                {
+                    connection.Open();
+                }
+                catch (MySqlException o)
+                {
+                    Console.WriteLine(o.ToString());
+                }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM account_table WHERE acc_name = @name";
+                cmd.Parameters.AddWithValue("@name", client.Name);
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                id_log = Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+                acc_name = ds.Tables[0].Rows[0][1].ToString();
+                acc_pas = ds.Tables[0].Rows[0][2].ToString();
+
+                if (acc_pas == client.Password)
+                {
+                    result = ds.Tables[0].Rows[0][0].ToString();
+                }
+                else
+                {
+                    result = "0";
+                }
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception w)
+            {
+                result = "0";
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+
+            return result;
+
+        }
+    }
 }
 
 /*EXAMPLES ONLY!!! FOR CONSTRUCTION. THERE ARE SOME MISSING EXCEPTION BLOCKS.

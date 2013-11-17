@@ -15,5 +15,11 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void Disconnect(Client client);
+
+        [OperationContract(IsOneWay = true)]
+        void Register(Client client);
+
+        [OperationContract(IsOneWay = true)]
+        void LogIn(Client client);
     }
 }
