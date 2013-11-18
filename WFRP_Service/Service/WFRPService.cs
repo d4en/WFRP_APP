@@ -42,43 +42,6 @@ namespace Service
 
         #region IWFRP Members
 
-        public bool Connect(Client client)
-        {
-            if (!clients.ContainsValue(CurrentCallback) &&
-                !SearchClientsByName(client.Name))
-            {
-                lock (syncObj)
-                {
-                    clients.Add(client, CurrentCallback);
-                    clientList.Add(client);
-
-                    foreach (Client key in clients.Keys)
-                    {
-                        IWFRPCallback callback = clients[key];
-                        try
-                        {
-
-                            Message msg = new Message();
-                            msg.Sender = "Server";
-                            msg.Content = "SERWER: POŁĄCZONO";
-                            callback.Receive(msg);
-                        }
-                        catch
-                        {
-                            clients.Remove(key);
-                            return false;
-                        }
-
-                    }        
-
-                }
-
-                Console.WriteLine(client.Name + " has connected.");
-                return true;
-            }
-            return false;
-        }
-
         public void Disconnect(Client client)
         {
             this.clients.Remove(client);
@@ -93,7 +56,7 @@ namespace Service
                         Message msg = new Message();
                         msg.Sender = "Server";
                         msg.Content = client.Name + " has left.";
-                        callback.Receive(msg);
+                        callback.GetStatus(msg);
                     }
                 } 
             }
@@ -111,30 +74,56 @@ namespace Service
             Message msg = new Message();
             msg.Sender = "SERVER";
             msg.Content = response;
-            callback.Status(msg);
+            callback.GetStatus(msg);
 
         }
 
-        public void LogIn(Client client)
+        public bool LogIn(Client client)
         {
             IWFRPCallback callback = CurrentCallback;
 
             DBConnector DataBase = new DBConnector();
-            Message msg = new Message();
-            msg.Sender = "SERVER";
-            msg.Content = "Wrong Credentials";
             string response = string.Empty;
 
+            Message msg = new Message();
+            
+
             response = DataBase.LogIn(client);
+
             if (Int32.Parse(response) != 0)
             {
                 Identity accountID = new Identity();
                 accountID.AccountID = response;
                 callback.GetIdentity(accountID);
+                
+                msg = new Message();
+                msg.Sender = "Server";
+                msg.Content = "SERWER: POŁĄCZONO";
+                callback.GetStatus(msg);
+
+                if (!clients.ContainsValue(CurrentCallback) &&
+                !SearchClientsByName(client.Name))
+                {
+                    lock (syncObj)
+                    {
+                        clients.Add(client, CurrentCallback);
+                        clientList.Add(client);
+
+                    }
+
+                    Console.WriteLine(client.Name + " has connected.");
+                    return true;
+                }
+                return true;
             }
             else
             {
-                callback.Status(msg);
+                msg = new Message();
+                msg.Sender = "SERVER";
+                msg.Content = "Wrong Credentials";
+                clients.Remove(client);
+                callback.GetStatus(msg);
+                return false;
             }
             
         }

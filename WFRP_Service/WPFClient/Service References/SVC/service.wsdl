@@ -23,55 +23,46 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Service" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IWFRP_Connect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Connect" />
-  </wsdl:message>
-  <wsdl:message name="IWFRP_Connect_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ConnectResponse" />
-  </wsdl:message>
   <wsdl:message name="IWFRP_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
   <wsdl:message name="IWFRP_Register_InputMessage">
     <wsdl:part name="parameters" element="tns:Register" />
   </wsdl:message>
-  <wsdl:message name="IWFRP_Receive_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Receive" />
+  <wsdl:message name="IWFRP_LogIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogIn" />
   </wsdl:message>
-  <wsdl:message name="IWFRP_Status_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Status" />
+  <wsdl:message name="IWFRP_LogIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_GetStatus_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_GetIdentity_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GetIdentity" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/Connect" message="tns:IWFRP_Connect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ConnectResponse" message="tns:IWFRP_Connect_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/Disconnect" message="tns:IWFRP_Disconnect_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/Register" message="tns:IWFRP_Register_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Receive">
-      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/Receive" message="tns:IWFRP_Receive_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/LogIn" message="tns:IWFRP_LogIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/LogInResponse" message="tns:IWFRP_LogIn_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Status">
-      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/Status" message="tns:IWFRP_Status_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetStatus">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetStatus" message="tns:IWFRP_GetStatus_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetIdentity">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetIdentity" message="tns:IWFRP_GetIdentity_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
     <wsp:PolicyReference URI="#NetTcpBinding_IWFRP_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="Connect">
-      <soap12:operation soapAction="http://tempuri.org/IWFRP/Connect" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/Disconnect" style="document" />
       <wsdl:input>
@@ -84,14 +75,23 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="Receive">
-      <soap12:operation soapAction="http://tempuri.org/IWFRP/Receive" style="document" />
+    <wsdl:operation name="LogIn">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/LogIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Status">
-      <soap12:operation soapAction="http://tempuri.org/IWFRP/Status" style="document" />
+    <wsdl:operation name="GetStatus">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetStatus" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdentity">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetIdentity" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

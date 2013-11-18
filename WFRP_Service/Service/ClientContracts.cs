@@ -9,12 +9,8 @@ namespace Service
 {
     public interface IWFRPCallback
     {
-
         [OperationContract(IsOneWay = true)]
-        void Receive(Message msg);
-
-        [OperationContract(IsOneWay = true)]
-        void Status(Message msg);
+        void GetStatus(Message msg);
 
         [OperationContract(IsOneWay = true)]
         void GetIdentity(Identity userID);

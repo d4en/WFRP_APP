@@ -14,4 +14,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:complexType name="Identity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Identity" nillable="true" type="tns:Identity" />
 </xs:schema>

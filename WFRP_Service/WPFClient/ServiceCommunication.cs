@@ -124,7 +124,7 @@ namespace WPFClient
         }
 
         void proxy_ConnectCompleted(object sender,
-                   ConnectCompletedEventArgs e)
+                   LogInCompletedEventArgs e)
         {
             if (e.Error != null)
             {
@@ -155,6 +155,8 @@ namespace WPFClient
                 {
                     this.localClient = new SVC.Client();
                     this.localClient.Name = _loginModel.LoginModelUserName;
+                    this.localClient.Password = _loginModel.LoginModelPswd;
+
                     InstanceContext context = new InstanceContext(this);
                     Proxy = new SVC.WFRPClient(context);
 
@@ -176,9 +178,9 @@ namespace WPFClient
                       new EventHandler(InnerDuplexChannel_Opened);
                     Proxy.InnerDuplexChannel.Closed +=
                       new EventHandler(InnerDuplexChannel_Closed);
-                    Proxy.ConnectAsync(this.localClient);
-                    Proxy.ConnectCompleted += new EventHandler<
-                          ConnectCompletedEventArgs>(proxy_ConnectCompleted);
+                    Proxy.LogInAsync(this.localClient);
+                    Proxy.LogInCompleted += new EventHandler<
+                          LogInCompletedEventArgs>(proxy_ConnectCompleted);
                 }
                 catch (Exception ex)
                 {
@@ -219,12 +221,16 @@ namespace WPFClient
         }
 
 
-
         #region IWFRPCallback Members
 
-        public void Receive(WPFClient.SVC.Message msg)
+        public void GetStatus(WPFClient.SVC.Message msg)
         {
             _loginModel.LoginModelMsg = "MESSAGE RECEIVED: " + msg.Content;
+        }
+
+        public void GetIdentity(Identity userID)
+        {
+            _loginModel.LoginModelID += " " + userID.AccountID;
         }
 
         #endregion
@@ -232,16 +238,31 @@ namespace WPFClient
 
         #region Async
 
-        public IAsyncResult BeginReceive(Message msg, AsyncCallback callback, object asyncState)
+        public IAsyncResult BeginGetStatus(Message msg, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
         }
 
-        public void EndReceive(IAsyncResult result)
+        public void EndGetStatus(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndGetIdentity(IAsyncResult result)
         {
             throw new NotImplementedException();
         }
 
         #endregion
+
+
+
+
+      
     }
 }

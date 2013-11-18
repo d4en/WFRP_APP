@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Collections;
 using Microsoft.Win32;
 using System.Windows.Controls.Primitives;
+using System.Threading;
 
 namespace WPFClient
 {
@@ -40,6 +41,8 @@ namespace WPFClient
             InitializeComponent();
             this.DataContext = _loginModel;
             servCom = new ServiceCommunication(_loginModel, this.Dispatcher);
+
+            
         }
 
 
@@ -65,7 +68,7 @@ namespace WPFClient
             servCom.Disconnect();
         }
 
-        #endregion
-
+        #endregion 
+               
     }
 }

@@ -29,7 +29,7 @@ namespace Service
 
         public bool Equals(Client other)
         {
-            if (other.Name == this.Name && other._password == this.Password)
+            if (other.Name == this.Name && other.Password == this.Password)
                 return true;
             else
                 return false;
@@ -43,7 +43,8 @@ namespace Service
 
         public override int GetHashCode()
         {
-            return (Name != null ? Name.GetHashCode() : 0);
+            return (Name != null ? Name.GetHashCode() : 0) ^
+                    (Password != null ? Password.GetHashCode() : 0);
         }
 
     }

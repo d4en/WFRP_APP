@@ -108,6 +108,35 @@ namespace WPFClient.Model
             }
         }
 
+        string _pswd = null;
+        public string LoginModelPswd
+        {
+            get
+            {
+                return _pswd;
+            }
+            set
+            {
+                _pswd = value;
+
+                OnPropertyChanged("LoginModelPswd");
+            }
+        }
+
+        string _ID = null;
+        public string LoginModelID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                _ID = value;
+
+                OnPropertyChanged("LoginModelID");
+            }
+        }
 
     }
 }

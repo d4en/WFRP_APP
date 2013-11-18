@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/Service" />
-  <xs:element name="Connect">
+  <xs:element name="Disconnect">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="client" nillable="true" type="q1:Client" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ConnectResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ConnectResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Disconnect">
+  <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="client" nillable="true" type="q2:Client" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Register">
+  <xs:element name="LogIn">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="client" nillable="true" type="q3:Client" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Receive">
+  <xs:element name="LogInResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LogInResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatus">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q4:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Status">
+  <xs:element name="GetIdentity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q5:Message" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q5:Identity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
