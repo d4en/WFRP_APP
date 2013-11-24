@@ -184,6 +184,14 @@ namespace WPFClient.SVC {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SVC.IWFRP", CallbackContract=typeof(WPFClient.SVC.IWFRPCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IWFRP {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWFRP/Initialize", ReplyAction="http://tempuri.org/IWFRP/InitializeResponse")]
+        bool Initialize();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWFRP/Initialize", ReplyAction="http://tempuri.org/IWFRP/InitializeResponse")]
+        System.IAsyncResult BeginInitialize(System.AsyncCallback callback, object asyncState);
+        
+        bool EndInitialize(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Disconnect")]
         void Disconnect(WPFClient.SVC.Client client);
         
@@ -200,13 +208,13 @@ namespace WPFClient.SVC {
         
         void EndRegister(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWFRP/LogIn", ReplyAction="http://tempuri.org/IWFRP/LogInResponse")]
-        bool LogIn(WPFClient.SVC.Client client);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/LogIn")]
+        void LogIn(WPFClient.SVC.Client client);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWFRP/LogIn", ReplyAction="http://tempuri.org/IWFRP/LogInResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/LogIn")]
         System.IAsyncResult BeginLogIn(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
         
-        bool EndLogIn(System.IAsyncResult result);
+        void EndLogIn(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -227,6 +235,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetIdentity(WPFClient.SVC.Identity userID, System.AsyncCallback callback, object asyncState);
         
         void EndGetIdentity(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/IsServerOnline")]
+        void IsServerOnline(WPFClient.SVC.Message msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/IsServerOnline")]
+        System.IAsyncResult BeginIsServerOnline(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndIsServerOnline(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -235,11 +251,11 @@ namespace WPFClient.SVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class LogInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class InitializeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public LogInCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public InitializeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -255,6 +271,12 @@ namespace WPFClient.SVC {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class WFRPClient : System.ServiceModel.DuplexClientBase<WPFClient.SVC.IWFRP>, WPFClient.SVC.IWFRP {
+        
+        private BeginOperationDelegate onBeginInitializeDelegate;
+        
+        private EndOperationDelegate onEndInitializeDelegate;
+        
+        private System.Threading.SendOrPostCallback onInitializeCompletedDelegate;
         
         private BeginOperationDelegate onBeginDisconnectDelegate;
         
@@ -294,11 +316,61 @@ namespace WPFClient.SVC {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
+        public event System.EventHandler<InitializeCompletedEventArgs> InitializeCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DisconnectCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RegisterCompleted;
         
-        public event System.EventHandler<LogInCompletedEventArgs> LogInCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogInCompleted;
+        
+        public bool Initialize() {
+            return base.Channel.Initialize();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginInitialize(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginInitialize(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndInitialize(System.IAsyncResult result) {
+            return base.Channel.EndInitialize(result);
+        }
+        
+        private System.IAsyncResult OnBeginInitialize(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInitialize(callback, asyncState);
+        }
+        
+        private object[] OnEndInitialize(System.IAsyncResult result) {
+            bool retVal = this.EndInitialize(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnInitializeCompleted(object state) {
+            if ((this.InitializeCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.InitializeCompleted(this, new InitializeCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void InitializeAsync() {
+            this.InitializeAsync(null);
+        }
+        
+        public void InitializeAsync(object userState) {
+            if ((this.onBeginInitializeDelegate == null)) {
+                this.onBeginInitializeDelegate = new BeginOperationDelegate(this.OnBeginInitialize);
+            }
+            if ((this.onEndInitializeDelegate == null)) {
+                this.onEndInitializeDelegate = new EndOperationDelegate(this.OnEndInitialize);
+            }
+            if ((this.onInitializeCompletedDelegate == null)) {
+                this.onInitializeCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnInitializeCompleted);
+            }
+            base.InvokeAsync(this.onBeginInitializeDelegate, null, this.onEndInitializeDelegate, this.onInitializeCompletedDelegate, userState);
+        }
         
         public void Disconnect(WPFClient.SVC.Client client) {
             base.Channel.Disconnect(client);
@@ -398,8 +470,8 @@ namespace WPFClient.SVC {
                         client}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
         }
         
-        public bool LogIn(WPFClient.SVC.Client client) {
-            return base.Channel.LogIn(client);
+        public void LogIn(WPFClient.SVC.Client client) {
+            base.Channel.LogIn(client);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -408,8 +480,8 @@ namespace WPFClient.SVC {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public bool EndLogIn(System.IAsyncResult result) {
-            return base.Channel.EndLogIn(result);
+        public void EndLogIn(System.IAsyncResult result) {
+            base.Channel.EndLogIn(result);
         }
         
         private System.IAsyncResult OnBeginLogIn(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -418,15 +490,14 @@ namespace WPFClient.SVC {
         }
         
         private object[] OnEndLogIn(System.IAsyncResult result) {
-            bool retVal = this.EndLogIn(result);
-            return new object[] {
-                    retVal};
+            this.EndLogIn(result);
+            return null;
         }
         
         private void OnLogInCompleted(object state) {
             if ((this.LogInCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.LogInCompleted(this, new LogInCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.LogInCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
         

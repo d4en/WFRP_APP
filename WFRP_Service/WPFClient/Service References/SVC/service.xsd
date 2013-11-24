@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/Service" />
+  <xs:element name="Initialize">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitializeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InitializeResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Disconnect">
     <xs:complexType>
       <xs:sequence>
@@ -22,13 +34,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="LogInResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="LogInResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetStatus">
     <xs:complexType>
       <xs:sequence>
@@ -40,6 +45,13 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q5:Identity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsServerOnline">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q6:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

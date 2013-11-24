@@ -23,6 +23,12 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Service" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IWFRP_Initialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:Initialize" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_Initialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializeResponse" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
@@ -32,16 +38,20 @@
   <wsdl:message name="IWFRP_LogIn_InputMessage">
     <wsdl:part name="parameters" element="tns:LogIn" />
   </wsdl:message>
-  <wsdl:message name="IWFRP_LogIn_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LogInResponse" />
-  </wsdl:message>
   <wsdl:message name="IWFRP_GetStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetStatus" />
   </wsdl:message>
   <wsdl:message name="IWFRP_GetIdentity_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetIdentity" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_IsServerOnline_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:IsServerOnline" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/Initialize" message="tns:IWFRP_Initialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/InitializeResponse" message="tns:IWFRP_Initialize_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/Disconnect" message="tns:IWFRP_Disconnect_InputMessage" />
     </wsdl:operation>
@@ -50,7 +60,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogIn">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/LogIn" message="tns:IWFRP_LogIn_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/LogInResponse" message="tns:IWFRP_LogIn_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetStatus" message="tns:IWFRP_GetStatus_OutputCallbackMessage" />
@@ -58,11 +67,23 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetIdentity">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetIdentity" message="tns:IWFRP_GetIdentity_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsServerOnline">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/IsServerOnline" message="tns:IWFRP_IsServerOnline_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
     <wsp:PolicyReference URI="#NetTcpBinding_IWFRP_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Initialize">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/Initialize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/Disconnect" style="document" />
       <wsdl:input>
@@ -80,9 +101,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetStatus" style="document" />
@@ -92,6 +110,12 @@
     </wsdl:operation>
     <wsdl:operation name="GetIdentity">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetIdentity" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsServerOnline">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/IsServerOnline" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

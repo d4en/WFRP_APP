@@ -33,6 +33,21 @@ namespace WPFClient.Model
             }
         }
 
+        bool _LoginExpander = true;
+        public bool LoginModelExpander
+        {
+            get
+            {
+                return _LoginExpander;
+            }
+            set
+            {
+                _LoginExpander = value;
+
+                OnPropertyChanged("LoginModelExpander");
+            }
+        }
+
         string _msg = null;
         public string LoginModelMsg
         {
@@ -138,5 +153,79 @@ namespace WPFClient.Model
             }
         }
 
+        bool _registerExpander = true;
+        public bool LoginModelRegExpander
+        {
+            get
+            {
+                return _registerExpander;
+            }
+            set
+            {
+                _registerExpander = value;
+
+                OnPropertyChanged("LoginModelRegExpander");
+            }
+        }
+
+        string _registerName = null;
+        public string LoginModelRegUserName
+        {
+            get
+            {
+                return _registerName;
+            }
+            set
+            {
+                _registerName = value;
+
+                OnPropertyChanged("LoginModelRegUserName");
+            }
+        }
+
+        string _userPassword = null;
+        public string LoginModelRegNewPsw
+        {
+            get
+            {
+                return _userPassword;
+            }
+            set
+            {
+                _userPassword = value;
+
+                OnPropertyChanged("LoginModelRegNewPsw");
+            }
+        }
+
+        string _userRePassword = null;
+        public string LoginModelRegNewRePsw
+        {
+            get
+            {
+                return _userRePassword;
+            }
+            set
+            {
+                _userRePassword = value;
+
+                OnPropertyChanged("LoginModelRegNewRePsw");
+            }
+        }
+
+        string _registerStatus = null;
+        public string LoginModelRegStatus
+        {
+            get
+            {
+                return _registerStatus;
+            }
+            set
+            {
+                _registerStatus = value;
+
+                OnPropertyChanged("LoginModelRegStatus");
+            }
+        }
     }
 }

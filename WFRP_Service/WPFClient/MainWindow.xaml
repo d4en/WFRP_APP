@@ -5,19 +5,21 @@
     <Canvas>
         <Label 
             x:Name="serverMsgLabel" 
-            Content="{Binding Path=LoginModelMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            Content="{Binding LoginModelMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
             HorizontalAlignment="Left" VerticalAlignment="Top" Width="331" Canvas.Left="99" Canvas.Top="285" Height="25"/>
-        <Expander x:Name="LoginExpander" Header="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="507" IsExpanded="False" ExpandDirection="Right">
+        <Expander x:Name="LoginExpander"
+                  IsExpanded="{Binding Path=LoginModelExpander, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Header="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="507" ExpandDirection="Right">
             <Expander.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock x:Name="RegTextBlock" Text="  Login" Foreground="#FFBF8B74" FontSize="25" FontStretch="Expanded">
+                    <TextBlock x:Name="LogTextBlock" Text="  Login" Foreground="#FFBF8B74" FontSize="25" FontStretch="Expanded">
                         <TextBlock.LayoutTransform>
                             <RotateTransform Angle="90"/>
                         </TextBlock.LayoutTransform>
                     </TextBlock>
                 </DataTemplate>
             </Expander.HeaderTemplate>
-            <Grid x:Name="LoginGrid" HorizontalAlignment="Left" Height="248" Width="373" Margin="49,0,-2,0" Background="#FFFFF3A5">
+            <Grid x:Name="LoginGrid" HorizontalAlignment="Left" Height="248" Width="373" Margin="28,0,-2,0" Background="#FFFFF3A5">
                 <Label 
                     x:Name="IDLabel" 
                     Content="{Binding Path=LoginModelID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -55,6 +57,39 @@
             		Text="{Binding LoginModelPswd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             		HorizontalAlignment="Left" Margin="112,63,0,0" VerticalAlignment="Top" Width="120"/>
                 <Label Content="Password" HorizontalAlignment="Left" Margin="237,63,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </Expander>
+        <Expander x:Name="RegisterExpander"
+                  IsExpanded="{Binding Path=LoginModelRegExpander, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Header="Register" HorizontalAlignment="Right" VerticalAlignment="Top" Height="310" Width="82" ExpandDirection="Left" Canvas.Left="430">
+            <Expander.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock x:Name="RegTextBlock" Text="  Register" Foreground="#FFBF8B74" FontSize="25" FontStretch="Expanded">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="90"/>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </DataTemplate>
+            </Expander.HeaderTemplate>
+            <Grid x:Name="RegisterGrid" HorizontalAlignment="Right" Height="248" Width="383" Margin="-450,31,39,31" Background="#FFFFF3A5">
+                <TextBox x:Name="txtBoxUserName" 
+                         Text="{Binding LoginModelRegUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         HorizontalAlignment="Left" Height="23" Margin="121,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.458,0.478"/>
+                <TextBox x:Name="txtBoxNewPsw" 
+                         Text="{Binding LoginModelRegNewPsw, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         HorizontalAlignment="Left" Height="23" Margin="121,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="txtBoxNewPswConf" 
+                         Text="{Binding LoginModelRegNewRePsw, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         HorizontalAlignment="Left" Height="23" Margin="121,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="274,73,0,0" VerticalAlignment="Top" Width="75" Click="btnRegister_Click"/>
+                <Label Content="Name" HorizontalAlignment="Left" Margin="41,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.077"/>
+                <Label Content="Password" HorizontalAlignment="Left" Margin="41,69,0,0" VerticalAlignment="Top"/>
+                <Label Content="RePassword" HorizontalAlignment="Left" Margin="41,117,0,0" VerticalAlignment="Top"/>
+                <Label Content="Status: " HorizontalAlignment="Left" Margin="105,170,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelRegisterStatus" 
+                       Content="{Binding LoginModelRegStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                       HorizontalAlignment="Left" Margin="153,170,0,0" VerticalAlignment="Top" Width="210" Height="26"/>
+
             </Grid>
         </Expander>
     </Canvas>

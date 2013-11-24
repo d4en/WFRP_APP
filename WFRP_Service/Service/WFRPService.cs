@@ -42,6 +42,12 @@ namespace Service
 
         #region IWFRP Members
 
+        public bool Initialize()
+        {
+            IWFRPCallback callback = CurrentCallback;
+            return true;
+        }
+
         public void Disconnect(Client client)
         {
             this.clients.Remove(client);
@@ -78,7 +84,7 @@ namespace Service
 
         }
 
-        public bool LogIn(Client client)
+        public void LogIn(Client client)
         {
             IWFRPCallback callback = CurrentCallback;
 
@@ -112,9 +118,9 @@ namespace Service
                     }
 
                     Console.WriteLine(client.Name + " has connected.");
-                    return true;
+                    
                 }
-                return true;
+                
             }
             else
             {
@@ -123,11 +129,13 @@ namespace Service
                 msg.Content = "Wrong Credentials";
                 clients.Remove(client);
                 callback.GetStatus(msg);
-                return false;
+                
             }
             
         }
         #endregion
+
+        
     }
 
 }

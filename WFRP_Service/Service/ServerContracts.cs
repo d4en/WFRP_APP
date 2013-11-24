@@ -10,13 +10,16 @@ namespace Service
     [ServiceContract(CallbackContract = typeof(IWFRPCallback), SessionMode = SessionMode.Required)]
     public interface IWFRP
     {
+        [OperationContract(IsInitiating = true)]
+        bool Initialize();
+
         [OperationContract(IsOneWay = true)]
         void Disconnect(Client client);
 
         [OperationContract(IsOneWay = true)]
         void Register(Client client);
 
-        [OperationContract(IsInitiating = true)]
-        bool LogIn(Client client);
+        [OperationContract(IsOneWay = true)]
+        void LogIn(Client client);
     }
 }

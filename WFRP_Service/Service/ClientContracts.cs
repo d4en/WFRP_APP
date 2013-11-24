@@ -15,5 +15,7 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void GetIdentity(Identity userID);
 
+        [OperationContract(IsOneWay = true)]
+        void IsServerOnline(Message msg);
     }
 }

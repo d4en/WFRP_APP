@@ -12,10 +12,12 @@ namespace WPFClient
     {
         //SVC holds references to the Proxy and cotracts..
         public SVC.WFRPClient Proxy { get; set; }
-        
+
+
         SVC.Client localClient = null;
         Model.LoginModel _loginModel = null;
         Dispatcher dispatcher = null;
+        
 
         //When the communication object 
         //turns to fault state it will
@@ -124,7 +126,7 @@ namespace WPFClient
         }
 
         void proxy_ConnectCompleted(object sender,
-                   LogInCompletedEventArgs e)
+                   InitializeCompletedEventArgs e)
         {
             if (e.Error != null)
             {
@@ -153,13 +155,12 @@ namespace WPFClient
             {
                 try
                 {
-                    this.localClient = new SVC.Client();
-                    this.localClient.Name = _loginModel.LoginModelUserName;
-                    this.localClient.Password = _loginModel.LoginModelPswd;
+                    _loginModel.LoginModelStatus = "Offline";
+                    _loginModel.LoginModelConnectButtonIsEnabled = false;
 
                     InstanceContext context = new InstanceContext(this);
                     Proxy = new SVC.WFRPClient(context);
-
+                   
                     //As the address in the configuration file is set to localhost
                     //we want to change it so we can call a service in internal 
                     //network, or over internet
@@ -169,18 +170,21 @@ namespace WPFClient
                     Proxy.Endpoint.Address = new EndpointAddress("net.tcp://"
                        + _loginModel.LoginModelServerIP + ":" +
                        serviceListenPort + servicePath);
-
+                   
                     Proxy.Open();
-
+                    _loginModel.LoginModelStatus = "SERVER UP";
+                    _loginModel.LoginModelConnectButtonIsEnabled = true;
+                    
                     Proxy.InnerDuplexChannel.Faulted +=
                       new EventHandler(InnerDuplexChannel_Faulted);
                     Proxy.InnerDuplexChannel.Opened +=
                       new EventHandler(InnerDuplexChannel_Opened);
                     Proxy.InnerDuplexChannel.Closed +=
                       new EventHandler(InnerDuplexChannel_Closed);
-                    Proxy.LogInAsync(this.localClient);
-                    Proxy.LogInCompleted += new EventHandler<
-                          LogInCompletedEventArgs>(proxy_ConnectCompleted);
+                    Proxy.Initialize();
+                    Proxy.InitializeCompleted += new EventHandler<
+                          InitializeCompletedEventArgs>(proxy_ConnectCompleted);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -220,8 +224,44 @@ namespace WPFClient
             }
         }
 
+        public void LogIn()
+        {
+          this.localClient = new SVC.Client();
+          this.localClient.Name = _loginModel.LoginModelUserName;
+          this.localClient.Password = _loginModel.LoginModelPswd;
+          this.Proxy.LogInAsync(this.localClient);
+             
+        }
+
+        public void Register()
+        {
+            if (_loginModel.LoginModelRegUserName.Length >0
+                && _loginModel.LoginModelRegNewPsw.Length >0
+                && _loginModel.LoginModelRegNewRePsw.Length >0)
+            {
+                if (_loginModel.LoginModelRegNewPsw == _loginModel.LoginModelRegNewRePsw)
+                {
+                    SVC.Client _client = new SVC.Client();
+                    _client.Name = _loginModel.LoginModelRegUserName;
+                    _client.Password = _loginModel.LoginModelRegNewPsw;
+
+                    Proxy.Register(_client);
+                    _loginModel.LoginModelRegStatus = "Register Success";
+                }
+                else
+                    _loginModel.LoginModelRegStatus = "Password dont match";
+            }
+
+       
+            
+        }
 
         #region IWFRPCallback Members
+
+        public void IsServerOnline(Message msg)
+        {
+            _loginModel.LoginModelID = msg.Content;
+        }
 
         public void GetStatus(WPFClient.SVC.Message msg)
         {
@@ -237,6 +277,16 @@ namespace WPFClient
 
 
         #region Async
+
+        IAsyncResult IWFRPCallback.BeginGetStatus(Message msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IWFRPCallback.EndGetStatus(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
 
         public IAsyncResult BeginGetStatus(Message msg, AsyncCallback callback, object asyncState)
         {
@@ -258,11 +308,36 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
+        public void EndIsServerOnline(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IWFRPCallback.GetStatus(Message msg)
+        {
+            _loginModel.LoginModelMsg = "MESSAGE RECEIVED: " + msg.Content;
+        }
+
+        void IWFRPCallback.GetIdentity(Identity userID)
+        {
+            _loginModel.LoginModelID += " " + userID.AccountID;
+        }
+
+        IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IWFRPCallback.EndGetIdentity(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginIsServerOnline(Message msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
-
-
-
-
-      
+ 
     }
 }

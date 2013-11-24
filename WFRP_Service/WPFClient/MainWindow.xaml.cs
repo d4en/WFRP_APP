@@ -29,10 +29,19 @@ namespace WPFClient
             LoginModelStatus = "Not connected",
             LoginModelMsg = "",
             LoginModelUserName = "", 
-            LoginModelServerIP = "192.168.1.4",
+            LoginModelServerIP = "192.168.0.11",
             LoginModelConnectButtonIsEnabled = true,
-            LoginModelDisconnectButtonIsEnabled = false
+            LoginModelDisconnectButtonIsEnabled = false,
+            LoginModelExpander = true,
+            LoginModelRegUserName = "",
+            LoginModelRegNewPsw = "",
+            LoginModelRegNewRePsw = "",
+            LoginModelRegStatus = "Fill Name and Password",
+            LoginModelRegExpander = false
+            
         };
+
+   
 
         ServiceCommunication servCom = null;
 
@@ -40,9 +49,10 @@ namespace WPFClient
         {
             InitializeComponent();
             this.DataContext = _loginModel;
-            servCom = new ServiceCommunication(_loginModel, this.Dispatcher);
+            servCom = new ServiceCommunication(_loginModel,this.Dispatcher);
 
-            
+            Thread initializeThread = new Thread(servCom.Connect);
+            initializeThread.Start();
         }
 
 
@@ -54,8 +64,9 @@ namespace WPFClient
             _loginModel.LoginModelConnectButtonIsEnabled = false;
             _loginModel.LoginModelDisconnectButtonIsEnabled = true;
             _loginModel.LoginModelStatus = "Connecting...";
-            servCom.Proxy = null;
-            servCom.Connect();
+            
+            //servCom.Connect();
+            servCom.LogIn();
 
         }
 
@@ -69,6 +80,12 @@ namespace WPFClient
         }
 
         #endregion 
+
+        private void btnRegister_Click(object sender,
+                                    RoutedEventArgs e)
+        {
+            servCom.Register();
+        }
                
     }
 }
