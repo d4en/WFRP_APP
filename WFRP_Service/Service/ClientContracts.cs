@@ -10,12 +10,10 @@ namespace Service
     public interface IWFRPCallback
     {
         [OperationContract(IsOneWay = true)]
-        void GetStatus(Message msg);
+        void GetServerMessageStatus(ServerMessage msg);
 
         [OperationContract(IsOneWay = true)]
         void GetIdentity(Identity userID);
 
-        [OperationContract(IsOneWay = true)]
-        void IsServerOnline(Message msg);
     }
 }

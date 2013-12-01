@@ -7,13 +7,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Client" nillable="true" type="tns:Client" />
-  <xs:complexType name="Message">
+  <xs:complexType name="ServerMessage">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Sender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsStatusCorrect" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Type" type="tns:ServerMessageType" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:element name="ServerMessage" nillable="true" type="tns:ServerMessage" />
+  <xs:simpleType name="ServerMessageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Connect" />
+      <xs:enumeration value="DisconnectInfoAll" />
+      <xs:enumeration value="DisconnectInfoClient" />
+      <xs:enumeration value="Register" />
+      <xs:enumeration value="Login" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ServerMessageType" nillable="true" type="tns:ServerMessageType" />
   <xs:complexType name="Identity">
     <xs:sequence>
       <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />

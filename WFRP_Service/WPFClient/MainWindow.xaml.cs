@@ -25,11 +25,16 @@ namespace WPFClient
     public partial class MainWindow : Window
     {
 
+        #region windows
+        OptionsWindow optWin = null;
+        #endregion
+
+        #region models
         Model.LoginModel _loginModel = new Model.LoginModel {
             LoginModelStatus = "Not connected",
             LoginModelMsg = "",
-            LoginModelUserName = "", 
-            LoginModelServerIP = "192.168.0.11",
+            LoginModelUserName = "",
+            LoginModelServerIP = "192.168.1.4",
             LoginModelConnectButtonIsEnabled = true,
             LoginModelDisconnectButtonIsEnabled = false,
             LoginModelExpander = true,
@@ -37,13 +42,15 @@ namespace WPFClient
             LoginModelRegNewPsw = "",
             LoginModelRegNewRePsw = "",
             LoginModelRegStatus = "Fill Name and Password",
-            LoginModelRegExpander = false
+            LoginModelRegExpander = false,
+            LoginModelRegisterButtonIsEnabled = false
             
         };
+        #endregion
 
-   
-
+        #region service data
         ServiceCommunication servCom = null;
+        #endregion
 
         public MainWindow()
         {
@@ -67,6 +74,8 @@ namespace WPFClient
             
             //servCom.Connect();
             servCom.LogIn();
+            //this.Visibility = System.Windows.Visibility.Hidden;
+            //optWin = new OptionsWindow(servCom);
 
         }
 
@@ -79,13 +88,13 @@ namespace WPFClient
             servCom.Disconnect();
         }
 
-        #endregion 
-
         private void btnRegister_Click(object sender,
                                     RoutedEventArgs e)
         {
             servCom.Register();
         }
-               
+
+        #endregion
+
     }
 }

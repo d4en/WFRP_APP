@@ -48,13 +48,12 @@ namespace Service
             return connection;
         }
 
-        public string Register(Client client)
+        public KeyValuePair<bool, string> Register(Client client)
         {
             MySqlConnection connection = CreateConn();
-            int clientId = 0;
-            string result = string.Empty;
             string acc_name = client.Name;
             string acc_pas = client.Password;
+            KeyValuePair<bool, string> result = new KeyValuePair<bool, string>();
 
             Console.WriteLine(client.Name);
             try
@@ -77,7 +76,7 @@ namespace Service
                     MySqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        result = "Name Already Exists";
+                        result = new KeyValuePair<bool, string>(false, "Name Already Exists");
                         connection.Close();
                     }
                     else
@@ -89,7 +88,7 @@ namespace Service
                         cmd.Parameters.AddWithValue("@in_name", client.Name);
                         cmd.Parameters.AddWithValue("@in_pas", client.Password);
                         cmd.ExecuteNonQuery();
-                        result = "Registered";
+                        result = new KeyValuePair<bool,string>(true, "Registered");
                     }
                     
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -110,12 +109,11 @@ namespace Service
                 return result;
         }
 
-        public string LogIn(Client client)
+        public KeyValuePair<bool, string> LogIn(Client client)
         {
             MySqlConnection connection = CreateConn();
-            int clientId = 0;
             int id_log = 0;
-            string result = string.Empty;
+            KeyValuePair<bool, string> result = new KeyValuePair<bool, string>();
             string acc_name = client.Name;
             string acc_pas = client.Password;
 
@@ -145,11 +143,11 @@ namespace Service
 
                 if (acc_pas == client.Password)
                 {
-                    result = ds.Tables[0].Rows[0][0].ToString();
+                    result = new KeyValuePair<bool,string> (true, ds.Tables[0].Rows[0][0].ToString());
                 }
                 else
                 {
-                    result = "0";
+                    result = new KeyValuePair<bool, string> (false, "Wrong credentials");
                 }
 
                 if (connection.State == System.Data.ConnectionState.Open)
@@ -158,9 +156,9 @@ namespace Service
 
                 }
             }
-            catch (Exception w)
+            catch (Exception ex)
             {
-                result = "0";
+                result = new KeyValuePair<bool, string>(false, ex.ToString());
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     connection.Close();

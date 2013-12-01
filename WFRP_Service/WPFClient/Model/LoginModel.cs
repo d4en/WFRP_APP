@@ -227,5 +227,20 @@ namespace WPFClient.Model
                 OnPropertyChanged("LoginModelRegStatus");
             }
         }
+
+        bool _registerButtonIsEnabled = false;
+        public bool LoginModelRegisterButtonIsEnabled
+        {
+            get
+            {
+                return _registerButtonIsEnabled;
+            }
+            set
+            {
+                _registerButtonIsEnabled = value;
+
+                OnPropertyChanged("LoginModelRegisterButtonIsEnabled");
+            }
+        }
     }
 }

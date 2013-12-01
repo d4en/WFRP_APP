@@ -49,23 +49,45 @@ namespace Service
 
     }
 
-    [DataContract]
-    public class Message
+    [DataContract(Name = "ServerMessageType")]
+    public enum ServerMessageTypeEnum
     {
-        private string _sender;
-        private string _content;
+        [EnumMember]
+        Connect,
+        [EnumMember]
+        DisconnectInfoAll,
+        [EnumMember]
+        DisconnectInfoClient,
+        [EnumMember]
+        Register,
+        [EnumMember]
+        Login
+    }
 
-        [DataMember]
-        public string Sender
-        {
-            get { return _sender; }
-            set { _sender = value; }
-        }
+    [DataContract]
+    public class ServerMessage
+    {
+        private string _content;
+        private bool _isStatusCorrect;
+        private ServerMessageTypeEnum _type;
+
         [DataMember]
         public string Content
         {
             get { return _content; }
             set { _content = value; }
+        }
+        [DataMember]
+        public bool IsStatusCorrect
+        {
+            get { return _isStatusCorrect; }
+            set { _isStatusCorrect = value; }
+        }
+        [DataMember]
+        public ServerMessageTypeEnum Type
+        {
+            get { return _type; }
+            set { _type = value; }
         }
     }
 

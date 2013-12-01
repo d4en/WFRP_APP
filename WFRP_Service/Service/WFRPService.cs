@@ -53,16 +53,27 @@ namespace Service
             this.clients.Remove(client);
             this.clientList.Remove(client);
             Console.WriteLine(client.Name + " has left.");
+
+            // Info to user that had left
+            ServerMessage msgClient = new ServerMessage();
+            msgClient.IsStatusCorrect = true;
+            msgClient.Type = ServerMessageTypeEnum.DisconnectInfoClient;
+            msgClient.Content = "Disconnected succesfully.";
+            IWFRPCallback callbackClient = CurrentCallback;
+            callbackClient.GetServerMessageStatus(msgClient);
+
+            // Info to all users
             foreach (Client c in clients.Keys)
             {
                 lock (syncObj)
                 {
                     foreach (IWFRPCallback callback in clients.Values)
                     {
-                        Message msg = new Message();
-                        msg.Sender = "Server";
+                        ServerMessage msg = new ServerMessage();
                         msg.Content = client.Name + " has left.";
-                        callback.GetStatus(msg);
+                        msg.IsStatusCorrect = true;
+                        msg.Type = ServerMessageTypeEnum.DisconnectInfoAll;
+                        callback.GetServerMessageStatus(msg);
                     }
                 } 
             }
@@ -74,13 +85,12 @@ namespace Service
             IWFRPCallback callback = CurrentCallback;
 
             DBConnector DataBase = new DBConnector();
-            string response = string.Empty;
-
-            response = DataBase.Register(client);
-            Message msg = new Message();
-            msg.Sender = "SERVER";
-            msg.Content = response;
-            callback.GetStatus(msg);
+            KeyValuePair<bool, string> response = DataBase.Register(client);
+            ServerMessage msg = new ServerMessage();
+            msg.Content = response.Value;
+            msg.IsStatusCorrect = response.Key;
+            msg.Type = ServerMessageTypeEnum.Register;
+            callback.GetServerMessageStatus(msg);
 
         }
 
@@ -89,23 +99,22 @@ namespace Service
             IWFRPCallback callback = CurrentCallback;
 
             DBConnector DataBase = new DBConnector();
-            string response = string.Empty;
-
-            Message msg = new Message();
-            
-
+            KeyValuePair<bool, string> response = new KeyValuePair<bool, string>();
+            ServerMessage msg = new ServerMessage();   
+     
             response = DataBase.LogIn(client);
 
-            if (Int32.Parse(response) != 0)
+            if (response.Key)
             {
                 Identity accountID = new Identity();
-                accountID.AccountID = response;
+                accountID.AccountID = response.Value;
                 callback.GetIdentity(accountID);
                 
-                msg = new Message();
-                msg.Sender = "Server";
+                msg = new ServerMessage();
                 msg.Content = "SERWER: POŁĄCZONO";
-                callback.GetStatus(msg);
+                msg.IsStatusCorrect = response.Key;
+                msg.Type = ServerMessageTypeEnum.Login;
+                callback.GetServerMessageStatus(msg);
 
                 if (!clients.ContainsValue(CurrentCallback) &&
                 !SearchClientsByName(client.Name))
@@ -124,12 +133,12 @@ namespace Service
             }
             else
             {
-                msg = new Message();
-                msg.Sender = "SERVER";
-                msg.Content = "Wrong Credentials";
-                clients.Remove(client);
-                callback.GetStatus(msg);
-                
+                msg = new ServerMessage();
+                msg.Type = ServerMessageTypeEnum.Login;
+                msg.Content = response.Value;
+                msg.IsStatusCorrect = response.Key;
+                callback.GetServerMessageStatus(msg);  
+                clients.Remove(client);                      
             }
             
         }

@@ -38,14 +38,11 @@
   <wsdl:message name="IWFRP_LogIn_InputMessage">
     <wsdl:part name="parameters" element="tns:LogIn" />
   </wsdl:message>
-  <wsdl:message name="IWFRP_GetStatus_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:GetStatus" />
+  <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
   <wsdl:message name="IWFRP_GetIdentity_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetIdentity" />
-  </wsdl:message>
-  <wsdl:message name="IWFRP_IsServerOnline_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:IsServerOnline" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -61,14 +58,11 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogIn">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/LogIn" message="tns:IWFRP_LogIn_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetStatus">
-      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetStatus" message="tns:IWFRP_GetStatus_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetIdentity">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetIdentity" message="tns:IWFRP_GetIdentity_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsServerOnline">
-      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/IsServerOnline" message="tns:IWFRP_IsServerOnline_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -102,20 +96,14 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="GetStatus">
-      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetStatus" style="document" />
+    <wsdl:operation name="GetServerMessageStatus">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetIdentity">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetIdentity" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsServerOnline">
-      <soap12:operation soapAction="http://tempuri.org/IWFRP/IsServerOnline" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

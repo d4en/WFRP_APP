@@ -34,10 +34,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetStatus">
+  <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q4:Message" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q4:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -45,13 +45,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q5:Identity" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="IsServerOnline">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q6:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
