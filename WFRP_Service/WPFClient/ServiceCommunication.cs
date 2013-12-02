@@ -32,6 +32,18 @@ namespace WPFClient
             this.dispatcher = dispatcher;
         }
 
+        ~ServiceCommunication()
+        {
+            try
+            {
+                this.Proxy.Close();
+            }
+            catch
+            {
+                this.Proxy.Abort();
+            }
+        }
+
         //Service might be disconnected or stopped for any reason,
         //so we have to handle the state of the communication object,
         //the communication object will fire 

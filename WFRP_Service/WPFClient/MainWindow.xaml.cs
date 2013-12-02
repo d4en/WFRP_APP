@@ -59,7 +59,7 @@ namespace WPFClient
             InitializeComponent();
             this.DataContext = _loginModel;
 
-            OptionsWindow optWin = new OptionsWindow();
+            optWin = new OptionsWindow();
 
             servCom = new ServiceCommunication(_loginModel, optWin.GetModel(), this.Dispatcher);
             optWin.SetServiceCommunication(servCom);
@@ -88,7 +88,9 @@ namespace WPFClient
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            // TO DO
+            optWin.Close();
+            optWin = null;
+            initializeThread.Abort();
         }
 
         #endregion
