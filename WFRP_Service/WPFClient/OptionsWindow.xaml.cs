@@ -18,12 +18,47 @@ namespace WPFClient
     /// </summary>
     public partial class OptionsWindow : Window
     {
-        private ServiceCommunication servCom = null;
+        #region models
+        Model.OptionsModel _optionsModel = new Model.OptionsModel
+        {
+            OptionsModelOptionsWindowIsVisible = Visibility.Hidden,
+            OptionsModelDisconnectButtonIsEnabled = false,
+            OptionsModelMsg = "",
+            OptionsModelID = "",
+            OptionsModelStatus = "Uknown"
+        };
+        #endregion
 
-        public OptionsWindow(ServiceCommunication servCom)
+        #region service data
+        ServiceCommunication servCom = null;
+        #endregion
+
+        public OptionsWindow()
         {
             InitializeComponent();
+            this.DataContext = _optionsModel;
+        }
+
+        public void SetServiceCommunication(ServiceCommunication servCom)
+        {
             this.servCom = servCom;
         }
+
+        public Model.OptionsModel GetModel()
+        {
+            return this._optionsModel;
+        }
+
+
+        #region UI events
+
+        private void disconnectButton_Click(object sender,
+                          RoutedEventArgs e)
+        {
+            _optionsModel.OptionsModelStatus = "Disconnecting...";
+            servCom.Disconnect();
+        }
+
+        #endregion
     }
 }

@@ -1,12 +1,9 @@
 ﻿<Window x:Class="WPFClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Canvas>
-        <Label 
-            x:Name="serverMsgLabel" 
-            Content="{Binding LoginModelMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            HorizontalAlignment="Left" VerticalAlignment="Top" Width="331" Canvas.Left="99" Canvas.Top="285" Height="25"/>
+        Title="MainWindow" Height="350" Width="525"
+        Closed="MainWindow_Closed">
+    <Canvas>     
         <Expander x:Name="LoginExpander"
                   IsExpanded="{Binding Path=LoginModelExpander, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   Header="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="507" ExpandDirection="Right">
@@ -20,12 +17,6 @@
                 </DataTemplate>
             </Expander.HeaderTemplate>
             <Grid x:Name="LoginGrid" HorizontalAlignment="Left" Height="248" Width="373" Margin="28,0,-2,0" Background="#FFFFF3A5">
-                <Label 
-                    x:Name="IDLabel" 
-                    Content="{Binding Path=LoginModelID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                    HorizontalAlignment="Left" VerticalAlignment="Top" Width="47" Canvas.Left="99" Canvas.Top="285" Height="25" Margin="37,10,0,0"/>
-                <Label 
-            		Content="ID: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <TextBox 
             		x:Name="userNameTxtBox" 
             		Text="{Binding LoginModelUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -47,11 +38,6 @@
             		x:Name="statusLabel" 
             		Content="{Binding LoginModelStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
             		HorizontalAlignment="Left" Margin="112,209,0,0" VerticalAlignment="Top" Width="149" Height="29"/>
-                <Button 
-            		x:Name="disconnectButton" 
-            		Content="Disconnect" 
-            		IsEnabled="{Binding LoginModelDisconnectButtonIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            		HorizontalAlignment="Left" Margin="267,187,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click"/>
                 <TextBox 
             		x:Name="pswdTxtBox"
             		Text="{Binding LoginModelPswd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

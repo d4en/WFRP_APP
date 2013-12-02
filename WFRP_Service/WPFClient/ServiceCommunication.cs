@@ -14,20 +14,21 @@ namespace WPFClient
         public SVC.WFRPClient Proxy { get; set; }
 
 
-        SVC.Client localClient = null;
+        public SVC.Client localClient = null;
         Model.LoginModel _loginModel = null;
+        Model.OptionsModel _optionsModel = null;
         Dispatcher dispatcher = null;
-        
+   
 
         //When the communication object 
         //turns to fault state it will
         //require another thread to invoke a fault event
         private delegate void FaultedInvoker();
 
-
-        public ServiceCommunication(Model.LoginModel loginModel, Dispatcher dispatcher)
+        public ServiceCommunication(Model.LoginModel loginModel, Model.OptionsModel optionsModel, Dispatcher dispatcher)
         {
             this._loginModel = loginModel;
+            this._optionsModel = optionsModel;
             this.dispatcher = dispatcher;
         }
 
@@ -96,8 +97,9 @@ namespace WPFClient
                 {
                     case CommunicationState.Closed:
                         _loginModel.LoginModelStatus = "Disconnected";
+                        _optionsModel.OptionsModelStatus = "Disconnected";
                         _loginModel.LoginModelConnectButtonIsEnabled = true;
-                        _loginModel.LoginModelDisconnectButtonIsEnabled = false;
+                        _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
                         Proxy = null;
                         break;
                     case CommunicationState.Closing:
@@ -108,13 +110,15 @@ namespace WPFClient
                         Proxy.Abort();
                         Proxy = null;
                         _loginModel.LoginModelStatus = "Disconnected";
+                        _optionsModel.OptionsModelStatus = "Disconnected";
                         _loginModel.LoginModelConnectButtonIsEnabled = true;
-                        _loginModel.LoginModelDisconnectButtonIsEnabled = false;
+                        _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
                         break;
                     case CommunicationState.Opened:
                         _loginModel.LoginModelStatus = "Connected";
+                        _optionsModel.OptionsModelStatus = "Connected";
                         _loginModel.LoginModelConnectButtonIsEnabled = false;
-                        _loginModel.LoginModelDisconnectButtonIsEnabled = true;
+                        _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
                         break;
                     case CommunicationState.Opening:
                         break;
@@ -131,8 +135,6 @@ namespace WPFClient
             if (e.Error != null)
             {
                 _loginModel.LoginModelStatus = e.ToString();
-               // _loginModel.LoginModelConnectButtonIsEnabled = true;
-                //_loginModel.LoginModelDisconnectButtonIsEnabled = false;
             }
             else if (e.Result)
             {
@@ -141,8 +143,7 @@ namespace WPFClient
             else if (!e.Result)
             {
                 _loginModel.LoginModelStatus = "Name found - already logged in!";
-                //_loginModel.LoginModelConnectButtonIsEnabled = true;
-                //_loginModel.LoginModelDisconnectButtonIsEnabled = false;
+                _optionsModel.OptionsModelStatus = "Name found - already logged in!";
             }
         }
 
@@ -192,7 +193,7 @@ namespace WPFClient
                     _loginModel.LoginModelStatus = "Offline";
                     _loginModel.LoginModelStatus += " / " + ex.ToString();
                     _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = false;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
                 }
             }
             else
@@ -207,16 +208,14 @@ namespace WPFClient
             {
                 try
                 {
-                    Proxy.DisconnectAsync(localClient);
-                    _loginModel.LoginModelStatus = "Disconnected";
-                    _loginModel.LoginModelMsg = "";
+                    Proxy.Disconnect(localClient);
                 }
                 catch (Exception ex)
                 {
                     _loginModel.LoginModelStatus = "Uknown";
                     _loginModel.LoginModelStatus += " / " + ex.ToString();
                     _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = true;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
                 }
             }
             else
@@ -250,65 +249,69 @@ namespace WPFClient
                 }
                 else
                     _loginModel.LoginModelRegStatus = "Passwords don't match";
-            }
-
-       
-            
+            }        
         }
 
         #region IWFRPCallback Members
-
-        #region MainWindow actions (login / register)
 
         public void GetServerMessageStatus(WPFClient.SVC.ServerMessage msg)
         {
             if (msg.Type == ServerMessageType.Login)
             {
                 if (msg.IsStatusCorrect)
-                {
-                    _loginModel.LoginModelMsg = "Success! " + msg.Content;
+                {                    
                     _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = true;
                     _loginModel.LoginModelStatus = "Connected";
                     _loginModel.LoginModelRegStatus = "Disconnect in order to register.";
                     _loginModel.LoginModelRegisterButtonIsEnabled = false;
+
+                    _optionsModel.OptionsModelMsg = "Success! " + msg.Content;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
+                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
+                    _optionsModel.OptionsModelStatus = "Connected";
                 }
                 else
                 {
-                    _loginModel.LoginModelMsg = "Error: " + msg.Content;
+                    _loginModel.LoginModelStatus = "Error: " + msg.Content;
                     _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = false;
-                    _loginModel.LoginModelStatus = "Disconnected";
                     _loginModel.LoginModelRegStatus = "Fill Name and Password";
                     _loginModel.LoginModelRegisterButtonIsEnabled = true;
+
+                    _optionsModel.OptionsModelStatus = "Disconnected";
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
+                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Hidden;
                 }
             }
-            // TO DO - disconnect will be only in OptionsWindows
             else if (msg.Type == ServerMessageType.DisconnectInfoClient)
             {
                 if (msg.IsStatusCorrect)
                 {
-                    _loginModel.LoginModelMsg = msg.Content;
                     _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = false;
                     _loginModel.LoginModelStatus = "Disconnected";
                     _loginModel.LoginModelRegStatus = "Fill Name and Password";
                     _loginModel.LoginModelRegisterButtonIsEnabled = true;
+
+                    _optionsModel.OptionsModelMsg = "Success! " + msg.Content;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
+                    _optionsModel.OptionsModelStatus = "Disconnected";
+                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Hidden;
                 }
                 else
-                {             
-                    _loginModel.LoginModelMsg = "Error: " + msg.Content;
+                {
                     _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = true;
+                    _loginModel.LoginModelStatus = "Uknown";
                     _loginModel.LoginModelRegStatus = "Disconnect in order to register.";
                     _loginModel.LoginModelRegisterButtonIsEnabled = false;
+
+                    _optionsModel.OptionsModelMsg = "Error: " + msg.Content;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
+                    _optionsModel.OptionsModelStatus = "Unknown";
                 }
             }
-            // TO DO - disconnect will be only in OptionsWindows
             else if (msg.Type == ServerMessageType.DisconnectInfoAll)
             {
                 if (msg.IsStatusCorrect)
-                    _loginModel.LoginModelMsg = msg.Content;
+                    _optionsModel.OptionsModelMsg = msg.Content;
             }
             else if (msg.Type == ServerMessageType.Register)
             {
@@ -316,17 +319,16 @@ namespace WPFClient
             }
             else
             {
-                _loginModel.LoginModelMsg = "Uknown server message type.";
-                _loginModel.LoginModelRegStatus = "Uknown server message type.";
+                _loginModel.LoginModelRegStatus = "Error";
+                _optionsModel.OptionsModelStatus = "Error";
+                _optionsModel.OptionsModelMsg= "Uknown server message type.";
             }
         }
 
         public void GetIdentity(Identity userID)
         {
-            _loginModel.LoginModelID = " " + userID.AccountID;
+            _optionsModel.OptionsModelID = userID.AccountID;
         }
-
-        #endregion
 
         #endregion
 
@@ -369,49 +371,58 @@ namespace WPFClient
             {
                 if (msg.IsStatusCorrect)
                 {
-                    _loginModel.LoginModelMsg = "Success! " + msg.Content;
                     _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = true;
                     _loginModel.LoginModelStatus = "Connected";
                     _loginModel.LoginModelRegStatus = "Disconnect in order to register.";
                     _loginModel.LoginModelRegisterButtonIsEnabled = false;
+
+                    _optionsModel.OptionsModelMsg = "Success! " + msg.Content;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
+                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
+                    _optionsModel.OptionsModelStatus = "Connected";
                 }
                 else
                 {
-                    _loginModel.LoginModelMsg = "Error: " + msg.Content;
+                    _loginModel.LoginModelStatus = "Error: " + msg.Content;
                     _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = false;
-                    _loginModel.LoginModelStatus = "Disconnected";
                     _loginModel.LoginModelRegStatus = "Fill Name and Password";
                     _loginModel.LoginModelRegisterButtonIsEnabled = true;
+
+                    _optionsModel.OptionsModelStatus = "Disconnected";
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
+                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Hidden;
                 }
             }
-            // TO DO - disconnect will be only in OptionsWindows
             else if (msg.Type == ServerMessageType.DisconnectInfoClient)
             {
                 if (msg.IsStatusCorrect)
                 {
-                    _loginModel.LoginModelMsg = msg.Content;
                     _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = false;
                     _loginModel.LoginModelStatus = "Disconnected";
                     _loginModel.LoginModelRegStatus = "Fill Name and Password";
                     _loginModel.LoginModelRegisterButtonIsEnabled = true;
+
+                    _optionsModel.OptionsModelMsg = "Success! " + msg.Content;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
+                    _optionsModel.OptionsModelStatus = "Disconnected";
+                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Hidden;
                 }
                 else
                 {
-                    _loginModel.LoginModelMsg = "Error: " + msg.Content;
                     _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelDisconnectButtonIsEnabled = true;
+                    _loginModel.LoginModelStatus = "Uknown";
                     _loginModel.LoginModelRegStatus = "Disconnect in order to register.";
                     _loginModel.LoginModelRegisterButtonIsEnabled = false;
+
+                    _optionsModel.OptionsModelMsg = "Error: " + msg.Content;
+                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
+                    _optionsModel.OptionsModelStatus = "Unknown";
                 }
             }
-            // TO DO - disconnect will be only in OptionsWindows
             else if (msg.Type == ServerMessageType.DisconnectInfoAll)
             {
                 if (msg.IsStatusCorrect)
-                    _loginModel.LoginModelMsg = msg.Content;
+                    _optionsModel.OptionsModelMsg = msg.Content;
             }
             else if (msg.Type == ServerMessageType.Register)
             {
@@ -419,14 +430,15 @@ namespace WPFClient
             }
             else
             {
-                _loginModel.LoginModelMsg = "Uknown server message type.";
-                _loginModel.LoginModelRegStatus = "Uknown server message type.";
+                _loginModel.LoginModelRegStatus = "Error";
+                _optionsModel.OptionsModelStatus = "Error";
+                _optionsModel.OptionsModelMsg = "Uknown server message type.";
             }
         }
 
         void IWFRPCallback.GetIdentity(Identity userID)
         {
-            _loginModel.LoginModelID = " " + userID.AccountID;
+            _optionsModel.OptionsModelID = userID.AccountID;
         }
 
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
@@ -440,6 +452,6 @@ namespace WPFClient
         }
 
         #endregion
- 
+
     }
 }

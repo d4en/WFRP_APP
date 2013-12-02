@@ -18,6 +18,21 @@ namespace WPFClient.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        System.Windows.Visibility _loginWindowIsVisible = System.Windows.Visibility.Visible;
+        public System.Windows.Visibility LoginModelLoginWindowIsVisible
+        {
+            get
+            {
+                return _loginWindowIsVisible;
+            }
+            set
+            {
+                _loginWindowIsVisible = value;
+
+                OnPropertyChanged("LoginModelLoginWindowIsVisible");
+            }
+        }
+
         string _status = null;
         public string LoginModelStatus
         {
@@ -45,21 +60,6 @@ namespace WPFClient.Model
                 _LoginExpander = value;
 
                 OnPropertyChanged("LoginModelExpander");
-            }
-        }
-
-        string _msg = null;
-        public string LoginModelMsg
-        {
-            get
-            {
-                return _msg;
-            }
-            set
-            {
-                _msg = value;
-
-                OnPropertyChanged("LoginModelMsg");
             }
         }
 
@@ -108,21 +108,6 @@ namespace WPFClient.Model
             }
         }
 
-        bool _disconnectButtonIsEnabled = false;
-        public bool LoginModelDisconnectButtonIsEnabled
-        {
-            get
-            {
-                return _disconnectButtonIsEnabled;
-            }
-            set
-            {
-                _disconnectButtonIsEnabled = value;
-
-                OnPropertyChanged("LoginModelDisconnectButtonIsEnabled");
-            }
-        }
-
         string _pswd = null;
         public string LoginModelPswd
         {
@@ -135,21 +120,6 @@ namespace WPFClient.Model
                 _pswd = value;
 
                 OnPropertyChanged("LoginModelPswd");
-            }
-        }
-
-        string _ID = null;
-        public string LoginModelID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                _ID = value;
-
-                OnPropertyChanged("LoginModelID");
             }
         }
 

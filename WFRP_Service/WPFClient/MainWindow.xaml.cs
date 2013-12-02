@@ -25,40 +25,46 @@ namespace WPFClient
     public partial class MainWindow : Window
     {
 
-        #region windows
-        OptionsWindow optWin = null;
-        #endregion
-
         #region models
         Model.LoginModel _loginModel = new Model.LoginModel {
             LoginModelStatus = "Not connected",
-            LoginModelMsg = "",
             LoginModelUserName = "",
             LoginModelServerIP = "192.168.1.4",
             LoginModelConnectButtonIsEnabled = true,
-            LoginModelDisconnectButtonIsEnabled = false,
             LoginModelExpander = true,
             LoginModelRegUserName = "",
             LoginModelRegNewPsw = "",
             LoginModelRegNewRePsw = "",
             LoginModelRegStatus = "Fill Name and Password",
             LoginModelRegExpander = false,
-            LoginModelRegisterButtonIsEnabled = false
+            LoginModelRegisterButtonIsEnabled = false,
+            LoginModelLoginWindowIsVisible = Visibility.Visible
             
         };
         #endregion
 
         #region service data
         ServiceCommunication servCom = null;
+        public bool isLoggedIn = false;
         #endregion
+
+        #region windows
+        OptionsWindow optWin = null;
+        #endregion
+
+        Thread initializeThread = null;
 
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = _loginModel;
-            servCom = new ServiceCommunication(_loginModel,this.Dispatcher);
 
-            Thread initializeThread = new Thread(servCom.Connect);
+            OptionsWindow optWin = new OptionsWindow();
+
+            servCom = new ServiceCommunication(_loginModel, optWin.GetModel(), this.Dispatcher);
+            optWin.SetServiceCommunication(servCom);
+
+            initializeThread = new Thread(servCom.Connect);
             initializeThread.Start();
         }
 
@@ -69,23 +75,9 @@ namespace WPFClient
                                    RoutedEventArgs e)
         {
             _loginModel.LoginModelConnectButtonIsEnabled = false;
-            _loginModel.LoginModelDisconnectButtonIsEnabled = true;
             _loginModel.LoginModelStatus = "Connecting...";
             
-            //servCom.Connect();
             servCom.LogIn();
-            //this.Visibility = System.Windows.Visibility.Hidden;
-            //optWin = new OptionsWindow(servCom);
-
-        }
-
-        private void disconnectButton_Click(object sender,
-                                  RoutedEventArgs e)
-        {
-            _loginModel.LoginModelConnectButtonIsEnabled = true;
-            _loginModel.LoginModelDisconnectButtonIsEnabled = false;
-            _loginModel.LoginModelStatus = "Disconnecting...";
-            servCom.Disconnect();
         }
 
         private void btnRegister_Click(object sender,
@@ -94,7 +86,13 @@ namespace WPFClient
             servCom.Register();
         }
 
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            // TO DO
+        }
+
         #endregion
+
 
     }
 }
