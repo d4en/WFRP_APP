@@ -108,5 +108,20 @@ namespace WPFClient.Model
             }
         }
 
+        List<string> _clientListBoxSelectedItems = new List<string>();
+        public List<string> OptionsModelClientListBoxSelectedItems
+        {
+            get
+            {
+                return _clientListBoxSelectedItems;
+            }
+            set
+            {
+                _clientListBoxSelectedItems = value;
+
+                OnPropertyChanged("OptionsModelClientListBoxSelectedItems");
+            }
+        }
+
     }
 }

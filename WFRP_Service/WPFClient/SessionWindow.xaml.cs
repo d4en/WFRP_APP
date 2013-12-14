@@ -36,8 +36,7 @@ namespace WPFClient
             this.DataContext = _sessionModel;
 
             this.servCom = servCom;
-            servCom.SetSessionModel(_sessionModel);
-            servCom.StartSession();
+            servCom.SetSessionModel(_sessionModel);          
 
         }
 

@@ -25,8 +25,7 @@ namespace WPFClient
             OptionsModelDisconnectButtonIsEnabled = false,
             OptionsModelMsg = "",
             OptionsModelID = "",
-            OptionsModelStatus = "Uknown",
-            OptionsModelClientListBox = new List<string>{ "a", "b", "c" }
+            OptionsModelStatus = "Uknown"
         };
         #endregion
 
@@ -63,7 +62,13 @@ namespace WPFClient
         private void sessionButton_Click(object sender, RoutedEventArgs e)
         {
             sessionWindow = new SessionWindow(servCom);
-            sessionWindow.Show();
+            string t = "";
+            foreach (string s in _optionsModel.OptionsModelClientListBoxSelectedItems)
+                t += s;
+            test.Text = t;
+                      
+            //servCom.StartSession(_optionsModel.OptionsModelClientListBoxSelectedItems);
+            //sessionWindow.Show();
         }
 
         private void OptionWindow_Closed(object sender, EventArgs e)
@@ -73,6 +78,19 @@ namespace WPFClient
             sessionWindow = null;
             //servCom.EndSession();
             servCom.Disconnect();
+        }
+
+        private void clientListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (string item in e.RemovedItems)
+            {
+                _optionsModel.OptionsModelClientListBoxSelectedItems.Remove(item);
+            }
+
+            foreach (string item in e.AddedItems)
+            {
+                _optionsModel.OptionsModelClientListBoxSelectedItems.Add(item);
+            }
         }
 
         #endregion
