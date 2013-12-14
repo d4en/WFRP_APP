@@ -29,7 +29,7 @@ namespace WPFClient
         Model.LoginModel _loginModel = new Model.LoginModel {
             LoginModelStatus = "Not connected",
             LoginModelUserName = "",
-            LoginModelServerIP = "192.168.1.4",
+            LoginModelServerIP = "192.168.1.8",
             LoginModelConnectButtonIsEnabled = true,
             LoginModelExpander = true,
             LoginModelRegUserName = "",
@@ -59,10 +59,7 @@ namespace WPFClient
             InitializeComponent();
             this.DataContext = _loginModel;
 
-            optWin = new OptionsWindow();
-
-            servCom = new ServiceCommunication(_loginModel, optWin.GetModel(), this.Dispatcher);
-            optWin.SetServiceCommunication(servCom);
+            servCom = new ServiceCommunication(_loginModel, this.Dispatcher);
 
             initializeThread = new Thread(servCom.Connect);
             initializeThread.Start();
@@ -76,6 +73,7 @@ namespace WPFClient
         {
             _loginModel.LoginModelConnectButtonIsEnabled = false;
             _loginModel.LoginModelStatus = "Connecting...";
+            optWin = new OptionsWindow(servCom);
             
             servCom.LogIn();
         }
@@ -88,7 +86,8 @@ namespace WPFClient
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            optWin.Close();
+            if(optWin != null)
+                optWin.Close();
             optWin = null;
             initializeThread.Abort();
         }

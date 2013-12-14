@@ -61,7 +61,9 @@ namespace Service
         [EnumMember]
         Register,
         [EnumMember]
-        Login
+        Login,
+        [EnumMember]
+        StartSession
     }
 
     [DataContract]
@@ -101,6 +103,27 @@ namespace Service
         {
             get { return _accountID; }
             set { _accountID = value; }
+        }
+    }
+
+    [DataContract]
+    public class Session
+    {
+        private int _sessionID;
+        private Client _MG;
+
+        [DataMember]
+        public int SessionID
+        {
+            get { return _sessionID; }
+            set { _sessionID = value; }
+        }
+
+        [DataMember]
+        public Client MG
+        {
+            get { return _MG; }
+            set { _MG = value; }
         }
     }
 }

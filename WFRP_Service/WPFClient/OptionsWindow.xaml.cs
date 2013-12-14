@@ -33,22 +33,18 @@ namespace WPFClient
         ServiceCommunication servCom = null;
         #endregion
 
-        public OptionsWindow()
+        #region windows
+        SessionWindow sessionWindow = null;
+        #endregion
+
+        public OptionsWindow(ServiceCommunication servCom)
         {
             InitializeComponent();
             this.DataContext = _optionsModel;
-        }
 
-        public void SetServiceCommunication(ServiceCommunication servCom)
-        {
             this.servCom = servCom;
+            servCom.SetOptionsModel(_optionsModel);
         }
-
-        public Model.OptionsModel GetModel()
-        {
-            return this._optionsModel;
-        }
-
 
         #region UI events
 
@@ -56,9 +52,28 @@ namespace WPFClient
                           RoutedEventArgs e)
         {
             _optionsModel.OptionsModelStatus = "Disconnecting...";
+            if (sessionWindow != null)
+                sessionWindow.Close();
+            sessionWindow = null;
+            servCom.Disconnect();
+        }
+
+        private void sessionButton_Click(object sender, RoutedEventArgs e)
+        {
+            sessionWindow = new SessionWindow(servCom);
+            sessionWindow.Show();
+        }
+
+        private void OptionWindow_Closed(object sender, EventArgs e)
+        {
+            if(sessionWindow != null)
+                sessionWindow.Close();
+            sessionWindow = null;
             servCom.Disconnect();
         }
 
         #endregion
+
+        
     }
 }

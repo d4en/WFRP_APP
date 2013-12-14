@@ -14,8 +14,9 @@ namespace Service
     {
         Dictionary<Client, IWFRPCallback> clients =
                  new Dictionary<Client, IWFRPCallback>();
-
+        
         List<Client> clientList = new List<Client>();
+        List<Session> sessionList = new List<Session>();
 
         public IWFRPCallback CurrentCallback
         {
@@ -142,6 +143,23 @@ namespace Service
             }
             
         }
+
+        public void StartSession(Client client)
+        {
+            Session session = new Session();
+            session.MG = client;
+            sessionList.Add(session);
+
+            IWFRPCallback callback = CurrentCallback;
+            ServerMessage msg = new ServerMessage();
+            msg.Type = ServerMessageTypeEnum.StartSession;
+            msg.IsStatusCorrect = true;
+            msg.Content = "Session created";
+            callback.GetServerMessageStatus(msg);
+
+        }
+
+
         #endregion
 
         

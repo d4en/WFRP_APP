@@ -17,6 +17,7 @@ namespace WPFClient
         public SVC.Client localClient = null;
         Model.LoginModel _loginModel = null;
         Model.OptionsModel _optionsModel = null;
+        Model.SessionModel _sessionModel = null;
         Dispatcher dispatcher = null;
    
 
@@ -25,10 +26,9 @@ namespace WPFClient
         //require another thread to invoke a fault event
         private delegate void FaultedInvoker();
 
-        public ServiceCommunication(Model.LoginModel loginModel, Model.OptionsModel optionsModel, Dispatcher dispatcher)
+        public ServiceCommunication(Model.LoginModel loginModel, Dispatcher dispatcher)
         {
             this._loginModel = loginModel;
-            this._optionsModel = optionsModel;
             this.dispatcher = dispatcher;
         }
 
@@ -42,6 +42,16 @@ namespace WPFClient
             {
                 this.Proxy.Abort();
             }
+        }
+
+        public void SetOptionsModel(Model.OptionsModel optionsModel)
+        {
+            this._optionsModel = optionsModel;
+        }
+
+        public void SetSessionModel(Model.SessionModel sessionModel)
+        {
+            this._sessionModel = sessionModel;
         }
 
         //Service might be disconnected or stopped for any reason,
@@ -205,7 +215,6 @@ namespace WPFClient
                     _loginModel.LoginModelStatus = "Offline";
                     _loginModel.LoginModelStatus += " / " + ex.ToString();
                     _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
                 }
             }
             else
@@ -262,6 +271,11 @@ namespace WPFClient
                 else
                     _loginModel.LoginModelRegStatus = "Passwords don't match";
             }        
+        }
+
+        public void StartSession()
+        {
+            this.Proxy.StartSessionAsync(this.localClient);
         }
 
         #region IWFRPCallback Members
@@ -329,11 +343,15 @@ namespace WPFClient
             {
                 _loginModel.LoginModelRegStatus = msg.Content;
             }
+            else if (msg.Type == ServerMessageType.StartSession)
+            {
+                // TO DO
+            }
             else
             {
                 _loginModel.LoginModelRegStatus = "Error";
                 _optionsModel.OptionsModelStatus = "Error";
-                _optionsModel.OptionsModelMsg= "Uknown server message type.";
+                _optionsModel.OptionsModelMsg = "Uknown server message type.";
             }
         }
 
@@ -439,6 +457,10 @@ namespace WPFClient
             else if (msg.Type == ServerMessageType.Register)
             {
                 _loginModel.LoginModelRegStatus = msg.Content;
+            }
+            else if (msg.Type == ServerMessageType.StartSession)
+            {
+                _optionsModel.OptionsModelMsg = msg.Content;
             }
             else
             {

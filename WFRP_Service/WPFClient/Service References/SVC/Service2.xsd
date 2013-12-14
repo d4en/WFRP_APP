@@ -22,6 +22,7 @@
       <xs:enumeration value="DisconnectInfoClient" />
       <xs:enumeration value="Register" />
       <xs:enumeration value="Login" />
+      <xs:enumeration value="StartSession" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="ServerMessageType" nillable="true" type="tns:ServerMessageType" />

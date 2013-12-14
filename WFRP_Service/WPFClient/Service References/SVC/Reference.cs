@@ -169,6 +169,9 @@ namespace WPFClient.SVC {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Login = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StartSession = 5,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -251,6 +254,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginLogIn(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
         
         void EndLogIn(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/StartSession")]
+        void StartSession(WPFClient.SVC.Client client);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/StartSession")]
+        System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
+        
+        void EndStartSession(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -324,6 +335,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onLogInCompletedDelegate;
         
+        private BeginOperationDelegate onBeginStartSessionDelegate;
+        
+        private EndOperationDelegate onEndStartSessionDelegate;
+        
+        private System.Threading.SendOrPostCallback onStartSessionCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -351,6 +368,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RegisterCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogInCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> StartSessionCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -545,6 +564,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginLogInDelegate, new object[] {
                         client}, this.onEndLogInDelegate, this.onLogInCompletedDelegate, userState);
+        }
+        
+        public void StartSession(WPFClient.SVC.Client client) {
+            base.Channel.StartSession(client);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginStartSession(client, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndStartSession(System.IAsyncResult result) {
+            base.Channel.EndStartSession(result);
+        }
+        
+        private System.IAsyncResult OnBeginStartSession(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
+            return this.BeginStartSession(client, callback, asyncState);
+        }
+        
+        private object[] OnEndStartSession(System.IAsyncResult result) {
+            this.EndStartSession(result);
+            return null;
+        }
+        
+        private void OnStartSessionCompleted(object state) {
+            if ((this.StartSessionCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.StartSessionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void StartSessionAsync(WPFClient.SVC.Client client) {
+            this.StartSessionAsync(client, null);
+        }
+        
+        public void StartSessionAsync(WPFClient.SVC.Client client, object userState) {
+            if ((this.onBeginStartSessionDelegate == null)) {
+                this.onBeginStartSessionDelegate = new BeginOperationDelegate(this.OnBeginStartSession);
+            }
+            if ((this.onEndStartSessionDelegate == null)) {
+                this.onEndStartSessionDelegate = new EndOperationDelegate(this.OnEndStartSession);
+            }
+            if ((this.onStartSessionCompletedDelegate == null)) {
+                this.onStartSessionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnStartSessionCompleted);
+            }
+            base.InvokeAsync(this.onBeginStartSessionDelegate, new object[] {
+                        client}, this.onEndStartSessionDelegate, this.onStartSessionCompletedDelegate, userState);
         }
     }
 }

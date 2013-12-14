@@ -38,6 +38,9 @@
   <wsdl:message name="IWFRP_LogIn_InputMessage">
     <wsdl:part name="parameters" element="tns:LogIn" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_StartSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartSession" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -57,6 +60,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogIn">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/LogIn" message="tns:IWFRP_LogIn_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/StartSession" message="tns:IWFRP_StartSession_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
@@ -92,6 +98,12 @@
     </wsdl:operation>
     <wsdl:operation name="LogIn">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/LogIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="StartSession">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/StartSession" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
