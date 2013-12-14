@@ -93,19 +93,20 @@ namespace WPFClient.Model
             }
         }
 
-        string _clientList = null;
-        public string OptionsModelClientList
+        List<string> _clientListBox = null;
+        public List<string> OptionsModelClientListBox
         {
             get
             {
-                return _clientList;
+                return _clientListBox;
             }
             set
             {
-                _clientList = value;
+                _clientListBox = value;
 
-                OnPropertyChanged("OptionsModelClientList");
+                OnPropertyChanged("OptionsModelClientListBox");
             }
         }
+
     }
 }

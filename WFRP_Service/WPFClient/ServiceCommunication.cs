@@ -364,10 +364,7 @@ namespace WPFClient
 
         public void SetClientList(List<string> clients)
         {
-            string c = "";
-            foreach (string s in clients)
-                c += s + " ";
-            _optionsModel.OptionsModelClientList = c;
+            _optionsModel.OptionsModelClientListBox = clients;
         }
 
         #endregion
@@ -484,10 +481,7 @@ namespace WPFClient
 
         void IWFRPCallback.SetClientList(List<string> clients)
         {
-            string c = "";
-            foreach (string s in clients)
-                c += s + " ";
-            _optionsModel.OptionsModelClientList = c;
+            _optionsModel.OptionsModelClientListBox = clients;
         }
 
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)

@@ -25,7 +25,8 @@ namespace WPFClient
             OptionsModelDisconnectButtonIsEnabled = false,
             OptionsModelMsg = "",
             OptionsModelID = "",
-            OptionsModelStatus = "Uknown"
+            OptionsModelStatus = "Uknown",
+            OptionsModelClientListBox = new List<string>{ "a", "b", "c" }
         };
         #endregion
 
