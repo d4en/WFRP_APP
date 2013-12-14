@@ -24,5 +24,8 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void StartSession(Client client);
+
+        [OperationContract(IsOneWay = true)]
+        void GetAllClients();
     }
 }

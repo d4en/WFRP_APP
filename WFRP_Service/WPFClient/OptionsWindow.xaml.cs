@@ -55,6 +55,7 @@ namespace WPFClient
             if (sessionWindow != null)
                 sessionWindow.Close();
             sessionWindow = null;
+            //servCom.EndSession();
             servCom.Disconnect();
         }
 
@@ -69,6 +70,7 @@ namespace WPFClient
             if(sessionWindow != null)
                 sessionWindow.Close();
             sessionWindow = null;
+            //servCom.EndSession();
             servCom.Disconnect();
         }
 

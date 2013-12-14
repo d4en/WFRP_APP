@@ -92,5 +92,20 @@ namespace WPFClient.Model
                 OnPropertyChanged("OptionsModelID");
             }
         }
+
+        string _clientList = null;
+        public string OptionsModelClientList
+        {
+            get
+            {
+                return _clientList;
+            }
+            set
+            {
+                _clientList = value;
+
+                OnPropertyChanged("OptionsModelClientList");
+            }
+        }
     }
 }

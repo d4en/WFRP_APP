@@ -18,7 +18,6 @@
   <xs:simpleType name="ServerMessageType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Connect" />
-      <xs:enumeration value="DisconnectInfoAll" />
       <xs:enumeration value="DisconnectInfoClient" />
       <xs:enumeration value="Register" />
       <xs:enumeration value="Login" />

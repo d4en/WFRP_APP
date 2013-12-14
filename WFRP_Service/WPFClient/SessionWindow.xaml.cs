@@ -40,5 +40,10 @@ namespace WPFClient
             servCom.StartSession();
 
         }
+
+        private void SessionWindow_Closed(object sender, EventArgs e)
+        {           
+            //servCom.EndSession();
+        }
     }
 }

@@ -15,5 +15,8 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void GetIdentity(Identity userID);
 
+        [OperationContract(IsOneWay = true)]
+        void SetClientList(List<string> clients);
+
     }
 }

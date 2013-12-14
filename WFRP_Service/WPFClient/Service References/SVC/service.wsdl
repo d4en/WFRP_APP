@@ -21,6 +21,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Service" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IWFRP_Initialize_InputMessage">
@@ -41,11 +42,17 @@
   <wsdl:message name="IWFRP_StartSession_InputMessage">
     <wsdl:part name="parameters" element="tns:StartSession" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_GetAllClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllClients" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
   <wsdl:message name="IWFRP_GetIdentity_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetIdentity" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_SetClientList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SetClientList" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -64,11 +71,17 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartSession">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/StartSession" message="tns:IWFRP_StartSession_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAllClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetAllClients" message="tns:IWFRP_GetAllClients_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetIdentity">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetIdentity" message="tns:IWFRP_GetIdentity_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetClientList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/SetClientList" message="tns:IWFRP_SetClientList_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -108,6 +121,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetAllClients" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetServerMessageStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
@@ -116,6 +135,12 @@
     </wsdl:operation>
     <wsdl:operation name="GetIdentity">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetIdentity" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetClientList">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/SetClientList" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

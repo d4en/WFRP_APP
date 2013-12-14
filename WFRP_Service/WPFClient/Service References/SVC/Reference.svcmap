@@ -27,6 +27,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="867b31b9-4f21-42e1-b468-12d2ef8da16b" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="7b67698a-9240-471a-8c79-680f531531d2" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
     <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="e453beb1-9cee-4376-ae42-379b6e24c797" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="4ff24daa-2905-476c-83bf-7a393be0a81f" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

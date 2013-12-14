@@ -159,19 +159,16 @@ namespace WPFClient.SVC {
         Connect = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        DisconnectInfoAll = 1,
+        DisconnectInfoClient = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        DisconnectInfoClient = 2,
+        Register = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Register = 3,
+        Login = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Login = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        StartSession = 5,
+        StartSession = 4,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -262,6 +259,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
         
         void EndStartSession(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetAllClients")]
+        void GetAllClients();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetAllClients")]
+        System.IAsyncResult BeginGetAllClients(System.AsyncCallback callback, object asyncState);
+        
+        void EndGetAllClients(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -282,6 +287,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetIdentity(WPFClient.SVC.Identity userID, System.AsyncCallback callback, object asyncState);
         
         void EndGetIdentity(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/SetClientList")]
+        void SetClientList(System.Collections.Generic.List<string> clients);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/SetClientList")]
+        System.IAsyncResult BeginSetClientList(System.Collections.Generic.List<string> clients, System.AsyncCallback callback, object asyncState);
+        
+        void EndSetClientList(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -341,6 +354,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onStartSessionCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetAllClientsDelegate;
+        
+        private EndOperationDelegate onEndGetAllClientsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllClientsCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -370,6 +389,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogInCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> StartSessionCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetAllClientsCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -613,6 +634,53 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginStartSessionDelegate, new object[] {
                         client}, this.onEndStartSessionDelegate, this.onStartSessionCompletedDelegate, userState);
+        }
+        
+        public void GetAllClients() {
+            base.Channel.GetAllClients();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAllClients(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllClients(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetAllClients(System.IAsyncResult result) {
+            base.Channel.EndGetAllClients(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllClients(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetAllClients(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllClients(System.IAsyncResult result) {
+            this.EndGetAllClients(result);
+            return null;
+        }
+        
+        private void OnGetAllClientsCompleted(object state) {
+            if ((this.GetAllClientsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllClientsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllClientsAsync() {
+            this.GetAllClientsAsync(null);
+        }
+        
+        public void GetAllClientsAsync(object userState) {
+            if ((this.onBeginGetAllClientsDelegate == null)) {
+                this.onBeginGetAllClientsDelegate = new BeginOperationDelegate(this.OnBeginGetAllClients);
+            }
+            if ((this.onEndGetAllClientsDelegate == null)) {
+                this.onEndGetAllClientsDelegate = new EndOperationDelegate(this.OnEndGetAllClients);
+            }
+            if ((this.onGetAllClientsCompletedDelegate == null)) {
+                this.onGetAllClientsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllClientsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllClientsDelegate, null, this.onEndGetAllClientsDelegate, this.onGetAllClientsCompletedDelegate, userState);
         }
     }
 }

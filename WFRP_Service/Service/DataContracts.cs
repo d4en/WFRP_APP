@@ -55,8 +55,6 @@ namespace Service
         [EnumMember]
         Connect,
         [EnumMember]
-        DisconnectInfoAll,
-        [EnumMember]
         DisconnectInfoClient,
         [EnumMember]
         Register,
@@ -110,7 +108,8 @@ namespace Service
     public class Session
     {
         private int _sessionID;
-        private Client _MG;
+        private KeyValuePair<Client, IWFRPCallback> _MG;
+        private Dictionary<Client, IWFRPCallback> _members;
 
         [DataMember]
         public int SessionID
@@ -120,10 +119,17 @@ namespace Service
         }
 
         [DataMember]
-        public Client MG
+        public KeyValuePair<Client, IWFRPCallback> MG
         {
             get { return _MG; }
             set { _MG = value; }
+        }
+
+        [DataMember]
+        public Dictionary<Client, IWFRPCallback> Members
+        {
+            get { return _members; }
+            set { _members = value; }
         }
     }
 }

@@ -278,6 +278,11 @@ namespace WPFClient
             this.Proxy.StartSessionAsync(this.localClient);
         }
 
+        //public void EndSession()
+        //{
+        //    this.Proxy.EndSessionAsync(this.localClient);
+        //}
+
         #region IWFRPCallback Members
 
         public void GetServerMessageStatus(WPFClient.SVC.ServerMessage msg)
@@ -295,6 +300,8 @@ namespace WPFClient
                     _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
                     _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
                     _optionsModel.OptionsModelStatus = "Connected";
+
+                    Proxy.GetAllClients();
                 }
                 else
                 {
@@ -334,18 +341,13 @@ namespace WPFClient
                     _optionsModel.OptionsModelStatus = "Unknown";
                 }
             }
-            else if (msg.Type == ServerMessageType.DisconnectInfoAll)
-            {
-                if (msg.IsStatusCorrect)
-                    _optionsModel.OptionsModelMsg = msg.Content;
-            }
             else if (msg.Type == ServerMessageType.Register)
             {
                 _loginModel.LoginModelRegStatus = msg.Content;
             }
             else if (msg.Type == ServerMessageType.StartSession)
             {
-                // TO DO
+                _optionsModel.OptionsModelMsg = msg.Content;
             }
             else
             {
@@ -358,6 +360,14 @@ namespace WPFClient
         public void GetIdentity(Identity userID)
         {
             _optionsModel.OptionsModelID = userID.AccountID;
+        }
+
+        public void SetClientList(List<string> clients)
+        {
+            string c = "";
+            foreach (string s in clients)
+                c += s + " ";
+            _optionsModel.OptionsModelClientList = c;
         }
 
         #endregion
@@ -410,6 +420,8 @@ namespace WPFClient
                     _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
                     _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
                     _optionsModel.OptionsModelStatus = "Connected";
+
+                    Proxy.GetAllClients();
                 }
                 else
                 {
@@ -449,11 +461,6 @@ namespace WPFClient
                     _optionsModel.OptionsModelStatus = "Unknown";
                 }
             }
-            else if (msg.Type == ServerMessageType.DisconnectInfoAll)
-            {
-                if (msg.IsStatusCorrect)
-                    _optionsModel.OptionsModelMsg = msg.Content;
-            }
             else if (msg.Type == ServerMessageType.Register)
             {
                 _loginModel.LoginModelRegStatus = msg.Content;
@@ -475,6 +482,14 @@ namespace WPFClient
             _optionsModel.OptionsModelID = userID.AccountID;
         }
 
+        void IWFRPCallback.SetClientList(List<string> clients)
+        {
+            string c = "";
+            foreach (string s in clients)
+                c += s + " ";
+            _optionsModel.OptionsModelClientList = c;
+        }
+
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -485,7 +500,22 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
+        public IAsyncResult BeginSetClientList(List<string> clients, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndSetClientList(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
+
+
+        
+
+        
     }
 }

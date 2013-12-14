@@ -64,19 +64,18 @@ namespace Service
             callbackClient.GetServerMessageStatus(msgClient);
 
             // Info to all users
+            List<string> clientsNames = new List<string>();
+            foreach (Client c in clients.Keys)
+                clientsNames.Add(c.Name);
             foreach (Client c in clients.Keys)
             {
                 lock (syncObj)
                 {
-                    foreach (IWFRPCallback callback in clients.Values)
+                    foreach (IWFRPCallback call in clients.Values)
                     {
-                        ServerMessage msg = new ServerMessage();
-                        msg.Content = client.Name + " has left.";
-                        msg.IsStatusCorrect = true;
-                        msg.Type = ServerMessageTypeEnum.DisconnectInfoAll;
-                        callback.GetServerMessageStatus(msg);
+                        call.SetClientList(clientsNames);
                     }
-                } 
+                }
             }
 
         }
@@ -130,6 +129,22 @@ namespace Service
                     Console.WriteLine(client.Name + " has connected.");
                     
                 }
+
+                // Info to all users
+                List<string> clientsNames = new List<string>();
+                foreach (Client c in clients.Keys)
+                    clientsNames.Add(c.Name);
+                foreach (Client c in clients.Keys)
+                {
+                    lock (syncObj)
+                    {
+                        foreach (IWFRPCallback call in clients.Values)
+                        {
+                            call.SetClientList(clientsNames);
+                        }
+                    }
+                }
+
                 
             }
             else
@@ -147,7 +162,8 @@ namespace Service
         public void StartSession(Client client)
         {
             Session session = new Session();
-            session.MG = client;
+            session.MG = new KeyValuePair<Client,IWFRPCallback>(client, CurrentCallback);
+            session.Members.Add(client, CurrentCallback);
             sessionList.Add(session);
 
             IWFRPCallback callback = CurrentCallback;
@@ -159,6 +175,44 @@ namespace Service
 
         }
 
+        public void GetAllClients()
+        {
+            // Info to all users
+            List<string> clientsNames = new List<string>();
+            foreach (Client c in clients.Keys)
+            {
+                clientsNames.Add(c.Name);
+            }
+
+            CurrentCallback.SetClientList(clientsNames);
+        }
+
+        // if client is MG, removes session from a list - deleting whole session, removing other clients
+        // if client is not MG, just removes him
+   /*     public void EndSession(Client client)
+        {
+            // Info to all users
+            foreach (Session s in sessionList)
+            {
+                if (s.MG.Key == client)
+                {
+                    // send callback to MG
+                    s.MG.Value.EndUserSession();
+                    // send callback to all session memebrs
+
+                    // TO DO
+
+                    // destroy session
+                    sessionList.Remove(s);
+                }
+                else
+                {
+                    // inform other session members about clients leave
+
+                    // TO DO
+                }
+            }
+        }*/
 
         #endregion
 
