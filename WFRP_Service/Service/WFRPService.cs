@@ -179,9 +179,20 @@ namespace Service
             session.MG = new KeyValuePair<Client,IWFRPCallback>(client, CurrentCallback);
             session.Members.Add(client, CurrentCallback);
             foreach (string s in members)
-            {               
+            {        
+                // check if a member isn't already in a session
+                bool isFree = true;
+                foreach (Session ses in sessionList)
+                {
+                    foreach (Client c in ses.Members.Keys)
+                    {
+                        if (c.Name == s)
+                            isFree = false;
+                    }
+                }
+
                 KeyValuePair<Client, IWFRPCallback> member = ClientCallbackByName(s);
-                if(!session.Members.ContainsKey(member.Key))
+                if(!session.Members.ContainsKey(member.Key) && isFree)
                     session.Members.Add(member.Key, member.Value);
             }
             sessionList.Add(session);
@@ -256,8 +267,12 @@ namespace Service
                             c.Value.SetSessionList(membersNames, msg);
                         }
                     }
-                }
+                }               
             }
+
+            List<Session> emptySessions = sessionList.Where(s => s.Members.Count == 0).ToList();
+            foreach (Session s in emptySessions)
+                sessionList.Remove(s);
         }
 
         #endregion

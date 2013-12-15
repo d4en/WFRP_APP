@@ -55,7 +55,7 @@ namespace WPFClient
             base.Close();
         }
 
-        private void chatTextBox_TextChanged(object sender, EventArgs e)
+        private void chatTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             chatTextBox.SelectionStart = chatTextBox.Text.Length;
             chatTextBox.ScrollToEnd();
@@ -63,9 +63,5 @@ namespace WPFClient
 
         #endregion
 
-        private void chatTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

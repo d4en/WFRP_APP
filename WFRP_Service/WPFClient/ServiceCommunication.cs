@@ -276,7 +276,7 @@ namespace WPFClient
         }
 
         public void StartSession()
-        {
+        {        
             this.Proxy.StartSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
         }
 
@@ -380,6 +380,7 @@ namespace WPFClient
 
         public void SessionInitSettings(Session session)
         {
+            _sessionModel.SessionModelChat = "";
             _optionsModel.OptionsModelStartButtonIsEnabled = false;
 
             this.session = session;
@@ -391,7 +392,6 @@ namespace WPFClient
 
         public void SetSessionList(List<string> clients, Message msg)
         {
-            // TO DO
             _sessionModel.SessionModelMembersListBox = clients;
             _sessionModel.SessionModelChat += msg.Content + "\n";
         }
@@ -514,13 +514,14 @@ namespace WPFClient
         }
 
         void IWFRPCallback.JoinedToSession(ServerMessage msg)
-        {
+        {           
             _optionsModel.OptionsModelMsg = msg.Content + " [member]";
             _sessionModel.SessionModelSessionWindowIsVisible = System.Windows.Visibility.Visible;
         }
 
         void IWFRPCallback.SessionInitSettings(Session session)
         {
+            _sessionModel.SessionModelChat = "";
             _optionsModel.OptionsModelStartButtonIsEnabled = false;
 
             this.session = session;
@@ -532,7 +533,6 @@ namespace WPFClient
 
         void IWFRPCallback.SetSessionList(List<string> clients, Message msg)
         {
-            // TO DO
             _sessionModel.SessionModelMembersListBox = clients;
             _sessionModel.SessionModelChat += msg.Content + "\n";
         }
