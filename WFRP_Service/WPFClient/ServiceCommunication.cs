@@ -15,6 +15,8 @@ namespace WPFClient
 
 
         public SVC.Client localClient = null;
+        public SVC.Session session = null;
+
         Model.LoginModel _loginModel = null;
         Model.OptionsModel _optionsModel = null;
         Model.SessionModel _sessionModel = null;
@@ -32,7 +34,7 @@ namespace WPFClient
             this.dispatcher = dispatcher;
         }
 
-        ~ServiceCommunication()
+        /*~ServiceCommunication()
         {
             try
             {
@@ -42,7 +44,7 @@ namespace WPFClient
             {
                 this.Proxy.Abort();
             }
-        }
+        }*/
 
         public void SetOptionsModel(Model.OptionsModel optionsModel)
         {
@@ -275,13 +277,16 @@ namespace WPFClient
 
         public void StartSession()
         {
-            this.Proxy.StartSessionAsync(this.localClient);
+            this.Proxy.StartSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
         }
 
-        //public void EndSession()
-        //{
-        //    this.Proxy.EndSessionAsync(this.localClient);
-        //}
+        public void EndSession()
+        {
+            if (session != null)
+                this.Proxy.EndSessionAsync(localClient);
+            _optionsModel.OptionsModelStartButtonIsEnabled = true;
+            session = null;
+        }
 
         #region IWFRPCallback Members
 
@@ -365,6 +370,29 @@ namespace WPFClient
         public void SetClientList(List<string> clients)
         {
             _optionsModel.OptionsModelClientListBox = clients;
+        }
+
+        public void JoinedToSession(ServerMessage msg)
+        {
+            _optionsModel.OptionsModelMsg = msg.Content + " [member]";
+            _sessionModel.SessionModelSessionWindowIsVisible = System.Windows.Visibility.Visible;
+        }
+
+        public void SessionInitSettings(Session session)
+        {
+            _optionsModel.OptionsModelStartButtonIsEnabled = false;
+
+            this.session = session;
+            List<string> members = new List<string>();
+            foreach (Client c in session.Members.Keys)
+                members.Add(c.Name);
+            _sessionModel.SessionModelMembersListBox = members;
+        }
+
+        public void SetSessionList(List<string> clients, Message msg)
+        {
+            // TO DO
+            _sessionModel.SessionModelMembersListBox = clients;
         }
 
         #endregion
@@ -484,6 +512,29 @@ namespace WPFClient
             _optionsModel.OptionsModelClientListBox = clients;
         }
 
+        void IWFRPCallback.JoinedToSession(ServerMessage msg)
+        {
+            _optionsModel.OptionsModelMsg = msg.Content + " [member]";
+            _sessionModel.SessionModelSessionWindowIsVisible = System.Windows.Visibility.Visible;
+        }
+
+        void IWFRPCallback.SessionInitSettings(Session session)
+        {
+            _optionsModel.OptionsModelStartButtonIsEnabled = false;
+
+            this.session = session;
+            List<string> members = new List<string>();
+            foreach (Client c in session.Members.Keys)
+                members.Add(c.Name);
+            _sessionModel.SessionModelMembersListBox = members;
+        }
+
+        void IWFRPCallback.SetSessionList(List<string> clients, Message msg)
+        {
+            // TO DO
+            _sessionModel.SessionModelMembersListBox = clients;
+        }
+
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -504,11 +555,37 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
+        public IAsyncResult BeginJoinedToSession(ServerMessage msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndJoinedToSession(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginSessionInitSettings(Session session, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndSessionInitSettings(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginSetSessionList(List<string> clients, Message msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndSetSessionList(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
-
-
-
-        
 
         
     }

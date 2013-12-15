@@ -18,5 +18,14 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void SetClientList(List<string> clients);
 
+        [OperationContract(IsOneWay = true)]
+        void JoinedToSession(ServerMessage msg);
+
+        [OperationContract(IsOneWay = true)]
+        void SessionInitSettings(Session session);
+
+        [OperationContract(IsOneWay = true)]
+        void SetSessionList(List<string> clients, Message msg);
+
     }
 }

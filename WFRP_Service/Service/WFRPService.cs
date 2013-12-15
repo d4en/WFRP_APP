@@ -41,6 +41,19 @@ namespace Service
             return false;
         }
 
+        private KeyValuePair<Client, IWFRPCallback> ClientCallbackByName(string name)
+        {
+            KeyValuePair<Client, IWFRPCallback> client = new KeyValuePair<Client, IWFRPCallback>();
+            foreach (KeyValuePair<Client, IWFRPCallback> c in clients)
+            {
+                if (c.Key.Name == name)
+                {
+                    client = c;
+                }
+            }
+            return client;
+        }
+
         #region IWFRP Members
 
         public bool Initialize()
@@ -159,20 +172,44 @@ namespace Service
             
         }
 
-        public void StartSession(Client client)
+        public void StartSession(Client client, List<string> members)
         {
+            // Creating session
             Session session = new Session();
             session.MG = new KeyValuePair<Client,IWFRPCallback>(client, CurrentCallback);
             session.Members.Add(client, CurrentCallback);
+            foreach (string s in members)
+            {               
+                KeyValuePair<Client, IWFRPCallback> member = ClientCallbackByName(s);
+                if(!session.Members.ContainsKey(member.Key))
+                    session.Members.Add(member.Key, member.Value);
+            }
             sessionList.Add(session);
 
-            IWFRPCallback callback = CurrentCallback;
+            // Information to all session members
             ServerMessage msg = new ServerMessage();
             msg.Type = ServerMessageTypeEnum.StartSession;
             msg.IsStatusCorrect = true;
             msg.Content = "Session created";
-            callback.GetServerMessageStatus(msg);
 
+            foreach (Client c in session.Members.Keys)
+            {
+                lock (syncObj)
+                {
+                    foreach (IWFRPCallback callback in session.Members.Values)
+                    {
+                        // MG
+                        if (callback == session.MG.Value)
+                            callback.GetServerMessageStatus(msg);
+                        // Other members
+                        else
+                            callback.JoinedToSession(msg);
+
+                        // All
+                        callback.SessionInitSettings(session);
+                    }
+                }
+            }
         }
 
         public void GetAllClients()
@@ -187,32 +224,34 @@ namespace Service
             CurrentCallback.SetClientList(clientsNames);
         }
 
-        // if client is MG, removes session from a list - deleting whole session, removing other clients
-        // if client is not MG, just removes him
-   /*     public void EndSession(Client client)
+        public void EndSession(Client client)
         {
-            // Info to all users
-            foreach (Session s in sessionList)
+            foreach (Session session in sessionList)
             {
-                if (s.MG.Key == client)
+                if (session.Members.ContainsKey(client))
                 {
-                    // send callback to MG
-                    s.MG.Value.EndUserSession();
-                    // send callback to all session memebrs
+                    session.Members.Remove(client);
+                    Message msg = new Message();
+                    msg.Content = client.Name + " has left.";
 
-                    // TO DO
+                    List<string> membersNames = new List<string>();
+                    foreach (Client c in session.Members.Keys)
+                        membersNames.Add(c.Name);
 
-                    // destroy session
-                    sessionList.Remove(s);
-                }
-                else
-                {
-                    // inform other session members about clients leave
+                    foreach (Client c in session.Members.Keys)
+                    {
+                        lock (syncObj)
+                        {
+                            foreach (IWFRPCallback call in session.Members.Values)
+                            {
+                                call.SetSessionList(membersNames, msg);
+                            }
+                        }
+                    }
 
-                    // TO DO
                 }
             }
-        }*/
+        }
 
         #endregion
 

@@ -1,8 +1,15 @@
 ﻿<Window x:Class="WPFClient.SessionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SessionWindow" Height="300" Width="300">
+        Title="SessionWindow" Height="300" Width="601"
+        Visibility="{Binding SessionModelSessionWindowIsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        Closing="SessionWindow_Closing">
     <Grid>
-        
+        <ListBox 
+            Name="membersListBox"
+            ItemsSource="{Binding SessionModelMembersListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   
+            SelectedItem="{Binding SessionModelSelectedMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectionMode="Single"
+            HorizontalAlignment="Left" Height="183" Margin="396,29,0,0" VerticalAlignment="Top" Width="174"/>
     </Grid>
 </Window>

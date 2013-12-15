@@ -216,6 +216,135 @@ namespace WPFClient.SVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Session", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Client))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
+    public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.KeyValuePair<WPFClient.SVC.Client, object> MGField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object> MembersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SessionIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.KeyValuePair<WPFClient.SVC.Client, object> MG {
+            get {
+                return this.MGField;
+            }
+            set {
+                if ((this.MGField.Equals(value) != true)) {
+                    this.MGField = value;
+                    this.RaisePropertyChanged("MG");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object> Members {
+            get {
+                return this.MembersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MembersField, value) != true)) {
+                    this.MembersField = value;
+                    this.RaisePropertyChanged("Members");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SessionID {
+            get {
+                return this.SessionIDField;
+            }
+            set {
+                if ((this.SessionIDField.Equals(value) != true)) {
+                    this.SessionIDField = value;
+                    this.RaisePropertyChanged("SessionID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContentField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SVC.IWFRP", CallbackContract=typeof(WPFClient.SVC.IWFRPCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IWFRP {
@@ -253,10 +382,10 @@ namespace WPFClient.SVC {
         void EndLogIn(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/StartSession")]
-        void StartSession(WPFClient.SVC.Client client);
+        void StartSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/StartSession")]
-        System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, System.AsyncCallback callback, object asyncState);
         
         void EndStartSession(System.IAsyncResult result);
         
@@ -267,6 +396,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetAllClients(System.AsyncCallback callback, object asyncState);
         
         void EndGetAllClients(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/EndSession")]
+        void EndSession(WPFClient.SVC.Client client);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/EndSession")]
+        System.IAsyncResult BeginEndSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
+        
+        void EndEndSession(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -295,6 +432,30 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginSetClientList(System.Collections.Generic.List<string> clients, System.AsyncCallback callback, object asyncState);
         
         void EndSetClientList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/JoinedToSession")]
+        void JoinedToSession(WPFClient.SVC.ServerMessage msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/JoinedToSession")]
+        System.IAsyncResult BeginJoinedToSession(WPFClient.SVC.ServerMessage msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndJoinedToSession(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/SessionInitSettings")]
+        void SessionInitSettings(WPFClient.SVC.Session session);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/SessionInitSettings")]
+        System.IAsyncResult BeginSessionInitSettings(WPFClient.SVC.Session session, System.AsyncCallback callback, object asyncState);
+        
+        void EndSessionInitSettings(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/SetSessionList")]
+        void SetSessionList(System.Collections.Generic.List<string> clients, WPFClient.SVC.Message msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/SetSessionList")]
+        System.IAsyncResult BeginSetSessionList(System.Collections.Generic.List<string> clients, WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndSetSessionList(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -360,6 +521,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onGetAllClientsCompletedDelegate;
         
+        private BeginOperationDelegate onBeginEndSessionDelegate;
+        
+        private EndOperationDelegate onEndEndSessionDelegate;
+        
+        private System.Threading.SendOrPostCallback onEndSessionCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -391,6 +558,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> StartSessionCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetAllClientsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> EndSessionCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -587,13 +756,13 @@ namespace WPFClient.SVC {
                         client}, this.onEndLogInDelegate, this.onLogInCompletedDelegate, userState);
         }
         
-        public void StartSession(WPFClient.SVC.Client client) {
-            base.Channel.StartSession(client);
+        public void StartSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members) {
+            base.Channel.StartSession(client, members);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginStartSession(client, callback, asyncState);
+        public System.IAsyncResult BeginStartSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginStartSession(client, members, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -603,7 +772,8 @@ namespace WPFClient.SVC {
         
         private System.IAsyncResult OnBeginStartSession(object[] inValues, System.AsyncCallback callback, object asyncState) {
             WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
-            return this.BeginStartSession(client, callback, asyncState);
+            System.Collections.Generic.List<string> members = ((System.Collections.Generic.List<string>)(inValues[1]));
+            return this.BeginStartSession(client, members, callback, asyncState);
         }
         
         private object[] OnEndStartSession(System.IAsyncResult result) {
@@ -618,11 +788,11 @@ namespace WPFClient.SVC {
             }
         }
         
-        public void StartSessionAsync(WPFClient.SVC.Client client) {
-            this.StartSessionAsync(client, null);
+        public void StartSessionAsync(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members) {
+            this.StartSessionAsync(client, members, null);
         }
         
-        public void StartSessionAsync(WPFClient.SVC.Client client, object userState) {
+        public void StartSessionAsync(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, object userState) {
             if ((this.onBeginStartSessionDelegate == null)) {
                 this.onBeginStartSessionDelegate = new BeginOperationDelegate(this.OnBeginStartSession);
             }
@@ -633,7 +803,8 @@ namespace WPFClient.SVC {
                 this.onStartSessionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnStartSessionCompleted);
             }
             base.InvokeAsync(this.onBeginStartSessionDelegate, new object[] {
-                        client}, this.onEndStartSessionDelegate, this.onStartSessionCompletedDelegate, userState);
+                        client,
+                        members}, this.onEndStartSessionDelegate, this.onStartSessionCompletedDelegate, userState);
         }
         
         public void GetAllClients() {
@@ -681,6 +852,55 @@ namespace WPFClient.SVC {
                 this.onGetAllClientsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllClientsCompleted);
             }
             base.InvokeAsync(this.onBeginGetAllClientsDelegate, null, this.onEndGetAllClientsDelegate, this.onGetAllClientsCompletedDelegate, userState);
+        }
+        
+        public void EndSession(WPFClient.SVC.Client client) {
+            base.Channel.EndSession(client);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginEndSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginEndSession(client, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndEndSession(System.IAsyncResult result) {
+            base.Channel.EndEndSession(result);
+        }
+        
+        private System.IAsyncResult OnBeginEndSession(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
+            return this.BeginEndSession(client, callback, asyncState);
+        }
+        
+        private object[] OnEndEndSession(System.IAsyncResult result) {
+            this.EndEndSession(result);
+            return null;
+        }
+        
+        private void OnEndSessionCompleted(object state) {
+            if ((this.EndSessionCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.EndSessionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void EndSessionAsync(WPFClient.SVC.Client client) {
+            this.EndSessionAsync(client, null);
+        }
+        
+        public void EndSessionAsync(WPFClient.SVC.Client client, object userState) {
+            if ((this.onBeginEndSessionDelegate == null)) {
+                this.onBeginEndSessionDelegate = new BeginOperationDelegate(this.OnBeginEndSession);
+            }
+            if ((this.onEndEndSessionDelegate == null)) {
+                this.onEndEndSessionDelegate = new EndOperationDelegate(this.OnEndEndSession);
+            }
+            if ((this.onEndSessionCompletedDelegate == null)) {
+                this.onEndSessionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnEndSessionCompleted);
+            }
+            base.InvokeAsync(this.onBeginEndSessionDelegate, new object[] {
+                        client}, this.onEndEndSessionDelegate, this.onEndSessionCompletedDelegate, userState);
         }
     }
 }

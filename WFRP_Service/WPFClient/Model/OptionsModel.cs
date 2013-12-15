@@ -123,5 +123,20 @@ namespace WPFClient.Model
             }
         }
 
+        bool _startButtonIsEnabled = false;
+        public bool OptionsModelStartButtonIsEnabled
+        {
+            get
+            {
+                return _startButtonIsEnabled;
+            }
+            set
+            {
+                _startButtonIsEnabled = value;
+
+                OnPropertyChanged("OptionsModelStartButtonIsEnabled");
+            }
+        }
+
     }
 }

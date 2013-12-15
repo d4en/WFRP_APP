@@ -23,9 +23,13 @@ namespace Service
         void LogIn(Client client);
 
         [OperationContract(IsOneWay = true)]
-        void StartSession(Client client);
+        void StartSession(Client client, List<string> members);
 
         [OperationContract(IsOneWay = true)]
         void GetAllClients();
+
+        [OperationContract(IsOneWay = true)]
+        void EndSession(Client client);
+
     }
 }

@@ -108,8 +108,8 @@ namespace Service
     public class Session
     {
         private int _sessionID;
-        private KeyValuePair<Client, IWFRPCallback> _MG;
-        private Dictionary<Client, IWFRPCallback> _members;
+        private KeyValuePair<Client, IWFRPCallback> _MG = new KeyValuePair<Client, IWFRPCallback>();
+        private Dictionary<Client, IWFRPCallback> _members = new Dictionary<Client, IWFRPCallback>();
 
         [DataMember]
         public int SessionID
@@ -130,6 +130,19 @@ namespace Service
         {
             get { return _members; }
             set { _members = value; }
+        }
+    }
+
+    [DataContract]
+    public class Message
+    {
+        private string _content;
+
+        [DataMember]
+        public string Content
+        {
+            get { return _content; }
+            set { _content = value; }
         }
     }
 }

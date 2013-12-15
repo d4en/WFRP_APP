@@ -40,9 +40,17 @@ namespace WPFClient
 
         }
 
-        private void SessionWindow_Closed(object sender, EventArgs e)
-        {           
-            //servCom.EndSession();
+        private void SessionWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            servCom.EndSession();
+            e.Cancel = true;
+            Visibility = Visibility.Collapsed;
+        }
+
+        public void Close()
+        {
+            this.Closing -= SessionWindow_Closing;
+            base.Close();
         }
     }
 }

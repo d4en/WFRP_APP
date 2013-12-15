@@ -22,10 +22,11 @@ namespace WPFClient
         Model.OptionsModel _optionsModel = new Model.OptionsModel
         {
             OptionsModelOptionsWindowIsVisible = Visibility.Hidden,
-            OptionsModelDisconnectButtonIsEnabled = false,
+            OptionsModelDisconnectButtonIsEnabled = true,
             OptionsModelMsg = "",
             OptionsModelID = "",
-            OptionsModelStatus = "Uknown"
+            OptionsModelStatus = "Uknown",
+            OptionsModelStartButtonIsEnabled = true
         };
         #endregion
 
@@ -44,6 +45,7 @@ namespace WPFClient
 
             this.servCom = servCom;
             servCom.SetOptionsModel(_optionsModel);
+            sessionWindow = new SessionWindow(servCom);
         }
 
         #region UI events
@@ -55,28 +57,31 @@ namespace WPFClient
             if (sessionWindow != null)
                 sessionWindow.Close();
             sessionWindow = null;
-            //servCom.EndSession();
+            servCom.EndSession();
             servCom.Disconnect();
         }
 
         private void sessionButton_Click(object sender, RoutedEventArgs e)
         {
-            sessionWindow = new SessionWindow(servCom);
+            if (sessionWindow == null)
+                sessionWindow = new SessionWindow(servCom);
+            
             string t = "";
             foreach (string s in _optionsModel.OptionsModelClientListBoxSelectedItems)
                 t += s;
             test.Text = t;
                       
-            //servCom.StartSession(_optionsModel.OptionsModelClientListBoxSelectedItems);
-            //sessionWindow.Show();
+            servCom.StartSession();
+            sessionWindow.Show();
         }
 
         private void OptionWindow_Closed(object sender, EventArgs e)
         {
             if(sessionWindow != null)
                 sessionWindow.Close();
+            sessionWindow.Close();
             sessionWindow = null;
-            //servCom.EndSession();
+            servCom.EndSession();
             servCom.Disconnect();
         }
 
