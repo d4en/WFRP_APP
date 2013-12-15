@@ -78,5 +78,20 @@ namespace WPFClient.Model
             }
         }
 
+        string _msgTextBox = "";
+        public string SessionModelMsg
+        {
+            get
+            {
+                return _msgTextBox;
+            }
+            set
+            {
+                _msgTextBox = value;
+
+                OnPropertyChanged("SessionModelMsg");
+            }
+        }
+
     }
 }

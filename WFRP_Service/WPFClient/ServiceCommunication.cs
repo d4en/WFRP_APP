@@ -34,18 +34,6 @@ namespace WPFClient
             this.dispatcher = dispatcher;
         }
 
-        /*~ServiceCommunication()
-        {
-            try
-            {
-                this.Proxy.Close();
-            }
-            catch
-            {
-                this.Proxy.Abort();
-            }
-        }*/
-
         public void SetOptionsModel(Model.OptionsModel optionsModel)
         {
             this._optionsModel = optionsModel;
@@ -288,6 +276,22 @@ namespace WPFClient
             session = null;
         }
 
+        public void SendMessage(string msg)
+        {
+            Message m = new Message();
+            m.Content = msg;
+            m.Sender = localClient.Name;
+            this.Proxy.Send(m);
+        }
+
+        public void WhisperMessage(string msg)
+        {
+            Message m = new Message();
+            m.Content = msg;
+            m.Sender = localClient.Name;
+            this.Proxy.Whisper(m, _sessionModel.SessionModelSelectedMember);
+        }
+
         #region IWFRPCallback Members
 
         public void GetServerMessageStatus(WPFClient.SVC.ServerMessage msg)
@@ -394,6 +398,16 @@ namespace WPFClient
         {
             _sessionModel.SessionModelMembersListBox = clients;
             _sessionModel.SessionModelChat += msg.Content + "\n";
+        }
+
+        public void Receive(Message msg)
+        {
+            _sessionModel.SessionModelChat += "[" + msg.Sender + "] " + msg.Content + "\n";
+        }
+
+        public void ReceiveWhisper(Message msg)
+        {
+            _sessionModel.SessionModelChat += "[wshisper][" + msg.Sender + "] " + msg.Content + "\n";
         }
 
         #endregion
@@ -537,6 +551,16 @@ namespace WPFClient
             _sessionModel.SessionModelChat += msg.Content + "\n";
         }
 
+        void IWFRPCallback.Receive(Message msg)
+        {
+            _sessionModel.SessionModelChat += "[" + msg.Sender + "] " + msg.Content + "\n";
+        }
+
+        void IWFRPCallback.ReceiveWhisper(Message msg)
+        {
+            _sessionModel.SessionModelChat += "[wshisper][" + msg.Sender + "] " + msg.Content + "\n";
+        }
+
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -583,6 +607,26 @@ namespace WPFClient
         }
 
         public void EndSetSessionList(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReceive(Message msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReceive(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReceiveWhisper(Message msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReceiveWhisper(IAsyncResult result)
         {
             throw new NotImplementedException();
         }

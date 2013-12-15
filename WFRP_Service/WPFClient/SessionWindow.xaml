@@ -14,6 +14,11 @@
         <TextBox 
             Name="chatTextBox"
             Text="{Binding SessionModelChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            HorizontalAlignment="Left" Height="52" Margin="28,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" IsUndoEnabled="False" VerticalScrollBarVisibility="Visible" TextChanged="chatTextBox_TextChanged"/>
+            HorizontalAlignment="Left" Height="183" Margin="28,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" IsUndoEnabled="False" VerticalScrollBarVisibility="Visible" TextChanged="chatTextBox_TextChanged"/>
+        <TextBox 
+            Name="msgTextBox"
+            Text="{Binding SessionModelMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="28,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" KeyDown="msgTextBox_KeyDown"/>
+        <CheckBox Name="whisperCheckBox" Content="Whisper" HorizontalAlignment="Left" Margin="396,217,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

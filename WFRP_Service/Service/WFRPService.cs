@@ -275,6 +275,56 @@ namespace Service
                 sessionList.Remove(s);
         }
 
+        public void Send(Message msg)
+        {
+            Session session = new Session();
+            // Searching for a proper session
+            foreach (Session s in sessionList)
+            {
+                foreach (Client c in s.Members.Keys)
+                {
+                    if (c.Name == msg.Sender)
+                    {
+                        session = s;
+                    }
+                }
+            }
+
+            // sending a message to all session members
+            foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+            {
+                lock (syncObj)
+                {
+                    c.Value.Receive(msg);
+                }
+            }
+
+        }
+
+        public void Whisper(Message msg, string receiver)
+        {
+            Session session = new Session();
+            // Searching for a proper session
+            foreach (Session s in sessionList)
+            {
+                foreach (Client c in s.Members.Keys)
+                {
+                    if (c.Name == msg.Sender)
+                    {
+                        session = s;
+                    }
+                }
+            }
+
+            // sending a message to a receiver
+            foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+            {
+                if(c.Key.Name == receiver)
+                    c.Value.ReceiveWhisper(msg);
+            }
+
+        }
+
         #endregion
 
         

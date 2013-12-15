@@ -27,5 +27,10 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void SetSessionList(List<string> clients, Message msg);
 
+        [OperationContract(IsOneWay = true)]
+        void Receive(Message msg);
+
+        [OperationContract(IsOneWay = true)]
+        void ReceiveWhisper(Message msg);
     }
 }

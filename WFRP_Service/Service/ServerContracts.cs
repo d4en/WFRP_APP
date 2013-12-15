@@ -31,5 +31,11 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void EndSession(Client client);
 
+        [OperationContract(IsOneWay = true)]
+        void Send(Message msg);
+
+        [OperationContract(IsOneWay = true)]
+        void Whisper(Message msg, string receiver);
+
     }
 }

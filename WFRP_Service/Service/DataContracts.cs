@@ -137,6 +137,7 @@ namespace Service
     public class Message
     {
         private string _content;
+        private string _sender;
 
         [DataMember]
         public string Content
@@ -144,5 +145,13 @@ namespace Service
             get { return _content; }
             set { _content = value; }
         }
+
+        [DataMember]
+        public string Sender
+        {
+            get { return _sender; }
+            set { _sender = value; }
+        }
+
     }
 }

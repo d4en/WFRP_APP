@@ -55,46 +55,75 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Send">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q7:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Whisper">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q8:Message" />
+        <xs:element minOccurs="0" name="receiver" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q7:ServerMessage" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q9:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetIdentity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q8:Identity" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q10:Identity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SetClientList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q9:ArrayOfstring" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q11:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="JoinedToSession">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q10:ServerMessage" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q12:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SessionInitSettings">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q11:Session" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q13:Session" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SetSessionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q12:ArrayOfstring" />
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q13:Message" />
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q14:ArrayOfstring" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q15:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Receive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q16:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveWhisper">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q17:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

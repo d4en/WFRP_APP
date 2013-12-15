@@ -61,7 +61,24 @@ namespace WPFClient
             chatTextBox.ScrollToEnd();
         }
 
+        private void msgTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // TO DO whisper (probably with a checkbox 'whisper' and if it's marked, sent only whisper
+                if (whisperCheckBox.IsChecked == true)
+                    servCom.WhisperMessage(msgTextBox.Text);
+                // Message to all session members
+                else
+                    servCom.SendMessage(msgTextBox.Text);
+                msgTextBox.Text = "";
+            }
+
+        }
+
         #endregion
+
+        
 
     }
 }

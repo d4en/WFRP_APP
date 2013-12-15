@@ -76,6 +76,67 @@ namespace WPFClient.SVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SenderField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sender {
+            get {
+                return this.SenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
+                    this.SenderField = value;
+                    this.RaisePropertyChanged("Sender");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServerMessage", Namespace="http://schemas.datacontract.org/2004/07/Service")]
     [System.SerializableAttribute()]
     public partial class ServerMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -221,10 +282,10 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.DataContractAttribute(Name="Session", Namespace="http://schemas.datacontract.org/2004/07/Service")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Client))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Message))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Message))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -300,51 +361,6 @@ namespace WPFClient.SVC {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/Service")]
-    [System.SerializableAttribute()]
-    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContentField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Content {
-            get {
-                return this.ContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
-                    this.ContentField = value;
-                    this.RaisePropertyChanged("Content");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SVC.IWFRP", CallbackContract=typeof(WPFClient.SVC.IWFRPCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IWFRP {
@@ -404,6 +420,22 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginEndSession(WPFClient.SVC.Client client, System.AsyncCallback callback, object asyncState);
         
         void EndEndSession(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Send")]
+        void Send(WPFClient.SVC.Message msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Send")]
+        System.IAsyncResult BeginSend(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndSend(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Whisper")]
+        void Whisper(WPFClient.SVC.Message msg, string receiver);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Whisper")]
+        System.IAsyncResult BeginWhisper(WPFClient.SVC.Message msg, string receiver, System.AsyncCallback callback, object asyncState);
+        
+        void EndWhisper(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -456,6 +488,22 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginSetSessionList(System.Collections.Generic.List<string> clients, WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
         
         void EndSetSessionList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Receive")]
+        void Receive(WPFClient.SVC.Message msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Receive")]
+        System.IAsyncResult BeginReceive(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndReceive(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReceiveWhisper")]
+        void ReceiveWhisper(WPFClient.SVC.Message msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReceiveWhisper")]
+        System.IAsyncResult BeginReceiveWhisper(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndReceiveWhisper(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -527,6 +575,18 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onEndSessionCompletedDelegate;
         
+        private BeginOperationDelegate onBeginSendDelegate;
+        
+        private EndOperationDelegate onEndSendDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginWhisperDelegate;
+        
+        private EndOperationDelegate onEndWhisperDelegate;
+        
+        private System.Threading.SendOrPostCallback onWhisperCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -560,6 +620,10 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetAllClientsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> EndSessionCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> WhisperCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -901,6 +965,106 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginEndSessionDelegate, new object[] {
                         client}, this.onEndEndSessionDelegate, this.onEndSessionCompletedDelegate, userState);
+        }
+        
+        public void Send(WPFClient.SVC.Message msg) {
+            base.Channel.Send(msg);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSend(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSend(msg, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndSend(System.IAsyncResult result) {
+            base.Channel.EndSend(result);
+        }
+        
+        private System.IAsyncResult OnBeginSend(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Message msg = ((WPFClient.SVC.Message)(inValues[0]));
+            return this.BeginSend(msg, callback, asyncState);
+        }
+        
+        private object[] OnEndSend(System.IAsyncResult result) {
+            this.EndSend(result);
+            return null;
+        }
+        
+        private void OnSendCompleted(object state) {
+            if ((this.SendCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendAsync(WPFClient.SVC.Message msg) {
+            this.SendAsync(msg, null);
+        }
+        
+        public void SendAsync(WPFClient.SVC.Message msg, object userState) {
+            if ((this.onBeginSendDelegate == null)) {
+                this.onBeginSendDelegate = new BeginOperationDelegate(this.OnBeginSend);
+            }
+            if ((this.onEndSendDelegate == null)) {
+                this.onEndSendDelegate = new EndOperationDelegate(this.OnEndSend);
+            }
+            if ((this.onSendCompletedDelegate == null)) {
+                this.onSendCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendDelegate, new object[] {
+                        msg}, this.onEndSendDelegate, this.onSendCompletedDelegate, userState);
+        }
+        
+        public void Whisper(WPFClient.SVC.Message msg, string receiver) {
+            base.Channel.Whisper(msg, receiver);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginWhisper(WPFClient.SVC.Message msg, string receiver, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginWhisper(msg, receiver, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndWhisper(System.IAsyncResult result) {
+            base.Channel.EndWhisper(result);
+        }
+        
+        private System.IAsyncResult OnBeginWhisper(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Message msg = ((WPFClient.SVC.Message)(inValues[0]));
+            string receiver = ((string)(inValues[1]));
+            return this.BeginWhisper(msg, receiver, callback, asyncState);
+        }
+        
+        private object[] OnEndWhisper(System.IAsyncResult result) {
+            this.EndWhisper(result);
+            return null;
+        }
+        
+        private void OnWhisperCompleted(object state) {
+            if ((this.WhisperCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.WhisperCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void WhisperAsync(WPFClient.SVC.Message msg, string receiver) {
+            this.WhisperAsync(msg, receiver, null);
+        }
+        
+        public void WhisperAsync(WPFClient.SVC.Message msg, string receiver, object userState) {
+            if ((this.onBeginWhisperDelegate == null)) {
+                this.onBeginWhisperDelegate = new BeginOperationDelegate(this.OnBeginWhisper);
+            }
+            if ((this.onEndWhisperDelegate == null)) {
+                this.onEndWhisperDelegate = new EndOperationDelegate(this.OnEndWhisper);
+            }
+            if ((this.onWhisperCompletedDelegate == null)) {
+                this.onWhisperCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnWhisperCompleted);
+            }
+            base.InvokeAsync(this.onBeginWhisperDelegate, new object[] {
+                        msg,
+                        receiver}, this.onEndWhisperDelegate, this.onWhisperCompletedDelegate, userState);
         }
     }
 }
