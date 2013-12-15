@@ -11,5 +11,9 @@
             SelectedItem="{Binding SessionModelSelectedMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             SelectionMode="Single"
             HorizontalAlignment="Left" Height="183" Margin="396,29,0,0" VerticalAlignment="Top" Width="174"/>
+        <TextBox 
+            Name="chatTextBox"
+            Text="{Binding SessionModelChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="52" Margin="28,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" IsUndoEnabled="False" VerticalScrollBarVisibility="Visible" TextChanged="chatTextBox_TextChanged"/>
     </Grid>
 </Window>

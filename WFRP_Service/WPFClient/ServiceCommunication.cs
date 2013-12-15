@@ -393,6 +393,7 @@ namespace WPFClient
         {
             // TO DO
             _sessionModel.SessionModelMembersListBox = clients;
+            _sessionModel.SessionModelChat += msg.Content + "\n";
         }
 
         #endregion
@@ -533,6 +534,7 @@ namespace WPFClient
         {
             // TO DO
             _sessionModel.SessionModelMembersListBox = clients;
+            _sessionModel.SessionModelChat += msg.Content + "\n";
         }
 
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)

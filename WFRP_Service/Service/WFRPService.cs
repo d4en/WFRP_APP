@@ -210,6 +210,17 @@ namespace Service
                     }
                 }
             }
+
+            Console.WriteLine("SESJE:");
+            int i = 1;
+            foreach (Session s in sessionList)
+            {
+                Console.WriteLine("sesja " + i);
+                foreach(Client c in s.Members.Keys)
+                    Console.WriteLine(c.Name);
+                i++;
+            }
+
         }
 
         public void GetAllClients()
@@ -238,17 +249,13 @@ namespace Service
                     foreach (Client c in session.Members.Keys)
                         membersNames.Add(c.Name);
 
-                    foreach (Client c in session.Members.Keys)
+                    foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
                     {
                         lock (syncObj)
                         {
-                            foreach (IWFRPCallback call in session.Members.Values)
-                            {
-                                call.SetSessionList(membersNames, msg);
-                            }
+                            c.Value.SetSessionList(membersNames, msg);
                         }
                     }
-
                 }
             }
         }

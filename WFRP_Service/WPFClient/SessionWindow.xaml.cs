@@ -40,6 +40,8 @@ namespace WPFClient
 
         }
 
+        #region UI events
+
         private void SessionWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             servCom.EndSession();
@@ -51,6 +53,19 @@ namespace WPFClient
         {
             this.Closing -= SessionWindow_Closing;
             base.Close();
+        }
+
+        private void chatTextBox_TextChanged(object sender, EventArgs e)
+        {
+            chatTextBox.SelectionStart = chatTextBox.Text.Length;
+            chatTextBox.ScrollToEnd();
+        }
+
+        #endregion
+
+        private void chatTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

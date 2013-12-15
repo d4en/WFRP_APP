@@ -63,5 +63,20 @@ namespace WPFClient.Model
             }
         }
 
+        string _chatTextBox = "";
+        public string SessionModelChat
+        {
+            get
+            {
+                return _chatTextBox;
+            }
+            set
+            {
+                _chatTextBox = value;
+
+                OnPropertyChanged("SessionModelChat");
+            }
+        }
+
     }
 }
