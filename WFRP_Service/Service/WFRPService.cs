@@ -316,12 +316,15 @@ namespace Service
                 }
             }
 
-            // sending a message to a receiver
+            // sending a message to a receiver and sender
             foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
             {
-                if(c.Key.Name == receiver)
+                if(c.Key.Name == receiver || c.Key.Name == msg.Sender)
                     c.Value.ReceiveWhisper(msg);
             }
+            // sending a message to MG
+            if(session.MG.Key.Name != receiver)
+                session.MG.Value.ReceiveWhisper(msg);
 
         }
 

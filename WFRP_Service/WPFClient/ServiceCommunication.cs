@@ -385,6 +385,7 @@ namespace WPFClient
         public void SessionInitSettings(Session session)
         {
             _sessionModel.SessionModelChat = "";
+            _sessionModel.SessionModelChatList = new List<string>();
             _optionsModel.OptionsModelStartButtonIsEnabled = false;
 
             this.session = session;
@@ -402,12 +403,26 @@ namespace WPFClient
 
         public void Receive(Message msg)
         {
-            _sessionModel.SessionModelChat += "[" + msg.Sender + "] " + msg.Content + "\n";
+            _sessionModel.SessionModelChatList.Add("[" + msg.Sender + "] " + msg.Content + "\n");
+
+            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
+                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
+
+            _sessionModel.SessionModelChat = "";
+            foreach (string s in _sessionModel.SessionModelChatList)
+                _sessionModel.SessionModelChat += s;
         }
 
         public void ReceiveWhisper(Message msg)
         {
-            _sessionModel.SessionModelChat += "[wshisper][" + msg.Sender + "] " + msg.Content + "\n";
+            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "] " + msg.Content + "\n");
+
+            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
+                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
+
+            _sessionModel.SessionModelChat = "";
+            foreach (string s in _sessionModel.SessionModelChatList)
+                _sessionModel.SessionModelChat += s;
         }
 
         #endregion
@@ -536,6 +551,7 @@ namespace WPFClient
         void IWFRPCallback.SessionInitSettings(Session session)
         {
             _sessionModel.SessionModelChat = "";
+            _sessionModel.SessionModelChatList = new List<string>();
             _optionsModel.OptionsModelStartButtonIsEnabled = false;
 
             this.session = session;
@@ -553,12 +569,26 @@ namespace WPFClient
 
         void IWFRPCallback.Receive(Message msg)
         {
-            _sessionModel.SessionModelChat += "[" + msg.Sender + "] " + msg.Content + "\n";
+            _sessionModel.SessionModelChatList.Add("[" + msg.Sender + "] " + msg.Content + "\n");
+
+            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
+                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
+
+            _sessionModel.SessionModelChat = "";
+            foreach (string s in _sessionModel.SessionModelChatList)
+                _sessionModel.SessionModelChat += s;
         }
 
         void IWFRPCallback.ReceiveWhisper(Message msg)
         {
-            _sessionModel.SessionModelChat += "[wshisper][" + msg.Sender + "] " + msg.Content + "\n";
+            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "] " + msg.Content + "\n");
+
+            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
+                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
+
+            _sessionModel.SessionModelChat = "";
+            foreach (string s in _sessionModel.SessionModelChatList)
+                _sessionModel.SessionModelChat += s;
         }
 
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)

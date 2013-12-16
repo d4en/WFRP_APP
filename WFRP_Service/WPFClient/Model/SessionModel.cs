@@ -8,6 +8,9 @@ namespace WPFClient.Model
 {
     public class SessionModel : INotifyPropertyChanged
     {
+
+        public static int maxChatSize = 1000;
+
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -75,6 +78,21 @@ namespace WPFClient.Model
                 _chatTextBox = value;
 
                 OnPropertyChanged("SessionModelChat");
+            }
+        }
+
+        List<string> _chatList = new List<string>();
+        public List<string> SessionModelChatList
+        {
+            get
+            {
+                return _chatList;
+            }
+            set
+            {
+                _chatList = value;
+
+                OnPropertyChanged("SessionModelChatList");
             }
         }
 
