@@ -64,13 +64,7 @@ namespace WPFClient
         private void sessionButton_Click(object sender, RoutedEventArgs e)
         {
             if (sessionWindow == null)
-                sessionWindow = new SessionWindow(servCom);
-            
-            string t = "";
-            foreach (string s in _optionsModel.OptionsModelClientListBoxSelectedItems)
-                t += s;
-            test.Text = t;
-                      
+                sessionWindow = new SessionWindow(servCom);                              
             servCom.StartSession();
             sessionWindow.Show();
         }

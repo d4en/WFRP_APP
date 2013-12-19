@@ -20,6 +20,7 @@ namespace WPFClient
         Model.LoginModel _loginModel = null;
         Model.OptionsModel _optionsModel = null;
         Model.SessionModel _sessionModel = null;
+
         Dispatcher dispatcher = null;
    
 
@@ -303,150 +304,9 @@ namespace WPFClient
             Proxy.AddMemberToSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
         }
 
-        #region IWFRPCallback Members
-
-        public void GetServerMessageStatus(WPFClient.SVC.ServerMessage msg)
-        {
-            if (msg.Type == ServerMessageType.Login)
-            {
-                if (msg.IsStatusCorrect)
-                {                    
-                    _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelStatus = "Connected";
-                    _loginModel.LoginModelRegStatus = "Disconnect in order to register.";
-                    _loginModel.LoginModelRegisterButtonIsEnabled = false;
-
-                    _optionsModel.OptionsModelMsg = "Success! " + msg.Content;
-                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
-                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
-                    _optionsModel.OptionsModelStatus = "Connected";
-
-                    Proxy.GetAllClients();
-                }
-                else
-                {
-                    _loginModel.LoginModelStatus = "Error: " + msg.Content;
-                    _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelRegStatus = "Fill Name and Password";
-                    _loginModel.LoginModelRegisterButtonIsEnabled = true;
-
-                    _optionsModel.OptionsModelStatus = "Disconnected";
-                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
-                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Hidden;
-                }
-            }
-            else if (msg.Type == ServerMessageType.DisconnectInfoClient)
-            {
-                if (msg.IsStatusCorrect)
-                {
-                    _loginModel.LoginModelConnectButtonIsEnabled = true;
-                    _loginModel.LoginModelStatus = "Disconnected";
-                    _loginModel.LoginModelRegStatus = "Fill Name and Password";
-                    _loginModel.LoginModelRegisterButtonIsEnabled = true;
-
-                    _optionsModel.OptionsModelMsg = "Success! " + msg.Content;
-                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = false;
-                    _optionsModel.OptionsModelStatus = "Disconnected";
-                    _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Hidden;
-                }
-                else
-                {
-                    _loginModel.LoginModelConnectButtonIsEnabled = false;
-                    _loginModel.LoginModelStatus = "Uknown";
-                    _loginModel.LoginModelRegStatus = "Disconnect in order to register.";
-                    _loginModel.LoginModelRegisterButtonIsEnabled = false;
-
-                    _optionsModel.OptionsModelMsg = "Error: " + msg.Content;
-                    _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
-                    _optionsModel.OptionsModelStatus = "Unknown";
-                }
-            }
-            else if (msg.Type == ServerMessageType.Register)
-            {
-                _loginModel.LoginModelRegStatus = msg.Content;
-            }
-            else if (msg.Type == ServerMessageType.StartSession)
-            {
-                _optionsModel.OptionsModelMsg = msg.Content;
-            }
-            else
-            {
-                _loginModel.LoginModelRegStatus = "Error";
-                _optionsModel.OptionsModelStatus = "Error";
-                _optionsModel.OptionsModelMsg = "Uknown server message type.";
-            }
-        }
-
-        public void GetIdentity(Identity userID)
-        {
-            _optionsModel.OptionsModelID = userID.AccountID;
-        }
-
-        public void SetClientList(List<string> clients)
-        {
-            _optionsModel.OptionsModelClientListBox = clients;
-        }
-
-        public void JoinedToSession(ServerMessage msg)
-        {
-            _optionsModel.OptionsModelMsg = msg.Content + " [member]";
-            _sessionModel.SessionModelSessionWindowIsVisible = System.Windows.Visibility.Visible;
-        }
-
-        public void SessionInitSettings(Session session)
-        {
-            _sessionModel.SessionModelChat = "";
-            _sessionModel.SessionModelChatList = new List<string>();
-            _optionsModel.OptionsModelStartButtonIsEnabled = false;
-
-            this.session = session;
-            List<string> members = new List<string>();
-            foreach (Client c in session.Members.Keys)
-                members.Add(c.Name);
-            _sessionModel.SessionModelMembersListBox = members;
-        }
-
-        public void SetSessionList(List<string> clients, Message msg)
-        {
-            _sessionModel.SessionModelMembersListBox = clients;
-            _sessionModel.SessionModelChatList.Add(msg.Content + "\n");
-
-            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
-                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
-
-            _sessionModel.SessionModelChat = "";
-            foreach (string s in _sessionModel.SessionModelChatList)
-                _sessionModel.SessionModelChat += s;
-        }
-
-        public void Receive(Message msg)
-        {
-            _sessionModel.SessionModelChatList.Add("[" + msg.Sender + "] " + msg.Content + "\n");
-
-            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
-                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
-
-            _sessionModel.SessionModelChat = "";
-            foreach (string s in _sessionModel.SessionModelChatList)
-                _sessionModel.SessionModelChat += s;
-        }
-
-        public void ReceiveWhisper(Message msg)
-        {
-            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "]->[" + msg.Receiver + "] " + msg.Content + "\n");
-
-            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
-                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
-
-            _sessionModel.SessionModelChat = "";
-            foreach (string s in _sessionModel.SessionModelChatList)
-                _sessionModel.SessionModelChat += s;
-        }
-
-        #endregion
 
 
-        #region Async
+        #region Async IWFRPCallback members
 
         IAsyncResult IWFRPCallback.BeginGetServerMessageStatus(ServerMessage msg, AsyncCallback callback, object asyncState)
         {
