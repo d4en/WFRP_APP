@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace WPFClient
 {
@@ -76,7 +77,26 @@ namespace WPFClient
 
         }
 
+        private void updateParchmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.InitialDirectory = @"C:\";
+            dlg.DefaultExt = ".jpg";
+            dlg.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
+
+            var result = dlg.ShowDialog();
+            if (result == true)
+            {
+                Bitmap bmp = new Bitmap(dlg.FileName);
+                servCom.UpdateParchment(bmp);
+
+            }
+            
+        }
+
         #endregion
+
+        
 
         
 

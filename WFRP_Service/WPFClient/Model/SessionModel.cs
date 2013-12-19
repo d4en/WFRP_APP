@@ -111,5 +111,35 @@ namespace WPFClient.Model
             }
         }
 
+        bool _updateParchmentButtonIsEnabled = false;
+        public bool SessionModelUpdateParchmentButtonIsEnabled
+        {
+            get
+            {
+                return _updateParchmentButtonIsEnabled;
+            }
+            set
+            {
+                _updateParchmentButtonIsEnabled = value;
+
+                OnPropertyChanged("SessionModelUpdateParchmentButtonIsEnabled");
+            }
+        }       
+
+        System.Windows.Media.Imaging.BitmapSource _parchmentSource = null;
+        public System.Windows.Media.Imaging.BitmapSource SessionModelParchmentSource
+        {
+            get
+            {
+                return _parchmentSource;
+            }
+            set
+            {
+                _parchmentSource = value;
+
+                OnPropertyChanged("SessionModelParchmentSource");
+            }
+        }
+
     }
 }

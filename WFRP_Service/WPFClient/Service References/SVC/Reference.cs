@@ -304,6 +304,8 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Drawing.Bitmap))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Drawing.Image))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -460,6 +462,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginAddMemberToSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, System.AsyncCallback callback, object asyncState);
         
         void EndAddMemberToSession(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/UpdateParchment")]
+        void UpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/UpdateParchment")]
+        System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp, System.AsyncCallback callback, object asyncState);
+        
+        void EndUpdateParchment(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -528,6 +538,22 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReceiveWhisper(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
         
         void EndReceiveWhisper(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/SessionInitMGSettings")]
+        void SessionInitMGSettings(WPFClient.SVC.Session session);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/SessionInitMGSettings")]
+        System.IAsyncResult BeginSessionInitMGSettings(WPFClient.SVC.Session session, System.AsyncCallback callback, object asyncState);
+        
+        void EndSessionInitMGSettings(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReceivePerchment")]
+        void ReceivePerchment(System.Drawing.Bitmap bmp);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReceivePerchment")]
+        System.IAsyncResult BeginReceivePerchment(System.Drawing.Bitmap bmp, System.AsyncCallback callback, object asyncState);
+        
+        void EndReceivePerchment(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -617,6 +643,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onAddMemberToSessionCompletedDelegate;
         
+        private BeginOperationDelegate onBeginUpdateParchmentDelegate;
+        
+        private EndOperationDelegate onEndUpdateParchmentDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateParchmentCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -656,6 +688,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> WhisperCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddMemberToSessionCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateParchmentCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -1146,6 +1180,57 @@ namespace WPFClient.SVC {
             base.InvokeAsync(this.onBeginAddMemberToSessionDelegate, new object[] {
                         client,
                         members}, this.onEndAddMemberToSessionDelegate, this.onAddMemberToSessionCompletedDelegate, userState);
+        }
+        
+        public void UpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp) {
+            base.Channel.UpdateParchment(client, bmp);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateParchment(client, bmp, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndUpdateParchment(System.IAsyncResult result) {
+            base.Channel.EndUpdateParchment(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateParchment(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
+            System.Drawing.Bitmap bmp = ((System.Drawing.Bitmap)(inValues[1]));
+            return this.BeginUpdateParchment(client, bmp, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateParchment(System.IAsyncResult result) {
+            this.EndUpdateParchment(result);
+            return null;
+        }
+        
+        private void OnUpdateParchmentCompleted(object state) {
+            if ((this.UpdateParchmentCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateParchmentCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateParchmentAsync(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp) {
+            this.UpdateParchmentAsync(client, bmp, null);
+        }
+        
+        public void UpdateParchmentAsync(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp, object userState) {
+            if ((this.onBeginUpdateParchmentDelegate == null)) {
+                this.onBeginUpdateParchmentDelegate = new BeginOperationDelegate(this.OnBeginUpdateParchment);
+            }
+            if ((this.onEndUpdateParchmentDelegate == null)) {
+                this.onEndUpdateParchmentDelegate = new EndOperationDelegate(this.OnEndUpdateParchment);
+            }
+            if ((this.onUpdateParchmentCompletedDelegate == null)) {
+                this.onUpdateParchmentCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateParchmentCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateParchmentDelegate, new object[] {
+                        client,
+                        bmp}, this.onEndUpdateParchmentDelegate, this.onUpdateParchmentCompletedDelegate, userState);
         }
     }
 }

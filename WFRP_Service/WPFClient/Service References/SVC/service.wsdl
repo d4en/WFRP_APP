@@ -22,6 +22,7 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Service" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
@@ -58,6 +59,9 @@
   <wsdl:message name="IWFRP_AddMemberToSession_InputMessage">
     <wsdl:part name="parameters" element="tns:AddMemberToSession" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_UpdateParchment_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateParchment" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -81,6 +85,12 @@
   </wsdl:message>
   <wsdl:message name="IWFRP_ReceiveWhisper_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveWhisper" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_SessionInitMGSettings_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SessionInitMGSettings" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReceivePerchment_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePerchment" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -114,6 +124,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddMemberToSession">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/AddMemberToSession" message="tns:IWFRP_AddMemberToSession_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateParchment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/UpdateParchment" message="tns:IWFRP_UpdateParchment_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
@@ -137,6 +150,12 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveWhisper">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReceiveWhisper" message="tns:IWFRP_ReceiveWhisper_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SessionInitMGSettings">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/SessionInitMGSettings" message="tns:IWFRP_SessionInitMGSettings_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceivePerchment">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReceivePerchment" message="tns:IWFRP_ReceivePerchment_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -206,6 +225,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="UpdateParchment">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/UpdateParchment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetServerMessageStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
@@ -250,6 +275,18 @@
     </wsdl:operation>
     <wsdl:operation name="ReceiveWhisper">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/ReceiveWhisper" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionInitMGSettings">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/SessionInitMGSettings" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePerchment">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReceivePerchment" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

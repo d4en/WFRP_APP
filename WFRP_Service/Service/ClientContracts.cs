@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using System.Drawing;
 
 namespace Service
 {
@@ -32,5 +33,12 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void ReceiveWhisper(Message msg);
+
+        [OperationContract(IsOneWay = true)]
+        void SessionInitMGSettings(Session session);
+
+        [OperationContract(IsOneWay = true)]
+        void ReceivePerchment(Bitmap bmp);
+
     }
 }

@@ -39,6 +39,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -132,6 +133,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SVC\System.Collections.Generic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SVC\System.Drawing.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

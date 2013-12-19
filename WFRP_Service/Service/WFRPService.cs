@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using System.Drawing;
 
 namespace Service
 {
@@ -284,12 +285,16 @@ namespace Service
                     {
                         // MG
                         if (callback == session.MG.Value)
+                        {
                             callback.GetServerMessageStatus(msg);
+                            callback.SessionInitMGSettings(session);
+                        }
                         // Other members
                         else
+                        {
                             callback.JoinedToSession(msg);
-                        // All
-                        callback.SessionInitSettings(session);
+                            callback.SessionInitSettings(session);
+                        }
                     }
                 }
             }
@@ -422,7 +427,18 @@ namespace Service
         }
 
 
-       
+        public void UpdateParchment(Client client, Bitmap bmp)
+        {
+            Console.WriteLine(bmp.Size);
+            Session session = SearchSessionByClientName(client.Name);
+
+            // sending a parchment to all session members
+            foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+            {
+                lock (syncObj)
+                    c.Value.ReceivePerchment(bmp);
+            }
+        }
 
         #endregion
 

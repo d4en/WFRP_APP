@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Threading;
 using System.ServiceModel;
 using WPFClient.SVC;
+using System.Drawing;
 
 namespace WPFClient
 {
@@ -299,11 +300,28 @@ namespace WPFClient
             }
         }
 
-        internal void AddMemberToSession()
+        public void AddMemberToSession()
         {
             Proxy.AddMemberToSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
         }
 
+        public void UpdateParchment(Bitmap bmp)
+        {
+            Proxy.UpdateParchment(localClient, bmp);
+        }
+
+        private void InitSessionChat(Session session)
+        {
+            _sessionModel.SessionModelChat = "";
+            _sessionModel.SessionModelChatList = new List<string>();
+            _optionsModel.OptionsModelStartButtonIsEnabled = false;
+
+            this.session = session;
+            List<string> members = new List<string>();
+            foreach (Client c in session.Members.Keys)
+                members.Add(c.Name);
+            _sessionModel.SessionModelMembersListBox = members;
+        }
 
 
         #region Async IWFRPCallback members
@@ -428,15 +446,8 @@ namespace WPFClient
 
         void IWFRPCallback.SessionInitSettings(Session session)
         {
-            _sessionModel.SessionModelChat = "";
-            _sessionModel.SessionModelChatList = new List<string>();
-            _optionsModel.OptionsModelStartButtonIsEnabled = false;
-
-            this.session = session;
-            List<string> members = new List<string>();
-            foreach (Client c in session.Members.Keys)
-                members.Add(c.Name);
-            _sessionModel.SessionModelMembersListBox = members;
+            InitSessionChat(session);
+            _sessionModel.SessionModelUpdateParchmentButtonIsEnabled = false;
         }
 
         void IWFRPCallback.SetSessionList(List<string> clients, Message msg)
@@ -474,6 +485,24 @@ namespace WPFClient
             _sessionModel.SessionModelChat = "";
             foreach (string s in _sessionModel.SessionModelChatList)
                 _sessionModel.SessionModelChat += s;
+        }
+
+        void IWFRPCallback.SessionInitMGSettings(Session session)
+        {
+            InitSessionChat(session);
+            _sessionModel.SessionModelUpdateParchmentButtonIsEnabled = true;
+        }
+
+        void IWFRPCallback.ReceivePerchment(Bitmap bmp)
+        {
+            // TO DO
+            //throw new NotImplementedException();
+            //_sessionModel.SetSessionModelParchmentSource(bmp);
+
+            //var hBitmap = bmp.GetHbitmap();
+            //var result = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, System.Windows.Int32Rect.Empty, System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
+            //_sessionModel.SessionModelParchmentSource = result;
+
         }
 
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
@@ -546,7 +575,40 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
+        public void SessionInitMGSettings(Session session)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginSessionInitMGSettings(Session session, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndSessionInitMGSettings(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceivePerchment(Bitmap bmp)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReceivePerchment(Bitmap bmp, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReceivePerchment(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
+
+
+
         
     }
 }
