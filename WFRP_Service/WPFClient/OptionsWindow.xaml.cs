@@ -98,6 +98,12 @@ namespace WPFClient
             }
         }
 
+        private void addMemberToSessionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_optionsModel.OptionsModelClientListBoxSelectedItems.Count != 0)
+                servCom.AddMemberToSession();
+        }
+
         #endregion
 
         

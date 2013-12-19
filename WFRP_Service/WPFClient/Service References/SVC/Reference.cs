@@ -87,6 +87,9 @@ namespace WPFClient.SVC {
         private string ContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReceiverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SenderField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -108,6 +111,19 @@ namespace WPFClient.SVC {
                 if ((object.ReferenceEquals(this.ContentField, value) != true)) {
                     this.ContentField = value;
                     this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Receiver {
+            get {
+                return this.ReceiverField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReceiverField, value) != true)) {
+                    this.ReceiverField = value;
+                    this.RaisePropertyChanged("Receiver");
                 }
             }
         }
@@ -430,12 +446,20 @@ namespace WPFClient.SVC {
         void EndSend(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/Whisper")]
-        void Whisper(WPFClient.SVC.Message msg, string receiver);
+        void Whisper(WPFClient.SVC.Message msg);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/Whisper")]
-        System.IAsyncResult BeginWhisper(WPFClient.SVC.Message msg, string receiver, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginWhisper(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState);
         
         void EndWhisper(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/AddMemberToSession")]
+        void AddMemberToSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/AddMemberToSession")]
+        System.IAsyncResult BeginAddMemberToSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddMemberToSession(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -587,6 +611,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onWhisperCompletedDelegate;
         
+        private BeginOperationDelegate onBeginAddMemberToSessionDelegate;
+        
+        private EndOperationDelegate onEndAddMemberToSessionDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddMemberToSessionCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -624,6 +654,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> WhisperCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddMemberToSessionCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -1016,13 +1048,13 @@ namespace WPFClient.SVC {
                         msg}, this.onEndSendDelegate, this.onSendCompletedDelegate, userState);
         }
         
-        public void Whisper(WPFClient.SVC.Message msg, string receiver) {
-            base.Channel.Whisper(msg, receiver);
+        public void Whisper(WPFClient.SVC.Message msg) {
+            base.Channel.Whisper(msg);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginWhisper(WPFClient.SVC.Message msg, string receiver, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginWhisper(msg, receiver, callback, asyncState);
+        public System.IAsyncResult BeginWhisper(WPFClient.SVC.Message msg, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginWhisper(msg, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1032,8 +1064,7 @@ namespace WPFClient.SVC {
         
         private System.IAsyncResult OnBeginWhisper(object[] inValues, System.AsyncCallback callback, object asyncState) {
             WPFClient.SVC.Message msg = ((WPFClient.SVC.Message)(inValues[0]));
-            string receiver = ((string)(inValues[1]));
-            return this.BeginWhisper(msg, receiver, callback, asyncState);
+            return this.BeginWhisper(msg, callback, asyncState);
         }
         
         private object[] OnEndWhisper(System.IAsyncResult result) {
@@ -1048,11 +1079,11 @@ namespace WPFClient.SVC {
             }
         }
         
-        public void WhisperAsync(WPFClient.SVC.Message msg, string receiver) {
-            this.WhisperAsync(msg, receiver, null);
+        public void WhisperAsync(WPFClient.SVC.Message msg) {
+            this.WhisperAsync(msg, null);
         }
         
-        public void WhisperAsync(WPFClient.SVC.Message msg, string receiver, object userState) {
+        public void WhisperAsync(WPFClient.SVC.Message msg, object userState) {
             if ((this.onBeginWhisperDelegate == null)) {
                 this.onBeginWhisperDelegate = new BeginOperationDelegate(this.OnBeginWhisper);
             }
@@ -1063,8 +1094,58 @@ namespace WPFClient.SVC {
                 this.onWhisperCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnWhisperCompleted);
             }
             base.InvokeAsync(this.onBeginWhisperDelegate, new object[] {
-                        msg,
-                        receiver}, this.onEndWhisperDelegate, this.onWhisperCompletedDelegate, userState);
+                        msg}, this.onEndWhisperDelegate, this.onWhisperCompletedDelegate, userState);
+        }
+        
+        public void AddMemberToSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members) {
+            base.Channel.AddMemberToSession(client, members);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddMemberToSession(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddMemberToSession(client, members, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAddMemberToSession(System.IAsyncResult result) {
+            base.Channel.EndAddMemberToSession(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddMemberToSession(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
+            System.Collections.Generic.List<string> members = ((System.Collections.Generic.List<string>)(inValues[1]));
+            return this.BeginAddMemberToSession(client, members, callback, asyncState);
+        }
+        
+        private object[] OnEndAddMemberToSession(System.IAsyncResult result) {
+            this.EndAddMemberToSession(result);
+            return null;
+        }
+        
+        private void OnAddMemberToSessionCompleted(object state) {
+            if ((this.AddMemberToSessionCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddMemberToSessionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddMemberToSessionAsync(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members) {
+            this.AddMemberToSessionAsync(client, members, null);
+        }
+        
+        public void AddMemberToSessionAsync(WPFClient.SVC.Client client, System.Collections.Generic.List<string> members, object userState) {
+            if ((this.onBeginAddMemberToSessionDelegate == null)) {
+                this.onBeginAddMemberToSessionDelegate = new BeginOperationDelegate(this.OnBeginAddMemberToSession);
+            }
+            if ((this.onEndAddMemberToSessionDelegate == null)) {
+                this.onEndAddMemberToSessionDelegate = new EndOperationDelegate(this.OnEndAddMemberToSession);
+            }
+            if ((this.onAddMemberToSessionCompletedDelegate == null)) {
+                this.onAddMemberToSessionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddMemberToSessionCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddMemberToSessionDelegate, new object[] {
+                        client,
+                        members}, this.onEndAddMemberToSessionDelegate, this.onAddMemberToSessionCompletedDelegate, userState);
         }
     }
 }

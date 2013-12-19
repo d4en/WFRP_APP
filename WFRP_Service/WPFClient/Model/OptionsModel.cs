@@ -138,5 +138,20 @@ namespace WPFClient.Model
             }
         }
 
+        
+        bool _addMemberToSessionButtonIsEnabled = false;
+        public bool OptionsModelAddMemberToSessionButtonIsEnabled
+        {
+            get
+            {
+                return _addMemberToSessionButtonIsEnabled;
+            }
+            set
+            {
+                _addMemberToSessionButtonIsEnabled = value;
+
+                OnPropertyChanged("OptionsModelAddMemberToSessionButtonIsEnabled");
+            }
+        }
     }
 }

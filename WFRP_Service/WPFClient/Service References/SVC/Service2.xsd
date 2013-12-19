@@ -12,6 +12,7 @@
   <xs:complexType name="Message">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Receiver" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sender" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

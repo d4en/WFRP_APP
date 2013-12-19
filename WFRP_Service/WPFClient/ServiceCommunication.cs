@@ -266,6 +266,7 @@ namespace WPFClient
         public void StartSession()
         {        
             this.Proxy.StartSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
+            _optionsModel.OptionsModelAddMemberToSessionButtonIsEnabled = true;
         }
 
         public void EndSession()
@@ -273,6 +274,7 @@ namespace WPFClient
             if (session != null)
                 this.Proxy.EndSessionAsync(localClient);
             _optionsModel.OptionsModelStartButtonIsEnabled = true;
+            _optionsModel.OptionsModelAddMemberToSessionButtonIsEnabled = false;
             session = null;
         }
 
@@ -286,10 +288,19 @@ namespace WPFClient
 
         public void WhisperMessage(string msg)
         {
-            Message m = new Message();
-            m.Content = msg;
-            m.Sender = localClient.Name;
-            this.Proxy.Whisper(m, _sessionModel.SessionModelSelectedMember);
+            if (_sessionModel.SessionModelSelectedMember != null)
+            {
+                Message m = new Message();
+                m.Content = msg;
+                m.Sender = localClient.Name;
+                m.Receiver = _sessionModel.SessionModelSelectedMember;
+                this.Proxy.Whisper(m);
+            }
+        }
+
+        internal void AddMemberToSession()
+        {
+            Proxy.AddMemberToSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
         }
 
         #region IWFRPCallback Members
@@ -398,7 +409,14 @@ namespace WPFClient
         public void SetSessionList(List<string> clients, Message msg)
         {
             _sessionModel.SessionModelMembersListBox = clients;
-            _sessionModel.SessionModelChat += msg.Content + "\n";
+            _sessionModel.SessionModelChatList.Add(msg.Content + "\n");
+
+            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
+                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
+
+            _sessionModel.SessionModelChat = "";
+            foreach (string s in _sessionModel.SessionModelChatList)
+                _sessionModel.SessionModelChat += s;
         }
 
         public void Receive(Message msg)
@@ -415,7 +433,7 @@ namespace WPFClient
 
         public void ReceiveWhisper(Message msg)
         {
-            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "] " + msg.Content + "\n");
+            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "]->[" + msg.Receiver + "] " + msg.Content + "\n");
 
             if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
                 _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
@@ -564,7 +582,14 @@ namespace WPFClient
         void IWFRPCallback.SetSessionList(List<string> clients, Message msg)
         {
             _sessionModel.SessionModelMembersListBox = clients;
-            _sessionModel.SessionModelChat += msg.Content + "\n";
+            _sessionModel.SessionModelChatList.Add(msg.Content + "\n");
+
+            if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
+                _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
+
+            _sessionModel.SessionModelChat = "";
+            foreach (string s in _sessionModel.SessionModelChatList)
+                _sessionModel.SessionModelChat += s;
         }
 
         void IWFRPCallback.Receive(Message msg)
@@ -581,7 +606,7 @@ namespace WPFClient
 
         void IWFRPCallback.ReceiveWhisper(Message msg)
         {
-            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "] " + msg.Content + "\n");
+            _sessionModel.SessionModelChatList.Add("[wshisper][" + msg.Sender + "]->[" + msg.Receiver + "] " + msg.Content + "\n");
 
             if (_sessionModel.SessionModelChatList.Count >= Model.SessionModel.maxChatSize)
                 _sessionModel.SessionModelChatList.Remove(_sessionModel.SessionModelChatList[0]);
@@ -662,7 +687,6 @@ namespace WPFClient
         }
 
         #endregion
-
         
     }
 }

@@ -34,8 +34,14 @@
             ItemsSource="{Binding OptionsModelClientListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   
             SelectionChanged="clientListBox_SelectionChanged"
             SelectionMode="Multiple"
-            HorizontalAlignment="Left" Height="183" Margin="325,40,0,0" VerticalAlignment="Top" Width="174"/>
+            HorizontalAlignment="Left" Height="165" Margin="325,40,0,0" VerticalAlignment="Top" Width="174"/>
         <TextBox Name="test" HorizontalAlignment="Left" Height="154" Margin="545,42,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button 
+            Name="addMemberToSessionButton" 
+            Content="Add to session" 
+            IsEnabled="{Binding OptionsModelAddMemberToSessionButtonIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            HorizontalAlignment="Left" Margin="325,222,0,0" VerticalAlignment="Top" Width="112"
+            Click="addMemberToSessionButton_Click"/>
 
     </Grid>
 </Window>

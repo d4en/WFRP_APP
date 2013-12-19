@@ -35,7 +35,10 @@ namespace Service
         void Send(Message msg);
 
         [OperationContract(IsOneWay = true)]
-        void Whisper(Message msg, string receiver);
+        void Whisper(Message msg);
+
+        [OperationContract(IsOneWay = true)]
+        void AddMemberToSession(Client client, List<string> members);
 
     }
 }

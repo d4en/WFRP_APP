@@ -145,8 +145,8 @@ namespace WPFHost
         {
             DBConnector DBcon = new DBConnector();
             Client client = new Client();
-            client.Name = "test";
-            client.Password = "test";
+            client.Name = "c";
+            client.Password = "c";
             Console.WriteLine(DBcon.Register(client));
 
         }

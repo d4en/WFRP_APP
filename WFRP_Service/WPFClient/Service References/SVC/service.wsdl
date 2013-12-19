@@ -55,6 +55,9 @@
   <wsdl:message name="IWFRP_Whisper_InputMessage">
     <wsdl:part name="parameters" element="tns:Whisper" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_AddMemberToSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMemberToSession" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -107,6 +110,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Whisper">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/Whisper" message="tns:IWFRP_Whisper_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddMemberToSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/AddMemberToSession" message="tns:IWFRP_AddMemberToSession_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
@@ -190,6 +196,12 @@
     </wsdl:operation>
     <wsdl:operation name="Whisper">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/Whisper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="AddMemberToSession">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/AddMemberToSession" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

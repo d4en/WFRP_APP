@@ -54,6 +54,17 @@ namespace Service
             return client;
         }
 
+        private bool DoesSessionHaveMemberByName(Session session, string member)
+        {
+            foreach (Client c in session.Members.Keys)
+            {
+                if (c.Name == member)
+                    return true;
+            }
+
+            return false;
+        }
+
         #region IWFRP Members
 
         public bool Initialize()
@@ -301,7 +312,7 @@ namespace Service
 
         }
 
-        public void Whisper(Message msg, string receiver)
+        public void Whisper(Message msg)
         {
             Session session = new Session();
             // Searching for a proper session
@@ -319,12 +330,98 @@ namespace Service
             // sending a message to a receiver and sender
             foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
             {
-                if(c.Key.Name == receiver || c.Key.Name == msg.Sender)
+                if(c.Key.Name == msg.Receiver || c.Key.Name == msg.Sender)
                     c.Value.ReceiveWhisper(msg);
             }
             // sending a message to MG
-            if(session.MG.Key.Name != receiver)
+            if (session.MG.Key.Name != msg.Receiver && session.MG.Key.Name != msg.Sender)
+            {
                 session.MG.Value.ReceiveWhisper(msg);
+            }
+
+        }
+
+
+        public void AddMemberToSession(Client client, List<string> members)
+        {
+            
+            Session session = new Session();
+            Dictionary<Client, IWFRPCallback> newMembers = new Dictionary<Client, IWFRPCallback>();
+            
+            // searching for a proper session (client = MG)
+            foreach (Session s in sessionList)
+            {
+                if (s.MG.Key.Name == client.Name)
+                    session = s;
+            }
+
+            foreach (string s in members)
+            {
+                // check if a member isn't already in a session
+                bool isFree = true;
+                foreach (Session ses in sessionList)
+                {
+                    foreach (Client c in ses.Members.Keys)
+                    {
+                        if (c.Name == s)
+                            isFree = false;
+
+                    }
+                }
+
+                KeyValuePair<Client, IWFRPCallback> member = ClientCallbackByName(s);
+                if (!session.Members.ContainsKey(member.Key) && isFree)
+                {
+                    session.Members.Add(member.Key, member.Value);
+                    newMembers.Add(member.Key, member.Value);
+                }
+            }
+
+            // If any new member has been added
+            if (newMembers.Count > 0)
+            {
+                // sending a message to new members
+                ServerMessage msg = new ServerMessage();
+                msg.Type = ServerMessageTypeEnum.StartSession;
+                msg.IsStatusCorrect = true;
+                msg.Content = "Session created";
+                foreach (Client c in newMembers.Keys)
+                {
+                    lock (syncObj)
+                    {
+                        foreach (IWFRPCallback callback in newMembers.Values)
+                        {
+                            callback.JoinedToSession(msg);
+                            callback.SessionInitSettings(session);
+                        }
+                    }
+                }
+
+                // Informing all about new members
+                Message newMsg = new Message();
+                newMsg.Content = "New members have come.";
+                List<string> membersNames = new List<string>();
+                foreach (Client c in session.Members.Keys)
+                    membersNames.Add(c.Name);
+                foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+                {
+                    lock (syncObj)
+                    {
+                        c.Value.SetSessionList(membersNames, newMsg);
+                    }
+                }
+
+            }
+
+            Console.WriteLine("SESJE:");
+            int i = 1;
+            foreach (Session s in sessionList)
+            {
+                Console.WriteLine("sesja " + i);
+                foreach (Client c in s.Members.Keys)
+                    Console.WriteLine(c.Name);
+                i++;
+            }
 
         }
 
