@@ -375,6 +375,15 @@ namespace WPFClient
             }
         }
 
+        public void ViewHero()
+        {
+            try
+            {
+                this.Proxy.GetHero(localClient.Name);
+            }
+            catch (Exception) { }
+        }
+
         private void InitSessionChat(Session session)
         {
             _sessionModel.SessionModelChat = "";

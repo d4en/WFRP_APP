@@ -36,7 +36,7 @@ namespace WPFClient
         HeroWindow heroWindow = null;
         #endregion
 
-        public SessionWindow(ServiceCommunication servCom)
+        public SessionWindow(ServiceCommunication servCom, HeroWindow heroWindow)
         {
             InitializeComponent();
             this.DataContext = _sessionModel;
@@ -44,7 +44,7 @@ namespace WPFClient
             this.servCom = servCom;
             servCom.SetSessionModel(_sessionModel);
 
-            heroWindow = new HeroWindow(servCom);
+            this.heroWindow = heroWindow;
 
         }
 
@@ -62,10 +62,6 @@ namespace WPFClient
 
         public new void Close()
         {
-            if (heroWindow != null)
-                heroWindow.Close();
-            heroWindow = null;
-
             this.Closing -= SessionWindow_Closing;
             base.Close();
         }

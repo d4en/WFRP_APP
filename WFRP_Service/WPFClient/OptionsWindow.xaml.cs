@@ -36,6 +36,7 @@ namespace WPFClient
 
         #region windows
         SessionWindow sessionWindow = null;
+        HeroWindow heroWindow = null;
         #endregion
 
         public OptionsWindow(ServiceCommunication servCom)
@@ -45,7 +46,8 @@ namespace WPFClient
 
             this.servCom = servCom;
             servCom.SetOptionsModel(_optionsModel);
-            sessionWindow = new SessionWindow(servCom);
+            heroWindow = new HeroWindow(servCom);
+            sessionWindow = new SessionWindow(servCom, heroWindow);
         }
 
         #region UI events
@@ -64,7 +66,7 @@ namespace WPFClient
         private void sessionButton_Click(object sender, RoutedEventArgs e)
         {
             if (sessionWindow == null)
-                sessionWindow = new SessionWindow(servCom);                              
+                sessionWindow = new SessionWindow(servCom, heroWindow);                              
             servCom.StartSession();
             sessionWindow.Show();
         }
@@ -74,6 +76,11 @@ namespace WPFClient
             if(sessionWindow != null)
                 sessionWindow.Close();
             sessionWindow = null;
+
+            if (heroWindow != null)
+                heroWindow.Close();
+            heroWindow = null;
+
             servCom.EndSession();
             servCom.Disconnect();
         }
@@ -97,7 +104,15 @@ namespace WPFClient
                 servCom.AddMemberToSession();
         }
 
+        private void viewHeroButton_Click(object sender, RoutedEventArgs e)
+        {
+            servCom.ViewHero();
+            heroWindow.Show();
+        }
+
         #endregion
+
+        
 
         
     }
