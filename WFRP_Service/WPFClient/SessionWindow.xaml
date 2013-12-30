@@ -1,9 +1,10 @@
 ﻿<Window x:Class="WPFClient.SessionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Current Session" Height="300" Width="904"
+        Title="Current Session" Height="458" Width="1040"
         Visibility="{Binding SessionModelSessionWindowIsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        Closing="SessionWindow_Closing" Style="{DynamicResource MetroWindowStyle}">
+        Closing="SessionWindow_Closing" Style="{DynamicResource MetroWindowStyle}"
+        ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="MetroWindowStyle" TargetType="{x:Type Window}">
             <Setter Property="WindowStyle" Value="None" />
@@ -11,7 +12,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <Grid>
-                            <Border x:Name="MainBorder" BorderThickness="0" Background="White" >
+                            <Border x:Name="MainBorder" BorderThickness="1" BorderBrush="Brown" Background="White" >
                                 <DockPanel LastChildFill="True">
                                     <Border x:Name="PART_TITLEBAR" 
                                             Margin="0,0,0,0" Height="40" DockPanel.Dock="Top"  
@@ -71,16 +72,16 @@
             ItemsSource="{Binding SessionModelMembersListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   
             SelectedItem="{Binding SessionModelSelectedMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             SelectionMode="Single"
-            HorizontalAlignment="Left" Height="183" Margin="298,29,0,0" VerticalAlignment="Top" Width="174" Grid.Column="1" MouseDoubleClick="MembersListBox_MouseDoubleClick"/>
+            HorizontalAlignment="Left" Height="283" Margin="276,29,0,0" VerticalAlignment="Top" Width="174" Grid.Column="1" MouseDoubleClick="MembersListBox_MouseDoubleClick"/>
         <TextBox 
             Name="chatTextBox"
             Text="{Binding SessionModelChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            HorizontalAlignment="Left" Height="183" Margin="28,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" IsUndoEnabled="False" VerticalScrollBarVisibility="Visible" TextChanged="chatTextBox_TextChanged" Grid.ColumnSpan="2"/>
+            HorizontalAlignment="Left" Height="315" Margin="28,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" IsUndoEnabled="False" VerticalScrollBarVisibility="Visible" TextChanged="chatTextBox_TextChanged" Grid.ColumnSpan="2"/>
         <TextBox 
             Name="msgTextBox"
             Text="{Binding SessionModelMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            HorizontalAlignment="Left" Height="23" Margin="28,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" KeyDown="msgTextBox_KeyDown" Grid.ColumnSpan="2"/>
-        <CheckBox Name="whisperCheckBox" Content="Whisper" HorizontalAlignment="Left" Margin="298,217,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+            HorizontalAlignment="Left" Height="23" Margin="28,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" KeyDown="msgTextBox_KeyDown" Grid.ColumnSpan="2"/>
+        <CheckBox Name="whisperCheckBox" Content="Whisper" HorizontalAlignment="Left" Margin="276,328,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Button 
             Name="updateParchmentButton"
             Content="Update parchment" 
@@ -90,8 +91,8 @@
         <Image 
             Name="parchment" 
             Source="{Binding SessionModelParchmentSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            HorizontalAlignment="Left" Height="143" Margin="494,69,0,0" VerticalAlignment="Top" Width="282" Grid.Column="1"/>
+            HorizontalAlignment="Left" Height="317" Margin="494,69,0,0" VerticalAlignment="Top" Width="398" Grid.Column="1"/>
         <Label Name="parchmentStatus" Content="{Binding SessionModelParchmentStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-               HorizontalAlignment="Left" Margin="626,29,0,0" VerticalAlignment="Top" Width="150" Height="35" Grid.Column="1"/>
+               HorizontalAlignment="Left" Margin="626,24,0,0" VerticalAlignment="Top" Width="266" Height="25" Grid.Column="1"/>
     </Grid>
 </Window>

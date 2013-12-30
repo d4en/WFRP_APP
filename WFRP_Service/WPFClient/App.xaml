@@ -9,6 +9,7 @@
                 Source="/WPFClient;component/Styles/MetroStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroButtonStyle}"/>
+            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MetroListBoxStyle}"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
