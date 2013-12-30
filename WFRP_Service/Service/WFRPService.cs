@@ -108,15 +108,22 @@ namespace Service
             List<string> clientsNames = new List<string>();
             foreach (Client c in clients.Keys)
                 clientsNames.Add(c.Name);
-            foreach (Client c in clients.Keys)
+            try
             {
-                lock (syncObj)
+                foreach (Client c in clients.Keys)
                 {
-                    foreach (IWFRPCallback call in clients.Values)
+                    lock (syncObj)
                     {
-                        call.SetClientList(clientsNames);
+                        foreach (IWFRPCallback call in clients.Values)
+                        {
+                            call.SetClientList(clientsNames);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("SetClientList error: " + ex.ToString());
             }
         }
 
@@ -192,7 +199,14 @@ namespace Service
             msgClient.Type = ServerMessageTypeEnum.DisconnectInfoClient;
             msgClient.Content = "Disconnected succesfully.";
             IWFRPCallback callbackClient = CurrentCallback;
-            callbackClient.GetServerMessageStatus(msgClient);
+            try
+            {
+                callbackClient.GetServerMessageStatus(msgClient);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Disconnect error: " + ex.ToString());
+            }
 
             // Info to all users
             SetClientList();
@@ -209,7 +223,14 @@ namespace Service
             msg.Content = response.Value;
             msg.IsStatusCorrect = response.Key;
             msg.Type = ServerMessageTypeEnum.Register;
-            callback.GetServerMessageStatus(msg);
+            try
+            {
+                callback.GetServerMessageStatus(msg);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Register error: " + ex.ToString());
+            }
 
         }
 
@@ -233,7 +254,14 @@ namespace Service
                 msg.Content = "SERWER: POŁĄCZONO";
                 msg.IsStatusCorrect = response.Key;
                 msg.Type = ServerMessageTypeEnum.Login;
-                callback.GetServerMessageStatus(msg);
+                try
+                {
+                    callback.GetServerMessageStatus(msg);
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("Login error: " + ex.ToString());
+                }
 
                 if (!clients.ContainsValue(CurrentCallback) &&
                 !SearchClientsByName(client.Name))
@@ -255,7 +283,14 @@ namespace Service
                 msg.Type = ServerMessageTypeEnum.Login;
                 msg.Content = response.Value;
                 msg.IsStatusCorrect = response.Key;
-                callback.GetServerMessageStatus(msg);  
+                try
+                {
+                    callback.GetServerMessageStatus(msg);
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("Login error: " + ex.ToString());
+                }
                 clients.Remove(client);                      
             }           
         }
@@ -276,28 +311,34 @@ namespace Service
             msg.IsStatusCorrect = true;
             msg.Content = "Session created";
 
-            foreach (Client c in session.Members.Keys)
+            try
             {
-                lock (syncObj)
+                foreach (Client c in session.Members.Keys)
                 {
-                    foreach (IWFRPCallback callback in session.Members.Values)
+                    lock (syncObj)
                     {
-                        // MG
-                        if (callback == session.MG.Value)
+                        foreach (IWFRPCallback callback in session.Members.Values)
                         {
-                            callback.GetServerMessageStatus(msg);
-                            callback.SessionInitMGSettings(session);
-                        }
-                        // Other members
-                        else
-                        {
-                            callback.JoinedToSession(msg);
-                            callback.SessionInitSettings(session);
+                            // MG
+                            if (callback == session.MG.Value)
+                            {
+                                callback.GetServerMessageStatus(msg);
+                                callback.SessionInitMGSettings(session);
+                            }
+                            // Other members
+                            else
+                            {
+                                callback.JoinedToSession(msg);
+                                callback.SessionInitSettings(session);
+                            }
                         }
                     }
                 }
             }
-
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("StartSession error: " + ex.ToString());
+            }
             SessionsInfo();
         }
 
@@ -323,16 +364,23 @@ namespace Service
                 msg.Type = ServerMessageTypeEnum.StartSession;
                 msg.IsStatusCorrect = true;
                 msg.Content = "Session created";
-                foreach (Client c in newMembers.Keys)
+                try
                 {
-                    lock (syncObj)
+                    foreach (Client c in newMembers.Keys)
                     {
-                        foreach (IWFRPCallback callback in newMembers.Values)
+                        lock (syncObj)
                         {
-                            callback.JoinedToSession(msg);
-                            callback.SessionInitSettings(session);
+                            foreach (IWFRPCallback callback in newMembers.Values)
+                            {
+                                callback.JoinedToSession(msg);
+                                callback.SessionInitSettings(session);
+                            }
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("AddMemberToSession error: " + ex.ToString());
                 }
 
                 // Informing all about new members
@@ -341,12 +389,19 @@ namespace Service
                 List<string> membersNames = new List<string>();
                 foreach (Client c in session.Members.Keys)
                     membersNames.Add(c.Name);
-                foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+                try
                 {
-                    lock (syncObj)
+                    foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
                     {
-                        c.Value.SetSessionList(membersNames, newMsg);
+                        lock (syncObj)
+                        {
+                            c.Value.SetSessionList(membersNames, newMsg);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("AddMemberToSession error: " + ex.ToString());
                 }
 
             }
@@ -361,7 +416,14 @@ namespace Service
             foreach (Client c in clients.Keys)
                 clientsNames.Add(c.Name);
 
-            CurrentCallback.SetClientList(clientsNames);
+            try
+            {
+                CurrentCallback.SetClientList(clientsNames);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("GetAllClients error: " + ex.ToString());
+            }
         }
 
         public void EndSession(Client client)
@@ -378,10 +440,17 @@ namespace Service
                     foreach (Client c in session.Members.Keys)
                         membersNames.Add(c.Name);
 
-                    foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+                    try
                     {
-                        lock (syncObj)
-                            c.Value.SetSessionList(membersNames, msg);
+                        foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+                        {
+                            lock (syncObj)
+                                c.Value.SetSessionList(membersNames, msg);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine("EndSession error: " + ex.ToString());
                     }
                 }               
             }
@@ -400,10 +469,17 @@ namespace Service
             session = SearchSessionByClientName(msg.Sender);
 
             // sending a message to all session members
-            foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+            try
             {
-                lock (syncObj)
-                    c.Value.Receive(msg);
+                foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+                {
+                    lock (syncObj)
+                        c.Value.Receive(msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Send error: " + ex.ToString());
             }
 
         }
@@ -414,15 +490,22 @@ namespace Service
             // Searching for a proper session
             session = SearchSessionByClientName(msg.Sender);
 
-            // sending a message to a receiver and sender
-            foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+            try
             {
-                if(c.Key.Name == msg.Receiver || c.Key.Name == msg.Sender)
-                    c.Value.ReceiveWhisper(msg);
+                // sending a message to a receiver and sender
+                foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+                {
+                    if (c.Key.Name == msg.Receiver || c.Key.Name == msg.Sender)
+                        c.Value.ReceiveWhisper(msg);
+                }
+                // sending a message to MG
+                if (session.MG.Key.Name != msg.Receiver && session.MG.Key.Name != msg.Sender)
+                    session.MG.Value.ReceiveWhisper(msg);
             }
-            // sending a message to MG
-            if (session.MG.Key.Name != msg.Receiver && session.MG.Key.Name != msg.Sender)
-                session.MG.Value.ReceiveWhisper(msg);
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Whisper error: " + ex.ToString());
+            }
         }
 
 
@@ -434,14 +517,21 @@ namespace Service
             msg.Sender = client.Name;
             msg.Content = "I'M SENDING A FILE... " + fMsg.FileName;
 
-            // sending a parchment to all session members
-            foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
+            try
             {
-                lock (syncObj)
+                // sending a parchment to all session members
+                foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
                 {
-                    c.Value.Receive(msg);
-                    c.Value.ReceivePerchment(fMsg);
+                    lock (syncObj)
+                    {
+                        c.Value.Receive(msg);
+                        c.Value.ReceivePerchment(fMsg);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("UpdateParchment error: " + ex.ToString());
             }
         }
 

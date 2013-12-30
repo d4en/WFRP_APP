@@ -124,10 +124,10 @@ namespace WPFClient.Model
 
                 OnPropertyChanged("SessionModelUpdateParchmentButtonIsEnabled");
             }
-        }       
+        }
 
-     /*   System.Windows.Media.Imaging.BitmapSource _parchmentSource = null;
-        public System.Windows.Media.Imaging.BitmapSource SessionModelParchmentSource
+        string _parchmentSource = null;
+        public string SessionModelParchmentSource
         {
             get
             {
@@ -139,7 +139,7 @@ namespace WPFClient.Model
 
                 OnPropertyChanged("SessionModelParchmentSource");
             }
-        }*/
+        }
 
         string _parchmentStatus = null;
         public string SessionModelParchmentStatus

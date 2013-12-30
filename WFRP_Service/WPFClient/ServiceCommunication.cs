@@ -223,7 +223,7 @@ namespace WPFClient
             {
                 try
                 {
-                    Proxy.Disconnect(localClient);
+                    Proxy.DisconnectAsync(localClient);
                 }
                 catch (Exception ex)
                 {
@@ -259,8 +259,14 @@ namespace WPFClient
                     SVC.Client _client = new SVC.Client();
                     _client.Name = _loginModel.LoginModelRegUserName;
                     _client.Password = _loginModel.LoginModelRegNewPsw;
-
-                    Proxy.Register(_client);
+                    try
+                    {
+                        Proxy.RegisterAsync(_client);
+                    }
+                    catch (Exception ex)
+                    {
+                        _loginModel.LoginModelRegStatus = "Error: " + ex.ToString();
+                    }
                 }
                 else
                     _loginModel.LoginModelRegStatus = "Passwords don't match";
@@ -268,15 +274,25 @@ namespace WPFClient
         }
 
         public void StartSession()
-        {        
-            this.Proxy.StartSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
+        {
+            try
+            {
+                this.Proxy.StartSessionAsync(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
+            }
+            catch (Exception) { }
             _optionsModel.OptionsModelAddMemberToSessionButtonIsEnabled = true;
         }
 
         public void EndSession()
         {
             if (session != null)
-                this.Proxy.EndSessionAsync(localClient);
+            {
+                try
+                {
+                    this.Proxy.EndSessionAsync(localClient);
+                }
+                catch (Exception) { }
+            }
             _optionsModel.OptionsModelStartButtonIsEnabled = true;
             _optionsModel.OptionsModelAddMemberToSessionButtonIsEnabled = false;
             session = null;
@@ -287,7 +303,11 @@ namespace WPFClient
             Message m = new Message();
             m.Content = msg;
             m.Sender = localClient.Name;
-            this.Proxy.Send(m);
+            try
+            {
+                this.Proxy.SendAsync(m);
+            }
+            catch (Exception) { }
         }
 
         public void WhisperMessage(string msg)
@@ -298,13 +318,21 @@ namespace WPFClient
                 m.Content = msg;
                 m.Sender = localClient.Name;
                 m.Receiver = _sessionModel.SessionModelSelectedMember;
-                this.Proxy.Whisper(m);
+                try
+                {
+                    this.Proxy.WhisperAsync(m);
+                }
+                catch (Exception) { }
             }
         }
 
         public void AddMemberToSession()
         {
-            Proxy.AddMemberToSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
+            try
+            {
+                Proxy.AddMemberToSessionAsync(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
+            }
+            catch (Exception) { }
         }
 
         public void UpdateParchment(Stream strm, string fileName)
@@ -320,8 +348,12 @@ namespace WPFClient
                     FileMessage fMsg = new FileMessage();
                     fMsg.FileName = fileName;
                     fMsg.Data = buffer;
-                    Proxy.UpdateParchment(localClient, fMsg);
-                    _sessionModel.SessionModelParchmentStatus = "Sending a parchment...";
+                    try
+                    {
+                        Proxy.UpdateParchmentAsync(localClient, fMsg);
+                        _sessionModel.SessionModelParchmentStatus = "Sending a parchment...";
+                    }
+                    catch (Exception) { _sessionModel.SessionModelParchmentStatus = "Error: sending a parchment has failed."; }                  
                 }
             }
         }
@@ -330,6 +362,8 @@ namespace WPFClient
         {
             _sessionModel.SessionModelChat = "";
             _sessionModel.SessionModelChatList = new List<string>();
+            _sessionModel.SessionModelParchmentStatus = "";
+            _sessionModel.SessionModelParchmentSource = null;
             _optionsModel.OptionsModelStartButtonIsEnabled = false;
 
             this.session = session;
@@ -388,7 +422,11 @@ namespace WPFClient
                     _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
                     _optionsModel.OptionsModelStatus = "Connected";
 
-                    Proxy.GetAllClients();
+                    try
+                    {
+                        Proxy.GetAllClientsAsync();
+                    }
+                    catch (Exception) { }
                 }
                 else
                 {
@@ -511,33 +549,34 @@ namespace WPFClient
 
         void IWFRPCallback.ReceivePerchment(FileMessage fMsg)
         {
+            Stream fileStream = null;
             try
             {
                 Directory.CreateDirectory(rcvFilesPath);
-
                 if (!Directory.Exists(rcvFilesPath + fMsg.FileName))
                 {
-                    FileStream fileStrm = new FileStream(rcvFilesPath + fMsg.FileName, FileMode.Create, FileAccess.ReadWrite);
-                    fileStrm.Write(fMsg.Data, 0, fMsg.Data.Length);
+                    fileStream = new FileStream(rcvFilesPath + fMsg.FileName, FileMode.Create, FileAccess.ReadWrite);
+                    fileStream.Write(fMsg.Data, 0, fMsg.Data.Length);
                     _sessionModel.SessionModelParchmentStatus = "Parchment received.";
                 }
                 else
                 {
                     File.Replace(rcvFilesPath + fMsg.FileName, rcvFilesPath + fMsg.FileName, rcvFilesPath + fMsg.FileName + ".bac");
+                    _sessionModel.SessionModelParchmentStatus = "Parchment received.";
                 }
             }
             catch (Exception ex)
             {
                 _sessionModel.SessionModelParchmentStatus = "Error: " + ex.ToString();
             }
-            // TO DO
-            //throw new NotImplementedException();
-            //_sessionModel.SetSessionModelParchmentSource(bmp);
-
-            //var hBitmap = bmp.GetHbitmap();
-            //var result = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, System.Windows.Int32Rect.Empty, System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
-            //_sessionModel.SessionModelParchmentSource = result;
-
+            OperationContext clientContext = OperationContext.Current;
+            clientContext.OperationCompleted += new EventHandler(delegate(object sender, EventArgs args)
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
+                _sessionModel.SessionModelParchmentSource = rcvFilesPath + fMsg.FileName;
+            });
+           
         }
 
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
