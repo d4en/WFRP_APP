@@ -20,20 +20,23 @@
                 <TextBox 
             		x:Name="userNameTxtBox" 
             		Text="{Binding LoginModelUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            		HorizontalAlignment="Left" Height="23" Margin="112,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            		HorizontalAlignment="Left" Height="23" Margin="112,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                    KeyboardNavigation.TabIndex="0"/>
                 <Label 
             		Content="Login" HorizontalAlignment="Left" Margin="237,21,0,0" VerticalAlignment="Top"/>
                 <TextBox 
             		x:Name="serverIPtxtBox" 
             		Text="{Binding LoginModelServerIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            		HorizontalAlignment="Left" Height="23" Margin="112,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            		HorizontalAlignment="Left" Height="23" Margin="112,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                    KeyboardNavigation.TabIndex="3"/>
                 <Label 
             		Content="Server IP" HorizontalAlignment="Left" Margin="241,117,0,0" VerticalAlignment="Top"/>
                 <Button 
             		x:Name="connectButton" 
             		Content="Login" 
             		IsEnabled="{Binding LoginModelConnectButtonIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            		HorizontalAlignment="Left" Margin="267,160,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
+            		HorizontalAlignment="Left" Margin="267,160,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"
+                    KeyboardNavigation.TabIndex="2"/>
                 <Label 
             		x:Name="statusLabel" 
             		Content="{Binding LoginModelStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -41,7 +44,8 @@
                 <TextBox 
             		x:Name="pswdTxtBox"
             		Text="{Binding LoginModelPswd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            		HorizontalAlignment="Left" Margin="112,63,0,0" VerticalAlignment="Top" Width="120"/>
+            		HorizontalAlignment="Left" Margin="112,63,0,0" VerticalAlignment="Top" Width="120"
+                    KeyboardNavigation.TabIndex="1"/>
                 <Label Content="Password" HorizontalAlignment="Left" Margin="237,63,0,0" VerticalAlignment="Top"/>
             </Grid>
         </Expander>
@@ -60,16 +64,20 @@
             <Grid x:Name="RegisterGrid" HorizontalAlignment="Right" Height="248" Width="383" Margin="-450,31,39,31" Background="#FFFFF3A5">
                 <TextBox x:Name="txtBoxUserName" 
                          Text="{Binding LoginModelRegUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         HorizontalAlignment="Left" Height="23" Margin="121,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.458,0.478"/>
+                         HorizontalAlignment="Left" Height="23" Margin="121,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.458,0.478"
+                         KeyboardNavigation.TabIndex="4"/>
                 <TextBox x:Name="txtBoxNewPsw" 
                          Text="{Binding LoginModelRegNewPsw, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         HorizontalAlignment="Left" Height="23" Margin="121,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                         HorizontalAlignment="Left" Height="23" Margin="121,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                         KeyboardNavigation.TabIndex="5"/>
                 <TextBox x:Name="txtBoxNewPswConf" 
                          Text="{Binding LoginModelRegNewRePsw, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         HorizontalAlignment="Left" Height="23" Margin="121,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                         HorizontalAlignment="Left" Height="23" Margin="121,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                         KeyboardNavigation.TabIndex="6"/>
                 <Button x:Name="btnRegister" 
                         IsEnabled="{Binding LoginModelRegisterButtonIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Content="Register" HorizontalAlignment="Left" Margin="274,73,0,0" VerticalAlignment="Top" Width="75" Click="btnRegister_Click"/>
+                        Content="Register" HorizontalAlignment="Left" Margin="274,73,0,0" VerticalAlignment="Top" Width="75" Click="btnRegister_Click"
+                        KeyboardNavigation.TabIndex="7"/>
                 <Label Content="Name" HorizontalAlignment="Left" Margin="41,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.077"/>
                 <Label Content="Password" HorizontalAlignment="Left" Margin="41,69,0,0" VerticalAlignment="Top"/>
                 <Label Content="RePassword" HorizontalAlignment="Left" Margin="41,117,0,0" VerticalAlignment="Top"/>
