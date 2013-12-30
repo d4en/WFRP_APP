@@ -122,19 +122,18 @@ namespace WPFClient
             
         }
 
-        #endregion
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void MembersListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (heroWindow == null)
-                heroWindow = new HeroWindow(servCom);
-            servCom.GetHero();
-            heroWindow.Show();
+            if (_sessionModel.SessionModelSelectedMember != null)
+            {
+                if (heroWindow == null)
+                    heroWindow = new HeroWindow(servCom);
+                servCom.GetHero();
+                heroWindow.Show();
+            }
         }
 
-        
-
-        
+        #endregion  
 
     }
 }

@@ -541,6 +541,7 @@ namespace Service
 
             Hero hero = new Hero();
             hero.ClientName = SearchClientCallbackByName(client).Key.Name;
+            // TO DO: more hero data (also in DataContract)
             try
             {
                 IWFRPCallback callback = CurrentCallback;

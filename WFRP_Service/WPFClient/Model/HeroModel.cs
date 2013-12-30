@@ -33,21 +33,6 @@ namespace WPFClient.Model
             }
         }
 
-        SVC.Hero _hero = null;
-        public SVC.Hero HeroModelHero
-        {
-            get 
-            {
-                return _hero;
-            }
-            set
-            {
-                _hero = value;
-
-                OnPropertyChanged("HeroModelHero");
-            }
-        }
-
         string _clientName = null;
         public string HeroModelClientName
         {

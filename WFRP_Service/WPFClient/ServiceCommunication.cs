@@ -598,7 +598,7 @@ namespace WPFClient
 
         void IWFRPCallback.ReceiveHero(Hero hero)
         {
-            _heroModel.HeroModelHero = hero;
+            // TO DO: more hero data (also in HeroModel)
             _heroModel.HeroModelClientName = hero.ClientName;
         }
 
