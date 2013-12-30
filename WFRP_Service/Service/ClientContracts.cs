@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
-using System.Drawing;
 
 namespace Service
 {
@@ -38,7 +37,7 @@ namespace Service
         void SessionInitMGSettings(Session session);
 
         [OperationContract(IsOneWay = true)]
-        void ReceivePerchment(Bitmap bmp);
+        void ReceivePerchment(FileMessage fMsg);
 
     }
 }

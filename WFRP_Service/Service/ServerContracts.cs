@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
-using System.Drawing;
 
 namespace Service
 {
@@ -42,7 +41,7 @@ namespace Service
         void AddMemberToSession(Client client, List<string> members);
 
         [OperationContract(IsOneWay = true)]
-        void UpdateParchment(Client client, Bitmap bmp);
+        void UpdateParchment(Client client, FileMessage fMsg);
 
     }
 }

@@ -153,6 +153,67 @@ namespace WPFClient.SVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FileMessage", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class FileMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] DataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServerMessage", Namespace="http://schemas.datacontract.org/2004/07/Service")]
     [System.SerializableAttribute()]
     public partial class ServerMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -299,13 +360,12 @@ namespace WPFClient.SVC {
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Client))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FileMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Drawing.Bitmap))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Drawing.Image))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -464,10 +524,10 @@ namespace WPFClient.SVC {
         void EndAddMemberToSession(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/UpdateParchment")]
-        void UpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp);
+        void UpdateParchment(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/UpdateParchment")]
-        System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg, System.AsyncCallback callback, object asyncState);
         
         void EndUpdateParchment(System.IAsyncResult result);
     }
@@ -548,10 +608,10 @@ namespace WPFClient.SVC {
         void EndSessionInitMGSettings(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReceivePerchment")]
-        void ReceivePerchment(System.Drawing.Bitmap bmp);
+        void ReceivePerchment(WPFClient.SVC.FileMessage fMsg);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReceivePerchment")]
-        System.IAsyncResult BeginReceivePerchment(System.Drawing.Bitmap bmp, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginReceivePerchment(WPFClient.SVC.FileMessage fMsg, System.AsyncCallback callback, object asyncState);
         
         void EndReceivePerchment(System.IAsyncResult result);
     }
@@ -1182,13 +1242,13 @@ namespace WPFClient.SVC {
                         members}, this.onEndAddMemberToSessionDelegate, this.onAddMemberToSessionCompletedDelegate, userState);
         }
         
-        public void UpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp) {
-            base.Channel.UpdateParchment(client, bmp);
+        public void UpdateParchment(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg) {
+            base.Channel.UpdateParchment(client, fMsg);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateParchment(client, bmp, callback, asyncState);
+        public System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateParchment(client, fMsg, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1198,8 +1258,8 @@ namespace WPFClient.SVC {
         
         private System.IAsyncResult OnBeginUpdateParchment(object[] inValues, System.AsyncCallback callback, object asyncState) {
             WPFClient.SVC.Client client = ((WPFClient.SVC.Client)(inValues[0]));
-            System.Drawing.Bitmap bmp = ((System.Drawing.Bitmap)(inValues[1]));
-            return this.BeginUpdateParchment(client, bmp, callback, asyncState);
+            WPFClient.SVC.FileMessage fMsg = ((WPFClient.SVC.FileMessage)(inValues[1]));
+            return this.BeginUpdateParchment(client, fMsg, callback, asyncState);
         }
         
         private object[] OnEndUpdateParchment(System.IAsyncResult result) {
@@ -1214,11 +1274,11 @@ namespace WPFClient.SVC {
             }
         }
         
-        public void UpdateParchmentAsync(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp) {
-            this.UpdateParchmentAsync(client, bmp, null);
+        public void UpdateParchmentAsync(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg) {
+            this.UpdateParchmentAsync(client, fMsg, null);
         }
         
-        public void UpdateParchmentAsync(WPFClient.SVC.Client client, System.Drawing.Bitmap bmp, object userState) {
+        public void UpdateParchmentAsync(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg, object userState) {
             if ((this.onBeginUpdateParchmentDelegate == null)) {
                 this.onBeginUpdateParchmentDelegate = new BeginOperationDelegate(this.OnBeginUpdateParchment);
             }
@@ -1230,7 +1290,7 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginUpdateParchmentDelegate, new object[] {
                         client,
-                        bmp}, this.onEndUpdateParchmentDelegate, this.onUpdateParchmentCompletedDelegate, userState);
+                        fMsg}, this.onEndUpdateParchmentDelegate, this.onUpdateParchmentCompletedDelegate, userState);
         }
     }
 }

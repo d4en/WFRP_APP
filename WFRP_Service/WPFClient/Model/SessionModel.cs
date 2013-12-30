@@ -126,7 +126,7 @@ namespace WPFClient.Model
             }
         }       
 
-        System.Windows.Media.Imaging.BitmapSource _parchmentSource = null;
+     /*   System.Windows.Media.Imaging.BitmapSource _parchmentSource = null;
         public System.Windows.Media.Imaging.BitmapSource SessionModelParchmentSource
         {
             get
@@ -138,6 +138,21 @@ namespace WPFClient.Model
                 _parchmentSource = value;
 
                 OnPropertyChanged("SessionModelParchmentSource");
+            }
+        }*/
+
+        string _parchmentStatus = null;
+        public string SessionModelParchmentStatus
+        {
+            get
+            {
+                return _parchmentStatus;
+            }
+            set
+            {
+                _parchmentStatus = value;
+
+                OnPropertyChanged("SessionModelParchmentStatus");
             }
         }
 

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing;
+using System.IO;
 
 namespace WPFClient
 {
@@ -66,7 +67,7 @@ namespace WPFClient
         {
             if (e.Key == Key.Enter)
             {
-                // TO DO whisper (probably with a checkbox 'whisper' and if it's marked, sent only whisper
+                // whisper (with a checkbox 'whisper' marked)
                 if (whisperCheckBox.IsChecked == true)
                     servCom.WhisperMessage(msgTextBox.Text);
                 // Message to all session members
@@ -79,17 +80,31 @@ namespace WPFClient
 
         private void updateParchmentButton_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.InitialDirectory = @"C:\";
-            dlg.DefaultExt = ".jpg";
-            dlg.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
-
-            var result = dlg.ShowDialog();
-            if (result == true)
+            Stream strm = null;
+            try
             {
-                Bitmap bmp = new Bitmap(dlg.FileName);
-                servCom.UpdateParchment(bmp);
+                Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
+                fileDialog.Multiselect = false;
+                fileDialog.InitialDirectory = @"C:\";
+                fileDialog.DefaultExt = ".jpg";
+                fileDialog.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
 
+                if (fileDialog.ShowDialog() == DialogResult.HasValue)
+                    return;
+
+                strm = fileDialog.OpenFile();
+                servCom.UpdateParchment(strm, fileDialog.SafeFileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxResult msgBox = MessageBox.Show("File sending failed!\n" + ex.ToString(), "Error", MessageBoxButton.OK);
+            }
+            finally
+            {
+                if (strm != null)
+                {
+                    strm.Close();
+                }
             }
             
         }

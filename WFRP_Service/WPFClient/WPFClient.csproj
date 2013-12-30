@@ -135,9 +135,6 @@
     <None Include="Service References\SVC\System.Collections.Generic.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SVC\System.Drawing.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

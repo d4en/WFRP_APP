@@ -162,4 +162,25 @@ namespace Service
         }
 
     }
+
+    [DataContract]
+    public class FileMessage
+    {
+        private string _fileName;
+        private byte[] _data;
+
+        [DataMember]
+        public string FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; }
+        }
+
+        [DataMember]
+        public byte[] Data
+        {
+            get { return _data; }
+            set { _data = value; }
+        }
+    }
 }

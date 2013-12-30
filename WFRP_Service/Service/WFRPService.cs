@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
-using System.Drawing;
 
 namespace Service
 {
@@ -427,16 +426,22 @@ namespace Service
         }
 
 
-        public void UpdateParchment(Client client, Bitmap bmp)
+        public void UpdateParchment(Client client, FileMessage fMsg)
         {
-            Console.WriteLine(bmp.Size);
             Session session = SearchSessionByClientName(client.Name);
+
+            Message msg = new Message();
+            msg.Sender = client.Name;
+            msg.Content = "I'M SENDING A FILE... " + fMsg.FileName;
 
             // sending a parchment to all session members
             foreach (KeyValuePair<Client, IWFRPCallback> c in session.Members)
             {
                 lock (syncObj)
-                    c.Value.ReceivePerchment(bmp);
+                {
+                    c.Value.Receive(msg);
+                    c.Value.ReceivePerchment(fMsg);
+                }
             }
         }
 

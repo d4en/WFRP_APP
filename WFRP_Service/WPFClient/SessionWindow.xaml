@@ -30,5 +30,6 @@
             Name="parchment" 
             Source="{Binding SessionModelParchmentSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             HorizontalAlignment="Left" Height="100" Margin="592,75,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Name="parchmentStatus" Content="{Binding SessionModelParchmentStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="592,56,0,0" VerticalAlignment="Top" Width="115"/>
     </Grid>
 </Window>

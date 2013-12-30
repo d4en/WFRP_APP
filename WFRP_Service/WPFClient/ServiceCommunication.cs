@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using System.ServiceModel;
 using WPFClient.SVC;
 using System.Drawing;
+using System.IO;
 
 namespace WPFClient
 {
@@ -23,7 +24,8 @@ namespace WPFClient
         Model.SessionModel _sessionModel = null;
 
         Dispatcher dispatcher = null;
-   
+
+        string rcvFilesPath = @"C:/WFRP/Parchments/";
 
         //When the communication object 
         //turns to fault state it will
@@ -305,9 +307,23 @@ namespace WPFClient
             Proxy.AddMemberToSession(localClient, _optionsModel.OptionsModelClientListBoxSelectedItems);
         }
 
-        public void UpdateParchment(Bitmap bmp)
+        public void UpdateParchment(Stream strm, string fileName)
         {
-            Proxy.UpdateParchment(localClient, bmp);
+            if (strm != null)
+            {
+                byte[] buffer = new byte[(int)strm.Length];
+
+                int i = strm.Read(buffer, 0, buffer.Length);
+
+                if (i > 0)
+                {
+                    FileMessage fMsg = new FileMessage();
+                    fMsg.FileName = fileName;
+                    fMsg.Data = buffer;
+                    Proxy.UpdateParchment(localClient, fMsg);
+                    _sessionModel.SessionModelParchmentStatus = "Sending a parchment...";
+                }
+            }
         }
 
         private void InitSessionChat(Session session)
@@ -493,8 +509,27 @@ namespace WPFClient
             _sessionModel.SessionModelUpdateParchmentButtonIsEnabled = true;
         }
 
-        void IWFRPCallback.ReceivePerchment(Bitmap bmp)
+        void IWFRPCallback.ReceivePerchment(FileMessage fMsg)
         {
+            try
+            {
+                Directory.CreateDirectory(rcvFilesPath);
+
+                if (!Directory.Exists(rcvFilesPath + fMsg.FileName))
+                {
+                    FileStream fileStrm = new FileStream(rcvFilesPath + fMsg.FileName, FileMode.Create, FileAccess.ReadWrite);
+                    fileStrm.Write(fMsg.Data, 0, fMsg.Data.Length);
+                    _sessionModel.SessionModelParchmentStatus = "Parchment received.";
+                }
+                else
+                {
+                    File.Replace(rcvFilesPath + fMsg.FileName, rcvFilesPath + fMsg.FileName, rcvFilesPath + fMsg.FileName + ".bac");
+                }
+            }
+            catch (Exception ex)
+            {
+                _sessionModel.SessionModelParchmentStatus = "Error: " + ex.ToString();
+            }
             // TO DO
             //throw new NotImplementedException();
             //_sessionModel.SetSessionModelParchmentSource(bmp);
@@ -590,12 +625,7 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
-        public void ReceivePerchment(Bitmap bmp)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IAsyncResult BeginReceivePerchment(Bitmap bmp, AsyncCallback callback, object asyncState)
+        public IAsyncResult BeginReceivePerchment(FileMessage fMsg, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
         }
@@ -606,8 +636,6 @@ namespace WPFClient
         }
 
         #endregion
-
-
 
         
     }
