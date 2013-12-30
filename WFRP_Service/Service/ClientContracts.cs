@@ -39,5 +39,8 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void ReceivePerchment(FileMessage fMsg);
 
+        [OperationContract(IsOneWay = true)]
+        void ReceiveHero(Hero hero);
+
     }
 }

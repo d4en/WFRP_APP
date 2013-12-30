@@ -32,13 +32,19 @@ namespace WPFClient
         ServiceCommunication servCom = null;
         #endregion
 
+        #region windows
+        HeroWindow heroWindow = null;
+        #endregion
+
         public SessionWindow(ServiceCommunication servCom)
         {
             InitializeComponent();
             this.DataContext = _sessionModel;
 
             this.servCom = servCom;
-            servCom.SetSessionModel(_sessionModel);          
+            servCom.SetSessionModel(_sessionModel);
+
+            heroWindow = new HeroWindow(servCom);
 
         }
 
@@ -49,10 +55,17 @@ namespace WPFClient
             servCom.EndSession();
             e.Cancel = true;
             Visibility = Visibility.Collapsed;
+
+            if (heroWindow != null)
+                heroWindow.Hide();
         }
 
-        public void Close()
+        public new void Close()
         {
+            if (heroWindow != null)
+                heroWindow.Close();
+            heroWindow = null;
+
             this.Closing -= SessionWindow_Closing;
             base.Close();
         }
@@ -110,6 +123,14 @@ namespace WPFClient
         }
 
         #endregion
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (heroWindow == null)
+                heroWindow = new HeroWindow(servCom);
+            servCom.GetHero();
+            heroWindow.Show();
+        }
 
         
 

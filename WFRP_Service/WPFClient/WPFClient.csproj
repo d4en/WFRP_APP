@@ -59,6 +59,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HeroWindow.xaml.cs">
+      <DependentUpon>HeroWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\HeroModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\OptionsModel.cs" />
     <Compile Include="Model\SessionModel.cs" />
@@ -74,6 +78,10 @@
     <Compile Include="SessionWindow.xaml.cs">
       <DependentUpon>SessionWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="HeroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

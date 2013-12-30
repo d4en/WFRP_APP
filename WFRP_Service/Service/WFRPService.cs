@@ -535,6 +535,24 @@ namespace Service
             }
         }
 
+        public void GetHero(string client)
+        {
+            Session session = SearchSessionByClientName(client);
+
+            Hero hero = new Hero();
+            hero.ClientName = SearchClientCallbackByName(client).Key.Name;
+            try
+            {
+                IWFRPCallback callback = CurrentCallback;
+                callback.ReceiveHero(hero);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("GetHero error: " + ex.ToString());
+            }
+
+        }
+
         #endregion
 
         

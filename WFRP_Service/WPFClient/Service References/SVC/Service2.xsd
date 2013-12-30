@@ -56,4 +56,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Session" nillable="true" type="tns:Session" />
+  <xs:complexType name="Hero">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Hero" nillable="true" type="tns:Hero" />
 </xs:schema>

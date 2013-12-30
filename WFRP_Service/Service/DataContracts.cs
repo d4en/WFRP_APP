@@ -183,4 +183,18 @@ namespace Service
             set { _data = value; }
         }
     }
+
+    [DataContract]
+    public class Hero
+    {
+        private string _clientName;
+
+        [DataMember]
+        public string ClientName
+        {
+            get { return _clientName; }
+            set { _clientName = value; }
+        }
+    }
+
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e63facf7-b365-43a4-adb5-cf6c0af95faf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8a720e37-f3db-43a6-967f-7235c123395f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -23,12 +23,12 @@
     <MetadataSource Address="net.tcp://localhost:7996/WPFHost/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="3582a818-bcd9-4e97-899e-8f9c48a1561c" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="867b31b9-4f21-42e1-b468-12d2ef8da16b" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="7b67698a-9240-471a-8c79-680f531531d2" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
-    <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="e453beb1-9cee-4376-ae42-379b6e24c797" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="4ff24daa-2905-476c-83bf-7a393be0a81f" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
-    <MetadataFile FileName="System.Collections.Generic.xsd" MetadataType="Schema" ID="72415005-81d1-45e1-9fb7-94f20b1bb00a" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f980b296-c046-4e5c-ba41-135aeb3ca9ab" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="78399cf7-0588-4fcb-bc4f-1666cae1f7ac" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="fa92d6b0-854b-4958-9184-3649189e7654" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="a5d05df2-0276-4e6c-adfb-4fe5acfeee29" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="e58994db-e280-4d3c-b481-7a53086bf98a" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
+    <MetadataFile FileName="System.Collections.Generic.xsd" MetadataType="Schema" ID="8bd39732-5234-49ff-9310-8bea78cb618d" SourceId="1" SourceUrl="net.tcp://localhost:7996/WPFHost/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

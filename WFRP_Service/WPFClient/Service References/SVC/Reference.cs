@@ -364,6 +364,7 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Hero))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -425,6 +426,51 @@ namespace WPFClient.SVC {
                 if ((this.SessionIDField.Equals(value) != true)) {
                     this.SessionIDField = value;
                     this.RaisePropertyChanged("SessionID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Hero", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class Hero : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ClientNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ClientName {
+            get {
+                return this.ClientNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClientNameField, value) != true)) {
+                    this.ClientNameField = value;
+                    this.RaisePropertyChanged("ClientName");
                 }
             }
         }
@@ -530,6 +576,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginUpdateParchment(WPFClient.SVC.Client client, WPFClient.SVC.FileMessage fMsg, System.AsyncCallback callback, object asyncState);
         
         void EndUpdateParchment(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetHero")]
+        void GetHero(string client);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetHero")]
+        System.IAsyncResult BeginGetHero(string client, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetHero(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -614,6 +668,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReceivePerchment(WPFClient.SVC.FileMessage fMsg, System.AsyncCallback callback, object asyncState);
         
         void EndReceivePerchment(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReceiveHero")]
+        void ReceiveHero(WPFClient.SVC.Hero hero);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReceiveHero")]
+        System.IAsyncResult BeginReceiveHero(WPFClient.SVC.Hero hero, System.AsyncCallback callback, object asyncState);
+        
+        void EndReceiveHero(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -709,6 +771,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onUpdateParchmentCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetHeroDelegate;
+        
+        private EndOperationDelegate onEndGetHeroDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetHeroCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -750,6 +818,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddMemberToSessionCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateParchmentCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -1291,6 +1361,55 @@ namespace WPFClient.SVC {
             base.InvokeAsync(this.onBeginUpdateParchmentDelegate, new object[] {
                         client,
                         fMsg}, this.onEndUpdateParchmentDelegate, this.onUpdateParchmentCompletedDelegate, userState);
+        }
+        
+        public void GetHero(string client) {
+            base.Channel.GetHero(client);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetHero(string client, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetHero(client, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetHero(System.IAsyncResult result) {
+            base.Channel.EndGetHero(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetHero(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string client = ((string)(inValues[0]));
+            return this.BeginGetHero(client, callback, asyncState);
+        }
+        
+        private object[] OnEndGetHero(System.IAsyncResult result) {
+            this.EndGetHero(result);
+            return null;
+        }
+        
+        private void OnGetHeroCompleted(object state) {
+            if ((this.GetHeroCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetHeroCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetHeroAsync(string client) {
+            this.GetHeroAsync(client, null);
+        }
+        
+        public void GetHeroAsync(string client, object userState) {
+            if ((this.onBeginGetHeroDelegate == null)) {
+                this.onBeginGetHeroDelegate = new BeginOperationDelegate(this.OnBeginGetHero);
+            }
+            if ((this.onEndGetHeroDelegate == null)) {
+                this.onEndGetHeroDelegate = new EndOperationDelegate(this.OnEndGetHero);
+            }
+            if ((this.onGetHeroCompletedDelegate == null)) {
+                this.onGetHeroCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetHeroCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetHeroDelegate, new object[] {
+                        client}, this.onEndGetHeroDelegate, this.onGetHeroCompletedDelegate, userState);
         }
     }
 }

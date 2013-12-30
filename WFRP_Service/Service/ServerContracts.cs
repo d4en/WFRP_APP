@@ -43,5 +43,7 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void UpdateParchment(Client client, FileMessage fMsg);
 
+        [OperationContract(IsOneWay = true)]
+        void GetHero(string client);
     }
 }

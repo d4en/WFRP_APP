@@ -15,13 +15,13 @@ namespace WPFClient
         //SVC holds references to the Proxy and cotracts..
         public SVC.WFRPClient Proxy { get; set; }
 
-
         public SVC.Client localClient = null;
         public SVC.Session session = null;
-
+        
         Model.LoginModel _loginModel = null;
         Model.OptionsModel _optionsModel = null;
         Model.SessionModel _sessionModel = null;
+        Model.HeroModel _heroModel = null;
 
         Dispatcher dispatcher = null;
 
@@ -35,7 +35,7 @@ namespace WPFClient
         public ServiceCommunication(Model.LoginModel loginModel, Dispatcher dispatcher)
         {
             this._loginModel = loginModel;
-            this.dispatcher = dispatcher;
+            this.dispatcher = dispatcher;            
         }
 
         public void SetOptionsModel(Model.OptionsModel optionsModel)
@@ -46,6 +46,11 @@ namespace WPFClient
         public void SetSessionModel(Model.SessionModel sessionModel)
         {
             this._sessionModel = sessionModel;
+        }
+
+        public void SetHeroModel(Model.HeroModel heroModel)
+        {
+            this._heroModel = heroModel;
         }
 
         //Service might be disconnected or stopped for any reason,
@@ -358,6 +363,18 @@ namespace WPFClient
             }
         }
 
+        public void GetHero()
+        {
+            if (_sessionModel.SessionModelSelectedMember != null)
+            {              
+                try
+                {
+                    this.Proxy.GetHero(_sessionModel.SessionModelSelectedMember);
+                }
+                catch (Exception) { }
+            }
+        }
+
         private void InitSessionChat(Session session)
         {
             _sessionModel.SessionModelChat = "";
@@ -579,6 +596,12 @@ namespace WPFClient
            
         }
 
+        void IWFRPCallback.ReceiveHero(Hero hero)
+        {
+            _heroModel.HeroModelHero = hero;
+            _heroModel.HeroModelClientName = hero.ClientName;
+        }
+
         IAsyncResult IWFRPCallback.BeginGetIdentity(Identity userID, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -670,6 +693,21 @@ namespace WPFClient
         }
 
         public void EndReceivePerchment(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceiveHero(Hero hero)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReceiveHero(Hero hero, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReceiveHero(IAsyncResult result)
         {
             throw new NotImplementedException();
         }

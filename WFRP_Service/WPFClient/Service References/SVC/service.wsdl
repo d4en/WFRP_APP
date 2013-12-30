@@ -61,6 +61,9 @@
   <wsdl:message name="IWFRP_UpdateParchment_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateParchment" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_GetHero_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHero" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -90,6 +93,9 @@
   </wsdl:message>
   <wsdl:message name="IWFRP_ReceivePerchment_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePerchment" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReceiveHero_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveHero" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -126,6 +132,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateParchment">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/UpdateParchment" message="tns:IWFRP_UpdateParchment_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetHero">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetHero" message="tns:IWFRP_GetHero_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
@@ -155,6 +164,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceivePerchment">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReceivePerchment" message="tns:IWFRP_ReceivePerchment_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveHero">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReceiveHero" message="tns:IWFRP_ReceiveHero_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -230,6 +242,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetHero">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetHero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetServerMessageStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
@@ -286,6 +304,12 @@
     </wsdl:operation>
     <wsdl:operation name="ReceivePerchment">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/ReceivePerchment" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveHero">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReceiveHero" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
