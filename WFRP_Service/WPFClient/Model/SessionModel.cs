@@ -10,6 +10,7 @@ namespace WPFClient.Model
     {
 
         public static int maxChatSize = 1000;
+        public static int maxFileSize = 60000000;
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

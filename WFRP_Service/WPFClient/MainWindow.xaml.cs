@@ -74,14 +74,14 @@ namespace WPFClient
             _loginModel.LoginModelConnectButtonIsEnabled = false;
             _loginModel.LoginModelStatus = "Connecting...";
             optWin = new OptionsWindow(servCom);
-            
-            servCom.LogIn();
+
+            servCom.LogIn(pswdTxtBox.Password);
         }
 
         private void btnRegister_Click(object sender,
                                     RoutedEventArgs e)
         {
-            servCom.Register();
+            servCom.Register(txtBoxNewPsw.Password, txtBoxNewPswConf.Password);
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

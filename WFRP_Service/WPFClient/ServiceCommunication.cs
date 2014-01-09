@@ -244,26 +244,26 @@ namespace WPFClient
             }
         }
 
-        public void LogIn()
+        public void LogIn(string password)
         {
           this.localClient = new SVC.Client();
           this.localClient.Name = _loginModel.LoginModelUserName;
-          this.localClient.Password = _loginModel.LoginModelPswd;
+          this.localClient.Password = password;
           this.Proxy.LogInAsync(this.localClient);
              
         }
 
-        public void Register()
+        public void Register(string password, string passwordConf)
         {
             if (_loginModel.LoginModelRegUserName.Length >0
-                && _loginModel.LoginModelRegNewPsw.Length >0
-                && _loginModel.LoginModelRegNewRePsw.Length >0)
+                && password.Length > 0
+                && passwordConf.Length > 0)
             {
-                if (_loginModel.LoginModelRegNewPsw == _loginModel.LoginModelRegNewRePsw)
+                if (password == passwordConf)
                 {
                     SVC.Client _client = new SVC.Client();
                     _client.Name = _loginModel.LoginModelRegUserName;
-                    _client.Password = _loginModel.LoginModelRegNewPsw;
+                    _client.Password = password;
                     try
                     {
                         Proxy.RegisterAsync(_client);

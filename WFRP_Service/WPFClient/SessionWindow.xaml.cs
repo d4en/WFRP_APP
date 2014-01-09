@@ -102,7 +102,12 @@ namespace WPFClient
                     return;
 
                 strm = fileDialog.OpenFile();
-                servCom.UpdateParchment(strm, fileDialog.SafeFileName);
+                if ((int)strm.Length < Model.SessionModel.maxFileSize)
+                    servCom.UpdateParchment(strm, fileDialog.SafeFileName);
+                else
+                {
+                    MessageBoxResult msgBox = MessageBox.Show("File sending is limited to " + Model.SessionModel.maxFileSize + " bytes.", "Error", MessageBoxButton.OK);
+                }
             }
             catch (Exception ex)
             {
