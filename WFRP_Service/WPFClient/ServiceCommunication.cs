@@ -447,6 +447,7 @@ namespace WPFClient
                     _optionsModel.OptionsModelDisconnectButtonIsEnabled = true;
                     _optionsModel.OptionsModelOptionsWindowIsVisible = System.Windows.Visibility.Visible;
                     _optionsModel.OptionsModelStatus = "Connected";
+                    
 
                     try
                     {
@@ -495,6 +496,11 @@ namespace WPFClient
             else if (msg.Type == ServerMessageType.Register)
             {
                 _loginModel.LoginModelRegStatus = msg.Content;
+                if (msg.Content == "Registered")
+                {
+                    _loginModel.LoginModelRegExpander = false;
+                    _loginModel.LoginModelExpander = true;
+                }
             }
             else if (msg.Type == ServerMessageType.StartSession)
             {

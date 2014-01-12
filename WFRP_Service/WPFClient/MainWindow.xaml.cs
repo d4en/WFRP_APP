@@ -91,6 +91,16 @@ namespace WPFClient
             optWin = null;
             initializeThread.Abort();
         }
+        private void ExpandLogin(object sender, RoutedEventArgs e)
+        {
+            _loginModel.LoginModelRegExpander = false;
+        }
+
+        private void ExpandRegister(object sender, RoutedEventArgs e)
+        {
+            _loginModel.LoginModelExpander = false;
+        }
+
 
         #endregion
 
@@ -124,6 +134,9 @@ namespace WPFClient
         }
 
         #endregion
+
+       
+       
 
     }
 }

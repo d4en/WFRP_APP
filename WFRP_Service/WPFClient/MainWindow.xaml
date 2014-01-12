@@ -65,7 +65,7 @@
     <Canvas>     
         <Expander x:Name="LoginExpander"
                   IsExpanded="{Binding Path=LoginModelExpander, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  Header="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="507" ExpandDirection="Right">
+                  Header="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="507" ExpandDirection="Right" Expanded="ExpandLogin">
             <Expander.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock x:Name="LogTextBlock" Text="  Login" Foreground="#FFBF8B74" FontSize="25" FontStretch="Expanded">
@@ -109,7 +109,7 @@
         </Expander>
         <Expander x:Name="RegisterExpander"
                   IsExpanded="{Binding Path=LoginModelRegExpander, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  Header="Register" HorizontalAlignment="Right" VerticalAlignment="Top" Height="310" Width="82" ExpandDirection="Left" Canvas.Left="430">
+                  Header="Register" HorizontalAlignment="Right" VerticalAlignment="Top" Height="310" Width="82" ExpandDirection="Left" Canvas.Left="430" Expanded="ExpandRegister">
             <Expander.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock x:Name="RegTextBlock" Text="  Register" Foreground="#FFBF8B74" FontSize="25" FontStretch="Expanded">
