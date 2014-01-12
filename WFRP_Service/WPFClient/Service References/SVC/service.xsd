@@ -92,6 +92,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetHeroEyeColor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="race" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
@@ -167,6 +174,13 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="hero" nillable="true" type="q24:Hero" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveHeroEyes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="heroEyes" nillable="true" type="q25:HeroDetails_Eyes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

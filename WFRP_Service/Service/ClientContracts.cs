@@ -42,5 +42,7 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void ReceiveHero(Hero hero);
 
+        [OperationContract(IsOneWay = true)]
+        void ReciveHeroEyes(HeroDetails_Eyes heroEyes);
     }
 }
