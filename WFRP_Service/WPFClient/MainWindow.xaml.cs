@@ -29,7 +29,7 @@ namespace WPFClient
         Model.LoginModel _loginModel = new Model.LoginModel {
             LoginModelStatus = "Not connected",
             LoginModelUserName = "",
-            LoginModelServerIP = "localhost",
+            LoginModelServerIP = "192.168.0.11",
             LoginModelConnectButtonIsEnabled = true,
             LoginModelExpander = true,
             LoginModelRegUserName = "",
@@ -134,9 +134,6 @@ namespace WPFClient
         }
 
         #endregion
-
-       
-       
 
     }
 }

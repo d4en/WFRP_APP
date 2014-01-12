@@ -99,5 +99,10 @@ namespace WPFClient
         }
 
         #endregion
+
+        private void HeroWindow_Closing(object sender, EventArgs e)
+        {
+
+        }
     }
 }
