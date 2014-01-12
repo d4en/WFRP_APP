@@ -22,6 +22,7 @@ namespace WPFClient
         Model.OptionsModel _optionsModel = null;
         Model.SessionModel _sessionModel = null;
         Model.HeroModel _heroModel = null;
+        Model.CreateHeroModel _createHeroModel = null;
 
         Dispatcher dispatcher = null;
 
@@ -51,6 +52,11 @@ namespace WPFClient
         public void SetHeroModel(Model.HeroModel heroModel)
         {
             this._heroModel = heroModel;
+        }
+
+        public void SetCreateHeroModel(Model.CreateHeroModel createHeroModel)
+        {
+            this._createHeroModel = createHeroModel;
         }
 
         //Service might be disconnected or stopped for any reason,
@@ -380,6 +386,16 @@ namespace WPFClient
             try
             {
                 this.Proxy.GetHero(localClient.Name);
+            }
+            catch (Exception) { }
+        }
+
+        //TO DO add CreateHero
+        public void CreateHero()
+        {
+            try
+            {
+               
             }
             catch (Exception) { }
         }

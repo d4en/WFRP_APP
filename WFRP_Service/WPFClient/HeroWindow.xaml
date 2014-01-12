@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WPFClient.HeroWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Hero Card" Height="768" Width="1024"
+        Title="Hero Card" Height="800" Width="800"
         Visibility="{Binding HeroModelHeroWindowIsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         Closing="HeroWindow_Closing" Style="{DynamicResource MetroWindowStyle}"
         ResizeMode="NoResize">
@@ -72,8 +72,8 @@
             Name="clientName"
             Text="{Binding HeroModelClientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             HorizontalAlignment="Left" Height="23" Margin="84,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BTN_HeroModelCreateHero" Content="Create Hero" HorizontalAlignment="Left" Margin="236,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <TabControl HorizontalAlignment="Left" Height="688" Margin="0,38,0,0" VerticalAlignment="Top" Width="1022" Grid.ColumnSpan="2">
+        <Button x:Name="BTN_HeroModelCreateHero" Content="Create Hero" HorizontalAlignment="Left" Margin="236,10,0,0" VerticalAlignment="Top" Width="75" Click="CreateHeroButton_Click"/>
+        <TabControl HorizontalAlignment="Left" Height="720" Margin="0,38,0,0" VerticalAlignment="Top" Width="798" Grid.ColumnSpan="2">
             <TabItem Header="Primary Stats">
                 <Grid Background="#FFE5E5E5" Margin="0,2,0,-2">
                     <Label Content="WW" HorizontalAlignment="Left" Margin="27,19,0,0" VerticalAlignment="Top"/>
@@ -84,14 +84,14 @@
                     <Label Content="Int" HorizontalAlignment="Left" Margin="188,19,0,0" VerticalAlignment="Top"/>
                     <Label Content="SW" HorizontalAlignment="Left" Margin="217,19,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ogd" HorizontalAlignment="Left" Margin="246,19,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="27,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="59,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="90,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="122,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="152,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="184,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="247,50,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="27,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="59,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="90,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="122,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="152,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="184,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="247,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
                     <Label Content="A" HorizontalAlignment="Left" Margin="35,80,0,0" VerticalAlignment="Top"/>
                     <Label Content="Żyw" HorizontalAlignment="Left" Margin="60,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.36,0.615"/>
                     <Label Content="S" HorizontalAlignment="Left" Margin="98,80,0,0" VerticalAlignment="Top"/>
@@ -100,37 +100,58 @@
                     <Label Content="Mag" HorizontalAlignment="Left" Margin="183,80,0,0" VerticalAlignment="Top"/>
                     <Label Content="PO" HorizontalAlignment="Left" Margin="217,80,0,0" VerticalAlignment="Top"/>
                     <Label Content="PP" HorizontalAlignment="Left" Margin="249,80,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="27,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="59,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="90,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="122,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="152,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="184,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="247,111,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
-                    <Image HorizontalAlignment="Left" Height="383" Margin="638,94,0,0" VerticalAlignment="Top" Width="256" Source="D:\GIT\WFRP_APP\WFRP_APP\WFRP_Service\WPFClient\Pictures\KnightP.jpg"/>
-                    <Label Content="Głowa" HorizontalAlignment="Left" Margin="595,94,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Korpus" HorizontalAlignment="Left" Margin="885,94,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Lewa Ręka" HorizontalAlignment="Left" Margin="585,242,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Prwa Ręka" HorizontalAlignment="Left" Margin="879,242,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Lewa Noga" HorizontalAlignment="Left" Margin="582,396,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Prawa Noga" HorizontalAlignment="Left" Margin="869,396,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="601,125,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="894,125,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="601,273,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="601,427,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="894,273,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="894,422,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="32"/>
-                    <Label Content="Zbroja" HorizontalAlignment="Left" Margin="739,63,0,0" VerticalAlignment="Top"/>
-                    <Label Content="01-15" HorizontalAlignment="Left" Margin="597,148,0,0" VerticalAlignment="Top"/>
-                    <Label Content="56-80" HorizontalAlignment="Left" Margin="891,153,0,0" VerticalAlignment="Top"/>
-                    <Label Content="16-35" HorizontalAlignment="Left" Margin="597,301,0,0" VerticalAlignment="Top"/>
-                    <Label Content="36-55" HorizontalAlignment="Left" Margin="891,301,0,0" VerticalAlignment="Top"/>
-                    <Label Content="81-90" HorizontalAlignment="Left" Margin="597,455,0,0" VerticalAlignment="Top"/>
-                    <Label Content="91-00" HorizontalAlignment="Left" Margin="891,445,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Punkty Doświadczenia" HorizontalAlignment="Left" Margin="27,163,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Obecne" HorizontalAlignment="Left" Margin="35,194,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Razem" HorizontalAlignment="Left" Margin="97,194,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="27,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="59,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="90,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="122,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="152,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="184,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="247,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <Image HorizontalAlignment="Left" Height="383" Margin="456,137,0,0" VerticalAlignment="Top" Width="256" Source="D:\GIT\WFRP_APP\WFRP_APP\WFRP_Service\WPFClient\Pictures\KnightP.jpg"/>
+                    <Label Content="Głowa" HorizontalAlignment="Left" Margin="413,137,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Korpus" HorizontalAlignment="Left" Margin="703,137,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Lewa Ręka" HorizontalAlignment="Left" Margin="403,285,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Prwa Ręka" HorizontalAlignment="Left" Margin="697,285,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Lewa Noga" HorizontalAlignment="Left" Margin="400,439,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Prawa Noga" HorizontalAlignment="Left" Margin="687,439,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="419,168,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="712,168,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="419,316,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="419,470,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="712,316,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="712,465,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <Label Content="Zbroja" HorizontalAlignment="Left" Margin="557,106,0,0" VerticalAlignment="Top"/>
+                    <Label Content="01-15" HorizontalAlignment="Left" Margin="415,191,0,0" VerticalAlignment="Top"/>
+                    <Label Content="56-80" HorizontalAlignment="Left" Margin="709,196,0,0" VerticalAlignment="Top"/>
+                    <Label Content="16-35" HorizontalAlignment="Left" Margin="415,344,0,0" VerticalAlignment="Top"/>
+                    <Label Content="36-55" HorizontalAlignment="Left" Margin="709,344,0,0" VerticalAlignment="Top"/>
+                    <Label Content="81-90" HorizontalAlignment="Left" Margin="415,498,0,0" VerticalAlignment="Top"/>
+                    <Label Content="91-00" HorizontalAlignment="Left" Margin="709,488,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Punkty Doświadczenia" HorizontalAlignment="Left" Margin="24,163,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Obecne" HorizontalAlignment="Left" Margin="59,194,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Razem" HorizontalAlignment="Left" Margin="60,261,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="15,225,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="15,292,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <Label Content="Obrażenia\Efekty zranień" HorizontalAlignment="Left" Margin="204,194,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="90" Margin="188,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
+                    <Label Content="Uzbrojenie" HorizontalAlignment="Left" Margin="176,333,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="15,390,0,0" VerticalAlignment="Top" Width="202"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="222,390,0,0" VerticalAlignment="Top" Width="42"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="269,390,0,0" VerticalAlignment="Top" Width="112"/>
+                    <Label Content="Nazwa" HorizontalAlignment="Left" Margin="93,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <Label Content="Siła" HorizontalAlignment="Left" Margin="229,359,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <Label Content="Cechy" HorizontalAlignment="Left" Margin="302,359,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <Label Content="Zbroja" HorizontalAlignment="Left" Margin="188,506,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="12,569,0,0" VerticalAlignment="Top" Width="202"/>
+                    <Label Content="Nazwa" HorizontalAlignment="Left" Margin="90,543,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="222,568,0,0" VerticalAlignment="Top" Width="42"/>
+                    <Label Content="PZ" HorizontalAlignment="Left" Margin="229,537,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
+                    <Image HorizontalAlignment="Left" Height="90" Margin="383,579,0,0" VerticalAlignment="Top" Width="361" Source="D:\GIT\WFRP_APP\WFRP_APP\WFRP_Service\WPFClient\Pictures\logo.jpg"/>
+                    <Label Content="Imię:" HorizontalAlignment="Left" Margin="406,19,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="474,19,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="406,50,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="474,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
 
                 </Grid>
             </TabItem>
@@ -141,7 +162,58 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="About Hero" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80">
-                <Grid Background="#FFE5E5E5"/>
+                
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="46,50,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Race" HorizontalAlignment="Left" Margin="46,100,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Occupation" HorizontalAlignment="Left" Margin="46,150,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Last occupation" HorizontalAlignment="Left" Margin="46,200,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Sex" HorizontalAlignment="Left" Margin="46,250,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Age" HorizontalAlignment="Left" Margin="46,300,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Height" HorizontalAlignment="Left" Margin="46,350,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Weight" HorizontalAlignment="Left" Margin="46,400,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Eye color" HorizontalAlignment="Left" Margin="46,450,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Hair color" HorizontalAlignment="Left" Margin="46,500,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Star sign" HorizontalAlignment="Left" Margin="46,550,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Marks" HorizontalAlignment="Left" Margin="46,600,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,500,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,550,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="140,600,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Origin" HorizontalAlignment="Left" Margin="440,50,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Family" HorizontalAlignment="Left" Margin="440,100,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Social possition" HorizontalAlignment="Left" Margin="440,150,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Who he was before?" HorizontalAlignment="Left" Margin="440,200,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Why is he traveling?" HorizontalAlignment="Left" Margin="440,250,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Who he serves?" HorizontalAlignment="Left" Margin="440,300,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Friends" HorizontalAlignment="Left" Margin="440,350,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Enemys" HorizontalAlignment="Left" Margin="440,400,0,0" VerticalAlignment="Top"/>
+                    <Label Content="What does he likes?" HorizontalAlignment="Left" Margin="440,450,0,0" VerticalAlignment="Top"/>
+                    <Label Content="What doesn't he likes?" HorizontalAlignment="Left" Margin="440,500,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Personality" HorizontalAlignment="Left" Margin="440,550,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Motivations" HorizontalAlignment="Left" Margin="440,600,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,500,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,550,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="556,600,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                </Grid>
+                      
             </TabItem>
             <TabItem Header="Hero Story" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80">
                 <Grid Background="#FFE5E5E5"/>

@@ -26,6 +26,10 @@ namespace WPFClient
         };
         #endregion
 
+        #region windows
+        CreateHeroWindow createheroWindow = null;
+        #endregion
+
         #region service data
         ServiceCommunication servCom = null;
         #endregion
@@ -36,8 +40,10 @@ namespace WPFClient
             this.DataContext = _heroModel;
 
             this.servCom = servCom;
-            servCom.SetHeroModel(_heroModel);          
+            servCom.SetHeroModel(_heroModel);
 
+            createheroWindow = new CreateHeroWindow(servCom);
+            
         }
 
         #region UI events
@@ -52,6 +58,13 @@ namespace WPFClient
         {
             this.Closing -= HeroWindow_Closing;
             base.Close();
+        }
+
+        private void CreateHeroButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            servCom.CreateHero();
+            createheroWindow.Show();
         }
 
         #endregion
