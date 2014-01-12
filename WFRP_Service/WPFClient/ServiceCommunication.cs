@@ -745,6 +745,22 @@ namespace WPFClient
 
         #endregion
 
-        
+
+
+
+        public void ReciveHeroEyes(HeroDetails_Eyes heroEyes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReciveHeroEyes(HeroDetails_Eyes heroEyes, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveHeroEyes(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

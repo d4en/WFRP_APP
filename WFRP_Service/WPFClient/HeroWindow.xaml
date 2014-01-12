@@ -3,11 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Hero Card" Height="638" Width="1101"
         Visibility="{Binding HeroModelHeroWindowIsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource MetroWindowStyle}"
-        ResizeMode="NoResize" Closing="HeroWindow_Closing">
-        Visibility="{Binding HeroModelHeroWindowIsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        Closing="HeroWindow_Closing" Style="{DynamicResource MetroWindowStyle}"
-        ResizeMode="NoResize">
-    
+        ResizeMode="NoResize" Closing="HeroWindow_Closing" >
+
     <Window.Resources>
         <Style x:Key="MetroWindowStyle" TargetType="{x:Type Window}">
             <Setter Property="WindowStyle" Value="None" />
