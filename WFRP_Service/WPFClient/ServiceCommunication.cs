@@ -746,8 +746,6 @@ namespace WPFClient
         #endregion
 
 
-
-
         public void ReciveHeroEyes(HeroDetails_Eyes heroEyes)
         {
             throw new NotImplementedException();
