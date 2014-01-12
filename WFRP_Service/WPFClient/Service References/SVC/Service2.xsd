@@ -62,4 +62,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Hero" nillable="true" type="tns:Hero" />
+  <xs:complexType name="HeroDetails_Eyes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HeroEyes" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroDetails_Eyes" nillable="true" type="tns:HeroDetails_Eyes" />
 </xs:schema>

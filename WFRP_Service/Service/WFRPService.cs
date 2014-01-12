@@ -554,9 +554,16 @@ namespace Service
 
         }
 
+        public void GetHeroEyeColor(string race)
+        {
+            Console.WriteLine("Dziala");
+        }
         #endregion
 
-        
+
+
+
+       
     }
 
 }

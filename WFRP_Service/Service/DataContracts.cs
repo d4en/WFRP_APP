@@ -197,4 +197,16 @@ namespace Service
         }
     }
 
+    [DataContract]
+    public class HeroDetails_Eyes
+    {
+        private string _HeroEyes;
+
+        [DataMember]
+        public string HeroEyes
+        {
+            get { return _HeroEyes; }
+            set { _HeroEyes = value; }
+        }
+    }
 }
