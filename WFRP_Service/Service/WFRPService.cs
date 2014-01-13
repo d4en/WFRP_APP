@@ -556,7 +556,21 @@ namespace Service
 
         public void GetHeroEyeColor(string race)
         {
-            Console.WriteLine("Dziala");
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            HeroDetails_Eyes eyes = new HeroDetails_Eyes();
+
+            try
+            {
+                eyes.HeroEyes = DataBase.GerHeroEyes(race);
+
+                callback.ReciveHeroEyes(eyes);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.ToString());
+            }
+          
         }
         #endregion
 

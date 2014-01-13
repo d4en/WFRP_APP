@@ -1,0 +1,2 @@
+INSERT INTO custom_eyes(race,color) VALUES('człowiek','Szary$Ciemnoniebieski$Niebieski$Zielony$Piwny$Jasnobrązowy$Brązowy$Ciemnobrązowy$Fioletowy$Czarny'),('elf','Szaroniebieski$Niebieski$Zielony$Orzechowy$Kasztanowy$Brązowy$Ciemnobrązowy$Srebrny$Fioletowy$Czarny'),('Krasnolud','Szary$Ciemnoniebieski$Piwny$Jasnobrązowy$Brązowy$Ciemnobrązowy$Fioletowy'),('Niziołek','Niebieski$Orzechowy$Jasnobrązowy$Brązowy$Ciemnobrązowy');
+  

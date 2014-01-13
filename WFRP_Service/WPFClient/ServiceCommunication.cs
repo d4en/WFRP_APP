@@ -414,7 +414,11 @@ namespace WPFClient
                 members.Add(c.Name);
             _sessionModel.SessionModelMembersListBox = members;
         }
-
+        
+        public void ReciveHeroEyes(HeroDetails_Eyes heroEyes)
+        {
+            throw new NotImplementedException();
+        }
 
         #region Async IWFRPCallback members
 
@@ -743,10 +747,7 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
-        #endregion
-
-
-        public void ReciveHeroEyes(HeroDetails_Eyes heroEyes)
+        public void EndReciveHeroEyes(IAsyncResult result)
         {
             throw new NotImplementedException();
         }
@@ -755,10 +756,13 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        public void EndReciveHeroEyes(IAsyncResult result)
-        {
-            throw new NotImplementedException();
-        }
+
+     
+
+       
+
+       
     }
 }
