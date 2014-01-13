@@ -76,5 +76,20 @@ namespace WPFClient
         }
 
         #endregion
+
+        private void CMB_Race_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this.servCom.AskEyes(_CreateHeroModel.SelectedItem);
+                this.servCom.GetOccupations(_CreateHeroModel.SelectedItem);
+            }
+            catch (Exception) { }
+        }
+
+        private void BTN_Submit_Click(object sender, RoutedEventArgs e)
+        {
+            this.servCom.Submit();
+        }
     }
 }

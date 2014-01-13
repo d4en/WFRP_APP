@@ -381,6 +381,27 @@ namespace WPFClient
             }
         }
 
+        public void AskEyes(string race)
+        {
+            try
+            {
+                this.Proxy.GetHeroEyeColor(race);
+            }
+            catch (Exception) { }
+        }
+
+        public void GetOccupations(string race)
+        {
+            try
+            {
+                //this.Proxy.Get
+            }
+            catch (Exception) { }
+        }
+        public void Submit()
+        {
+            Console.WriteLine(_createHeroModel.CreateHeroModelFamily + " " + _createHeroModel.CreateHeroModelOrigin);
+        }
         public void ViewHero()
         {
             try
@@ -414,10 +435,10 @@ namespace WPFClient
                 members.Add(c.Name);
             _sessionModel.SessionModelMembersListBox = members;
         }
-        
-        public void ReciveHeroEyes(HeroDetails_Eyes heroEyes)
+
+        void IWFRPCallback.ReciveHeroEyes(HeroDetails_Eyes heroEyes)
         {
-            throw new NotImplementedException();
+            _createHeroModel.HeroModelEyeColor=heroEyes.HeroEyes.Split('$').ToList<string>();
         }
 
         #region Async IWFRPCallback members
@@ -751,18 +772,23 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
-
+        //to do
         public IAsyncResult BeginReciveHeroEyes(HeroDetails_Eyes heroEyes, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveOccupation(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReciveOccupation(HeroDetails_Eyes heroEyes, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
         }
         #endregion
 
 
-     
-
-       
-
-       
     }
 }

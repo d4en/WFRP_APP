@@ -33,7 +33,7 @@ namespace WPFClient.Model
             }
         }
         string _heroName = null;
-        public string HeroName
+        public string CreateHeroModelHeroName
         {
             get
             {
@@ -46,22 +46,8 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelHeroName");
             }
         }
-        string _eyeColor = null;
-        public string EyeColor
-        {
-            get
-            {
-                return _eyeColor;
-            }
-            set
-            {
-                _eyeColor = value;
-
-                OnPropertyChanged("CreateHeroModelEyeColor");
-            }
-        }
         string _sex = null;
-        public string Sex
+        public string CreateHeroModelSex
         {
             get
             {
@@ -74,22 +60,49 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelSex");
             }
         }
-        string _race = null;
-        public string Race
+        List<string> _source = new List<string> { "człowiek", "elf", "krasnolud", "niziołek" };
+        string _selectedItem = null;
+        public List<string> Source { get { return _source; } }
+        public string SelectedItem
         {
             get
             {
-                return _race;
+                return _selectedItem;
             }
             set
             {
-                _race = value;
-                
-                OnPropertyChanged("CreateHeroModelRace");
+                _selectedItem = value;
+            }
+        }
+        List<string> _eyeColor = new List<String>();
+        public List<string> HeroModelEyeColor
+        {
+            get
+            {
+                return _eyeColor;
+            }
+            set
+            {
+                _eyeColor = value;
+                OnPropertyChanged("HeroModelEyeColor");
+            }
+        }
+        public List<string> _occupation = new List<string>();
+        public List<string> HeroModelOccupation
+        {
+            get
+            {
+                return _occupation;
+            }
+            set
+            {
+                _occupation = value;
+
+                OnPropertyChanged("HeroModelOccupation");
             }
         }
         string _age = null;
-        public string Age
+        public string CreateHeroModelAge
         {
             get
             {
@@ -103,7 +116,7 @@ namespace WPFClient.Model
             }
         }
         string _height = null;
-        public string Height
+        public string CreateHeroModelHeight
         {
             get
             {
@@ -117,7 +130,7 @@ namespace WPFClient.Model
             }
         }
         string _weight = null;
-        public string Weight
+        public string CreateHeroModelWeight
         {
             get
             {
@@ -131,7 +144,7 @@ namespace WPFClient.Model
             }
         }
         string _origin = null;
-        public string Origin
+        public string CreateHeroModelOrigin
         {
             get
             {
@@ -145,7 +158,7 @@ namespace WPFClient.Model
             }
         }
         string _family = null;
-        public string Family
+        public string CreateHeroModelFamily
         {
             get
             {
@@ -158,5 +171,20 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelFamily");
             }
         }
+        bool _submitButtonIsEnabled = false;
+        public bool CreateHeroModelSubmitIsEnabled
+        {
+            get
+            {
+                return _submitButtonIsEnabled;
+            }
+            set
+            {
+                _submitButtonIsEnabled = value;
+
+                OnPropertyChanged("CreateHeroModelSubmitIsEnabled");
+            }
+        }
+        
     }
 }
