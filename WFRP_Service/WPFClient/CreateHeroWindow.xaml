@@ -72,15 +72,13 @@
                     </ComboBox>
                     <Label Content="Sex" HorizontalAlignment="Left" Margin="22,136,0,0" VerticalAlignment="Top"/>
                     <Label Content="Age" HorizontalAlignment="Left" Margin="22,176,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CMB_Sex" IsEnabled="{Binding CreateHeroModelSex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="58,140,0,0" VerticalAlignment="Top" Width="73">
-                        <ComboBoxItem Content="Male"/>
-                        <ComboBoxItem Content="Female"/>
+                    <ComboBox x:Name="CMB_Sex" ItemsSource="{Binding CreateHeroModelSex}" SelectedValue="{Binding CreateHeroModelSexItem}" HorizontalAlignment="Left" Margin="58,140,0,0" VerticalAlignment="Top" Width="73" SelectionChanged="CMB_Sex_SelectionChanged">
                     </ComboBox>
                     <TextBox x:Name="TXB_Age" Text="{Binding CreateHeroModelAge}" HorizontalAlignment="Left" Height="24" Margin="60,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"/>
                     <Label Content="Height" HorizontalAlignment="Left" Margin="100,178,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TXB_Height" Text="{Binding CreateHeroModelHeight}" HorizontalAlignment="Left" Height="24" Margin="150,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
                     <Label Content="Eye color" HorizontalAlignment="Left" Margin="150,136,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CMB_eyeColor" ItemsSource="{Binding HeroModelEyeColor}" HorizontalAlignment="Left" Margin="217,140,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBox x:Name="CMB_eyeColor" ItemsSource="{Binding HeroModelEyeColor}" SelectedValue="{Binding CreateHeroModelEyeColorItem}" HorizontalAlignment="Left" Margin="217,140,0,0" VerticalAlignment="Top" Width="73" SelectionChanged="CMB_eyeColor_SelectionChanged">
                     </ComboBox>
                     <Label Content="Weight" HorizontalAlignment="Left" Margin="199,176,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TXB_Weight" Text="{Binding CreateHeroModelWeight}" HorizontalAlignment="Left" Height="24" Margin="250,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
@@ -101,17 +99,17 @@
                     <TextBox x:Name="TXB_socialPosition" Text="{Binding CreateHeroModelSocialPosition}" HorizontalAlignment="Left" Height="22" Margin="146,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176"/>
                     <TextBox x:Name="TXB_whoHeWas" Text="{Binding CreateHeroModelwhoHeWas}" HorizontalAlignment="Left" Height="22" Margin="146,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176"/>
                     <TextBox x:Name="TXB_Traveling" Text="{Binding CreateHeroModelTraveling}" HorizontalAlignment="Left" Height="22" Margin="146,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-                    <TextBox HorizontalAlignment="Left" Height="22" Margin="871,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_WHS" Text="{Binding CreateHeroModelWHS}" HorizontalAlignment="Left" Height="22" Margin="871,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_Friends" Text="{Binding CreateHeroModelFriends}" HorizontalAlignment="Left" Height="22" Margin="871,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_Enemys" Text="{Binding CreateHeroModelEnemys}" HorizontalAlignment="Left" Height="22" Margin="871,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_WDHL" Text="{Binding CreateHeroModelWDHL}" HorizontalAlignment="Left" Height="22" Margin="871,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_WDNHL" Text="{Binding CreateHeroModelWDNHL}" HorizontalAlignment="Left" Height="22" Margin="871,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_Personality" Text="{Binding CreateHeroModelPersonality}" HorizontalAlignment="Left" Height="22" Margin="871,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+                    <TextBox x:Name="TXB_Motivations" Text="{Binding CreateHeroModelMotivations}" HorizontalAlignment="Left" Height="22" Margin="871,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
                     <Label Content="Occupation" HorizontalAlignment="Left" Margin="494,28,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="CMB_Occupation" ItemsSource="{Binding CreateHeroModelOccupation}" SelectedValue="{Binding CreateHeroModelOccupationItem}" HorizontalAlignment="Left" Margin="468,59,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CMB_Occupation_SelectionChanged"/>
                     <TextBox HorizontalAlignment="Left" Text="{Binding CreateHeroModelOccupationText}" Height="358" Margin="370,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344"/>
-                    <Button x:Name="BTN_Submit" IsEnabled="{Binding CreateHeroModelSubmitIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Submit" HorizontalAlignment="Left" Margin="513,495,0,0" VerticalAlignment="Top" Width="75" Click="BTN_Submit_Click"/>
+                    <Button x:Name="BTN_HeroBasicInfoSubmit" IsEnabled="{Binding CreateHeroModelSubmitIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Submit" HorizontalAlignment="Left" Margin="513,495,0,0" VerticalAlignment="Top" Width="75" Click="BTN_Submit_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Stats, Skills, Abilities">

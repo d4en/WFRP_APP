@@ -414,9 +414,40 @@ namespace WPFClient
             }
             catch (Exception) { }
         }
-        public void Submit()
+      
+        public void HeroRegistrationPartOne(ServerMessage msg)
         {
-            Console.WriteLine(_createHeroModel.CreateHeroModelFamily + " " + _createHeroModel.CreateHeroModelOrigin);
+            
+        }
+        public void HeroBasicInfoSubmit()
+        {
+            HeroBasicInfo info = new HeroBasicInfo();
+            info.AccountID = Convert.ToInt16(_optionsModel.OptionsModelID);
+            info.Age = _createHeroModel.CreateHeroModelAge;
+            info.DontLikes = _createHeroModel.CreateHeroModelWDNHL;
+            info.Enemies = _createHeroModel.CreateHeroModelEnemys;
+            info.EyeColor = _createHeroModel.CreateHeroModelEyeColorItem;
+            info.Family = _createHeroModel.CreateHeroModelFamily;
+            info.Friends = _createHeroModel.CreateHeroModelFriends;
+            info.Height = _createHeroModel.CreateHeroModelHeight;
+            info.HeroName = _createHeroModel.CreateHeroModelHeroName;
+            info.HHWB = _createHeroModel.CreateHeroModelwhoHeWas;
+            info.Likes = _createHeroModel.CreateHeroModelWDHL;
+            info.Motivation = _createHeroModel.CreateHeroModelMotivations;
+            info.Origin = _createHeroModel.CreateHeroModelOrigin;
+            info.Personality = _createHeroModel.CreateHeroModelPersonality;
+            info.Race = _createHeroModel.SelectedItem;
+            info.Sex = _createHeroModel.CreateHeroModelSexItem;
+            info.SocialPosition = _createHeroModel.CreateHeroModelSocialPosition;
+            info.Weight = _createHeroModel.CreateHeroModelWeight;
+            info.WhoHeServes = _createHeroModel.CreateHeroModelWHS;
+            info.WhyTravel = _createHeroModel.CreateHeroModelTraveling;
+            try
+            {
+                Console.WriteLine(_createHeroModel.CreateHeroModelEyeColorItem+"\n"+_createHeroModel.CreateHeroModelSexItem);
+                this.Proxy.AddHeroBasicInfo(info);
+            }
+            catch (Exception) { }
         }
         public void ViewHero()
         {
@@ -799,7 +830,7 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
-        public IAsyncResult BeginReciveOccupation(HeroDetails_Eyes heroEyes, AsyncCallback callback, object asyncState)
+        public IAsyncResult BeginReciveOccupation(AllHeroOccupations Occupations, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
         }
@@ -813,18 +844,6 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
-        #endregion
-
-
-
-
-
-
-
-
-
-        
-
         public IAsyncResult BeginReciveOccupationInfo(OccupationInfo info, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -834,5 +853,17 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
+        public IAsyncResult BeginHeroRegistrationPartOne(ServerMessage msg, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndHeroRegistrationPartOne(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+
     }
 }

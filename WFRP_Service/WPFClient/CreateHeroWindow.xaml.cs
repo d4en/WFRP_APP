@@ -89,7 +89,7 @@ namespace WPFClient
 
         private void BTN_Submit_Click(object sender, RoutedEventArgs e)
         {
-            this.servCom.Submit();
+            this.servCom.HeroBasicInfoSubmit();
         }
 
         private void CMB_Occupation_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,6 +97,24 @@ namespace WPFClient
             try
             {
                 this.servCom.AskOccupationDetails(_CreateHeroModel.CreateHeroModelOccupationItem);
+            }
+            catch (Exception) { }
+        }
+
+        private void CMB_eyeColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this._CreateHeroModel.CreateHeroModelEyeColorItem = CMB_eyeColor.SelectedValue.ToString();
+            }
+            catch(Exception) { }
+        }
+
+        private void CMB_Sex_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this._CreateHeroModel.CreateHeroModelSexItem = CMB_Sex.SelectedItem.ToString();
             }
             catch (Exception) { }
         }

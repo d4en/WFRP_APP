@@ -46,8 +46,9 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelHeroName");
             }
         }
-        string _sex = null;
-        public string CreateHeroModelSex
+        
+        List<string> _sex = new List<string> { "male", "female"};
+        public List<string> CreateHeroModelSex
         {
             get
             {
@@ -58,6 +59,20 @@ namespace WPFClient.Model
                 _sex = value;
 
                 OnPropertyChanged("CreateHeroModelSex");
+            }
+        }
+        string _sexItem = null;
+        public string CreateHeroModelSexItem
+        {
+            get
+            {
+                return _sexItem;
+            }
+            set
+            {
+                _sexItem = value;
+
+                OnPropertyChanged("CreateHeroModelSexItem");
             }
         }
         List<string> _source = new List<string> { "człowiek", "elf", "krasnolud", "niziołek" };
@@ -87,6 +102,21 @@ namespace WPFClient.Model
                 OnPropertyChanged("HeroModelEyeColor");
             }
         }
+        string _eyeColorItem = null;
+        public string CreateHeroModelEyeColorItem
+        {
+            get
+            {
+                return _eyeColorItem;
+            }
+            set
+            {
+                _eyeColorItem = value;
+
+                OnPropertyChanged("CreateHeroModelEyeColorItem");
+            }
+        }
+       
         public List<string> _occupation = new List<string>();
         public List<string> CreateHeroModelOccupation
         {
@@ -197,6 +227,145 @@ namespace WPFClient.Model
                 _family = value;
 
                 OnPropertyChanged("CreateHeroModelFamily");
+            }
+        }
+        string _socialPosition = null;
+        public string CreateHeroModelSocialPosition
+        {
+            get
+            {
+                return _socialPosition;
+            }
+            set
+            {
+                _socialPosition = value;
+
+                OnPropertyChanged("CreateHeroModelSocialPosition");
+            }
+        }
+        string _whoHeWas = null;
+        public string CreateHeroModelwhoHeWas
+        {
+            get
+            {
+                return _whoHeWas;
+            }
+            set
+            {
+                _whoHeWas = value;
+
+                OnPropertyChanged("CreateHeroModelwhoHeWas");
+            }
+        }
+        string _traveling = null;
+        public string CreateHeroModelTraveling
+        {
+            get
+            {
+                return _traveling;
+            }
+            set
+            {
+                _traveling = value;
+
+                OnPropertyChanged("CreateHeroModelTraveling");
+            }
+        }
+        string _WHS = null;
+        public string CreateHeroModelWHS
+        {
+            get
+            {
+                return _WHS;
+            }
+            set
+            {
+                _WHS = value;
+
+                OnPropertyChanged("CreateHeroModelWHS");
+            }
+        }
+        string _friends = null;
+        public string CreateHeroModelFriends
+        {
+            get
+            {
+                return _friends;
+            }
+            set
+            {
+                _friends = value;
+
+                OnPropertyChanged("CreateHeroModelFriends");
+            }
+        }
+        string _enemys = null;
+        public string CreateHeroModelEnemys
+        {
+            get
+            {
+                return _enemys;
+            }
+            set
+            {
+                _enemys = value;
+                OnPropertyChanged("CreateHeroModelEnemys");
+            }
+        }
+        string _WDHL = null;
+        public string CreateHeroModelWDHL
+        {
+            get
+            {
+                return _WDHL;
+            }
+            set
+            {
+                _WDHL = value;
+
+                OnPropertyChanged("CreateHeroModelWDHL");
+            }
+        }
+        string _motivations = null;
+        public string CreateHeroModelMotivations
+        {
+            get
+            {
+                return _motivations;
+            }
+            set
+            {
+                _motivations = value;
+
+                OnPropertyChanged("CreateHeroModelMotivations");
+            }
+        }
+        string _personality = null;
+        public string CreateHeroModelPersonality
+        {
+            get
+            {
+                return _personality;
+            }
+            set
+            {
+                _personality = value;
+
+                OnPropertyChanged("CreateHeroModelPersonality");
+            }
+        }
+        string _WDHNL = null;
+        public string CreateHeroModelWDNHL
+        {
+            get
+            {
+                return _WDHNL;
+            }
+            set
+            {
+                _WDHNL = value;
+
+                OnPropertyChanged("CreateHeroModelWDNHL");
             }
         }
         bool _submitButtonIsEnabled = true;
