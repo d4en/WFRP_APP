@@ -44,5 +44,8 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void ReciveHeroEyes(HeroDetails_Eyes heroEyes);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveHeroOccupationByRace(AllHeroOccupations Occupations);
     }
 }

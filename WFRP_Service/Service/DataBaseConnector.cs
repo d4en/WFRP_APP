@@ -170,7 +170,7 @@ namespace Service
 
         }
 
-        public string GerHeroEyes(string race)
+        public string GetHeroEyes(string race)
         {
             string response = string.Empty;
             MySqlConnection connection = CreateConn();
@@ -203,6 +203,127 @@ namespace Service
                     connection.Close();
 
                 }
+            }
+            catch (Exception)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            return response;
+        }
+
+        public List<string> GetOccupationsByRace(string race)
+        {
+            List<string> response = new List<string>();
+            MySqlConnection connection = CreateConn();
+            int race_choise = 0;
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+                
+                cmd.CommandText = "SELECT * FROM occupation_table";
+                
+                MySqlDataAdapter adap =  new MySqlDataAdapter(cmd);
+
+                if(race == "człowiek") race_choise = 1;
+                else if(race == "elf") race_choise = 2;
+                else if(race == "krasnolud") race_choise = 3;
+                else if(race == "niziołek") race_choise = 4;
+
+                if (race_choise == 1)
+                {
+                    cmd.CommandText = "SELECT name FROM occupation_table WHERE human = @true";
+                    cmd.Parameters.AddWithValue("@true", 1);
+
+                    adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        response.Add(ds.Tables[0].Rows[i][0].ToString());
+                    }
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                else if (race_choise == 2)
+                {
+                    cmd.CommandText = "SELECT name FROM occupation_table WHERE elf = @true";
+                    cmd.Parameters.AddWithValue("@true", 1);
+
+                    adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        response.Add(ds.Tables[0].Rows[i][0].ToString());
+                    }
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                else if (race_choise == 3)
+                {
+                    cmd.CommandText = "SELECT name FROM occupation_table WHERE dwarf = @true";
+                    cmd.Parameters.AddWithValue("@true", 1);
+
+                    adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        response.Add(ds.Tables[0].Rows[i][0].ToString());
+                    }
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                else if (race_choise == 4)
+                {
+                    cmd.CommandText = "SELECT name FROM occupation_table WHERE halfling = @true";
+                    cmd.Parameters.AddWithValue("@true", 1);
+
+                    adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        response.Add(ds.Tables[0].Rows[i][0].ToString());
+                    }
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                
             }
             catch (Exception)
             {

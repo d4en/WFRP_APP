@@ -48,5 +48,9 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void GetHeroEyeColor(string race);
+
+        [OperationContract(IsOneWay = true)]
+        void GetHeroOccupationByRace(string race);
+
     }
 }

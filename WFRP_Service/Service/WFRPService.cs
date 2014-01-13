@@ -562,7 +562,7 @@ namespace Service
 
             try
             {
-                eyes.HeroEyes = DataBase.GerHeroEyes(race);
+                eyes.HeroEyes = DataBase.GetHeroEyes(race);
 
                 callback.ReciveHeroEyes(eyes);
             }
@@ -572,12 +572,33 @@ namespace Service
             }
           
         }
+
+        public void GetHeroOccupationByRace(string race)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            AllHeroOccupations occupations = new AllHeroOccupations();
+
+            try
+            {
+                occupations.HeroOccupations = DataBase.GetOccupationsByRace(race);
+
+                callback.ReciveHeroOccupationByRace(occupations);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.ToString());
+            }
+        }
         #endregion
 
 
 
 
-       
+
+
+
+        
     }
 
 }
