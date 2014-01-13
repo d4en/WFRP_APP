@@ -54,5 +54,8 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void GetOccupationInfo(string occupation);
+
+        [OperationContract(IsOneWay = true)]
+        void AddHeroBasicInfo(HeroBasicInfo info);
     }
 }

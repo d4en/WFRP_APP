@@ -51,5 +51,8 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void ReciveOccupationInfo(OccupationInfo info);
 
+        [OperationContract(IsOneWay = true)]
+        void HeroRegistrationPartOne(ServerMessage msg);
+
     }
 }

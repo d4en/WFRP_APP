@@ -113,102 +113,116 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddHeroBasicInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q13:HeroBasicInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q13:ServerMessage" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q14:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetIdentity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q14:Identity" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q15:Identity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SetClientList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q15:ArrayOfstring" />
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q16:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="JoinedToSession">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q16:ServerMessage" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q17:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SessionInitSettings">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q17:Session" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q18:Session" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SetSessionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q18:ArrayOfstring" />
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q19:Message" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q19:ArrayOfstring" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q20:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Receive">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q20:Message" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q21:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveWhisper">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q21:Message" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q22:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SessionInitMGSettings">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q22:Session" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q23:Session" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePerchment">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="fMsg" nillable="true" type="q23:FileMessage" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="fMsg" nillable="true" type="q24:FileMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveHero">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="hero" nillable="true" type="q24:Hero" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="hero" nillable="true" type="q25:Hero" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveHeroEyes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="heroEyes" nillable="true" type="q25:HeroDetails_Eyes" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="heroEyes" nillable="true" type="q26:HeroDetails_Eyes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveHeroOccupationByRace">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="Occupations" nillable="true" type="q26:AllHeroOccupations" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="Occupations" nillable="true" type="q27:AllHeroOccupations" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveOccupationInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q27:OccupationInfo" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q28:OccupationInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HeroRegistrationPartOne">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q29:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

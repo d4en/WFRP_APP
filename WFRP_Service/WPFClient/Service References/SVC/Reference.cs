@@ -214,6 +214,355 @@ namespace WPFClient.SVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HeroBasicInfo", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class HeroBasicInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AgeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DontLikesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EnemiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EyeColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FamilyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FriendsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HHWBField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HeroNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LikesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MotivationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OriginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PersonalityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RaceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SocialPositionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WhoHeServesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WhyTravelField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountID {
+            get {
+                return this.AccountIDField;
+            }
+            set {
+                if ((this.AccountIDField.Equals(value) != true)) {
+                    this.AccountIDField = value;
+                    this.RaisePropertyChanged("AccountID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Age {
+            get {
+                return this.AgeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AgeField, value) != true)) {
+                    this.AgeField = value;
+                    this.RaisePropertyChanged("Age");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DontLikes {
+            get {
+                return this.DontLikesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DontLikesField, value) != true)) {
+                    this.DontLikesField = value;
+                    this.RaisePropertyChanged("DontLikes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Enemies {
+            get {
+                return this.EnemiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EnemiesField, value) != true)) {
+                    this.EnemiesField = value;
+                    this.RaisePropertyChanged("Enemies");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EyeColor {
+            get {
+                return this.EyeColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EyeColorField, value) != true)) {
+                    this.EyeColorField = value;
+                    this.RaisePropertyChanged("EyeColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Family {
+            get {
+                return this.FamilyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FamilyField, value) != true)) {
+                    this.FamilyField = value;
+                    this.RaisePropertyChanged("Family");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Friends {
+            get {
+                return this.FriendsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FriendsField, value) != true)) {
+                    this.FriendsField = value;
+                    this.RaisePropertyChanged("Friends");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HHWB {
+            get {
+                return this.HHWBField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HHWBField, value) != true)) {
+                    this.HHWBField = value;
+                    this.RaisePropertyChanged("HHWB");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Height {
+            get {
+                return this.HeightField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HeightField, value) != true)) {
+                    this.HeightField = value;
+                    this.RaisePropertyChanged("Height");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HeroName {
+            get {
+                return this.HeroNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HeroNameField, value) != true)) {
+                    this.HeroNameField = value;
+                    this.RaisePropertyChanged("HeroName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Likes {
+            get {
+                return this.LikesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LikesField, value) != true)) {
+                    this.LikesField = value;
+                    this.RaisePropertyChanged("Likes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Motivation {
+            get {
+                return this.MotivationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MotivationField, value) != true)) {
+                    this.MotivationField = value;
+                    this.RaisePropertyChanged("Motivation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Origin {
+            get {
+                return this.OriginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OriginField, value) != true)) {
+                    this.OriginField = value;
+                    this.RaisePropertyChanged("Origin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Personality {
+            get {
+                return this.PersonalityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PersonalityField, value) != true)) {
+                    this.PersonalityField = value;
+                    this.RaisePropertyChanged("Personality");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Race {
+            get {
+                return this.RaceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceField, value) != true)) {
+                    this.RaceField = value;
+                    this.RaisePropertyChanged("Race");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sex {
+            get {
+                return this.SexField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SexField, value) != true)) {
+                    this.SexField = value;
+                    this.RaisePropertyChanged("Sex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SocialPosition {
+            get {
+                return this.SocialPositionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SocialPositionField, value) != true)) {
+                    this.SocialPositionField = value;
+                    this.RaisePropertyChanged("SocialPosition");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Weight {
+            get {
+                return this.WeightField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WeightField, value) != true)) {
+                    this.WeightField = value;
+                    this.RaisePropertyChanged("Weight");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WhoHeServes {
+            get {
+                return this.WhoHeServesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WhoHeServesField, value) != true)) {
+                    this.WhoHeServesField = value;
+                    this.RaisePropertyChanged("WhoHeServes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WhyTravel {
+            get {
+                return this.WhyTravelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WhyTravelField, value) != true)) {
+                    this.WhyTravelField = value;
+                    this.RaisePropertyChanged("WhyTravel");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServerMessage", Namespace="http://schemas.datacontract.org/2004/07/Service")]
     [System.SerializableAttribute()]
     public partial class ServerMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -361,6 +710,7 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Client))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Message))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FileMessage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroBasicInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
@@ -746,6 +1096,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetOccupationInfo(string occupation, System.AsyncCallback callback, object asyncState);
         
         void EndGetOccupationInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/AddHeroBasicInfo")]
+        void AddHeroBasicInfo(WPFClient.SVC.HeroBasicInfo info);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/AddHeroBasicInfo")]
+        System.IAsyncResult BeginAddHeroBasicInfo(WPFClient.SVC.HeroBasicInfo info, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddHeroBasicInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -862,6 +1220,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReciveOccupationInfo(WPFClient.SVC.OccupationInfo info, System.AsyncCallback callback, object asyncState);
         
         void EndReciveOccupationInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/HeroRegistrationPartOne")]
+        void HeroRegistrationPartOne(WPFClient.SVC.ServerMessage msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/HeroRegistrationPartOne")]
+        System.IAsyncResult BeginHeroRegistrationPartOne(WPFClient.SVC.ServerMessage msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndHeroRegistrationPartOne(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -981,6 +1347,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onGetOccupationInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginAddHeroBasicInfoDelegate;
+        
+        private EndOperationDelegate onEndAddHeroBasicInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddHeroBasicInfoCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -1030,6 +1402,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroOccupationByRaceCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationInfoCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddHeroBasicInfoCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -1767,6 +2141,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginGetOccupationInfoDelegate, new object[] {
                         occupation}, this.onEndGetOccupationInfoDelegate, this.onGetOccupationInfoCompletedDelegate, userState);
+        }
+        
+        public void AddHeroBasicInfo(WPFClient.SVC.HeroBasicInfo info) {
+            base.Channel.AddHeroBasicInfo(info);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddHeroBasicInfo(WPFClient.SVC.HeroBasicInfo info, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddHeroBasicInfo(info, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAddHeroBasicInfo(System.IAsyncResult result) {
+            base.Channel.EndAddHeroBasicInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddHeroBasicInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.HeroBasicInfo info = ((WPFClient.SVC.HeroBasicInfo)(inValues[0]));
+            return this.BeginAddHeroBasicInfo(info, callback, asyncState);
+        }
+        
+        private object[] OnEndAddHeroBasicInfo(System.IAsyncResult result) {
+            this.EndAddHeroBasicInfo(result);
+            return null;
+        }
+        
+        private void OnAddHeroBasicInfoCompleted(object state) {
+            if ((this.AddHeroBasicInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddHeroBasicInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddHeroBasicInfoAsync(WPFClient.SVC.HeroBasicInfo info) {
+            this.AddHeroBasicInfoAsync(info, null);
+        }
+        
+        public void AddHeroBasicInfoAsync(WPFClient.SVC.HeroBasicInfo info, object userState) {
+            if ((this.onBeginAddHeroBasicInfoDelegate == null)) {
+                this.onBeginAddHeroBasicInfoDelegate = new BeginOperationDelegate(this.OnBeginAddHeroBasicInfo);
+            }
+            if ((this.onEndAddHeroBasicInfoDelegate == null)) {
+                this.onEndAddHeroBasicInfoDelegate = new EndOperationDelegate(this.OnEndAddHeroBasicInfo);
+            }
+            if ((this.onAddHeroBasicInfoCompletedDelegate == null)) {
+                this.onAddHeroBasicInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddHeroBasicInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddHeroBasicInfoDelegate, new object[] {
+                        info}, this.onEndAddHeroBasicInfoDelegate, this.onAddHeroBasicInfoCompletedDelegate, userState);
         }
     }
 }

@@ -608,6 +608,16 @@ namespace Service
                 Console.WriteLine(error.ToString());
             }
         }
+
+        public void AddHeroBasicInfo(HeroBasicInfo info)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            ServerMessage msg = new ServerMessage();
+            msg.IsStatusCorrect = true;
+            msg.Content = "Success";
+            callback.HeroRegistrationPartOne(msg);
+        }
         #endregion
 
 
@@ -619,7 +629,10 @@ namespace Service
 
 
 
-       
+
+
+
+        
     }
 
 }

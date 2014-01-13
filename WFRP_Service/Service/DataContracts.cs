@@ -235,4 +235,170 @@ namespace Service
             set { _info = value; }
         }
     }
+
+    [DataContract]
+    public class HeroBasicInfo
+    {
+        private int _accountID;
+        private string _heroName;
+        private string _race;
+        private string _sex;
+        private string _eyeColor;
+        private string _age;
+        private string _height;
+        private string _weight;
+        private string _origin;
+        private string _family;
+        private string _socialPosition;
+        private string _HHWB;
+        private string _whyTravel;
+        private string _friends;
+        private string _enemies;
+        private string _likes;
+        private string _dontLikes;
+        private string _personality;
+        private string _motivation;
+        private string _whoHeServes;
+
+        [DataMember]
+        public int AccountID
+        {
+            get { return _accountID; }
+            set { _accountID = value; }
+        }
+
+        [DataMember]
+        public string HeroName
+        {
+            get { return _heroName; }
+            set { _heroName = value; }
+        }
+
+        [DataMember]
+        public string Race
+        {
+            get { return _race; }
+            set { _race = value; }
+        }
+
+        [DataMember]
+        public string Sex
+        {
+            get { return _sex; }
+            set { _sex = value; }
+        }
+
+        [DataMember]
+        public string EyeColor
+        {
+            get { return _eyeColor; }
+            set { _eyeColor = value; }
+        }
+
+        [DataMember]
+        public string Age
+        {
+            get { return _age; }
+            set { _age = value; }
+        }
+
+        [DataMember]
+        public string Height
+        {
+            get { return _height; }
+            set { _height = value; }
+        }
+
+        [DataMember]
+        public string Weight
+        {
+            get { return _weight; }
+            set { _weight = value; }
+        }
+
+        [DataMember]
+        public string Origin
+        {
+            get { return _origin; }
+            set { _origin = value; }
+        }
+
+        [DataMember]
+        public string Family
+        {
+            get { return _family; }
+            set { _family = value; }
+        }
+
+        [DataMember]
+        public string SocialPosition
+        {
+            get { return _socialPosition; }
+            set { _socialPosition = value; }
+        }
+
+        [DataMember]
+        public string HHWB
+        {
+            get { return _HHWB; }
+            set { _HHWB = value; }
+        }
+
+        [DataMember]
+        public string WhyTravel
+        {
+            get { return _whyTravel; }
+            set { _whyTravel = value; }
+        }
+
+        [DataMember]
+        public string Friends
+        {
+            get { return _friends; }
+            set { _friends = value; }
+        }
+
+        [DataMember]
+        public string Enemies
+        {
+            get { return _enemies; }
+            set { _enemies = value; }
+        }
+
+        [DataMember]
+        public string Likes
+        {
+            get { return _likes; }
+            set { _likes = value; }
+        }
+
+        [DataMember]
+        public string DontLikes
+        {
+            get { return _dontLikes; }
+            set { _dontLikes = value; }
+        }
+
+        [DataMember]
+        public string Personality
+        {
+            get { return _personality; }
+            set { _personality = value; }
+        }
+
+        [DataMember]
+        public string Motivation
+        {
+            get { return _motivation; }
+            set { _motivation = value; }
+        }
+
+        [DataMember]
+        public string WhoHeServes
+        {
+            get { return _whoHeServes; }
+            set { _whoHeServes = value; }
+        }
+    }
+
 }

@@ -24,6 +24,31 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FileMessage" nillable="true" type="tns:FileMessage" />
+  <xs:complexType name="HeroBasicInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountID" type="xs:int" />
+      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DontLikes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Enemies" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EyeColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Family" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Friends" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HHWB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HeroName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Likes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Motivation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Origin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Personality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Race" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SocialPosition" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WhoHeServes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WhyTravel" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroBasicInfo" nillable="true" type="tns:HeroBasicInfo" />
   <xs:complexType name="ServerMessage">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
