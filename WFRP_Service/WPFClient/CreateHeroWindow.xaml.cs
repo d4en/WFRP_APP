@@ -91,5 +91,14 @@ namespace WPFClient
         {
             this.servCom.Submit();
         }
+
+        private void CMB_Occupation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this.servCom.AskOccupationDetails(_CreateHeroModel.CreateHeroModelOccupationItem);
+            }
+            catch (Exception) { }
+        }
     }
 }

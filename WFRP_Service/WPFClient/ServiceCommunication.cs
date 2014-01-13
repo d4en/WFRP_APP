@@ -389,12 +389,28 @@ namespace WPFClient
             }
             catch (Exception) { }
         }
+        void IWFRPCallback.ReciveHeroOccupationByRace(AllHeroOccupations Occupations)
+        {
+            _createHeroModel.CreateHeroModelOccupation = Occupations.HeroOccupations;
+        }
 
         public void GetOccupations(string race)
         {
             try
             {
-                //this.Proxy.Get
+                this.Proxy.GetHeroOccupationByRace(race);
+            }
+            catch (Exception) { }
+        }
+        public void ReciveOccupationInfo(OccupationInfo info)
+        {
+            _createHeroModel.CreateHeroModelOccupationText = info.Info;
+        }
+        public void AskOccupationDetails(string occupation)
+        {
+            try
+            {
+                this.Proxy.GetOccupationInfo(occupation);
             }
             catch (Exception) { }
         }
@@ -787,8 +803,36 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
+
+        public IAsyncResult BeginReciveHeroOccupationByRace(AllHeroOccupations Occupations, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveHeroOccupationByRace(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
+
+
+
+
+
+
+
+        
+
+        public IAsyncResult BeginReciveOccupationInfo(OccupationInfo info, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveOccupationInfo(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -88,7 +88,7 @@ namespace WPFClient.Model
             }
         }
         public List<string> _occupation = new List<string>();
-        public List<string> HeroModelOccupation
+        public List<string> CreateHeroModelOccupation
         {
             get
             {
@@ -98,7 +98,35 @@ namespace WPFClient.Model
             {
                 _occupation = value;
 
-                OnPropertyChanged("HeroModelOccupation");
+                OnPropertyChanged("CreateHeroModelOccupation");
+            }
+        }
+        public string _occupationItem = null;
+        public string CreateHeroModelOccupationItem
+        {
+            get
+            {
+                return _occupationItem;
+            }
+            set
+            {
+                _occupationItem = value;
+
+                OnPropertyChanged("CreateHeroModelOccupationItem");
+            }
+        }
+        public string _occupationText = null;
+        public string CreateHeroModelOccupationText
+        {
+            get
+            {
+                return _occupationText;
+            }
+            set
+            {
+                _occupationText = value;
+
+                OnPropertyChanged("CreateHeroModelOccupationText");
             }
         }
         string _age = null;
@@ -171,7 +199,7 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelFamily");
             }
         }
-        bool _submitButtonIsEnabled = false;
+        bool _submitButtonIsEnabled = true;
         public bool CreateHeroModelSubmitIsEnabled
         {
             get
