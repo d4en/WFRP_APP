@@ -144,7 +144,7 @@ namespace WPFHost
         private void btn_test_Click(object sender, RoutedEventArgs e)
         {
             DBConnector DBcon = new DBConnector();
-            DBcon.GerHeroEyes("czlowiek");
+            DBcon.GerHeroEyes("człowiek");
         }
 
 
