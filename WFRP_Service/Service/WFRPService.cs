@@ -614,8 +614,10 @@ namespace Service
             IWFRPCallback callback = CurrentCallback;
             DBConnector DataBase = new DBConnector();
             ServerMessage msg = new ServerMessage();
-            msg.IsStatusCorrect = true;
-            msg.Content = "Success";
+            KeyValuePair<bool, string> dbResponse = new KeyValuePair<bool, string>();
+            dbResponse = DataBase.CreateHeroPartBasicInfo(info);
+            msg.IsStatusCorrect = dbResponse.Key;
+            msg.Content = dbResponse.Value;
             callback.HeroRegistrationPartOne(msg);
         }
         #endregion

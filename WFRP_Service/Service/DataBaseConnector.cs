@@ -103,7 +103,7 @@ namespace Service
                     if (connection.State == System.Data.ConnectionState.Open)
                     {
                         connection.Close();
-
+                    
                     }
                 }
                 return result;
@@ -379,6 +379,101 @@ namespace Service
                 }
             }
             return response;
+        }
+
+        public KeyValuePair<bool, string> CreateHeroPartBasicInfo(HeroBasicInfo info)
+        {
+            KeyValuePair<bool, string> result = new KeyValuePair<bool, string>();
+            MySqlConnection connection = CreateConn();
+            int race = 0;
+            int basicInfoTableID = 0;
+
+            if (info.Race == "człowiek") race = 1;
+            else if (info.Race == "elf") race = 2;
+            else if (info.Race == "krasnolud") race = 3;
+            else if (info.Race == "niziołek") race = 4;
+            
+            try
+                {
+                    connection.Open();
+                }
+                catch (MySqlException o)
+                {
+                    Console.WriteLine(o.ToString());
+                }
+            
+            MySqlCommand cmd = connection.CreateCommand();
+            
+            //Create FK_TABLE for USER
+            try
+            {
+                    cmd = connection.CreateCommand();
+                    cmd.CommandText = "INSERT INTO fk_table(id) VALUES(@id_acc)";
+                    cmd.Parameters.AddWithValue("@id_acc", info.AccountID);
+                    cmd.ExecuteNonQuery();
+
+           //Combo Insert Hero Basic Info
+                    cmd = connection.CreateCommand();
+                    cmd.CommandText = "INSERT INTO hero_base_info_table(hero_name,hero_history,hero_race,hero_sex,hero_friends,"
+                        + "hero_family,hero_height,hero_weight,age,eye_color,origin,social_position,HHWB,why_travel,enemies,"
+                        + "what_like,what_dont_like,personality,motivation,WHS) VALUES(@hero_nameI,@hero_historyI,@hero_raceI,"
+                        + "@hero_sexI,@hero_friendsI,@hero_familyI,@hero_heightI,@hero_weightI,@ageI,@eye_colorI,@originI,@social_positionI,@HHWBI,"
+                        + "@why_travelI,@enemiesI,@what_likeI,@what_dont_likeI,@personalityI,@motivationI,@WHSI)";
+                    
+                    cmd.Parameters.AddWithValue("@hero_nameI", info.HeroName);
+                    cmd.Parameters.AddWithValue("@hero_historyI", info.AccountID);
+                    cmd.Parameters.AddWithValue("@hero_raceI", race);
+                    cmd.Parameters.AddWithValue("@hero_sexI", info.Sex);
+                    cmd.Parameters.AddWithValue("@hero_friendsI",info.Friends);
+                    cmd.Parameters.AddWithValue("@hero_familyI",info.Family);
+                    cmd.Parameters.AddWithValue("@hero_heightI",info.Height);
+                    cmd.Parameters.AddWithValue("@hero_weightI",info.Weight);
+                    cmd.Parameters.AddWithValue("@ageI",info.Age);
+                    cmd.Parameters.AddWithValue("@eye_colorI",info.EyeColor);
+                    cmd.Parameters.AddWithValue("@originI",info.Origin);
+                    cmd.Parameters.AddWithValue("@social_positionI",info.SocialPosition );
+                    cmd.Parameters.AddWithValue("@HHWBI",info.HHWB);
+                    cmd.Parameters.AddWithValue("@why_travelI", info.WhyTravel);
+                    cmd.Parameters.AddWithValue("@enemiesI", info.Enemies);
+                    cmd.Parameters.AddWithValue("@what_likeI", info.Likes);
+                    cmd.Parameters.AddWithValue("@what_dont_likeI", info.DontLikes);
+                    cmd.Parameters.AddWithValue("@personalityI", info.Personality);
+                    cmd.Parameters.AddWithValue("@motivationI", info.Motivation);
+                    cmd.Parameters.AddWithValue("@WHSI", info.WhoHeServes);
+                    cmd.ExecuteNonQuery();
+                    
+                    cmd = connection.CreateCommand();
+                    DataSet ds = new DataSet();
+
+                    cmd.CommandText = "SELECT id FROM hero_base_info_table WHERE hero_history = @id_accI";
+                    cmd.Parameters.AddWithValue("@id_accI", info.AccountID);
+
+                    MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+                    basicInfoTableID = Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+
+                    cmd = connection.CreateCommand();
+                    cmd.CommandText = "UPDATE fk_table SET fk_hero_base_info_table = @HBITID WHERE id = @fk_id ";
+                    cmd.Parameters.AddWithValue("@fk_id", info.AccountID);
+                    cmd.Parameters.AddWithValue("@HBITID", basicInfoTableID);
+                    cmd.ExecuteNonQuery();
+                    
+                    result = new KeyValuePair<bool, string>(true, "Success");
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            
+            return result;
         }
     }
 }
