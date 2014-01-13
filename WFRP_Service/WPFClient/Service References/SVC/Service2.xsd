@@ -68,4 +68,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HeroDetails_Eyes" nillable="true" type="tns:HeroDetails_Eyes" />
+  <xs:complexType name="AllHeroOccupations">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HeroOccupations" nillable="true" type="q3:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllHeroOccupations" nillable="true" type="tns:AllHeroOccupations" />
 </xs:schema>

@@ -209,4 +209,17 @@ namespace Service
             set { _HeroEyes = value; }
         }
     }
+
+    [DataContract]
+    public class AllHeroOccupations
+    {
+        List<string> _HeroOccupations;
+
+        [DataMember]
+        public List<string> HeroOccupations
+        {
+            get { return _HeroOccupations; }
+            set { _HeroOccupations = value; }
+        }
+    }
 }
