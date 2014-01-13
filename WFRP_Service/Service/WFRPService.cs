@@ -590,6 +590,24 @@ namespace Service
                 Console.WriteLine(error.ToString());
             }
         }
+
+        public void GetOccupationInfo(string occupation)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            OccupationInfo info = new OccupationInfo();
+
+            try
+            {
+                info.Info = DataBase.GetOccupationInfo(occupation);
+
+                callback.ReciveOccupationInfo(info);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.ToString());
+            }
+        }
         #endregion
 
 
@@ -598,7 +616,10 @@ namespace Service
 
 
 
-        
+
+
+
+       
     }
 
 }

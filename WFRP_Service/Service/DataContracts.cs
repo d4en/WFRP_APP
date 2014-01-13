@@ -222,4 +222,17 @@ namespace Service
             set { _HeroOccupations = value; }
         }
     }
+
+    [DataContract]
+    public class OccupationInfo
+    {
+        private string _info;
+
+        [DataMember]
+        public string Info
+        {
+            get { return _info; }
+            set { _info = value; }
+        }
+    }
 }

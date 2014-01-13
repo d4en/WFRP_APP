@@ -106,6 +106,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetOccupationInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="occupation" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
@@ -195,6 +202,13 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="Occupations" nillable="true" type="q26:AllHeroOccupations" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveOccupationInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q27:OccupationInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

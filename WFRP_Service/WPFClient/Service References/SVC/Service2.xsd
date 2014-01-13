@@ -74,4 +74,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AllHeroOccupations" nillable="true" type="tns:AllHeroOccupations" />
+  <xs:complexType name="OccupationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Info" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OccupationInfo" nillable="true" type="tns:OccupationInfo" />
 </xs:schema>

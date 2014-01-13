@@ -367,6 +367,7 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Hero))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroDetails_Eyes))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.AllHeroOccupations))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.OccupationInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -577,6 +578,51 @@ namespace WPFClient.SVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OccupationInfo", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class OccupationInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string InfoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Info {
+            get {
+                return this.InfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InfoField, value) != true)) {
+                    this.InfoField = value;
+                    this.RaisePropertyChanged("Info");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SVC.IWFRP", CallbackContract=typeof(WPFClient.SVC.IWFRPCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IWFRP {
@@ -692,6 +738,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetHeroOccupationByRace(string race, System.AsyncCallback callback, object asyncState);
         
         void EndGetHeroOccupationByRace(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetOccupationInfo")]
+        void GetOccupationInfo(string occupation);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetOccupationInfo")]
+        System.IAsyncResult BeginGetOccupationInfo(string occupation, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetOccupationInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -800,6 +854,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReciveHeroOccupationByRace(WPFClient.SVC.AllHeroOccupations Occupations, System.AsyncCallback callback, object asyncState);
         
         void EndReciveHeroOccupationByRace(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveOccupationInfo")]
+        void ReciveOccupationInfo(WPFClient.SVC.OccupationInfo info);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveOccupationInfo")]
+        System.IAsyncResult BeginReciveOccupationInfo(WPFClient.SVC.OccupationInfo info, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveOccupationInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -913,6 +975,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onGetHeroOccupationByRaceCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetOccupationInfoDelegate;
+        
+        private EndOperationDelegate onEndGetOccupationInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetOccupationInfoCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -960,6 +1028,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroEyeColorCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroOccupationByRaceCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationInfoCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -1648,6 +1718,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginGetHeroOccupationByRaceDelegate, new object[] {
                         race}, this.onEndGetHeroOccupationByRaceDelegate, this.onGetHeroOccupationByRaceCompletedDelegate, userState);
+        }
+        
+        public void GetOccupationInfo(string occupation) {
+            base.Channel.GetOccupationInfo(occupation);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetOccupationInfo(string occupation, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOccupationInfo(occupation, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetOccupationInfo(System.IAsyncResult result) {
+            base.Channel.EndGetOccupationInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetOccupationInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string occupation = ((string)(inValues[0]));
+            return this.BeginGetOccupationInfo(occupation, callback, asyncState);
+        }
+        
+        private object[] OnEndGetOccupationInfo(System.IAsyncResult result) {
+            this.EndGetOccupationInfo(result);
+            return null;
+        }
+        
+        private void OnGetOccupationInfoCompleted(object state) {
+            if ((this.GetOccupationInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetOccupationInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetOccupationInfoAsync(string occupation) {
+            this.GetOccupationInfoAsync(occupation, null);
+        }
+        
+        public void GetOccupationInfoAsync(string occupation, object userState) {
+            if ((this.onBeginGetOccupationInfoDelegate == null)) {
+                this.onBeginGetOccupationInfoDelegate = new BeginOperationDelegate(this.OnBeginGetOccupationInfo);
+            }
+            if ((this.onEndGetOccupationInfoDelegate == null)) {
+                this.onEndGetOccupationInfoDelegate = new EndOperationDelegate(this.OnEndGetOccupationInfo);
+            }
+            if ((this.onGetOccupationInfoCompletedDelegate == null)) {
+                this.onGetOccupationInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOccupationInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetOccupationInfoDelegate, new object[] {
+                        occupation}, this.onEndGetOccupationInfoDelegate, this.onGetOccupationInfoCompletedDelegate, userState);
         }
     }
 }

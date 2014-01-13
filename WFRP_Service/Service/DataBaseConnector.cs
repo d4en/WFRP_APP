@@ -335,6 +335,51 @@ namespace Service
             }
             return response;
         }
+
+        public string GetOccupationInfo(string occupation)
+        {
+            string response = string.Empty;
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT info FROM occupation_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", occupation);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response = ds.Tables[0].Rows[0][0].ToString();
+
+                Console.WriteLine(response);
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            return response;
+        }
     }
 }
 
