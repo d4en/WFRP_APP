@@ -76,6 +76,9 @@
   <wsdl:message name="IWFRP_AddHeroBasicInfo_InputMessage">
     <wsdl:part name="parameters" element="tns:AddHeroBasicInfo" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_GetSkillsAndAbilities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSkillsAndAbilities" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -120,6 +123,9 @@
   </wsdl:message>
   <wsdl:message name="IWFRP_HeroRegistrationPartOne_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:HeroRegistrationPartOne" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReciveSkillsAndAbilities_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReciveSkillsAndAbilities" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -171,6 +177,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddHeroBasicInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/AddHeroBasicInfo" message="tns:IWFRP_AddHeroBasicInfo_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetSkillsAndAbilities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetSkillsAndAbilities" message="tns:IWFRP_GetSkillsAndAbilities_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
@@ -215,6 +224,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="HeroRegistrationPartOne">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/HeroRegistrationPartOne" message="tns:IWFRP_HeroRegistrationPartOne_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveSkillsAndAbilities">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveSkillsAndAbilities" message="tns:IWFRP_ReciveSkillsAndAbilities_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -320,6 +332,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetSkillsAndAbilities">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetSkillsAndAbilities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetServerMessageStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
@@ -406,6 +424,12 @@
     </wsdl:operation>
     <wsdl:operation name="HeroRegistrationPartOne">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/HeroRegistrationPartOne" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReciveSkillsAndAbilities">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveSkillsAndAbilities" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

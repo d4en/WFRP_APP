@@ -399,6 +399,64 @@ namespace Service
             get { return _whoHeServes; }
             set { _whoHeServes = value; }
         }
+    
     }
 
+    [DataContract]
+    public class OccupationAndRaceInfo
+    {
+        private string _occupationSkills;
+        private string _occupationAbilities;
+        private string _raceSkills;
+        private string _raceAbilities;
+
+        [DataMember]
+        public string OccupationSkills
+        {
+            get { return _occupationSkills; }
+            set { _occupationSkills = value; }
+        }
+
+        [DataMember]
+        public string OccupationAbilities
+        {
+            get { return _occupationAbilities; }
+            set { _occupationAbilities = value; }
+        }
+
+        [DataMember]
+        public string RaceSkills
+        {
+            get { return _raceSkills; }
+            set { _raceSkills = value; }
+        }
+
+        [DataMember]
+        public string RaceAbilities
+        {
+            get { return _raceAbilities; }
+            set { _raceAbilities = value; }
+        }
+    }
+
+    [DataContract]
+    public class HeroRaceAndOccupation
+    {
+        private string _race;
+        private string _occupation;
+
+        [DataMember]
+        public string Race
+        {
+            get { return _race; }
+            set { _race = value; }
+        }
+
+        [DataMember]
+        public string Occupation
+        {
+            get { return _occupation; }
+            set { _occupation = value; }
+        }
+    }
 }

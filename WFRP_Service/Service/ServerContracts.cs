@@ -57,5 +57,8 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void AddHeroBasicInfo(HeroBasicInfo info);
+
+        [OperationContract(IsOneWay = true)]
+        void GetSkillsAndAbilities(HeroRaceAndOccupation info);
     }
 }

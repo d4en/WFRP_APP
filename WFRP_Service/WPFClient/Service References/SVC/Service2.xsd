@@ -49,6 +49,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HeroBasicInfo" nillable="true" type="tns:HeroBasicInfo" />
+  <xs:complexType name="HeroRaceAndOccupation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Race" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroRaceAndOccupation" nillable="true" type="tns:HeroRaceAndOccupation" />
   <xs:complexType name="ServerMessage">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />

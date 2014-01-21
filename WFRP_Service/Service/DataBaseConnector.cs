@@ -475,6 +475,13 @@ namespace Service
             
             return result;
         }
+
+        public OccupationAndRaceInfo GetSkillsAndAbilities(OccupationAndRaceInfo info)
+        {
+            OccupationAndRaceInfo response = new OccupationAndRaceInfo();
+
+            return response;
+        }
     }
 }
 

@@ -620,17 +620,13 @@ namespace Service
             msg.Content = dbResponse.Value;
             callback.HeroRegistrationPartOne(msg);
         }
+
+        public void GetSkillsAndAbilities(HeroRaceAndOccupation info)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+        }
         #endregion
-
-
-
-
-
-
-
-
-
-
 
 
 

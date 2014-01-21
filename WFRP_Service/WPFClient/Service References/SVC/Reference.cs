@@ -563,6 +563,67 @@ namespace WPFClient.SVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HeroRaceAndOccupation", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class HeroRaceAndOccupation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OccupationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RaceField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Occupation {
+            get {
+                return this.OccupationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OccupationField, value) != true)) {
+                    this.OccupationField = value;
+                    this.RaisePropertyChanged("Occupation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Race {
+            get {
+                return this.RaceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceField, value) != true)) {
+                    this.RaceField = value;
+                    this.RaisePropertyChanged("Race");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServerMessage", Namespace="http://schemas.datacontract.org/2004/07/Service")]
     [System.SerializableAttribute()]
     public partial class ServerMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -711,6 +772,7 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Message))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FileMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroBasicInfo))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroRaceAndOccupation))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
@@ -1104,6 +1166,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginAddHeroBasicInfo(WPFClient.SVC.HeroBasicInfo info, System.AsyncCallback callback, object asyncState);
         
         void EndAddHeroBasicInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetSkillsAndAbilities")]
+        void GetSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetSkillsAndAbilities")]
+        System.IAsyncResult BeginGetSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetSkillsAndAbilities(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1228,6 +1298,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginHeroRegistrationPartOne(WPFClient.SVC.ServerMessage msg, System.AsyncCallback callback, object asyncState);
         
         void EndHeroRegistrationPartOne(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveSkillsAndAbilities")]
+        void ReciveSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveSkillsAndAbilities")]
+        System.IAsyncResult BeginReciveSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveSkillsAndAbilities(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1353,6 +1431,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onAddHeroBasicInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetSkillsAndAbilitiesDelegate;
+        
+        private EndOperationDelegate onEndGetSkillsAndAbilitiesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSkillsAndAbilitiesCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -1404,6 +1488,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationInfoCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddHeroBasicInfoCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetSkillsAndAbilitiesCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -2190,6 +2276,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginAddHeroBasicInfoDelegate, new object[] {
                         info}, this.onEndAddHeroBasicInfoDelegate, this.onAddHeroBasicInfoCompletedDelegate, userState);
+        }
+        
+        public void GetSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info) {
+            base.Channel.GetSkillsAndAbilities(info);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSkillsAndAbilities(info, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetSkillsAndAbilities(System.IAsyncResult result) {
+            base.Channel.EndGetSkillsAndAbilities(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSkillsAndAbilities(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.HeroRaceAndOccupation info = ((WPFClient.SVC.HeroRaceAndOccupation)(inValues[0]));
+            return this.BeginGetSkillsAndAbilities(info, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSkillsAndAbilities(System.IAsyncResult result) {
+            this.EndGetSkillsAndAbilities(result);
+            return null;
+        }
+        
+        private void OnGetSkillsAndAbilitiesCompleted(object state) {
+            if ((this.GetSkillsAndAbilitiesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSkillsAndAbilitiesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSkillsAndAbilitiesAsync(WPFClient.SVC.HeroRaceAndOccupation info) {
+            this.GetSkillsAndAbilitiesAsync(info, null);
+        }
+        
+        public void GetSkillsAndAbilitiesAsync(WPFClient.SVC.HeroRaceAndOccupation info, object userState) {
+            if ((this.onBeginGetSkillsAndAbilitiesDelegate == null)) {
+                this.onBeginGetSkillsAndAbilitiesDelegate = new BeginOperationDelegate(this.OnBeginGetSkillsAndAbilities);
+            }
+            if ((this.onEndGetSkillsAndAbilitiesDelegate == null)) {
+                this.onEndGetSkillsAndAbilitiesDelegate = new EndOperationDelegate(this.OnEndGetSkillsAndAbilities);
+            }
+            if ((this.onGetSkillsAndAbilitiesCompletedDelegate == null)) {
+                this.onGetSkillsAndAbilitiesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSkillsAndAbilitiesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSkillsAndAbilitiesDelegate, new object[] {
+                        info}, this.onEndGetSkillsAndAbilitiesDelegate, this.onGetSkillsAndAbilitiesCompletedDelegate, userState);
         }
     }
 }
