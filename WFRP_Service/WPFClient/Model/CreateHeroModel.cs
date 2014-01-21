@@ -579,5 +579,69 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelRaceAbilitiesListBox");
             }
         }
+        public List<List<String>> DivideChooseSkill(List<String> list)
+        {
+            List<List<String>> divideChooseSkill = new List<List<String>>();
+            try
+            {
+                List<String> restSkill = new List<String>();
+                List<String> restSkillAndChooseSkill = new List<String>();
+                List<List<String>> restSkillAndChooseSkillID = new List<List<String>>();
+                List<String> temp;
+                String signal = String.Empty;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    temp = new List<String>();
+
+                    if (list[i].ToString().Length > 3)
+                    {
+                        for (int j = 0; j < list[i].ToString().Length; j++)
+                        {
+                            if (list[i].ToString().ElementAt(j) == '|')
+                            {
+                                temp.Add(signal);
+                                signal = String.Empty;
+                            }
+                            else if (j == list[i].ToString().Length - 1)
+                            {
+                                signal += list[i].ToString().ElementAt(j);
+                                temp.Add(signal);
+                                signal = String.Empty;
+                                break;
+                            }
+                            else // Jeżeli ciąg dalszy tej samej odpowiedzi, dodaj kolejny znak
+                            {
+                                signal += list[i].ToString().ElementAt(j);
+                            }
+                        }
+                        divideChooseSkill.Add(temp);
+                    }
+                    else
+                    {
+                        restSkill.Add(list[i]);
+                    }
+                }
+                for (int i = 0; i < divideChooseSkill.Count; i++)
+                {
+                    for (int j = 0; j < divideChooseSkill[i].Count; j++)
+                    {
+                        restSkillAndChooseSkill.Add(divideChooseSkill[i][j]);
+                    }
+                }
+                for (int i = 0; i < restSkill.Count; i++)
+                {
+                    restSkillAndChooseSkill.Add(restSkill[i]);
+                }
+
+                restSkillAndChooseSkillID.Add(restSkillAndChooseSkill);
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return divideChooseSkill;
+        } 
     }
 }

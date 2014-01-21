@@ -90,6 +90,7 @@ namespace WPFClient
         private void BTN_Submit_Click(object sender, RoutedEventArgs e)
         {
             this.servCom.HeroBasicInfoSubmit();
+            this.servCom.SendOccupationAndRace();
         }
 
         private void CMB_Occupation_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -406,6 +406,7 @@ namespace WPFClient
         {
             _createHeroModel.CreateHeroModelOccupationText = info.Info;
         }
+
         public void AskOccupationDetails(string occupation)
         {
             try
@@ -419,6 +420,7 @@ namespace WPFClient
         {
             
         }
+
         public void HeroBasicInfoSubmit()
         {
             HeroBasicInfo info = new HeroBasicInfo();
@@ -455,6 +457,21 @@ namespace WPFClient
                 this.Proxy.GetHero(localClient.Name);
             }
             catch (Exception) { }
+        }
+
+        public void SendOccupationAndRace()
+        {
+            HeroRaceAndOccupation info = new HeroRaceAndOccupation();
+            info.Occupation = _createHeroModel.CreateHeroModelOccupationItem;
+            info.Race = _createHeroModel.SelectedItem;
+            this.Proxy.GetSkillsAndAbilities(info);
+        }
+        void IWFRPCallback.ReciveSkillsAndAbilities(OccupationAndRaceInfo info)
+        {
+            _createHeroModel.CreateHeroModelOccupationAbilitiesListBox = info.OccupationAbilities.Split('$').ToList<string>();
+            _createHeroModel.CreateHeroModelOccupationSkillsListBox = info.OccupationSkills.Split('$').ToList<string>();
+            _createHeroModel.CreateHeroModelRaceAbilitiesListBox = info.RaceAbilities.Split('$').ToList<string>();
+            _createHeroModel.CreateHeroModelRaceSkillsListBox = info.RaceSkills.Split('$').ToList<string>(); 
         }
 
         //TO DO add CreateHero
@@ -861,8 +878,17 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
-        #endregion
 
+        public IAsyncResult BeginReciveSkillsAndAbilities(OccupationAndRaceInfo info, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveSkillsAndAbilities(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
     }
 }
