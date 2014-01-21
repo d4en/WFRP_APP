@@ -382,6 +382,202 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelSubmitIsEnabled");
             }
         }
-        
+
+        string _WW = null;
+        public string CreateHeroModelWW
+        {
+            get
+            {
+                return _WW;
+            }
+            set
+            {
+                _WW = value;
+                
+                OnPropertyChanged("CreateHeroModelWW");
+            }
+        }
+        string _US = null;
+        public string CreateHeroModelSW
+        {
+            get
+            {
+                return _US;
+            }
+            set
+            {
+
+                _US = value;
+                OnPropertyChanged("CreateHeroModelSW");
+            }
+        }
+        string _K = null;
+        public string CreateHeroModelK
+        {
+            get
+            {
+                return _K;
+            }
+            set
+            {
+                _K = value;
+
+                OnPropertyChanged("CreateHeroModelK");
+            }
+        }
+        string _Odp = null;
+        public string CreateHeroModelOdp
+        {
+            get
+            {
+                return _Odp; 
+            }
+            set
+            {
+                _Odp = value;
+
+                OnPropertyChanged("CreateHeroModelOdp");
+            }
+        }
+        string _Zr = null;
+        public string CreateHeroModelZr
+        {
+            get
+            {
+                return _Zr;
+            }
+            set
+            {
+                _Zr = value;
+
+                OnPropertyChanged("CreateHeroModelZr");
+            }
+        }
+        string _Int = null;
+        public string CreateHeroModelInt
+        {
+            get
+            {
+                return _Int;
+            }
+            set
+            {
+                _Int = value;
+
+                OnPropertyChanged("CreateHeroModelInt");
+            }
+        }
+        string _SW = null;
+        public string CreateHeroModelSW
+        {
+            get
+            {
+                return _SW;
+            }
+            set
+            {
+                _SW = value;
+
+                OnPropertyChanged("CreateHeroModelSW");
+            }
+        }
+        string _Ogd = null;
+        public string CreateHeroModelOgd
+        {
+            get
+            {
+                return _Ogd;
+            }
+            set
+            {
+                _Ogd = value;
+
+                OnPropertyChanged("CreateHeroModelOgd");
+            }
+        }
+        string _Zyw = null;
+        public string CreateHeroModelZyw
+        {
+            get
+            {
+                return _Zyw;
+            }
+            set
+            {
+                _Zyw = value;
+
+                OnPropertyChanged("CreateHeroModelZyw");
+            }
+        }
+        string _PP = null;
+        public string CreateHeroModelPP
+        {
+            get
+            {
+                return _PP;
+            }
+            set
+            {
+                _PP = value;
+
+                OnPropertyChanged("CreateHeroModelPP");
+            }
+        }
+        List<string> _occupationSkills = new List<string>();
+        public List<string> CreateHeroModelOccupationSkillsListBox
+        {
+            get
+            {
+                return _occupationSkills;
+            }
+            set
+            {
+                _occupationSkills = value;
+
+                OnPropertyChanged("CreateHeroModelOccupationSkillsListBox");
+            }
+        }
+        List<string> _occupationAbilities = new List<string>();
+        public List<string> CreateHeroModelOccupationAbilitiesListBox
+        {
+            get
+            {
+                return _occupationAbilities;
+            }
+            set
+            {
+                _occupationAbilities = value;
+
+                OnPropertyChanged("CreateHeroModelOccupationAbilitiesListBox");
+            }
+        }
+        List<string> _raceSkills = new List<string>();
+        public List<string> CreateHeroModelRaceSkillsListBox
+        {
+            get
+            {
+                return _raceSkills;
+            }
+            set
+            {
+                _raceSkills = value;
+
+                OnPropertyChanged("CreateHeroModelRaceSkillsListBox");
+            }
+        }
+        List<string> _raceAbilities = new List<string>();
+        public List<string> CreateHeroModelRaceAbilitiesListBox
+        {
+            get
+            {
+                return _raceAbilities;
+            }
+            set
+            {
+                _raceAbilities = value;
+
+                OnPropertyChanged("CreateHeroModelRaceAbilitiesListBox");
+            }
+        }
     }
 }

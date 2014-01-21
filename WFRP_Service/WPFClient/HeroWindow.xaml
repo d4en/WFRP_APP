@@ -138,16 +138,16 @@
                     <Label Content="Obrażenia\Efekty zranień" HorizontalAlignment="Left" Margin="832,372,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="90" Margin="816,403,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
                     <Label Content="Uzbrojenie" HorizontalAlignment="Left" Margin="176,333,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="15,390,0,0" VerticalAlignment="Top" Width="202"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="222,390,0,0" VerticalAlignment="Top" Width="42"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="269,390,0,0" VerticalAlignment="Top" Width="112"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="15,390,0,0" VerticalAlignment="Top" Width="202" Background="White"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="222,390,0,0" VerticalAlignment="Top" Width="42" Background="White"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="269,390,0,0" VerticalAlignment="Top" Width="112" Background="White"/>
                     <Label Content="Nazwa" HorizontalAlignment="Left" Margin="93,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Siła" HorizontalAlignment="Left" Margin="229,359,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Cechy" HorizontalAlignment="Left" Margin="302,359,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Zbroja" HorizontalAlignment="Left" Margin="889,169,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="793,226,0,0" VerticalAlignment="Top" Width="202"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="793,226,0,0" VerticalAlignment="Top" Width="202" Background="White"/>
                     <Label Content="Nazwa" HorizontalAlignment="Left" Margin="871,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="1003,225,0,0" VerticalAlignment="Top" Width="42"/>
+                    <ListBox HorizontalAlignment="Left" Height="100" Margin="1003,225,0,0" VerticalAlignment="Top" Width="42" Background="White"/>
                     <Label Content="PZ" HorizontalAlignment="Left" Margin="1010,194,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Imię:" HorizontalAlignment="Left" Margin="334,19,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="402,19,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>

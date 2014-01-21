@@ -108,12 +108,48 @@
                     <TextBox x:Name="TXB_Motivations" Text="{Binding CreateHeroModelMotivations}" HorizontalAlignment="Left" Height="22" Margin="871,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
                     <Label Content="Occupation" HorizontalAlignment="Left" Margin="494,28,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="CMB_Occupation" ItemsSource="{Binding CreateHeroModelOccupation}" SelectedValue="{Binding CreateHeroModelOccupationItem}" HorizontalAlignment="Left" Margin="468,59,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CMB_Occupation_SelectionChanged"/>
-                    <TextBox HorizontalAlignment="Left" Text="{Binding CreateHeroModelOccupationText}" Height="358" Margin="370,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344"/>
+                    <TextBox HorizontalAlignment="Left" Text="{Binding CreateHeroModelOccupationText}" Height="358" Margin="370,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
                     <Button x:Name="BTN_HeroBasicInfoSubmit" IsEnabled="{Binding CreateHeroModelSubmitIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Submit" HorizontalAlignment="Left" Margin="513,495,0,0" VerticalAlignment="Top" Width="75" Click="BTN_Submit_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Stats, Skills, Abilities">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LTB_occupationSkills" ItemsSource="{Binding CreateHeroModelOccupationSkillsListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="74" Margin="36,30,0,0" VerticalAlignment="Top" Width="215" Background="White"/>
+                    <Label Content="Occupation skills" HorizontalAlignment="Left" Margin="92,4,0,0" VerticalAlignment="Top"/>
+                    <ListBox x:Name="LTB_occupationAbilities" ItemsSource="{Binding CreateHeroModelOccupationAbilitiesListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="74" Margin="36,182,0,0" VerticalAlignment="Top" Width="215" Background="White"/>
+                    <Label Content="Occupation abilities" HorizontalAlignment="Left" Margin="83,151,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BTN_occupationSkills" IsEnabled="{Binding CreateHeroModelOccupationIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Choose" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="BTN_occupationAbilities" IsEnabled="{Binding CreateHeroModelOccupationIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Choose" HorizontalAlignment="Left" Margin="106,278,0,0" VerticalAlignment="Top" Width="76"/>
+                    <TextBox x:Name="TXB_Sk_Ab_informations" Text="{Binding CreateHeroModelSkAbInfo}" HorizontalAlignment="Left" Height="338" Margin="350,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" OpacityMask="Black" CaretBrush="Black" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" IsReadOnly="True"/>
+                    <Label Content="Race skills" HorizontalAlignment="Left" Margin="874,4,0,0" VerticalAlignment="Top"/>
+                    <ListBox x:Name="LTB_raceSkills" ItemsSource="{Binding CreateHeroModelRaceSkillsListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="74" Margin="798,35,0,0" VerticalAlignment="Top" Width="215" Background="White"/>
+                    <ListBox x:Name="LTB_raceAbilities" ItemsSource="{Binding CreateHeroModelRaceAbilitiesListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="74" Margin="798,182,0,0" VerticalAlignment="Top" Width="215" Background="White"/>
+                    <Label Content="Race abilities" HorizontalAlignment="Left" Margin="863,151,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BTN_raceSkills" IsEnabled="{Binding CreateHeroModelRaceSkillsIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Choose" HorizontalAlignment="Left" Margin="867,119,0,0" VerticalAlignment="Top" Width="76"/>
+                    <Button x:Name="BTN_raceAbilities" IsEnabled="{Binding CreateHeroModelRaceAbilitiesIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Choose" HorizontalAlignment="Left" Margin="867,278,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="TXB_WW" Text="{Binding CreateHeroModelWW}" HorizontalAlignment="Left" Height="22" Margin="350,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_US" Text="{Binding CreateHeroModelUS}" HorizontalAlignment="Left" Height="22" Margin="386,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_K" Text="{Binding CreateHeroModelK}" HorizontalAlignment="Left" Height="22" Margin="422,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_Odp" Text="{Binding CreateHeroModelOdp}" HorizontalAlignment="Left" Height="22" Margin="458,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_Zr" Text="{Binding CreateHeroModelZr}" HorizontalAlignment="Left" Height="22" Margin="494,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_Int" Text="{Binding CreateHeroModelInt}" HorizontalAlignment="Left" Height="22" Margin="530,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_SW" Text="{Binding CreateHeroModelSW}" HorizontalAlignment="Left" Height="22" Margin="566,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_Ogd" Text="{Binding CreateHeroModelOgd}" HorizontalAlignment="Left" Height="22" Margin="602,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_Zyw" Text="{Binding CreateHeroModelZyw}" HorizontalAlignment="Left" Height="22" Margin="638,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_PP" Text="{Binding CreateHeroModelPP}" HorizontalAlignment="Left" Height="22" Margin="674,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True"/>
+                    <Label Content="WW" HorizontalAlignment="Left" Margin="353,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="US" HorizontalAlignment="Left" Margin="391,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="K" HorizontalAlignment="Left" Margin="430,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Odp" HorizontalAlignment="Left" Margin="459,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Zr" HorizontalAlignment="Left" Margin="501,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Int" HorizontalAlignment="Left" Margin="535,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SW" HorizontalAlignment="Left" Margin="569,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Ogd" HorizontalAlignment="Left" Margin="603,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Żyw" HorizontalAlignment="Left" Margin="639,383,0,0" VerticalAlignment="Top"/>
+                    <Label Content="PP" HorizontalAlignment="Left" Margin="678,383,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BTN_primaryRandomStats" IsEnabled="{Binding CreateHeroModePrimaryRandomStatslIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Random" HorizontalAlignment="Left" Margin="491,452,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="BTN_Hero_St_Sk_Ab_Submit" IsEnabled="{Binding CreateHeroModelHeroStSkAbSubmitIsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Submit" HorizontalAlignment="Left" Margin="491,498,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
             </TabItem>
         </TabControl>
 
