@@ -476,10 +476,103 @@ namespace Service
             return result;
         }
 
-        public OccupationAndRaceInfo GetSkillsAndAbilities(OccupationAndRaceInfo info)
+        public OccupationAndRaceInfo GetSkillsAndAbilities(HeroRaceAndOccupation info)
         {
             OccupationAndRaceInfo response = new OccupationAndRaceInfo();
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
 
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT race_abilities FROM race_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", info.Race);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.RaceAbilities = ds.Tables[0].Rows[0][0].ToString();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+                connection.Open();
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+
+                cmd.CommandText = "SELECT race_skills FROM race_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", info.Race);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.RaceSkills = ds.Tables[0].Rows[0][0].ToString();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+                connection.Open();
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+
+                cmd.CommandText = "SELECT oc_skills FROM occupation_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", info.Occupation);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.OccupationSkills = ds.Tables[0].Rows[0][0].ToString();
+
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+                connection.Open();
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+
+                cmd.CommandText = "SELECT oc_abilities FROM occupation_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", info.Occupation);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.OccupationAbilities = ds.Tables[0].Rows[0][0].ToString();
+
+                //Console.WriteLine(response.RaceAbilities);
+                //Console.WriteLine(response.RaceSkills);
+                //Console.WriteLine(response.OccupationSkills);
+                //Console.WriteLine(response.OccupationAbilities);
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
             return response;
         }
     }

@@ -112,4 +112,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OccupationInfo" nillable="true" type="tns:OccupationInfo" />
+  <xs:complexType name="OccupationAndRaceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OccupationAbilities" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OccupationSkills" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RaceAbilities" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RaceSkills" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OccupationAndRaceInfo" nillable="true" type="tns:OccupationAndRaceInfo" />
 </xs:schema>

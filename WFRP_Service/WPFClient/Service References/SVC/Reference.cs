@@ -780,6 +780,7 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroDetails_Eyes))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.AllHeroOccupations))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.OccupationInfo))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.OccupationAndRaceInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1021,6 +1022,99 @@ namespace WPFClient.SVC {
                 if ((object.ReferenceEquals(this.InfoField, value) != true)) {
                     this.InfoField = value;
                     this.RaisePropertyChanged("Info");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OccupationAndRaceInfo", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class OccupationAndRaceInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OccupationAbilitiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OccupationSkillsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RaceAbilitiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RaceSkillsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OccupationAbilities {
+            get {
+                return this.OccupationAbilitiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OccupationAbilitiesField, value) != true)) {
+                    this.OccupationAbilitiesField = value;
+                    this.RaisePropertyChanged("OccupationAbilities");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OccupationSkills {
+            get {
+                return this.OccupationSkillsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OccupationSkillsField, value) != true)) {
+                    this.OccupationSkillsField = value;
+                    this.RaisePropertyChanged("OccupationSkills");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RaceAbilities {
+            get {
+                return this.RaceAbilitiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceAbilitiesField, value) != true)) {
+                    this.RaceAbilitiesField = value;
+                    this.RaisePropertyChanged("RaceAbilities");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RaceSkills {
+            get {
+                return this.RaceSkillsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceSkillsField, value) != true)) {
+                    this.RaceSkillsField = value;
+                    this.RaisePropertyChanged("RaceSkills");
                 }
             }
         }
@@ -1300,10 +1394,10 @@ namespace WPFClient.SVC {
         void EndHeroRegistrationPartOne(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveSkillsAndAbilities")]
-        void ReciveSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info);
+        void ReciveSkillsAndAbilities(WPFClient.SVC.OccupationAndRaceInfo info);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveSkillsAndAbilities")]
-        System.IAsyncResult BeginReciveSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginReciveSkillsAndAbilities(WPFClient.SVC.OccupationAndRaceInfo info, System.AsyncCallback callback, object asyncState);
         
         void EndReciveSkillsAndAbilities(System.IAsyncResult result);
     }

@@ -144,7 +144,10 @@ namespace WPFHost
         private void btn_test_Click(object sender, RoutedEventArgs e)
         {
             DBConnector DBcon = new DBConnector();
-            DBcon.GetOccupationInfo("Akolita");
+            HeroRaceAndOccupation info = new HeroRaceAndOccupation();
+            info.Race = "człowiek";
+            info.Occupation = "Akolita";
+            DBcon.GetSkillsAndAbilities(info);
         }
 
 

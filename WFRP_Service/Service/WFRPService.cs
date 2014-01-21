@@ -625,6 +625,9 @@ namespace Service
         {
             IWFRPCallback callback = CurrentCallback;
             DBConnector DataBase = new DBConnector();
+            OccupationAndRaceInfo dbResponse = new OccupationAndRaceInfo();
+            dbResponse = DataBase.GetSkillsAndAbilities(info);
+            callback.ReciveSkillsAndAbilities(dbResponse);
         }
         #endregion
 

@@ -236,7 +236,7 @@
   <xs:element name="ReciveSkillsAndAbilities">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q31:HeroRaceAndOccupation" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q31:OccupationAndRaceInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
