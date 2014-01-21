@@ -86,14 +86,14 @@
                     <Label Content="Int" HorizontalAlignment="Left" Margin="188,19,0,0" VerticalAlignment="Top"/>
                     <Label Content="SW" HorizontalAlignment="Left" Margin="217,19,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ogd" HorizontalAlignment="Left" Margin="246,19,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="27,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="59,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="90,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="122,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="152,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="184,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="247,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox x:Name="TXB_displayWW" Text="{Binding HeroModelDisplayWW}" HorizontalAlignment="Left" Height="23" Margin="27,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayUS" Text="{Binding HeroModelDisplayUS}" HorizontalAlignment="Left" Height="23" Margin="59,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayK" Text="{Binding HeroModelDisplayK}" HorizontalAlignment="Left" Height="23" Margin="90,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayOdp" Text="{Binding HeroModelDisplayOdp}" HorizontalAlignment="Left" Height="23" Margin="122,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox x:Name="TXB_displayZr" Text="{Binding HeroModelDisplayZr}" HorizontalAlignment="Left" Height="23" Margin="152,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayInt" Text="{Binding HeroModelDisplayInt}" HorizontalAlignment="Left" Height="23" Margin="184,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displaySW" Text="{Binding HeroModelDisplaySW}" HorizontalAlignment="Left" Height="23" Margin="215,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayOgd" Text="{Binding HeroModelDisplayOgd}" HorizontalAlignment="Left" Height="23" Margin="247,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
                     <Label Content="A" HorizontalAlignment="Left" Margin="35,80,0,0" VerticalAlignment="Top"/>
                     <Label Content="Żyw" HorizontalAlignment="Left" Margin="60,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.36,0.615"/>
                     <Label Content="S" HorizontalAlignment="Left" Margin="98,80,0,0" VerticalAlignment="Top"/>
@@ -102,14 +102,14 @@
                     <Label Content="Mag" HorizontalAlignment="Left" Margin="183,80,0,0" VerticalAlignment="Top"/>
                     <Label Content="PO" HorizontalAlignment="Left" Margin="217,80,0,0" VerticalAlignment="Top"/>
                     <Label Content="PP" HorizontalAlignment="Left" Margin="249,80,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="27,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="59,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="90,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="122,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="152,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="184,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="247,111,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox x:Name="TXB_displayA" Text="{Binding HeroModelDisplayA}" HorizontalAlignment="Left" Height="23" Margin="27,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayZyw" Text="{Binding HeroModelDisplayZyw}" HorizontalAlignment="Left" Height="23" Margin="59,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayS" Text="{Binding HeroModelDisplayS}" HorizontalAlignment="Left" Height="23" Margin="90,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayWt" Text="{Binding HeroModelDisplayWt}" HorizontalAlignment="Left" Height="23" Margin="122,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
+                    <TextBox x:Name="TXB_displaySz" Text="{Binding HeroModelDisplaySz}" HorizontalAlignment="Left" Height="23" Margin="152,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayMag" Text="{Binding HeroModelDisplayMag}" HorizontalAlignment="Left" Height="23" Margin="184,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayPO" Text="{Binding HeroModelDisplayPO}" HorizontalAlignment="Left" Height="23" Margin="215,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayPP" Text="{Binding HeroModelDisplayPP}" HorizontalAlignment="Left" Height="23" Margin="247,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="2.438,0.435"/>
                     <Image HorizontalAlignment="Left" Height="383" Margin="456,137,0,0" VerticalAlignment="Top" Width="256" Source=".\Pictures\KnightP.jpg"/>
                     <Label Content="Głowa" HorizontalAlignment="Left" Margin="413,137,0,0" VerticalAlignment="Top"/>
                     <Label Content="Korpus" HorizontalAlignment="Left" Margin="703,137,0,0" VerticalAlignment="Top"/>
@@ -117,12 +117,12 @@
                     <Label Content="Prwa Ręka" HorizontalAlignment="Left" Margin="697,285,0,0" VerticalAlignment="Top"/>
                     <Label Content="Lewa Noga" HorizontalAlignment="Left" Margin="400,439,0,0" VerticalAlignment="Top"/>
                     <Label Content="Prawa Noga" HorizontalAlignment="Left" Margin="687,439,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="419,168,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="712,168,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="419,316,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="419,470,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="712,316,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="712,465,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayArmorHead" Text="{Binding HeroModelDisplayArmorHead}" HorizontalAlignment="Left" Height="23" Margin="419,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayArmorBody" Text="{Binding HeroModelDisplayArmorBody}" HorizontalAlignment="Left" Height="23" Margin="712,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayArmorLeftArm" Text="{Binding HeroModelDisplayArmorLeftArm}" HorizontalAlignment="Left" Height="23" Margin="419,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayArmorLeftLeg" Text="{Binding HeroModelDisplayArmorLeftLeg}" HorizontalAlignment="Left" Height="23" Margin="419,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayArmorRightArm" Text="{Binding HeroModelDisplayArmorRightArm}" HorizontalAlignment="Left" Height="23" Margin="712,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
+                    <TextBox x:Name="TXB_displayArmorRightLeg" Text="{Binding HeroModelDisplayArmorRightLeg}" HorizontalAlignment="Left" Height="23" Margin="712,465,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32"/>
                     <Label Content="Zbroja" HorizontalAlignment="Left" Margin="557,106,0,0" VerticalAlignment="Top"/>
                     <Label Content="01-15" HorizontalAlignment="Left" Margin="415,191,0,0" VerticalAlignment="Top"/>
                     <Label Content="56-80" HorizontalAlignment="Left" Margin="709,196,0,0" VerticalAlignment="Top"/>
@@ -133,28 +133,27 @@
                     <Label Content="Punkty Doświadczenia" HorizontalAlignment="Left" Margin="136,165,0,0" VerticalAlignment="Top"/>
                     <Label Content="Obecne" HorizontalAlignment="Left" Margin="171,196,0,0" VerticalAlignment="Top"/>
                     <Label Content="Razem" HorizontalAlignment="Left" Margin="172,263,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="127,227,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="127,294,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <TextBox x:Name="TXB_displayPresentEXP" Text="{Binding HeroModelDisplayPresentEXP}" HorizontalAlignment="Left" Height="23" Margin="127,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <TextBox x:Name="TXB_displayTotalEXP" Text="{Binding HeroModelDisplayTotalEXP}" HorizontalAlignment="Left" Height="23" Margin="127,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
                     <Label Content="Obrażenia\Efekty zranień" HorizontalAlignment="Left" Margin="832,372,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="90" Margin="816,403,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
+                    <TextBox x:Name="LTB_displayHits" Text="{Binding HeroModelDisplayHits}" HorizontalAlignment="Left" Height="90" Margin="816,403,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
                     <Label Content="Uzbrojenie" HorizontalAlignment="Left" Margin="176,333,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="15,390,0,0" VerticalAlignment="Top" Width="202" Background="White"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="222,390,0,0" VerticalAlignment="Top" Width="42" Background="White"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="269,390,0,0" VerticalAlignment="Top" Width="112" Background="White"/>
+                    <ListBox x:Name="LTB_displayWeaponName" ItemsSource="{Binding HeroModelDisplayWeaponNameListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="100" Margin="15,390,0,0" VerticalAlignment="Top" Width="202" Background="White"/>
+                    <ListBox x:Name="LTB_displayWeaponSTR" ItemsSource="{Binding HeroModelDisplayWeaponSTRListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="100" Margin="222,390,0,0" VerticalAlignment="Top" Width="42" Background="White"/>
+                    <ListBox x:Name="LTB_displayWeaponAttribute" ItemsSource="{Binding HeroModelWeaponAttributeListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="100" Margin="269,390,0,0" VerticalAlignment="Top" Width="112" Background="White"/>
                     <Label Content="Nazwa" HorizontalAlignment="Left" Margin="93,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Siła" HorizontalAlignment="Left" Margin="229,359,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Cechy" HorizontalAlignment="Left" Margin="302,359,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Zbroja" HorizontalAlignment="Left" Margin="889,169,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="793,226,0,0" VerticalAlignment="Top" Width="202" Background="White"/>
+                    <ListBox x:Name="LTB_displayArmorName" ItemsSource="{Binding HeroModelDisplayArmorNameListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="100" Margin="793,226,0,0" VerticalAlignment="Top" Width="202" Background="White"/>
                     <Label Content="Nazwa" HorizontalAlignment="Left" Margin="871,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
-                    <ListBox HorizontalAlignment="Left" Height="100" Margin="1003,225,0,0" VerticalAlignment="Top" Width="42" Background="White"/>
+                    <ListBox x:Name="LTB_displayArmorPZ" ItemsSource="{Binding HeroModelDisplayArmorPZListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="100" Margin="1003,225,0,0" VerticalAlignment="Top" Width="42" Background="White"/>
                     <Label Content="PZ" HorizontalAlignment="Left" Margin="1010,194,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.577"/>
                     <Label Content="Imię:" HorizontalAlignment="Left" Margin="334,19,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="402,19,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <TextBox x:Name="TXB_displayName" Text="{Binding HeroModelDisplayName}" HorizontalAlignment="Left" Height="23" Margin="402,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
                     <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="334,50,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="402,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
+                    <TextBox x:Name="TXB_displaySurname" Text="{Binding HeroModelDisplaySurname}" HorizontalAlignment="Left" Height="23" Margin="402,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" TextAlignment="Center"/>
                     <Image HorizontalAlignment="Left" Height="96" Margin="656,10,0,0" VerticalAlignment="Top" Width="404" Source="./pictures/logo.jpg"/>
-
                 </Grid>
             </TabItem>
             <TabItem Header="Skills and Abilities">

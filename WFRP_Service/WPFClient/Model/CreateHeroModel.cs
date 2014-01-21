@@ -398,7 +398,7 @@ namespace WPFClient.Model
             }
         }
         string _US = null;
-        public string CreateHeroModelSW
+        public string CreateHeroModelUS
         {
             get
             {
@@ -408,7 +408,7 @@ namespace WPFClient.Model
             {
 
                 _US = value;
-                OnPropertyChanged("CreateHeroModelSW");
+                OnPropertyChanged("CreateHeroModelUS");
             }
         }
         string _K = null;

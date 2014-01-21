@@ -444,7 +444,6 @@ namespace WPFClient
             info.WhyTravel = _createHeroModel.CreateHeroModelTraveling;
             try
             {
-                Console.WriteLine(_createHeroModel.CreateHeroModelEyeColorItem+"\n"+_createHeroModel.CreateHeroModelSexItem);
                 this.Proxy.AddHeroBasicInfo(info);
             }
             catch (Exception) { }
