@@ -523,8 +523,20 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelPP");
             }
         }
-
-
+        string _skAbInfo = null;
+        public string CreateHeroModelSkAbInfo
+        {
+            get
+            {
+                return _skAbInfo;
+            }
+            set
+            {
+                _skAbInfo = value;
+                OnPropertyChanged("CreateHeroModelSkAbInfo");
+            }
+        }
+        #region Occupation Skills
         List<string> _occupationSkills = new List<string>();
         public List<string> CreateHeroModelOccupationSkillsListBox
         {
@@ -577,8 +589,45 @@ namespace WPFClient.Model
                 _occupationSkillChoose = value;
             }
         }
-
-
+        List<List<String>> _occupationSkillNameChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelOccupationSkillsNameChoose
+        {
+            get
+            {
+                return _occupationSkillNameChoose;
+            }
+            set
+            {
+                _occupationSkillNameChoose = value;
+            }
+        }
+        int _occupationSkillState = 1;
+        public int OccupationSkillState
+        {
+            get
+            {
+                return _occupationSkillState;
+            }
+            set
+            {
+                _occupationSkillState = value;
+            }
+        }
+        bool _occupationSkillsIsEnabled = true;
+        public bool CreateHeroModelOccupationSkillsIsEnabled
+        {
+            get
+            {
+                return _occupationSkillsIsEnabled;
+            }
+            set
+            {
+                _occupationSkillsIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelOccupationSkillsIsEnabled");
+            }
+        }
+#endregion
+        #region Occupation Abilities
         List<string> _occupationAbilities = new List<string>();
         public List<string> CreateHeroModelOccupationAbilitiesListBox
         {
@@ -631,8 +680,45 @@ namespace WPFClient.Model
                 _occupationAbilitiesChoose = value;
             }
         }
-
-
+        List<List<String>> _occupationAbilitiesNameChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelOccupationAbilitiesNameChoose
+        {
+            get
+            {
+                return _occupationAbilitiesNameChoose;
+            }
+            set
+            {
+                _occupationAbilitiesNameChoose = value;
+            }
+        }
+        int _occupationAbilitiesState = 1;
+        public int OccupationAbilitiesState
+        {
+            get
+            {
+                return _occupationAbilitiesState;
+            }
+            set
+            {
+                _occupationAbilitiesState = value;
+            }
+        }
+        bool _occupationAbilitiesIsEnabled = true;
+        public bool CreateHeroModelOccupationAbilitiesIsEnabled
+        {
+            get
+            {
+                return _occupationAbilitiesIsEnabled;
+            }
+            set
+            {
+                _occupationAbilitiesIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelOccupationAbilitiesIsEnabled");
+            }
+        }
+#endregion
+        #region Race Skills
         List<string> _raceSkills = new List<string>();
         public List<string> CreateHeroModelRaceSkillsListBox
         {
@@ -685,8 +771,45 @@ namespace WPFClient.Model
                 _raceSkillsChoose = value;
             }
         }
-
-
+        List<List<String>> _raceSkillsNameChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelRaceSkillsNameChoose
+        {
+            get
+            {
+                return _raceSkillsNameChoose;
+            }
+            set
+            {
+                _raceSkillsNameChoose = value;
+            }
+        }
+        int _raceSkillsState = 1;
+        public int RaceSkillsState
+        {
+            get
+            {
+                return _raceSkillsState;
+            }
+            set
+            {
+                _raceSkillsState = value;
+            }
+        }
+        bool _raceSkillsIsEnabled = true;
+        public bool CreateHeroModelRaceSkillsIsEnabled
+        {
+            get
+            {
+                return _raceSkillsIsEnabled;
+            }
+            set
+            {
+                _raceSkillsIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelRaceSkillsIsEnabled");
+            }
+        }
+#endregion
+        #region Race Abilities
         List<string> _raceAbilities = new List<string>();
         public List<string> CreateHeroModelRaceAbilitiesListBox
         {
@@ -737,6 +860,107 @@ namespace WPFClient.Model
             set
             {
                 _raceAbilitiesChoose = value;
+            }
+        }
+        List<List<String>> _raceAbilitiesNameChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelRaceAbilitiesNameChoose
+        {
+            get
+            {
+                return _raceAbilitiesNameChoose;
+            }
+            set
+            {
+                _raceAbilitiesNameChoose = value;
+            }
+        }
+        int _raceAbilitiesState = 1;
+        public int RaceAbilitiesState
+        {
+            get
+            {
+                return _raceAbilitiesState;
+            }
+            set
+            {
+                _raceAbilitiesState = value;
+            }
+        }
+        bool _raceAbilitiesIsEnabled = true;
+        public bool CreateHeroModelRaceAbilitiesIsEnabled
+        {
+            get
+            {
+                return _raceAbilitiesIsEnabled;
+            }
+            set
+            {
+                _raceAbilitiesIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelRaceAbilitiesIsEnabled");
+            }
+        }
+        #endregion
+        bool _basicInfoIsEnabled = true;
+        public bool CreateHeroModelBasicInfoIsEnabled
+        {
+            get
+            {
+                return _basicInfoIsEnabled;
+            }
+            set
+            {
+                _basicInfoIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelBasicInfoIsEnabled");
+            }
+        }
+        bool _skAbIsSelected = false;
+        public bool CreateHeroModelSkAbIsSelected
+        {
+            get
+            {
+                return _skAbIsSelected;
+            }
+            set
+            {
+                _skAbIsSelected = value;
+                OnPropertyChanged("CreateHeroModelSkAbIsSelected");
+            }
+        }
+        bool _skAbIsEnabled = true;
+        public bool CreateHeroModelSkAbIsEnabled
+        {
+            get
+            {
+                return _skAbIsEnabled;
+            }
+            set
+            {
+                _skAbIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelSkAbIsEnabled");
+            }
+        }
+        List<String> _allAbilities = new List<string>();
+        public List<String> AllAbilities
+        {
+            get
+            {
+                return _allAbilities;
+            }
+            set
+            {
+                _allAbilities = value;
+            }
+        }
+        List<String> _allSkills = new List<string>();
+        public List<String> AllSkills
+        {
+            get
+            {
+                return _allSkills;
+            }
+            set
+            {
+                _allSkills = value;
             }
         }
     }

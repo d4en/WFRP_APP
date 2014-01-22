@@ -466,7 +466,6 @@ namespace WPFClient
             info.Race = _createHeroModel.SelectedItem;
             this.Proxy.GetSkillsAndAbilities(info);
         }
-        int _ocAb = 0, _ocSk = 0, _rcAb = 0, _rcSk = 0;
         void IWFRPCallback.ReciveSkillsAndAbilities(OccupationAndRaceInfo info)
         {
             List<String> _ocAbilityIDTemp = new List<string>();
@@ -478,11 +477,7 @@ namespace WPFClient
             _ocSkillsIDTemp = info.OccupationSkills.Split('$').ToList<string>();
             _rcAbilityIDTemp = info.RaceAbilities.Split('$').ToList<string>();
             _rcSkillsIDTemp = info.RaceSkills.Split('$').ToList<string>();
-            for (int i = 0; i < _ocAbilityIDTemp.Count; i++)
-            {
-                Console.WriteLine(_ocAbilityIDTemp[i]);
-            }
-            Console.WriteLine("");
+          
             List<List<String>> _ocAbilityID = new List<List<string>>();
             List<List<String>> _ocSkillsID = new List<List<string>>();
             List<List<String>> _rcAbilityID = new List<List<string>>();
@@ -526,10 +521,9 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelRaceAbilitiesID.Add(_rcAbilityID[i][j]);
                 }
             }
-            _rcAb = _createHeroModel.CreateHeroModelRaceAbilitiesID.Count;
             if (_createHeroModel.CreateHeroModelRaceAbilitiesID.Count > 0)
             {
-                SendAbilitiesID(_createHeroModel.CreateHeroModelRaceAbilitiesID);
+                SendRaceAbilitiesID(_createHeroModel.CreateHeroModelRaceAbilitiesID);
             }
             for (int i = 0; i < _rcSkillsID.Count; i++)
             {
@@ -538,10 +532,9 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelRaceSkillsID.Add(_rcSkillsID[i][j]);
                 }
             }
-            _rcSk = _createHeroModel.CreateHeroModelRaceSkillsID.Count;
             if (_createHeroModel.CreateHeroModelRaceSkillsID.Count > 0)
             {
-                SendSkillsID(_createHeroModel.CreateHeroModelRaceSkillsID);
+                SendRaceSkillsID(_createHeroModel.CreateHeroModelRaceSkillsID);
             }
             for (int i = 0; i < _ocAbilityID.Count; i++)
             {
@@ -550,10 +543,9 @@ namespace WPFClient
                      _createHeroModel.CreateHeroModelOccupationAbilitiesID.Add(_ocAbilityID[i][j]);
                 }
             }
-            _ocAb = _createHeroModel.CreateHeroModelOccupationAbilitiesID.Count;
             if (_createHeroModel.CreateHeroModelOccupationAbilitiesID.Count > 0)
             {
-                SendAbilitiesID(_createHeroModel.CreateHeroModelOccupationAbilitiesID);
+                SendOccupationAbilitiesID(_createHeroModel.CreateHeroModelOccupationAbilitiesID);
             }
             for (int i = 0; i < _ocSkillsID.Count; i++)
             {
@@ -562,93 +554,153 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelOccupationSkillsID.Add(_ocSkillsID[i][j]);
                 }
             }
-            _ocSk = _createHeroModel.CreateHeroModelOccupationSkillsID.Count;
             if (_createHeroModel.CreateHeroModelOccupationSkillsID.Count > 0)
             {
-                SendSkillsID(_createHeroModel.CreateHeroModelOccupationSkillsID);
+                SendOccupationSkillsID(_createHeroModel.CreateHeroModelOccupationSkillsID);
             }
            
         }
 
-        public void SendAbilitiesID(List<String> id)
+        public void SendRaceAbilitiesID(List<String> id)
         {
-            this.Proxy.GetAbilityName(id);
+            this.Proxy.GetRaceAbilityName(id);
         }
-        public void SendSkillsID(List<String> id)
+
+        public void SendRaceSkillsID(List<String> id)
         {
-            this.Proxy.GetSkillName(id);
+            this.Proxy.GetRaceSkillName(id);
         }
-        List<String> _rcSkTemp = new List<string>();
-        void IWFRPCallback.ReciveSkillNames(SkillNames skNames)
+        public void SendOccupationAbilitiesID(List<String> id)
+        {
+            this.Proxy.GetOccupationAbilityName(id);
+        }
+
+        public void SendOccupationSkillsID(List<String> id)
+        {
+            this.Proxy.GetOccupationSkillName(id);
+        }
+        void IWFRPCallback.ReciveRaceAbilityNames(AbilityNames abNames)
         {
             try
             {
-
-                _rcSkTemp = skNames.Names;
-                if (_rcSk > 0)
+                int k = 0;
+                _createHeroModel.CreateHeroModelRaceAbilitiesNames = abNames.Names;
+                for (int i = 0; i < _createHeroModel.CreateHeroModelRaceAbilitiesChoose[0].Count; i++)
                 {
-                    for (int i = 0; i < _rcSk; i++)
-                    {
-                        _createHeroModel.CreateHeroModelRaceSkillsNames.Add(_rcSkTemp[i]);
-                    }
+                    _createHeroModel.CreateHeroModelRaceAbilitiesListBox.Add(_createHeroModel.CreateHeroModelRaceAbilitiesNames[i]);
+                    
                 }
-                if (_ocSk > 0)
+                for (int i = 0; i < _createHeroModel.CreateHeroModelRaceAbilitiesChoose.Count; i++)
                 {
-                    for (int i = _rcSk; i < _rcSk + _ocSk; i++)
+                    List<String> temp = new List<string>();
+                    for (int j = 0; j < _createHeroModel.CreateHeroModelRaceAbilitiesChoose[i].Count; j++)
                     {
-                        _createHeroModel.CreateHeroModelOccupationSkillsListBox.Add(_rcSkTemp[i]);
+                        temp.Add(_createHeroModel.CreateHeroModelRaceAbilitiesNames[k]);
+                        k++;
                     }
+                    _createHeroModel.CreateHeroModelRaceAbilitiesNameChoose.Add(temp);
                 }
-                //for (int i = 0; i < _createHeroModel.CreateHeroModelRaceSkillsChoose[0].Count; i++)
-                //{
-                //    _createHeroModel.CreateHeroModelRaceSkillsListBox.Add(_createHeroModel.CreateHeroModelRaceSkillsNames[i]);
-                //}
-                //_createHeroModel.CreateHeroModelOccupationSkillsNames = skNames.Names;
-                //for (int i = 0; i < _createHeroModel.CreateHeroModelOccupationSkillsChoose[0].Count; i++)
-                //{
-                //    _createHeroModel.CreateHeroModelOccupationSkillsListBox.Add(_createHeroModel.CreateHeroModelOccupationSkillsNames[i]);
-                //}
-
-
             }
-            catch (Exception) { }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
-        List<String> _rcAbTemp = new List<string>();
-        void IWFRPCallback.ReciveAbilityNames(AbilityNames abNames)
+        void IWFRPCallback.ReciveOccupationAbilityNames(AbilityNames abNames)
         {
             try
             {
-                _rcAbTemp = abNames.Names;
-                if (_rcAb > 0)
+                int k = 0;
+                _createHeroModel.CreateHeroModelOccupationAbilitiesNames = abNames.Names;
+
+                for (int i = 0; i < _createHeroModel.CreateHeroModelOccupationAbilitiesChoose[0].Count; i++)
                 {
-                    for (int i = 0; i < _rcAb; i++)
-                    {
-                        _createHeroModel.CreateHeroModelRaceAbilitiesNames.Add(_rcAbTemp[i]);
-                    }
+                    _createHeroModel.CreateHeroModelOccupationAbilitiesListBox.Add(_createHeroModel.CreateHeroModelOccupationAbilitiesNames[i]);
                 }
-                if (_ocAb > 0)
+                for (int i = 0; i < _createHeroModel.CreateHeroModelOccupationAbilitiesChoose.Count; i++)
                 {
-                    for (int i = _rcAb; i < _rcAb + _ocAb; i++)
+                    List<String> temp = new List<string>();
+                    for (int j = 0; j < _createHeroModel.CreateHeroModelOccupationAbilitiesChoose[i].Count; j++)
                     {
-                        _createHeroModel.CreateHeroModelOccupationAbilitiesListBox.Add(_rcAbTemp[i]);
+                        temp.Add(_createHeroModel.CreateHeroModelOccupationAbilitiesNames[k]); 
+                        k++;
                     }
+                    _createHeroModel.CreateHeroModelOccupationAbilitiesNameChoose.Add(temp);
                 }
-                //_createHeroModel.CreateHeroModelOccupationAbilitiesNames = abNames.Names;
-
-                //for (int i = 0; i < _createHeroModel.CreateHeroModelOccupationAbilitiesChoose[0].Count; i++)
-                //{
-                //    _createHeroModel.CreateHeroModelOccupationAbilitiesListBox.Add(_createHeroModel.CreateHeroModelOccupationAbilitiesNames[i]);
-                //}
-
-
-                //_createHeroModel.CreateHeroModelRaceAbilitiesNames = abNames.Names;
-                //for (int i = 0; i < _createHeroModel.CreateHeroModelRaceAbilitiesChoose[0].Count; i++)
-                //{
-                //    _createHeroModel.CreateHeroModelRaceAbilitiesListBox.Add(_createHeroModel.CreateHeroModelRaceAbilitiesNames[i]);
-                //}
-                
             }
-            catch (Exception) { }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        void IWFRPCallback.ReciveRaceSkillNames(SkillNames skNames)
+        {
+            try
+            {
+                int k = 0;
+                _createHeroModel.CreateHeroModelRaceSkillsNames = skNames.Names;
+                for (int i = 0; i < _createHeroModel.CreateHeroModelRaceSkillsChoose[0].Count; i++)
+                {
+                    _createHeroModel.CreateHeroModelRaceSkillsListBox.Add(_createHeroModel.CreateHeroModelRaceSkillsNames[i]);
+                }
+                for (int i = 0; i < _createHeroModel.CreateHeroModelRaceSkillsChoose.Count; i++)
+                {
+                    List<String> temp = new List<string>();
+                    for (int j = 0; j < _createHeroModel.CreateHeroModelRaceSkillsChoose[i].Count; j++)
+                    {
+                        temp.Add(_createHeroModel.CreateHeroModelRaceSkillsNames[k]); 
+                        k++;
+                    }
+                    _createHeroModel.CreateHeroModelRaceSkillsNameChoose.Add(temp);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        void IWFRPCallback.ReciveOccupationSkillNames(SkillNames skNames)
+        {
+            try
+            {
+                int k = 0;
+                _createHeroModel.CreateHeroModelOccupationSkillsNames = skNames.Names;
+                for (int i = 0; i < _createHeroModel.CreateHeroModelOccupationSkillsChoose[0].Count; i++)
+                {
+                    _createHeroModel.CreateHeroModelOccupationSkillsListBox.Add(_createHeroModel.CreateHeroModelOccupationSkillsNames[i]);
+                }
+                for (int i = 0; i < _createHeroModel.CreateHeroModelOccupationSkillsChoose.Count; i++)
+                {
+                    List<String> temp = new List<string>();
+                    for (int j = 0; j < _createHeroModel.CreateHeroModelOccupationSkillsChoose[i].Count; j++)
+                    {
+                        temp.Add(_createHeroModel.CreateHeroModelOccupationSkillsNames[k]);
+                        k++;
+                    }
+                    _createHeroModel.CreateHeroModelOccupationSkillsNameChoose.Add(temp);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        public void GetSkillInfo(string name)
+        {
+            this.Proxy.GetFullSkillInfo(name);
+        }
+        public void GetAbilityInfo(string name)
+        {
+            this.Proxy.GetFullAbilityInfo(name);
+        }
+
+        public void ReciveFullSkillInfo(FullSkillInfo skInfo)
+        {
+            _createHeroModel.CreateHeroModelSkAbInfo = skInfo.Description;
+        }
+        public void ReciveFullAbilityInfo(FullAbilityInfo abInfo)
+        {
+            _createHeroModel.CreateHeroModelSkAbInfo = abInfo.Description;
         }
         //TO DO add CreateHero
         public void CreateHero()
@@ -1064,12 +1116,6 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
-        #endregion
-
-
-
-        
-
         public IAsyncResult BeginReciveAbilityNames(AbilityNames abNames, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -1090,10 +1136,14 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
-        public void ReciveFullAbilityInfo(FullAbilityInfo abInfo)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
+
+
+
+        
+
+        
+       
 
         public IAsyncResult BeginReciveFullAbilityInfo(FullAbilityInfo abInfo, AsyncCallback callback, object asyncState)
         {
@@ -1105,11 +1155,7 @@ namespace WPFClient
             throw new NotImplementedException();
         }
 
-        public void ReciveFullSkillInfo(FullSkillInfo skInfo)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public IAsyncResult BeginReciveFullSkillInfo(FullSkillInfo skInfo, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
@@ -1131,6 +1177,63 @@ namespace WPFClient
         }
 
         public void EndReciveFullHeroChart(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        
+        public IAsyncResult BeginReciveRaceAbilityNames(AbilityNames abNames, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveRaceAbilityNames(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+        public IAsyncResult BeginReciveOccupationAbilityNames(AbilityNames abNames, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveOccupationAbilityNames(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        public IAsyncResult BeginReciveRaceSkillNames(SkillNames skNames, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveRaceSkillNames(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        public IAsyncResult BeginReciveOccupationSkillNames(SkillNames skNames, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveOccupationSkillNames(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void ReciveAbilityNames(AbilityNames abNames)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReciveSkillNames(SkillNames skNames)
         {
             throw new NotImplementedException();
         }
