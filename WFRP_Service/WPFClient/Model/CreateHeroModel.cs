@@ -523,6 +523,8 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelPP");
             }
         }
+
+
         List<string> _occupationSkills = new List<string>();
         public List<string> CreateHeroModelOccupationSkillsListBox
         {
@@ -537,6 +539,46 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelOccupationSkillsListBox");
             }
         }
+        List<string> _occupationSkillsNames = new List<string>();
+        public List<string> CreateHeroModelOccupationSkillsNames
+        {
+            get
+            {
+                return _occupationSkillsNames;
+            }
+            set
+            {
+                _occupationSkillsNames = value;
+
+            }
+        }
+        List<string> _occupationSkillsID = new List<string>();
+        public List<string> CreateHeroModelOccupationSkillsID
+        {
+            get
+            {
+                return _occupationSkillsID;
+            }
+            set
+            {
+                _occupationSkillsID = value;
+
+            }
+        }
+        List<List<String>> _occupationSkillChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelOccupationSkillsChoose
+        {
+            get
+            {
+                return _occupationSkillChoose;
+            }
+            set
+            {
+                _occupationSkillChoose = value;
+            }
+        }
+
+
         List<string> _occupationAbilities = new List<string>();
         public List<string> CreateHeroModelOccupationAbilitiesListBox
         {
@@ -551,6 +593,46 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelOccupationAbilitiesListBox");
             }
         }
+        List<string> _occupationAbilitiesNames = new List<string>();
+        public List<string> CreateHeroModelOccupationAbilitiesNames
+        {
+            get
+            {
+                return _occupationAbilitiesNames;
+            }
+            set
+            {
+                _occupationAbilitiesNames = value;
+
+            }
+        }
+        List<string> _occupationAbilitiesID = new List<string>();
+        public List<string> CreateHeroModelOccupationAbilitiesID
+        {
+            get
+            {
+                return _occupationAbilitiesID;
+            }
+            set
+            {
+                _occupationAbilitiesID = value;
+
+            }
+        }
+        List<List<String>> _occupationAbilitiesChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelOccupationAbilitiesChoose
+        {
+            get
+            {
+                return _occupationAbilitiesChoose;
+            }
+            set
+            {
+                _occupationAbilitiesChoose = value;
+            }
+        }
+
+
         List<string> _raceSkills = new List<string>();
         public List<string> CreateHeroModelRaceSkillsListBox
         {
@@ -565,6 +647,46 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelRaceSkillsListBox");
             }
         }
+        List<string> _raceSkillsNames = new List<string>();
+        public List<string> CreateHeroModelRaceSkillsNames
+        {
+            get
+            {
+                return _raceSkillsNames;
+            }
+            set
+            {
+                _raceSkillsNames = value;
+
+            }
+        }
+        List<string> _raceSkillsID = new List<string>();
+        public List<string> CreateHeroModelRaceSkillsID
+        {
+            get
+            {
+                return _raceSkillsID;
+            }
+            set
+            {
+                _raceSkillsID = value;
+
+            }
+        }
+        List<List<String>> _raceSkillsChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelRaceSkillsChoose
+        {
+            get
+            {
+                return _raceSkillsChoose;
+            }
+            set
+            {
+                _raceSkillsChoose = value;
+            }
+        }
+
+
         List<string> _raceAbilities = new List<string>();
         public List<string> CreateHeroModelRaceAbilitiesListBox
         {
@@ -579,69 +701,43 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelRaceAbilitiesListBox");
             }
         }
-        public List<List<String>> DivideChooseSkill(List<String> list)
+        List<string> _raceAbilitiesNames = new List<string>();
+        public List<string> CreateHeroModelRaceAbilitiesNames
         {
-            List<List<String>> divideChooseSkill = new List<List<String>>();
-            try
+            get
             {
-                List<String> restSkill = new List<String>();
-                List<String> restSkillAndChooseSkill = new List<String>();
-                List<List<String>> restSkillAndChooseSkillID = new List<List<String>>();
-                List<String> temp;
-                String signal = String.Empty;
-                for (int i = 0; i < list.Count; i++)
-                {
-                    temp = new List<String>();
-
-                    if (list[i].ToString().Length > 3)
-                    {
-                        for (int j = 0; j < list[i].ToString().Length; j++)
-                        {
-                            if (list[i].ToString().ElementAt(j) == '|')
-                            {
-                                temp.Add(signal);
-                                signal = String.Empty;
-                            }
-                            else if (j == list[i].ToString().Length - 1)
-                            {
-                                signal += list[i].ToString().ElementAt(j);
-                                temp.Add(signal);
-                                signal = String.Empty;
-                                break;
-                            }
-                            else // Jeżeli ciąg dalszy tej samej odpowiedzi, dodaj kolejny znak
-                            {
-                                signal += list[i].ToString().ElementAt(j);
-                            }
-                        }
-                        divideChooseSkill.Add(temp);
-                    }
-                    else
-                    {
-                        restSkill.Add(list[i]);
-                    }
-                }
-                for (int i = 0; i < divideChooseSkill.Count; i++)
-                {
-                    for (int j = 0; j < divideChooseSkill[i].Count; j++)
-                    {
-                        restSkillAndChooseSkill.Add(divideChooseSkill[i][j]);
-                    }
-                }
-                for (int i = 0; i < restSkill.Count; i++)
-                {
-                    restSkillAndChooseSkill.Add(restSkill[i]);
-                }
-
-                restSkillAndChooseSkillID.Add(restSkillAndChooseSkill);
-                
+                return _raceAbilitiesNames;
+            }
+            set
+            {
+                _raceAbilitiesNames = value;
 
             }
-            catch (Exception ex)
+        }
+        List<string> _raceAbilitiesID = new List<string>();
+        public List<string> CreateHeroModelRaceAbilitiesID
+        {
+            get
             {
-                Console.WriteLine(ex);
+                return _raceAbilitiesID;
             }
-            return divideChooseSkill;
-        } 
+            set
+            {
+                _raceAbilitiesID = value;
+
+            }
+        }
+        List<List<String>> _raceAbilitiesChoose = new List<List<string>>();
+        public List<List<String>> CreateHeroModelRaceAbilitiesChoose
+        {
+            get
+            {
+                return _raceAbilitiesChoose;
+            }
+            set
+            {
+                _raceAbilitiesChoose = value;
+            }
+        }
     }
 }
