@@ -71,6 +71,17 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void ReciveFullHeroChart(HeroFullChart chart);
-        
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveRaceAbilityNames(AbilityNames abNames);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveOccupationAbilityNames(AbilityNames abNames);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveRaceSkillNames(SkillNames skNames);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveOccupationSkillNames(SkillNames skNames);
     }
 }

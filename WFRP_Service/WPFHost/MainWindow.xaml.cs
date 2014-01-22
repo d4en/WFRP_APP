@@ -162,12 +162,12 @@ namespace WPFHost
             test.Mag = "20";
             test.PO = "20";
             test.PP = "20";
-            test.Id = "1";
+            test.Id = "2";
 
             abs.Add("1");
             abs.Add("2");
 
-            DBcon.GetHeroChart("1");
+            DBcon.GetHeroChart("2");
         }
 
 

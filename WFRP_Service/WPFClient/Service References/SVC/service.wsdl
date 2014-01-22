@@ -100,6 +100,18 @@
   <wsdl:message name="IWFRP_GetHeroChart_InputMessage">
     <wsdl:part name="parameters" element="tns:GetHeroChart" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_GetRaceAbilityName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRaceAbilityName" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_GetOccupationAbilityName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOccupationAbilityName" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_GetRaceSkillName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRaceSkillName" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_GetOccupationSkillName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOccupationSkillName" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -162,6 +174,18 @@
   </wsdl:message>
   <wsdl:message name="IWFRP_ReciveFullHeroChart_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReciveFullHeroChart" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReciveRaceAbilityNames_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReciveRaceAbilityNames" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReciveOccupationAbilityNames_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReciveOccupationAbilityNames" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReciveRaceSkillNames_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReciveRaceSkillNames" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReciveOccupationSkillNames_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReciveOccupationSkillNames" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -237,6 +261,18 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetHeroChart">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetHeroChart" message="tns:IWFRP_GetHeroChart_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetRaceAbilityName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetRaceAbilityName" message="tns:IWFRP_GetRaceAbilityName_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOccupationAbilityName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetOccupationAbilityName" message="tns:IWFRP_GetOccupationAbilityName_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetRaceSkillName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetRaceSkillName" message="tns:IWFRP_GetRaceSkillName_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOccupationSkillName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetOccupationSkillName" message="tns:IWFRP_GetOccupationSkillName_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
@@ -299,6 +335,18 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveFullHeroChart">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveFullHeroChart" message="tns:IWFRP_ReciveFullHeroChart_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveRaceAbilityNames">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveRaceAbilityNames" message="tns:IWFRP_ReciveRaceAbilityNames_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveOccupationAbilityNames">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveOccupationAbilityNames" message="tns:IWFRP_ReciveOccupationAbilityNames_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveRaceSkillNames">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveRaceSkillNames" message="tns:IWFRP_ReciveRaceSkillNames_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveOccupationSkillNames">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveOccupationSkillNames" message="tns:IWFRP_ReciveOccupationSkillNames_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -452,6 +500,30 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetRaceAbilityName">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetRaceAbilityName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetOccupationAbilityName">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetOccupationAbilityName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetRaceSkillName">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetRaceSkillName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetOccupationSkillName">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetOccupationSkillName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetServerMessageStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
@@ -574,6 +646,30 @@
     </wsdl:operation>
     <wsdl:operation name="ReciveFullHeroChart">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveFullHeroChart" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReciveRaceAbilityNames">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveRaceAbilityNames" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReciveOccupationAbilityNames">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveOccupationAbilityNames" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReciveRaceSkillNames">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveRaceSkillNames" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReciveOccupationSkillNames">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveOccupationSkillNames" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

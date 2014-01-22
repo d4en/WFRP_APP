@@ -2628,6 +2628,38 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetHeroChart(string Id_acc, System.AsyncCallback callback, object asyncState);
         
         void EndGetHeroChart(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetRaceAbilityName")]
+        void GetRaceAbilityName(System.Collections.Generic.List<string> IDabilities);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetRaceAbilityName")]
+        System.IAsyncResult BeginGetRaceAbilityName(System.Collections.Generic.List<string> IDabilities, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetRaceAbilityName(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetOccupationAbilityName")]
+        void GetOccupationAbilityName(System.Collections.Generic.List<string> IDabilities);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetOccupationAbilityName")]
+        System.IAsyncResult BeginGetOccupationAbilityName(System.Collections.Generic.List<string> IDabilities, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetOccupationAbilityName(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetRaceSkillName")]
+        void GetRaceSkillName(System.Collections.Generic.List<string> IDskills);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetRaceSkillName")]
+        System.IAsyncResult BeginGetRaceSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetRaceSkillName(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetOccupationSkillName")]
+        void GetOccupationSkillName(System.Collections.Generic.List<string> IDskills);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetOccupationSkillName")]
+        System.IAsyncResult BeginGetOccupationSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetOccupationSkillName(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2800,6 +2832,38 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReciveFullHeroChart(WPFClient.SVC.HeroFullChart chart, System.AsyncCallback callback, object asyncState);
         
         void EndReciveFullHeroChart(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveRaceAbilityNames")]
+        void ReciveRaceAbilityNames(WPFClient.SVC.AbilityNames abNames);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveRaceAbilityNames")]
+        System.IAsyncResult BeginReciveRaceAbilityNames(WPFClient.SVC.AbilityNames abNames, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveRaceAbilityNames(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveOccupationAbilityNames")]
+        void ReciveOccupationAbilityNames(WPFClient.SVC.AbilityNames abNames);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveOccupationAbilityNames")]
+        System.IAsyncResult BeginReciveOccupationAbilityNames(WPFClient.SVC.AbilityNames abNames, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveOccupationAbilityNames(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveRaceSkillNames")]
+        void ReciveRaceSkillNames(WPFClient.SVC.SkillNames skNames);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveRaceSkillNames")]
+        System.IAsyncResult BeginReciveRaceSkillNames(WPFClient.SVC.SkillNames skNames, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveRaceSkillNames(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveOccupationSkillNames")]
+        void ReciveOccupationSkillNames(WPFClient.SVC.SkillNames skNames);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveOccupationSkillNames")]
+        System.IAsyncResult BeginReciveOccupationSkillNames(WPFClient.SVC.SkillNames skNames, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveOccupationSkillNames(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2973,6 +3037,30 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onGetHeroChartCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetRaceAbilityNameDelegate;
+        
+        private EndOperationDelegate onEndGetRaceAbilityNameDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetRaceAbilityNameCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetOccupationAbilityNameDelegate;
+        
+        private EndOperationDelegate onEndGetOccupationAbilityNameDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetOccupationAbilityNameCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetRaceSkillNameDelegate;
+        
+        private EndOperationDelegate onEndGetRaceSkillNameDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetRaceSkillNameCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetOccupationSkillNameDelegate;
+        
+        private EndOperationDelegate onEndGetOccupationSkillNameDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetOccupationSkillNameCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -3040,6 +3128,14 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddStartStatsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroChartCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetRaceAbilityNameCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationAbilityNameCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetRaceSkillNameCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationSkillNameCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -4218,6 +4314,202 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginGetHeroChartDelegate, new object[] {
                         Id_acc}, this.onEndGetHeroChartDelegate, this.onGetHeroChartCompletedDelegate, userState);
+        }
+        
+        public void GetRaceAbilityName(System.Collections.Generic.List<string> IDabilities) {
+            base.Channel.GetRaceAbilityName(IDabilities);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetRaceAbilityName(System.Collections.Generic.List<string> IDabilities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetRaceAbilityName(IDabilities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetRaceAbilityName(System.IAsyncResult result) {
+            base.Channel.EndGetRaceAbilityName(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetRaceAbilityName(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.Generic.List<string> IDabilities = ((System.Collections.Generic.List<string>)(inValues[0]));
+            return this.BeginGetRaceAbilityName(IDabilities, callback, asyncState);
+        }
+        
+        private object[] OnEndGetRaceAbilityName(System.IAsyncResult result) {
+            this.EndGetRaceAbilityName(result);
+            return null;
+        }
+        
+        private void OnGetRaceAbilityNameCompleted(object state) {
+            if ((this.GetRaceAbilityNameCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetRaceAbilityNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetRaceAbilityNameAsync(System.Collections.Generic.List<string> IDabilities) {
+            this.GetRaceAbilityNameAsync(IDabilities, null);
+        }
+        
+        public void GetRaceAbilityNameAsync(System.Collections.Generic.List<string> IDabilities, object userState) {
+            if ((this.onBeginGetRaceAbilityNameDelegate == null)) {
+                this.onBeginGetRaceAbilityNameDelegate = new BeginOperationDelegate(this.OnBeginGetRaceAbilityName);
+            }
+            if ((this.onEndGetRaceAbilityNameDelegate == null)) {
+                this.onEndGetRaceAbilityNameDelegate = new EndOperationDelegate(this.OnEndGetRaceAbilityName);
+            }
+            if ((this.onGetRaceAbilityNameCompletedDelegate == null)) {
+                this.onGetRaceAbilityNameCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetRaceAbilityNameCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetRaceAbilityNameDelegate, new object[] {
+                        IDabilities}, this.onEndGetRaceAbilityNameDelegate, this.onGetRaceAbilityNameCompletedDelegate, userState);
+        }
+        
+        public void GetOccupationAbilityName(System.Collections.Generic.List<string> IDabilities) {
+            base.Channel.GetOccupationAbilityName(IDabilities);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetOccupationAbilityName(System.Collections.Generic.List<string> IDabilities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOccupationAbilityName(IDabilities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetOccupationAbilityName(System.IAsyncResult result) {
+            base.Channel.EndGetOccupationAbilityName(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetOccupationAbilityName(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.Generic.List<string> IDabilities = ((System.Collections.Generic.List<string>)(inValues[0]));
+            return this.BeginGetOccupationAbilityName(IDabilities, callback, asyncState);
+        }
+        
+        private object[] OnEndGetOccupationAbilityName(System.IAsyncResult result) {
+            this.EndGetOccupationAbilityName(result);
+            return null;
+        }
+        
+        private void OnGetOccupationAbilityNameCompleted(object state) {
+            if ((this.GetOccupationAbilityNameCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetOccupationAbilityNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetOccupationAbilityNameAsync(System.Collections.Generic.List<string> IDabilities) {
+            this.GetOccupationAbilityNameAsync(IDabilities, null);
+        }
+        
+        public void GetOccupationAbilityNameAsync(System.Collections.Generic.List<string> IDabilities, object userState) {
+            if ((this.onBeginGetOccupationAbilityNameDelegate == null)) {
+                this.onBeginGetOccupationAbilityNameDelegate = new BeginOperationDelegate(this.OnBeginGetOccupationAbilityName);
+            }
+            if ((this.onEndGetOccupationAbilityNameDelegate == null)) {
+                this.onEndGetOccupationAbilityNameDelegate = new EndOperationDelegate(this.OnEndGetOccupationAbilityName);
+            }
+            if ((this.onGetOccupationAbilityNameCompletedDelegate == null)) {
+                this.onGetOccupationAbilityNameCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOccupationAbilityNameCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetOccupationAbilityNameDelegate, new object[] {
+                        IDabilities}, this.onEndGetOccupationAbilityNameDelegate, this.onGetOccupationAbilityNameCompletedDelegate, userState);
+        }
+        
+        public void GetRaceSkillName(System.Collections.Generic.List<string> IDskills) {
+            base.Channel.GetRaceSkillName(IDskills);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetRaceSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetRaceSkillName(IDskills, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetRaceSkillName(System.IAsyncResult result) {
+            base.Channel.EndGetRaceSkillName(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetRaceSkillName(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.Generic.List<string> IDskills = ((System.Collections.Generic.List<string>)(inValues[0]));
+            return this.BeginGetRaceSkillName(IDskills, callback, asyncState);
+        }
+        
+        private object[] OnEndGetRaceSkillName(System.IAsyncResult result) {
+            this.EndGetRaceSkillName(result);
+            return null;
+        }
+        
+        private void OnGetRaceSkillNameCompleted(object state) {
+            if ((this.GetRaceSkillNameCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetRaceSkillNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetRaceSkillNameAsync(System.Collections.Generic.List<string> IDskills) {
+            this.GetRaceSkillNameAsync(IDskills, null);
+        }
+        
+        public void GetRaceSkillNameAsync(System.Collections.Generic.List<string> IDskills, object userState) {
+            if ((this.onBeginGetRaceSkillNameDelegate == null)) {
+                this.onBeginGetRaceSkillNameDelegate = new BeginOperationDelegate(this.OnBeginGetRaceSkillName);
+            }
+            if ((this.onEndGetRaceSkillNameDelegate == null)) {
+                this.onEndGetRaceSkillNameDelegate = new EndOperationDelegate(this.OnEndGetRaceSkillName);
+            }
+            if ((this.onGetRaceSkillNameCompletedDelegate == null)) {
+                this.onGetRaceSkillNameCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetRaceSkillNameCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetRaceSkillNameDelegate, new object[] {
+                        IDskills}, this.onEndGetRaceSkillNameDelegate, this.onGetRaceSkillNameCompletedDelegate, userState);
+        }
+        
+        public void GetOccupationSkillName(System.Collections.Generic.List<string> IDskills) {
+            base.Channel.GetOccupationSkillName(IDskills);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetOccupationSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOccupationSkillName(IDskills, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetOccupationSkillName(System.IAsyncResult result) {
+            base.Channel.EndGetOccupationSkillName(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetOccupationSkillName(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.Generic.List<string> IDskills = ((System.Collections.Generic.List<string>)(inValues[0]));
+            return this.BeginGetOccupationSkillName(IDskills, callback, asyncState);
+        }
+        
+        private object[] OnEndGetOccupationSkillName(System.IAsyncResult result) {
+            this.EndGetOccupationSkillName(result);
+            return null;
+        }
+        
+        private void OnGetOccupationSkillNameCompleted(object state) {
+            if ((this.GetOccupationSkillNameCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetOccupationSkillNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetOccupationSkillNameAsync(System.Collections.Generic.List<string> IDskills) {
+            this.GetOccupationSkillNameAsync(IDskills, null);
+        }
+        
+        public void GetOccupationSkillNameAsync(System.Collections.Generic.List<string> IDskills, object userState) {
+            if ((this.onBeginGetOccupationSkillNameDelegate == null)) {
+                this.onBeginGetOccupationSkillNameDelegate = new BeginOperationDelegate(this.OnBeginGetOccupationSkillName);
+            }
+            if ((this.onEndGetOccupationSkillNameDelegate == null)) {
+                this.onEndGetOccupationSkillNameDelegate = new EndOperationDelegate(this.OnEndGetOccupationSkillName);
+            }
+            if ((this.onGetOccupationSkillNameCompletedDelegate == null)) {
+                this.onGetOccupationSkillNameCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOccupationSkillNameCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetOccupationSkillNameDelegate, new object[] {
+                        IDskills}, this.onEndGetOccupationSkillNameDelegate, this.onGetOccupationSkillNameCompletedDelegate, userState);
         }
     }
 }

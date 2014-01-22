@@ -81,5 +81,17 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void GetHeroChart(string Id_acc);
+
+        [OperationContract(IsOneWay = true)]
+        void GetRaceAbilityName(List<string> IDabilities);
+
+        [OperationContract(IsOneWay = true)]
+        void GetOccupationAbilityName(List<string> IDabilities);
+
+        [OperationContract(IsOneWay = true)]
+        void GetRaceSkillName(List<string> IDskills);
+
+        [OperationContract(IsOneWay = true)]
+        void GetOccupationSkillName(List<string> IDskills);
     }
 }

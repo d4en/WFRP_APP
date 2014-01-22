@@ -721,6 +721,42 @@ namespace Service
             chart = DataBase.GetHeroChart(Id_acc);
             callback.ReciveFullHeroChart(chart);
         }
+
+        public void GetRaceAbilityName(List<string> IDabilities)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            AbilityNames abNames = new AbilityNames();
+            abNames = DataBase.GetAbilityName(IDabilities);
+            callback.ReciveRaceAbilityNames(abNames);
+        }
+
+        public void GetOccupationAbilityName(List<string> IDabilities)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            AbilityNames abNames = new AbilityNames();
+            abNames = DataBase.GetAbilityName(IDabilities);
+            callback.ReciveOccupationAbilityNames(abNames);
+        }
+
+        public void GetRaceSkillName(List<string> IDskills)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            SkillNames skNames = new SkillNames();
+            skNames = DataBase.GetSkillName(IDskills);
+            callback.ReciveRaceSkillNames(skNames);
+        }
+
+        public void GetOccupationSkillName(List<string> IDskills)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            SkillNames skNames = new SkillNames();
+            skNames = DataBase.GetSkillName(IDskills);
+            callback.ReciveOccupationSkillNames(skNames);
+        }
         #endregion
 
 
