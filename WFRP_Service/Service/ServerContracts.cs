@@ -60,5 +60,20 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void GetSkillsAndAbilities(HeroRaceAndOccupation info);
+
+        [OperationContract(IsOneWay = true)]
+        void AddHeroSkillsAndAbilities(HeroAbilitiesAndSkills AbsNSki);
+
+        [OperationContract(IsOneWay = true)]
+        void GetAbilityName(List<string> IDabilities);
+
+        [OperationContract(IsOneWay = true)]
+        void GetSkillName(List<string> IDskills);
+
+        [OperationContract(IsOneWay = true)]
+        void GetFullAbilityInfo(string abName);
+
+        [OperationContract(IsOneWay = true)]
+        void GetFullSkillInfo(string skName);
     }
 }

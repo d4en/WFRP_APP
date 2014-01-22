@@ -144,10 +144,11 @@ namespace WPFHost
         private void btn_test_Click(object sender, RoutedEventArgs e)
         {
             DBConnector DBcon = new DBConnector();
-            HeroRaceAndOccupation info = new HeroRaceAndOccupation();
-            info.Race = "człowiek";
-            info.Occupation = "Akolita";
-            DBcon.GetSkillsAndAbilities(info);
+            List<string> abs = new List<string>();
+            abs.Add("1");
+            abs.Add("2");
+            string test = "Charakteryzacja";
+            DBcon.GetFullSkillInfo(test);
         }
 
 

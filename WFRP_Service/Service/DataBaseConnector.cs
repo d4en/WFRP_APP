@@ -575,6 +575,322 @@ namespace Service
             }
             return response;
         }
+
+        public string AddSkillsAndAbilities(HeroAbilitiesAndSkills AbsNSki)
+        {
+            string response = string.Empty;
+            string _id_Occupation = string.Empty;
+
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT id FROM occupation_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", AbsNSki.Occupation);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                _id_Occupation = ds.Tables[0].Rows[0][0].ToString();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                connection.Open();
+                cmd = connection.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO hero_occupation_table(id, fk_occupation_table) VALUES(@id_acc, @id_occupation)";
+                cmd.Parameters.AddWithValue("@id_acc", AbsNSki.IDAcc);
+                cmd.Parameters.AddWithValue("@id_occupation", _id_Occupation);
+                
+                cmd.ExecuteNonQuery();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                connection.Open();
+                cmd = connection.CreateCommand();
+
+                cmd.CommandText = "UPDATE fk_table SET fk_hero_occupation_table = @id_acc, fk_hero_skills_table = @id_acc, fk_hero_abilities_table = @id_acc  where id = @id_acc";
+                cmd.Parameters.AddWithValue("@id_acc", AbsNSki.IDAcc);
+                cmd.Parameters.AddWithValue("@id_occupation", _id_Occupation);
+
+                cmd.ExecuteNonQuery();
+                
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                for (int i = 0; i < AbsNSki.Skills.Count; i++)
+                {
+                    connection.Open();
+                    cmd = connection.CreateCommand();
+
+                    cmd.CommandText = "INSERT INTO hero_skills_table(id_acc, fk_skill_table, state, plus) VALUES(@id_acc, @id_skill, @state, @plus)";
+                    cmd.Parameters.AddWithValue("@id_acc", AbsNSki.IDAcc);
+                    cmd.Parameters.AddWithValue("@id_skill", AbsNSki.Skills[i]);
+                    cmd.Parameters.AddWithValue("@state", true);
+                    cmd.Parameters.AddWithValue("@plus", 0);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+
+                for (int i = 0; i < AbsNSki.Abilities.Count; i++)
+                {
+                    connection.Open();
+                    cmd = connection.CreateCommand();
+
+                    cmd.CommandText = "INSERT INTO hero_abilities_table(id_acc, fk_abilities_table, state) VALUES(@id_acc, @id_skill, @state)";
+                    cmd.Parameters.AddWithValue("@id_acc", AbsNSki.IDAcc);
+                    cmd.Parameters.AddWithValue("@id_skill", AbsNSki.Skills[i]);
+                    cmd.Parameters.AddWithValue("@state", true);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+            
+            }
+            catch (Exception h)
+            {
+                Console.WriteLine(h.ToString());
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+
+            return response;
+        }
+
+        public AbilityNames GetAbilityName(List<string> idAbililities)
+        {
+            AbilityNames response = new AbilityNames();
+             MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+                MySqlDataAdapter adap = new MySqlDataAdapter();
+                List<string> allNames = new List<string>();
+                for (int i = 0; i < idAbililities.Count; i++)
+                {
+                    if (connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        connection.Open();
+
+                    }
+                    cmd = connection.CreateCommand();
+                    ds = new DataSet();
+                    cmd.CommandText = "SELECT name FROM abilities_table WHERE id = @id_ab";
+                    cmd.Parameters.AddWithValue("@id_ab", idAbililities[i]);
+
+                    adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+                    allNames.Add(ds.Tables[0].Rows[0][0].ToString());
+                    
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                response.Names = allNames;
+                for (int i = 0; i < response.Names.Count; i++)
+                {
+                    Console.WriteLine(response.Names[i]);
+                }
+            }
+            catch (Exception w)
+            {
+                Console.WriteLine(w.ToString());
+            }
+
+
+            return response;
+        }
+
+        public SkillNames GetSkillName(List<string> idSkills)
+        {
+            SkillNames response = new SkillNames();
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+                MySqlDataAdapter adap = new MySqlDataAdapter();
+                List<string> allNames = new List<string>();
+                for (int i = 0; i < idSkills.Count; i++)
+                {
+                    if (connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        connection.Open();
+
+                    }
+                    cmd = connection.CreateCommand();
+                    ds = new DataSet();
+                    cmd.CommandText = "SELECT name FROM skills_table WHERE id = @id_sk";
+                    cmd.Parameters.AddWithValue("@id_sk", idSkills[i]);
+
+                    adap = new MySqlDataAdapter(cmd);
+
+                    adap.Fill(ds);
+                    allNames.Add(ds.Tables[0].Rows[0][0].ToString());
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+
+                    }
+                }
+                response.Names = allNames;
+                for (int i = 0; i < response.Names.Count; i++)
+                {
+                    Console.WriteLine(response.Names[i]);
+                }
+            }
+            catch (Exception w)
+            {
+                Console.WriteLine(w.ToString());
+            }
+
+
+            return response;
+        }
+
+        public FullAbilityInfo GetFullAbilityInfo(string abName)
+        {
+            FullAbilityInfo response = new FullAbilityInfo();
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT discription FROM abilities_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", abName);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.Name = abName;
+                response.Description = ds.Tables[0].Rows[0][0].ToString();
+
+                Console.WriteLine(response.Description);
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception w)
+            {
+                Console.WriteLine(w.ToString());
+            }
+            return response;
+        }
+        
+        public FullSkillInfo GetFullSkillInfo(string skName)
+        {
+            FullSkillInfo response = new FullSkillInfo();
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM skills_table WHERE name = @name";
+                cmd.Parameters.AddWithValue("@name", skName);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.Name = skName;
+                response.Description = ds.Tables[0].Rows[0][3].ToString();
+                response.Type = ds.Tables[0].Rows[0][1].ToString();
+                response.Att = ds.Tables[0].Rows[0][2].ToString();
+                response.SimAtt = ds.Tables[0].Rows[0][4].ToString();
+                Console.WriteLine(response.Description);
+                //Console.WriteLine(response.Description);
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception w)
+            {
+                Console.WriteLine(w.ToString());
+            }
+            return response;
+        }
     }
 }
 

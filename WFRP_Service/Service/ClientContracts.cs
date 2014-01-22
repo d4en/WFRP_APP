@@ -57,5 +57,18 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void ReciveSkillsAndAbilities(OccupationAndRaceInfo info);
 
+        [OperationContract(IsOneWay = true)]
+        void ReciveAbilityNames(AbilityNames abNames);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveSkillNames(SkillNames skNames);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveFullAbilityInfo(FullAbilityInfo abInfo);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveFullSkillInfo(FullSkillInfo skInfo);
+        
+
     }
 }

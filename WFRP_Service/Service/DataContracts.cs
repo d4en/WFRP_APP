@@ -61,7 +61,9 @@ namespace Service
         [EnumMember]
         Login,
         [EnumMember]
-        StartSession
+        StartSession,
+        [EnumMember]
+        AddedSnA
     }
 
     [DataContract]
@@ -457,6 +459,135 @@ namespace Service
         {
             get { return _occupation; }
             set { _occupation = value; }
+        }
+    }
+
+    [DataContract]
+    public class HeroAbilitiesAndSkills
+    {
+        private string _occupation;
+        private string _IDAcc;
+        private List<string> _skills;
+        private List<string> _abilities;
+
+        [DataMember]
+        public string Occupation
+        {
+            get { return _occupation; }
+            set { _occupation = value; }
+        }
+
+        [DataMember]
+        public string IDAcc
+        {
+            get { return _IDAcc; }
+            set { _IDAcc = value; }
+        }
+
+        [DataMember]
+        public List<string> Skills
+        {
+            get { return _skills; }
+            set { _skills = value; }
+        }
+
+        [DataMember]
+        public List<string> Abilities
+        {
+            get { return _abilities; }
+            set { _abilities = value; }
+        }
+    }
+
+    [DataContract]
+    public class AbilityNames
+    {
+        private List<string> _names;
+
+        [DataMember]
+        public List<string> Names
+        {
+            get { return _names; }
+            set { _names = value; }
+        }
+    }
+
+    [DataContract]
+    public class SkillNames
+    {
+        private List<string> _names;
+
+        [DataMember]
+        public List<string> Names
+        {
+            get { return _names; }
+            set { _names = value; }
+        }
+    }
+
+    [DataContract]
+    public class FullAbilityInfo
+    {
+        private string _name;
+        private string _description;
+
+        [DataMember]
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        [DataMember]
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+    }
+
+    [DataContract]
+    public class FullSkillInfo
+    {
+        private string _name;
+        private string _description;
+        private string _simAtt;
+        private string _att;
+        private string _type;
+
+        [DataMember]
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        [DataMember]
+        public string SimAtt
+        {
+            get { return _simAtt; }
+            set { _simAtt = value; }
+        }
+
+        [DataMember]
+        public string Att
+        {
+            get { return _att; }
+            set { _att = value; }
+        }
+
+        [DataMember]
+        public string Type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
+        [DataMember]
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
     }
 }

@@ -508,7 +508,6 @@ namespace Service
             }
         }
 
-
         public void UpdateParchment(Client client, FileMessage fMsg)
         {
             Session session = SearchSessionByClientName(client.Name);
@@ -629,7 +628,72 @@ namespace Service
             dbResponse = DataBase.GetSkillsAndAbilities(info);
             callback.ReciveSkillsAndAbilities(dbResponse);
         }
+
+        public void AddHeroSkillsAndAbilities(HeroAbilitiesAndSkills AbsNSki)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            ServerMessage msg = new ServerMessage();
+            msg.Content = "Added";
+            msg.IsStatusCorrect = true;
+            msg.Type = ServerMessageTypeEnum.AddedSnA;
+            callback.GetServerMessageStatus(msg);
+        }
+
+        public void GetAbilityName(List<string> IDabilities)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            AbilityNames abNames = new AbilityNames();
+            abNames = DataBase.GetAbilityName(IDabilities);
+            callback.ReciveAbilityNames(abNames);
+        }
+
+        public void GetSkillName(List<string> IDskills)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            SkillNames skNames = new SkillNames();
+            skNames = DataBase.GetSkillName(IDskills);
+            callback.ReciveSkillNames(skNames);
+        }
+
+        public void GetFullAbilityInfo(string abName)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            FullAbilityInfo abInfo = new FullAbilityInfo();
+            abInfo = DataBase.GetFullAbilityInfo(abName);
+            callback.ReciveFullAbilityInfo(abInfo);
+
+        }
+
+        public void GetFullSkillInfo(string skName)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            FullSkillInfo skInfo = new FullSkillInfo();
+            skInfo = DataBase.GetFullSkillInfo(skName);
+            callback.ReciveFullSkillInfo(skInfo);
+        }
         #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
