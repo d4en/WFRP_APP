@@ -75,5 +75,11 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void GetFullSkillInfo(string skName);
+
+        [OperationContract(IsOneWay = true)]
+        void AddStartStats(StartStats strSta);
+
+        [OperationContract(IsOneWay = true)]
+        void GetHeroChart(string Id_acc);
     }
 }

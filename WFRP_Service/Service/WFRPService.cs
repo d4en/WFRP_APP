@@ -634,10 +634,22 @@ namespace Service
             IWFRPCallback callback = CurrentCallback;
             DBConnector DataBase = new DBConnector();
             ServerMessage msg = new ServerMessage();
-            msg.Content = "Added";
-            msg.IsStatusCorrect = true;
-            msg.Type = ServerMessageTypeEnum.AddedSnA;
-            callback.GetServerMessageStatus(msg);
+            string result = string.Empty;
+            result = DataBase.AddSkillsAndAbilities(AbsNSki);
+            if (result == "done")
+            {
+                msg.Content = "Added";
+                msg.IsStatusCorrect = true;
+                msg.Type = ServerMessageTypeEnum.AddedSnA;
+                callback.GetServerMessageStatus(msg);
+            }
+            else
+            {
+                msg.Content = "Error";
+                msg.IsStatusCorrect = false;
+                msg.Type = ServerMessageTypeEnum.AddedSnA;
+                callback.GetServerMessageStatus(msg);
+            }
         }
 
         public void GetAbilityName(List<string> IDabilities)
@@ -676,24 +688,40 @@ namespace Service
             skInfo = DataBase.GetFullSkillInfo(skName);
             callback.ReciveFullSkillInfo(skInfo);
         }
+
+        public void AddStartStats(StartStats strSta)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            ServerMessage msg = new ServerMessage();
+            string result = string.Empty;
+            result = DataBase.AddStartStats(strSta);
+            if (result == "done")
+            {
+                msg.Content = "Added";
+                msg.IsStatusCorrect = true;
+                msg.Type = ServerMessageTypeEnum.AddedStartStats;
+                callback.GetServerMessageStatus(msg);
+            }
+            else
+            {
+                msg.Content = "Error";
+                msg.IsStatusCorrect = false;
+                msg.Type = ServerMessageTypeEnum.AddedStartStats;
+                callback.GetServerMessageStatus(msg);
+            }
+
+        }
+
+        public void GetHeroChart(string Id_acc)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            HeroFullChart chart = new HeroFullChart();
+            chart = DataBase.GetHeroChart(Id_acc);
+            callback.ReciveFullHeroChart(chart);
+        }
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

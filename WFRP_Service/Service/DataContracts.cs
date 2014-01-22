@@ -63,7 +63,9 @@ namespace Service
         [EnumMember]
         StartSession,
         [EnumMember]
-        AddedSnA
+        AddedSnA,
+        [EnumMember]
+        AddedStartStats
     }
 
     [DataContract]
@@ -588,6 +590,457 @@ namespace Service
         {
             get { return _description; }
             set { _description = value; }
+        }
+    }
+
+    [DataContract]
+    public class StartStats
+    {
+        private string _id;
+        private string _ww;
+        private string _us;
+        private string _krz;
+        private string _odp;
+        private string _Zr;
+        private string _Int;
+        private string _Sw;
+        private string _ogd;
+        private string _Atk;
+        private string _Zyw;
+        private string _Sil;
+        private string _Wt;
+        private string _Sz;
+        private string _Mag;
+        private string _PO;
+        private string _PP;
+
+        [DataMember]
+        public string Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        [DataMember]
+        public string WW
+        {
+            get { return _ww; }
+            set { _ww = value; }
+        }
+
+        [DataMember]
+        public string US
+        {
+            get { return _us; }
+            set { _us = value; }
+        }
+
+        [DataMember]
+        public string Krz
+        {
+            get { return _krz; }
+            set { _krz = value; }
+        }
+
+        [DataMember]
+        public string Odp
+        {
+            get { return _odp; }
+            set { _odp = value; }
+        }
+
+        [DataMember]
+        public string Zr
+        {
+            get { return _Zr; }
+            set { _Zr = value; }
+        }
+
+        [DataMember]
+        public string Int
+        {
+            get { return _Int; }
+            set { _Int = value; }
+        }
+
+        [DataMember]
+        public string Sw
+        {
+            get { return _Sw; }
+            set { _Sw = value; }
+        }
+
+        [DataMember]
+        public string Ogd
+        {
+            get { return _ogd; }
+            set { _ogd = value; }
+        }
+
+        [DataMember]
+        public string Atk
+        {
+            get { return _Atk; }
+            set { _Atk = value; }
+        }
+
+        [DataMember]
+        public string Zyw
+        {
+            get { return _Zyw; }
+            set { _Zyw = value; }
+        }
+
+        [DataMember]
+        public string Sil
+        {
+            get { return _Sil; }
+            set { _Sil = value; }
+        }
+
+        [DataMember]
+        public string Wt
+        {
+            get { return _Wt; }
+            set { _Wt = value; }
+        }
+
+        [DataMember]
+        public string Sz
+        {
+            get { return _Sz; }
+            set { _Sz = value; }
+        }
+
+        [DataMember]
+        public string Mag
+        {
+            get { return _Mag; }
+            set { _Mag = value; }
+        }
+
+        [DataMember]
+        public string PO
+        {
+            get { return _PO; }
+            set { _PO = value; }
+        }
+
+        [DataMember]
+        public string PP
+        {
+            get { return _PP; }
+            set { _PP = value; }
+        }
+
+    }
+
+    [DataContract]
+    public class HeroFullChart
+    {
+        private string _ww;
+        private string _us;
+        private string _krz;
+        private string _odp;
+        private string _Zr;
+        private string _Int;
+        private string _Sw;
+        private string _ogd;
+        private string _Atk;
+        private string _Zyw;
+        private string _Sil;
+        private string _Wt;
+        private string _Sz;
+        private string _Mag;
+        private string _PO;
+        private string _PP;
+        private List<string> _SkillNames;
+        private List<string> _AbNames;
+        private string _occupation;
+        private string _heroName;
+        private string _race;
+        private string _sex;
+        private string _eyeColor;
+        private string _age;
+        private string _height;
+        private string _weight;
+        private string _origin;
+        private string _family;
+        private string _socialPosition;
+        private string _HHWB;
+        private string _whyTravel;
+        private string _friends;
+        private string _enemies;
+        private string _likes;
+        private string _dontLikes;
+        private string _personality;
+        private string _motivation;
+        private string _whoHeServes;
+
+        [DataMember]
+        public string HeroName
+        {
+            get { return _heroName; }
+            set { _heroName = value; }
+        }
+
+        [DataMember]
+        public string Race
+        {
+            get { return _race; }
+            set { _race = value; }
+        }
+
+        [DataMember]
+        public string Sex
+        {
+            get { return _sex; }
+            set { _sex = value; }
+        }
+
+        [DataMember]
+        public string EyeColor
+        {
+            get { return _eyeColor; }
+            set { _eyeColor = value; }
+        }
+
+        [DataMember]
+        public string Age
+        {
+            get { return _age; }
+            set { _age = value; }
+        }
+
+        [DataMember]
+        public string Height
+        {
+            get { return _height; }
+            set { _height = value; }
+        }
+
+        [DataMember]
+        public string Weight
+        {
+            get { return _weight; }
+            set { _weight = value; }
+        }
+
+        [DataMember]
+        public string Origin
+        {
+            get { return _origin; }
+            set { _origin = value; }
+        }
+
+        [DataMember]
+        public string Family
+        {
+            get { return _family; }
+            set { _family = value; }
+        }
+
+        [DataMember]
+        public string SocialPosition
+        {
+            get { return _socialPosition; }
+            set { _socialPosition = value; }
+        }
+
+        [DataMember]
+        public string HHWB
+        {
+            get { return _HHWB; }
+            set { _HHWB = value; }
+        }
+
+        [DataMember]
+        public string WhyTravel
+        {
+            get { return _whyTravel; }
+            set { _whyTravel = value; }
+        }
+
+        [DataMember]
+        public string Friends
+        {
+            get { return _friends; }
+            set { _friends = value; }
+        }
+
+        [DataMember]
+        public string Enemies
+        {
+            get { return _enemies; }
+            set { _enemies = value; }
+        }
+
+        [DataMember]
+        public string Likes
+        {
+            get { return _likes; }
+            set { _likes = value; }
+        }
+
+        [DataMember]
+        public string DontLikes
+        {
+            get { return _dontLikes; }
+            set { _dontLikes = value; }
+        }
+
+        [DataMember]
+        public string Personality
+        {
+            get { return _personality; }
+            set { _personality = value; }
+        }
+
+        [DataMember]
+        public string Motivation
+        {
+            get { return _motivation; }
+            set { _motivation = value; }
+        }
+
+        [DataMember]
+        public string WhoHeServes
+        {
+            get { return _whoHeServes; }
+            set { _whoHeServes = value; }
+        }
+
+        [DataMember]
+        public string Occupation
+        {
+            get { return _occupation; }
+            set { _occupation = value; }
+        }
+
+        [DataMember]
+        public List<string> AbNames
+        {
+            get { return _AbNames; }
+            set { _AbNames = value; }
+        }
+
+        [DataMember]
+        public List<string> SkillNames
+        {
+            get { return _SkillNames; }
+            set { _SkillNames = value; }
+        }
+
+        [DataMember]
+        public string WW
+        {
+            get { return _ww; }
+            set { _ww = value; }
+        }
+
+        [DataMember]
+        public string US
+        {
+            get { return _us; }
+            set { _us = value; }
+        }
+
+        [DataMember]
+        public string Krz
+        {
+            get { return _krz; }
+            set { _krz = value; }
+        }
+
+        [DataMember]
+        public string Odp
+        {
+            get { return _odp; }
+            set { _odp = value; }
+        }
+
+        [DataMember]
+        public string Zr
+        {
+            get { return _Zr; }
+            set { _Zr = value; }
+        }
+
+        [DataMember]
+        public string Int
+        {
+            get { return _Int; }
+            set { _Int = value; }
+        }
+
+        [DataMember]
+        public string Sw
+        {
+            get { return _Sw; }
+            set { _Sw = value; }
+        }
+
+        [DataMember]
+        public string Ogd
+        {
+            get { return _ogd; }
+            set { _ogd = value; }
+        }
+
+        [DataMember]
+        public string Atk
+        {
+            get { return _Atk; }
+            set { _Atk = value; }
+        }
+
+        [DataMember]
+        public string Zyw
+        {
+            get { return _Zyw; }
+            set { _Zyw = value; }
+        }
+
+        [DataMember]
+        public string Sil
+        {
+            get { return _Sil; }
+            set { _Sil = value; }
+        }
+
+        [DataMember]
+        public string Wt
+        {
+            get { return _Wt; }
+            set { _Wt = value; }
+        }
+
+        [DataMember]
+        public string Sz
+        {
+            get { return _Sz; }
+            set { _Sz = value; }
+        }
+
+        [DataMember]
+        public string Mag
+        {
+            get { return _Mag; }
+            set { _Mag = value; }
+        }
+
+        [DataMember]
+        public string PO
+        {
+            get { return _PO; }
+            set { _PO = value; }
+        }
+
+        [DataMember]
+        public string PP
+        {
+            get { return _PP; }
+            set { _PP = value; }
         }
     }
 }

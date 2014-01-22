@@ -624,6 +624,400 @@ namespace WPFClient.SVC {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HeroAbilitiesAndSkills", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class HeroAbilitiesAndSkills : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> AbilitiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IDAccField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OccupationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> SkillsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> Abilities {
+            get {
+                return this.AbilitiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbilitiesField, value) != true)) {
+                    this.AbilitiesField = value;
+                    this.RaisePropertyChanged("Abilities");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IDAcc {
+            get {
+                return this.IDAccField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDAccField, value) != true)) {
+                    this.IDAccField = value;
+                    this.RaisePropertyChanged("IDAcc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Occupation {
+            get {
+                return this.OccupationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OccupationField, value) != true)) {
+                    this.OccupationField = value;
+                    this.RaisePropertyChanged("Occupation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> Skills {
+            get {
+                return this.SkillsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SkillsField, value) != true)) {
+                    this.SkillsField = value;
+                    this.RaisePropertyChanged("Skills");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StartStats", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class StartStats : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AtkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IntField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KrzField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MagField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OdpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OgdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string POField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SilField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SwField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SzField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WWField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZrField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZywField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Atk {
+            get {
+                return this.AtkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AtkField, value) != true)) {
+                    this.AtkField = value;
+                    this.RaisePropertyChanged("Atk");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Int {
+            get {
+                return this.IntField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IntField, value) != true)) {
+                    this.IntField = value;
+                    this.RaisePropertyChanged("Int");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Krz {
+            get {
+                return this.KrzField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KrzField, value) != true)) {
+                    this.KrzField = value;
+                    this.RaisePropertyChanged("Krz");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mag {
+            get {
+                return this.MagField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MagField, value) != true)) {
+                    this.MagField = value;
+                    this.RaisePropertyChanged("Mag");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Odp {
+            get {
+                return this.OdpField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OdpField, value) != true)) {
+                    this.OdpField = value;
+                    this.RaisePropertyChanged("Odp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ogd {
+            get {
+                return this.OgdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OgdField, value) != true)) {
+                    this.OgdField = value;
+                    this.RaisePropertyChanged("Ogd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PO {
+            get {
+                return this.POField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.POField, value) != true)) {
+                    this.POField = value;
+                    this.RaisePropertyChanged("PO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PP {
+            get {
+                return this.PPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PPField, value) != true)) {
+                    this.PPField = value;
+                    this.RaisePropertyChanged("PP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sil {
+            get {
+                return this.SilField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SilField, value) != true)) {
+                    this.SilField = value;
+                    this.RaisePropertyChanged("Sil");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sw {
+            get {
+                return this.SwField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SwField, value) != true)) {
+                    this.SwField = value;
+                    this.RaisePropertyChanged("Sw");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sz {
+            get {
+                return this.SzField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SzField, value) != true)) {
+                    this.SzField = value;
+                    this.RaisePropertyChanged("Sz");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string US {
+            get {
+                return this.USField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USField, value) != true)) {
+                    this.USField = value;
+                    this.RaisePropertyChanged("US");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WW {
+            get {
+                return this.WWField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WWField, value) != true)) {
+                    this.WWField = value;
+                    this.RaisePropertyChanged("WW");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Wt {
+            get {
+                return this.WtField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WtField, value) != true)) {
+                    this.WtField = value;
+                    this.RaisePropertyChanged("Wt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zr {
+            get {
+                return this.ZrField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZrField, value) != true)) {
+                    this.ZrField = value;
+                    this.RaisePropertyChanged("Zr");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zyw {
+            get {
+                return this.ZywField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZywField, value) != true)) {
+                    this.ZywField = value;
+                    this.RaisePropertyChanged("Zyw");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServerMessage", Namespace="http://schemas.datacontract.org/2004/07/Service")]
     [System.SerializableAttribute()]
     public partial class ServerMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -717,6 +1111,12 @@ namespace WPFClient.SVC {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         StartSession = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AddedSnA = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AddedStartStats = 6,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -773,6 +1173,8 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FileMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroBasicInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroRaceAndOccupation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroAbilitiesAndSkills))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.StartStats))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.ServerMessageType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.Identity))]
@@ -781,6 +1183,11 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.AllHeroOccupations))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.OccupationInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.OccupationAndRaceInfo))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.AbilityNames))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.SkillNames))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FullAbilityInfo))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FullSkillInfo))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroFullChart))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1129,6 +1536,903 @@ namespace WPFClient.SVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AbilityNames", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class AbilityNames : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> NamesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> Names {
+            get {
+                return this.NamesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NamesField, value) != true)) {
+                    this.NamesField = value;
+                    this.RaisePropertyChanged("Names");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SkillNames", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class SkillNames : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> NamesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> Names {
+            get {
+                return this.NamesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NamesField, value) != true)) {
+                    this.NamesField = value;
+                    this.RaisePropertyChanged("Names");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FullAbilityInfo", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class FullAbilityInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FullSkillInfo", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class FullSkillInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AttField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SimAttField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Att {
+            get {
+                return this.AttField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AttField, value) != true)) {
+                    this.AttField = value;
+                    this.RaisePropertyChanged("Att");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SimAtt {
+            get {
+                return this.SimAttField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SimAttField, value) != true)) {
+                    this.SimAttField = value;
+                    this.RaisePropertyChanged("SimAtt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HeroFullChart", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class HeroFullChart : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> AbNamesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AgeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AtkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DontLikesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EnemiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EyeColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FamilyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FriendsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HHWBField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HeroNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IntField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KrzField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LikesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MagField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MotivationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OccupationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OdpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OgdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OriginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string POField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PersonalityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RaceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SilField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> SkillNamesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SocialPositionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SwField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SzField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WWField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WhoHeServesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WhyTravelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZrField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZywField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> AbNames {
+            get {
+                return this.AbNamesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbNamesField, value) != true)) {
+                    this.AbNamesField = value;
+                    this.RaisePropertyChanged("AbNames");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Age {
+            get {
+                return this.AgeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AgeField, value) != true)) {
+                    this.AgeField = value;
+                    this.RaisePropertyChanged("Age");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Atk {
+            get {
+                return this.AtkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AtkField, value) != true)) {
+                    this.AtkField = value;
+                    this.RaisePropertyChanged("Atk");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DontLikes {
+            get {
+                return this.DontLikesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DontLikesField, value) != true)) {
+                    this.DontLikesField = value;
+                    this.RaisePropertyChanged("DontLikes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Enemies {
+            get {
+                return this.EnemiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EnemiesField, value) != true)) {
+                    this.EnemiesField = value;
+                    this.RaisePropertyChanged("Enemies");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EyeColor {
+            get {
+                return this.EyeColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EyeColorField, value) != true)) {
+                    this.EyeColorField = value;
+                    this.RaisePropertyChanged("EyeColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Family {
+            get {
+                return this.FamilyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FamilyField, value) != true)) {
+                    this.FamilyField = value;
+                    this.RaisePropertyChanged("Family");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Friends {
+            get {
+                return this.FriendsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FriendsField, value) != true)) {
+                    this.FriendsField = value;
+                    this.RaisePropertyChanged("Friends");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HHWB {
+            get {
+                return this.HHWBField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HHWBField, value) != true)) {
+                    this.HHWBField = value;
+                    this.RaisePropertyChanged("HHWB");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Height {
+            get {
+                return this.HeightField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HeightField, value) != true)) {
+                    this.HeightField = value;
+                    this.RaisePropertyChanged("Height");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HeroName {
+            get {
+                return this.HeroNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HeroNameField, value) != true)) {
+                    this.HeroNameField = value;
+                    this.RaisePropertyChanged("HeroName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Int {
+            get {
+                return this.IntField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IntField, value) != true)) {
+                    this.IntField = value;
+                    this.RaisePropertyChanged("Int");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Krz {
+            get {
+                return this.KrzField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KrzField, value) != true)) {
+                    this.KrzField = value;
+                    this.RaisePropertyChanged("Krz");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Likes {
+            get {
+                return this.LikesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LikesField, value) != true)) {
+                    this.LikesField = value;
+                    this.RaisePropertyChanged("Likes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mag {
+            get {
+                return this.MagField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MagField, value) != true)) {
+                    this.MagField = value;
+                    this.RaisePropertyChanged("Mag");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Motivation {
+            get {
+                return this.MotivationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MotivationField, value) != true)) {
+                    this.MotivationField = value;
+                    this.RaisePropertyChanged("Motivation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Occupation {
+            get {
+                return this.OccupationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OccupationField, value) != true)) {
+                    this.OccupationField = value;
+                    this.RaisePropertyChanged("Occupation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Odp {
+            get {
+                return this.OdpField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OdpField, value) != true)) {
+                    this.OdpField = value;
+                    this.RaisePropertyChanged("Odp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ogd {
+            get {
+                return this.OgdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OgdField, value) != true)) {
+                    this.OgdField = value;
+                    this.RaisePropertyChanged("Ogd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Origin {
+            get {
+                return this.OriginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OriginField, value) != true)) {
+                    this.OriginField = value;
+                    this.RaisePropertyChanged("Origin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PO {
+            get {
+                return this.POField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.POField, value) != true)) {
+                    this.POField = value;
+                    this.RaisePropertyChanged("PO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PP {
+            get {
+                return this.PPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PPField, value) != true)) {
+                    this.PPField = value;
+                    this.RaisePropertyChanged("PP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Personality {
+            get {
+                return this.PersonalityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PersonalityField, value) != true)) {
+                    this.PersonalityField = value;
+                    this.RaisePropertyChanged("Personality");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Race {
+            get {
+                return this.RaceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceField, value) != true)) {
+                    this.RaceField = value;
+                    this.RaisePropertyChanged("Race");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sex {
+            get {
+                return this.SexField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SexField, value) != true)) {
+                    this.SexField = value;
+                    this.RaisePropertyChanged("Sex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sil {
+            get {
+                return this.SilField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SilField, value) != true)) {
+                    this.SilField = value;
+                    this.RaisePropertyChanged("Sil");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> SkillNames {
+            get {
+                return this.SkillNamesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SkillNamesField, value) != true)) {
+                    this.SkillNamesField = value;
+                    this.RaisePropertyChanged("SkillNames");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SocialPosition {
+            get {
+                return this.SocialPositionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SocialPositionField, value) != true)) {
+                    this.SocialPositionField = value;
+                    this.RaisePropertyChanged("SocialPosition");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sw {
+            get {
+                return this.SwField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SwField, value) != true)) {
+                    this.SwField = value;
+                    this.RaisePropertyChanged("Sw");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sz {
+            get {
+                return this.SzField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SzField, value) != true)) {
+                    this.SzField = value;
+                    this.RaisePropertyChanged("Sz");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string US {
+            get {
+                return this.USField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USField, value) != true)) {
+                    this.USField = value;
+                    this.RaisePropertyChanged("US");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WW {
+            get {
+                return this.WWField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WWField, value) != true)) {
+                    this.WWField = value;
+                    this.RaisePropertyChanged("WW");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Weight {
+            get {
+                return this.WeightField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WeightField, value) != true)) {
+                    this.WeightField = value;
+                    this.RaisePropertyChanged("Weight");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WhoHeServes {
+            get {
+                return this.WhoHeServesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WhoHeServesField, value) != true)) {
+                    this.WhoHeServesField = value;
+                    this.RaisePropertyChanged("WhoHeServes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WhyTravel {
+            get {
+                return this.WhyTravelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WhyTravelField, value) != true)) {
+                    this.WhyTravelField = value;
+                    this.RaisePropertyChanged("WhyTravel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Wt {
+            get {
+                return this.WtField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WtField, value) != true)) {
+                    this.WtField = value;
+                    this.RaisePropertyChanged("Wt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zr {
+            get {
+                return this.ZrField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZrField, value) != true)) {
+                    this.ZrField = value;
+                    this.RaisePropertyChanged("Zr");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zyw {
+            get {
+                return this.ZywField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZywField, value) != true)) {
+                    this.ZywField = value;
+                    this.RaisePropertyChanged("Zyw");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SVC.IWFRP", CallbackContract=typeof(WPFClient.SVC.IWFRPCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IWFRP {
@@ -1268,6 +2572,62 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetSkillsAndAbilities(WPFClient.SVC.HeroRaceAndOccupation info, System.AsyncCallback callback, object asyncState);
         
         void EndGetSkillsAndAbilities(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/AddHeroSkillsAndAbilities")]
+        void AddHeroSkillsAndAbilities(WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/AddHeroSkillsAndAbilities")]
+        System.IAsyncResult BeginAddHeroSkillsAndAbilities(WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddHeroSkillsAndAbilities(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetAbilityName")]
+        void GetAbilityName(System.Collections.Generic.List<string> IDabilities);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetAbilityName")]
+        System.IAsyncResult BeginGetAbilityName(System.Collections.Generic.List<string> IDabilities, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetAbilityName(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetSkillName")]
+        void GetSkillName(System.Collections.Generic.List<string> IDskills);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetSkillName")]
+        System.IAsyncResult BeginGetSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetSkillName(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetFullAbilityInfo")]
+        void GetFullAbilityInfo(string abName);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetFullAbilityInfo")]
+        System.IAsyncResult BeginGetFullAbilityInfo(string abName, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetFullAbilityInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetFullSkillInfo")]
+        void GetFullSkillInfo(string skName);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetFullSkillInfo")]
+        System.IAsyncResult BeginGetFullSkillInfo(string skName, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetFullSkillInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/AddStartStats")]
+        void AddStartStats(WPFClient.SVC.StartStats strSta);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/AddStartStats")]
+        System.IAsyncResult BeginAddStartStats(WPFClient.SVC.StartStats strSta, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddStartStats(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetHeroChart")]
+        void GetHeroChart(string Id_acc);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetHeroChart")]
+        System.IAsyncResult BeginGetHeroChart(string Id_acc, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetHeroChart(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1400,6 +2760,46 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReciveSkillsAndAbilities(WPFClient.SVC.OccupationAndRaceInfo info, System.AsyncCallback callback, object asyncState);
         
         void EndReciveSkillsAndAbilities(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveAbilityNames")]
+        void ReciveAbilityNames(WPFClient.SVC.AbilityNames abNames);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveAbilityNames")]
+        System.IAsyncResult BeginReciveAbilityNames(WPFClient.SVC.AbilityNames abNames, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveAbilityNames(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveSkillNames")]
+        void ReciveSkillNames(WPFClient.SVC.SkillNames skNames);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveSkillNames")]
+        System.IAsyncResult BeginReciveSkillNames(WPFClient.SVC.SkillNames skNames, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveSkillNames(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveFullAbilityInfo")]
+        void ReciveFullAbilityInfo(WPFClient.SVC.FullAbilityInfo abInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveFullAbilityInfo")]
+        System.IAsyncResult BeginReciveFullAbilityInfo(WPFClient.SVC.FullAbilityInfo abInfo, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveFullAbilityInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveFullSkillInfo")]
+        void ReciveFullSkillInfo(WPFClient.SVC.FullSkillInfo skInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveFullSkillInfo")]
+        System.IAsyncResult BeginReciveFullSkillInfo(WPFClient.SVC.FullSkillInfo skInfo, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveFullSkillInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveFullHeroChart")]
+        void ReciveFullHeroChart(WPFClient.SVC.HeroFullChart chart);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveFullHeroChart")]
+        System.IAsyncResult BeginReciveFullHeroChart(WPFClient.SVC.HeroFullChart chart, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveFullHeroChart(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1531,6 +2931,48 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onGetSkillsAndAbilitiesCompletedDelegate;
         
+        private BeginOperationDelegate onBeginAddHeroSkillsAndAbilitiesDelegate;
+        
+        private EndOperationDelegate onEndAddHeroSkillsAndAbilitiesDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddHeroSkillsAndAbilitiesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAbilityNameDelegate;
+        
+        private EndOperationDelegate onEndGetAbilityNameDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAbilityNameCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSkillNameDelegate;
+        
+        private EndOperationDelegate onEndGetSkillNameDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSkillNameCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetFullAbilityInfoDelegate;
+        
+        private EndOperationDelegate onEndGetFullAbilityInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetFullAbilityInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetFullSkillInfoDelegate;
+        
+        private EndOperationDelegate onEndGetFullSkillInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetFullSkillInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddStartStatsDelegate;
+        
+        private EndOperationDelegate onEndAddStartStatsDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddStartStatsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetHeroChartDelegate;
+        
+        private EndOperationDelegate onEndGetHeroChartDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetHeroChartCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -1584,6 +3026,20 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddHeroBasicInfoCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetSkillsAndAbilitiesCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddHeroSkillsAndAbilitiesCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetAbilityNameCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetSkillNameCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetFullAbilityInfoCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetFullSkillInfoCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddStartStatsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroChartCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -2419,6 +3875,349 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginGetSkillsAndAbilitiesDelegate, new object[] {
                         info}, this.onEndGetSkillsAndAbilitiesDelegate, this.onGetSkillsAndAbilitiesCompletedDelegate, userState);
+        }
+        
+        public void AddHeroSkillsAndAbilities(WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki) {
+            base.Channel.AddHeroSkillsAndAbilities(AbsNSki);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddHeroSkillsAndAbilities(WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddHeroSkillsAndAbilities(AbsNSki, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAddHeroSkillsAndAbilities(System.IAsyncResult result) {
+            base.Channel.EndAddHeroSkillsAndAbilities(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddHeroSkillsAndAbilities(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki = ((WPFClient.SVC.HeroAbilitiesAndSkills)(inValues[0]));
+            return this.BeginAddHeroSkillsAndAbilities(AbsNSki, callback, asyncState);
+        }
+        
+        private object[] OnEndAddHeroSkillsAndAbilities(System.IAsyncResult result) {
+            this.EndAddHeroSkillsAndAbilities(result);
+            return null;
+        }
+        
+        private void OnAddHeroSkillsAndAbilitiesCompleted(object state) {
+            if ((this.AddHeroSkillsAndAbilitiesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddHeroSkillsAndAbilitiesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddHeroSkillsAndAbilitiesAsync(WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki) {
+            this.AddHeroSkillsAndAbilitiesAsync(AbsNSki, null);
+        }
+        
+        public void AddHeroSkillsAndAbilitiesAsync(WPFClient.SVC.HeroAbilitiesAndSkills AbsNSki, object userState) {
+            if ((this.onBeginAddHeroSkillsAndAbilitiesDelegate == null)) {
+                this.onBeginAddHeroSkillsAndAbilitiesDelegate = new BeginOperationDelegate(this.OnBeginAddHeroSkillsAndAbilities);
+            }
+            if ((this.onEndAddHeroSkillsAndAbilitiesDelegate == null)) {
+                this.onEndAddHeroSkillsAndAbilitiesDelegate = new EndOperationDelegate(this.OnEndAddHeroSkillsAndAbilities);
+            }
+            if ((this.onAddHeroSkillsAndAbilitiesCompletedDelegate == null)) {
+                this.onAddHeroSkillsAndAbilitiesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddHeroSkillsAndAbilitiesCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddHeroSkillsAndAbilitiesDelegate, new object[] {
+                        AbsNSki}, this.onEndAddHeroSkillsAndAbilitiesDelegate, this.onAddHeroSkillsAndAbilitiesCompletedDelegate, userState);
+        }
+        
+        public void GetAbilityName(System.Collections.Generic.List<string> IDabilities) {
+            base.Channel.GetAbilityName(IDabilities);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAbilityName(System.Collections.Generic.List<string> IDabilities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAbilityName(IDabilities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetAbilityName(System.IAsyncResult result) {
+            base.Channel.EndGetAbilityName(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAbilityName(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.Generic.List<string> IDabilities = ((System.Collections.Generic.List<string>)(inValues[0]));
+            return this.BeginGetAbilityName(IDabilities, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAbilityName(System.IAsyncResult result) {
+            this.EndGetAbilityName(result);
+            return null;
+        }
+        
+        private void OnGetAbilityNameCompleted(object state) {
+            if ((this.GetAbilityNameCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAbilityNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAbilityNameAsync(System.Collections.Generic.List<string> IDabilities) {
+            this.GetAbilityNameAsync(IDabilities, null);
+        }
+        
+        public void GetAbilityNameAsync(System.Collections.Generic.List<string> IDabilities, object userState) {
+            if ((this.onBeginGetAbilityNameDelegate == null)) {
+                this.onBeginGetAbilityNameDelegate = new BeginOperationDelegate(this.OnBeginGetAbilityName);
+            }
+            if ((this.onEndGetAbilityNameDelegate == null)) {
+                this.onEndGetAbilityNameDelegate = new EndOperationDelegate(this.OnEndGetAbilityName);
+            }
+            if ((this.onGetAbilityNameCompletedDelegate == null)) {
+                this.onGetAbilityNameCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAbilityNameCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAbilityNameDelegate, new object[] {
+                        IDabilities}, this.onEndGetAbilityNameDelegate, this.onGetAbilityNameCompletedDelegate, userState);
+        }
+        
+        public void GetSkillName(System.Collections.Generic.List<string> IDskills) {
+            base.Channel.GetSkillName(IDskills);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSkillName(IDskills, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetSkillName(System.IAsyncResult result) {
+            base.Channel.EndGetSkillName(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSkillName(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.Generic.List<string> IDskills = ((System.Collections.Generic.List<string>)(inValues[0]));
+            return this.BeginGetSkillName(IDskills, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSkillName(System.IAsyncResult result) {
+            this.EndGetSkillName(result);
+            return null;
+        }
+        
+        private void OnGetSkillNameCompleted(object state) {
+            if ((this.GetSkillNameCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSkillNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSkillNameAsync(System.Collections.Generic.List<string> IDskills) {
+            this.GetSkillNameAsync(IDskills, null);
+        }
+        
+        public void GetSkillNameAsync(System.Collections.Generic.List<string> IDskills, object userState) {
+            if ((this.onBeginGetSkillNameDelegate == null)) {
+                this.onBeginGetSkillNameDelegate = new BeginOperationDelegate(this.OnBeginGetSkillName);
+            }
+            if ((this.onEndGetSkillNameDelegate == null)) {
+                this.onEndGetSkillNameDelegate = new EndOperationDelegate(this.OnEndGetSkillName);
+            }
+            if ((this.onGetSkillNameCompletedDelegate == null)) {
+                this.onGetSkillNameCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSkillNameCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSkillNameDelegate, new object[] {
+                        IDskills}, this.onEndGetSkillNameDelegate, this.onGetSkillNameCompletedDelegate, userState);
+        }
+        
+        public void GetFullAbilityInfo(string abName) {
+            base.Channel.GetFullAbilityInfo(abName);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetFullAbilityInfo(string abName, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetFullAbilityInfo(abName, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetFullAbilityInfo(System.IAsyncResult result) {
+            base.Channel.EndGetFullAbilityInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetFullAbilityInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string abName = ((string)(inValues[0]));
+            return this.BeginGetFullAbilityInfo(abName, callback, asyncState);
+        }
+        
+        private object[] OnEndGetFullAbilityInfo(System.IAsyncResult result) {
+            this.EndGetFullAbilityInfo(result);
+            return null;
+        }
+        
+        private void OnGetFullAbilityInfoCompleted(object state) {
+            if ((this.GetFullAbilityInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetFullAbilityInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetFullAbilityInfoAsync(string abName) {
+            this.GetFullAbilityInfoAsync(abName, null);
+        }
+        
+        public void GetFullAbilityInfoAsync(string abName, object userState) {
+            if ((this.onBeginGetFullAbilityInfoDelegate == null)) {
+                this.onBeginGetFullAbilityInfoDelegate = new BeginOperationDelegate(this.OnBeginGetFullAbilityInfo);
+            }
+            if ((this.onEndGetFullAbilityInfoDelegate == null)) {
+                this.onEndGetFullAbilityInfoDelegate = new EndOperationDelegate(this.OnEndGetFullAbilityInfo);
+            }
+            if ((this.onGetFullAbilityInfoCompletedDelegate == null)) {
+                this.onGetFullAbilityInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetFullAbilityInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetFullAbilityInfoDelegate, new object[] {
+                        abName}, this.onEndGetFullAbilityInfoDelegate, this.onGetFullAbilityInfoCompletedDelegate, userState);
+        }
+        
+        public void GetFullSkillInfo(string skName) {
+            base.Channel.GetFullSkillInfo(skName);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetFullSkillInfo(string skName, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetFullSkillInfo(skName, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetFullSkillInfo(System.IAsyncResult result) {
+            base.Channel.EndGetFullSkillInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetFullSkillInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string skName = ((string)(inValues[0]));
+            return this.BeginGetFullSkillInfo(skName, callback, asyncState);
+        }
+        
+        private object[] OnEndGetFullSkillInfo(System.IAsyncResult result) {
+            this.EndGetFullSkillInfo(result);
+            return null;
+        }
+        
+        private void OnGetFullSkillInfoCompleted(object state) {
+            if ((this.GetFullSkillInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetFullSkillInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetFullSkillInfoAsync(string skName) {
+            this.GetFullSkillInfoAsync(skName, null);
+        }
+        
+        public void GetFullSkillInfoAsync(string skName, object userState) {
+            if ((this.onBeginGetFullSkillInfoDelegate == null)) {
+                this.onBeginGetFullSkillInfoDelegate = new BeginOperationDelegate(this.OnBeginGetFullSkillInfo);
+            }
+            if ((this.onEndGetFullSkillInfoDelegate == null)) {
+                this.onEndGetFullSkillInfoDelegate = new EndOperationDelegate(this.OnEndGetFullSkillInfo);
+            }
+            if ((this.onGetFullSkillInfoCompletedDelegate == null)) {
+                this.onGetFullSkillInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetFullSkillInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetFullSkillInfoDelegate, new object[] {
+                        skName}, this.onEndGetFullSkillInfoDelegate, this.onGetFullSkillInfoCompletedDelegate, userState);
+        }
+        
+        public void AddStartStats(WPFClient.SVC.StartStats strSta) {
+            base.Channel.AddStartStats(strSta);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddStartStats(WPFClient.SVC.StartStats strSta, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddStartStats(strSta, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAddStartStats(System.IAsyncResult result) {
+            base.Channel.EndAddStartStats(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddStartStats(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            WPFClient.SVC.StartStats strSta = ((WPFClient.SVC.StartStats)(inValues[0]));
+            return this.BeginAddStartStats(strSta, callback, asyncState);
+        }
+        
+        private object[] OnEndAddStartStats(System.IAsyncResult result) {
+            this.EndAddStartStats(result);
+            return null;
+        }
+        
+        private void OnAddStartStatsCompleted(object state) {
+            if ((this.AddStartStatsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddStartStatsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddStartStatsAsync(WPFClient.SVC.StartStats strSta) {
+            this.AddStartStatsAsync(strSta, null);
+        }
+        
+        public void AddStartStatsAsync(WPFClient.SVC.StartStats strSta, object userState) {
+            if ((this.onBeginAddStartStatsDelegate == null)) {
+                this.onBeginAddStartStatsDelegate = new BeginOperationDelegate(this.OnBeginAddStartStats);
+            }
+            if ((this.onEndAddStartStatsDelegate == null)) {
+                this.onEndAddStartStatsDelegate = new EndOperationDelegate(this.OnEndAddStartStats);
+            }
+            if ((this.onAddStartStatsCompletedDelegate == null)) {
+                this.onAddStartStatsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddStartStatsCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddStartStatsDelegate, new object[] {
+                        strSta}, this.onEndAddStartStatsDelegate, this.onAddStartStatsCompletedDelegate, userState);
+        }
+        
+        public void GetHeroChart(string Id_acc) {
+            base.Channel.GetHeroChart(Id_acc);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetHeroChart(string Id_acc, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetHeroChart(Id_acc, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetHeroChart(System.IAsyncResult result) {
+            base.Channel.EndGetHeroChart(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetHeroChart(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string Id_acc = ((string)(inValues[0]));
+            return this.BeginGetHeroChart(Id_acc, callback, asyncState);
+        }
+        
+        private object[] OnEndGetHeroChart(System.IAsyncResult result) {
+            this.EndGetHeroChart(result);
+            return null;
+        }
+        
+        private void OnGetHeroChartCompleted(object state) {
+            if ((this.GetHeroChartCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetHeroChartCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetHeroChartAsync(string Id_acc) {
+            this.GetHeroChartAsync(Id_acc, null);
+        }
+        
+        public void GetHeroChartAsync(string Id_acc, object userState) {
+            if ((this.onBeginGetHeroChartDelegate == null)) {
+                this.onBeginGetHeroChartDelegate = new BeginOperationDelegate(this.OnBeginGetHeroChart);
+            }
+            if ((this.onEndGetHeroChartDelegate == null)) {
+                this.onEndGetHeroChartDelegate = new EndOperationDelegate(this.OnEndGetHeroChart);
+            }
+            if ((this.onGetHeroChartCompletedDelegate == null)) {
+                this.onGetHeroChartCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetHeroChartCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetHeroChartDelegate, new object[] {
+                        Id_acc}, this.onEndGetHeroChartDelegate, this.onGetHeroChartCompletedDelegate, userState);
         }
     }
 }

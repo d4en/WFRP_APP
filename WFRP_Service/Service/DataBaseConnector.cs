@@ -677,6 +677,7 @@ namespace Service
                         connection.Close();
 
                     }
+                    response = "done";
                 }
             
             }
@@ -736,10 +737,7 @@ namespace Service
                     }
                 }
                 response.Names = allNames;
-                for (int i = 0; i < response.Names.Count; i++)
-                {
-                    Console.WriteLine(response.Names[i]);
-                }
+
             }
             catch (Exception w)
             {
@@ -793,10 +791,7 @@ namespace Service
                     }
                 }
                 response.Names = allNames;
-                for (int i = 0; i < response.Names.Count; i++)
-                {
-                    Console.WriteLine(response.Names[i]);
-                }
+
             }
             catch (Exception w)
             {
@@ -891,6 +886,307 @@ namespace Service
             }
             return response;
         }
+
+        public string AddStartStats(StartStats strSta)
+        {
+            string response = string.Empty;
+
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+
+   
+                cmd = connection.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO hero_start_stats_table(id, ww, us, krz, odp, zr, inte, sw, ogd, atk, zyw, sil, wt, sz, mag, po, pp) VALUES(@id_acc, @ww, @us, @krz, @odp, @zr, @inte, @sw, @ogd, @atk, @zyw, @sil, @wt, @sz, @mag, @po, @pp)";
+                cmd.Parameters.AddWithValue("@id_acc", strSta.Id);
+                cmd.Parameters.AddWithValue("@ww", strSta.WW);
+                cmd.Parameters.AddWithValue("@us", strSta.US);
+                cmd.Parameters.AddWithValue("@krz", strSta.Krz);
+                cmd.Parameters.AddWithValue("@odp", strSta.Odp);
+                cmd.Parameters.AddWithValue("@zr", strSta.Zr);
+                cmd.Parameters.AddWithValue("@inte", strSta.Int);
+                cmd.Parameters.AddWithValue("@sw", strSta.Sw);
+                cmd.Parameters.AddWithValue("@ogd", strSta.Ogd);
+                cmd.Parameters.AddWithValue("@atk", strSta.Atk);
+                cmd.Parameters.AddWithValue("@zyw", strSta.Zyw);
+                cmd.Parameters.AddWithValue("@sil", strSta.Sil);
+                cmd.Parameters.AddWithValue("@wt", strSta.Wt);
+                cmd.Parameters.AddWithValue("@sz", strSta.Sz);
+                cmd.Parameters.AddWithValue("@mag", strSta.Mag);
+                cmd.Parameters.AddWithValue("@po", strSta.PO);
+                cmd.Parameters.AddWithValue("@PP", strSta.PP);
+                cmd.ExecuteNonQuery();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+                connection.Open();
+                cmd = connection.CreateCommand();
+
+                cmd.CommandText = "UPDATE fk_table SET fk_hero_start_stats = @id_acc where id = @id_acc";
+                cmd.Parameters.AddWithValue("@id_acc", strSta.Id);
+
+                cmd.ExecuteNonQuery();
+                response = "done";
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+            }
+            catch (Exception w)
+            {
+                Console.WriteLine(w.ToString());
+            }
+
+
+            return response;
+        }
+
+        public HeroFullChart GetHeroChart(string id_acc)
+        {
+            HeroFullChart chart = new HeroFullChart();
+            MySqlConnection connection = CreateConn();
+            string fk_base_info = string.Empty;     // DONE
+            string fk_skills = string.Empty;        // DONE
+            string fk_abs = string.Empty;           // DONE
+            string fk_start_stats = string.Empty;   // DONE
+            string fk_occupation = string.Empty;    // DONE
+            string fk_race = string.Empty;          // DONE
+
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+                MySqlDataAdapter adap = new MySqlDataAdapter();
+
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT * FROM fk_table WHERE id = @id_acc";
+                cmd.Parameters.AddWithValue("@id_acc", id_acc);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                fk_base_info = ds.Tables[0].Rows[0][2].ToString();
+                fk_skills = ds.Tables[0].Rows[0][4].ToString();
+                fk_abs = ds.Tables[0].Rows[0][5].ToString();
+                fk_start_stats = ds.Tables[0].Rows[0][10].ToString();
+                fk_occupation = ds.Tables[0].Rows[0][11].ToString();
+
+                Console.WriteLine(fk_occupation);
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+
+                }
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT * FROM hero_base_info_table WHERE id = @id_acc";
+                cmd.Parameters.AddWithValue("@id_acc", id_acc);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                chart.HeroName = ds.Tables[0].Rows[0][1].ToString();
+                if (ds.Tables[0].Rows[0][4].ToString() == "1") { chart.Race = "Człowiek"; }
+                else if (ds.Tables[0].Rows[0][4].ToString() == "2") { chart.Race = "Elf"; }
+                else if (ds.Tables[0].Rows[0][4].ToString() == "3") { chart.Race = "Krasnolud"; }
+                else if (ds.Tables[0].Rows[0][4].ToString() == "4") { chart.Race = "Niziołek"; }
+                chart.Sex = ds.Tables[0].Rows[0][5].ToString();
+                chart.Friends = ds.Tables[0].Rows[0][6].ToString();
+                chart.Family = ds.Tables[0].Rows[0][7].ToString();
+                chart.Height = ds.Tables[0].Rows[0][9].ToString();
+                chart.Weight = ds.Tables[0].Rows[0][10].ToString();
+                chart.Age = ds.Tables[0].Rows[0][11].ToString();
+                chart.EyeColor = ds.Tables[0].Rows[0][12].ToString();
+                chart.Origin =  ds.Tables[0].Rows[0][13].ToString();
+                chart.SocialPosition = ds.Tables[0].Rows[0][14].ToString();
+                chart.HHWB = ds.Tables[0].Rows[0][15].ToString();
+                chart.WhyTravel = ds.Tables[0].Rows[0][16].ToString();
+                chart.Enemies = ds.Tables[0].Rows[0][17].ToString();
+                chart.Likes = ds.Tables[0].Rows[0][18].ToString();
+                chart.DontLikes = ds.Tables[0].Rows[0][19].ToString();
+                chart.Personality = ds.Tables[0].Rows[0][20].ToString();
+                chart.Motivation =  ds.Tables[0].Rows[0][21].ToString();
+                chart.WhoHeServes = ds.Tables[0].Rows[0][22].ToString();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+
+                }
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT * FROM hero_abilities_table WHERE id_acc = @id_acc and state = 1";
+                cmd.Parameters.AddWithValue("@id_acc", id_acc);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                int abs_count = ds.Tables[0].Rows.Count;
+                List<string> all_abs = new List<string>();
+                
+                for (int i = 0; i < abs_count; i++)
+                {
+                    all_abs.Add(ds.Tables[0].Rows[i][2].ToString());
+                }
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+                AbilityNames ab = new AbilityNames();
+                ab = GetAbilityName(all_abs);
+                chart.AbNames = ab.Names;
+                
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+
+                }
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT * FROM hero_skills_table WHERE id_acc = @id_acc and state = 1";
+                cmd.Parameters.AddWithValue("@id_acc", id_acc);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                int skill_count = ds.Tables[0].Rows.Count;
+                List<string> all_skill = new List<string>();
+                
+                for (int i = 0; i < skill_count; i++)
+                {
+                    all_skill.Add(ds.Tables[0].Rows[i][2].ToString());
+                }
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+                SkillNames sk = new SkillNames();
+                sk = GetSkillName(all_skill);
+                chart.SkillNames = sk.Names;
+
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+
+                }
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT * FROM hero_start_stats_table WHERE id = @id_start";
+                cmd.Parameters.AddWithValue("@id_start", fk_start_stats);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                chart.WW = ds.Tables[0].Rows[0][1].ToString();
+                chart.US = ds.Tables[0].Rows[0][2].ToString();
+                chart.Krz = ds.Tables[0].Rows[0][3].ToString();
+                chart.Odp = ds.Tables[0].Rows[0][4].ToString();
+                chart.Zr = ds.Tables[0].Rows[0][5].ToString();
+                chart.Int = ds.Tables[0].Rows[0][6].ToString();
+                chart.Sw = ds.Tables[0].Rows[0][7].ToString();
+                chart.Ogd = ds.Tables[0].Rows[0][8].ToString();
+                chart.Atk = ds.Tables[0].Rows[0][9].ToString();
+                chart.Zyw = ds.Tables[0].Rows[0][10].ToString();
+                chart.Sil = ds.Tables[0].Rows[0][11].ToString();
+                chart.Wt = ds.Tables[0].Rows[0][12].ToString();
+                chart.Sz = ds.Tables[0].Rows[0][13].ToString();
+                chart.Mag = ds.Tables[0].Rows[0][14].ToString();
+                chart.PO = ds.Tables[0].Rows[0][15].ToString();
+                chart.PP = ds.Tables[0].Rows[0][16].ToString();
+                
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+               
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+
+                }
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT fk_occupation_table FROM hero_occupation_table WHERE id = @id_occ";
+                cmd.Parameters.AddWithValue("@id_occ", fk_occupation);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                string occupation_number = ds.Tables[0].Rows[0][0].ToString();
+                
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+
+                }
+                cmd = connection.CreateCommand();
+                ds = new DataSet();
+                cmd.CommandText = "SELECT name FROM occupation_table WHERE id = @id_occ";
+                cmd.Parameters.AddWithValue("@id_occ", occupation_number);
+
+                adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                chart.Occupation = ds.Tables[0].Rows[0][0].ToString();
+
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+
+
+
+            return chart;
+        }
+
     }
 }
 

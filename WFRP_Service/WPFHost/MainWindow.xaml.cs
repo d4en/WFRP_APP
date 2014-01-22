@@ -145,10 +145,29 @@ namespace WPFHost
         {
             DBConnector DBcon = new DBConnector();
             List<string> abs = new List<string>();
+            StartStats test = new StartStats();
+            test.WW = "20";
+            test.US = "20";
+            test.Krz = "20";
+            test.Odp = "20";
+            test.Zr = "20";
+            test.Int = "20";
+            test.Sw = "20";
+            test.Ogd = "20";
+            test.Atk = "20";
+            test.Zyw = "20";
+            test.Sil = "20";
+            test.Wt = "20";
+            test.Sz = "20";
+            test.Mag = "20";
+            test.PO = "20";
+            test.PP = "20";
+            test.Id = "1";
+
             abs.Add("1");
             abs.Add("2");
-            string test = "Charakteryzacja";
-            DBcon.GetFullSkillInfo(test);
+
+            DBcon.GetHeroChart("1");
         }
 
 

@@ -68,7 +68,9 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void ReciveFullSkillInfo(FullSkillInfo skInfo);
-        
 
+        [OperationContract(IsOneWay = true)]
+        void ReciveFullHeroChart(HeroFullChart chart);
+        
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
   <xs:complexType name="Client">
     <xs:sequence>
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
@@ -56,6 +56,37 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HeroRaceAndOccupation" nillable="true" type="tns:HeroRaceAndOccupation" />
+  <xs:complexType name="HeroAbilitiesAndSkills">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Abilities" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IDAcc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Skills" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroAbilitiesAndSkills" nillable="true" type="tns:HeroAbilitiesAndSkills" />
+  <xs:complexType name="StartStats">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Atk" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Int" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Krz" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mag" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Odp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ogd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sil" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sw" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sz" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="US" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WW" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Wt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zyw" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StartStats" nillable="true" type="tns:StartStats" />
   <xs:complexType name="ServerMessage">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
@@ -71,6 +102,8 @@
       <xs:enumeration value="Register" />
       <xs:enumeration value="Login" />
       <xs:enumeration value="StartSession" />
+      <xs:enumeration value="AddedSnA" />
+      <xs:enumeration value="AddedStartStats" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="ServerMessageType" nillable="true" type="tns:ServerMessageType" />
@@ -82,8 +115,8 @@
   <xs:element name="Identity" nillable="true" type="tns:Identity" />
   <xs:complexType name="Session">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="MG" type="q1:KeyValuePairOfClientanyTypezniiAH5W" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Members" nillable="true" type="q2:ArrayOfKeyValueOfClientanyTypezniiAH5W" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="MG" type="q3:KeyValuePairOfClientanyTypezniiAH5W" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Members" nillable="true" type="q4:ArrayOfKeyValueOfClientanyTypezniiAH5W" />
       <xs:element minOccurs="0" name="SessionID" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -102,7 +135,7 @@
   <xs:element name="HeroDetails_Eyes" nillable="true" type="tns:HeroDetails_Eyes" />
   <xs:complexType name="AllHeroOccupations">
     <xs:sequence>
-      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HeroOccupations" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HeroOccupations" nillable="true" type="q5:ArrayOfstring" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AllHeroOccupations" nillable="true" type="tns:AllHeroOccupations" />
@@ -121,4 +154,76 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OccupationAndRaceInfo" nillable="true" type="tns:OccupationAndRaceInfo" />
+  <xs:complexType name="AbilityNames">
+    <xs:sequence>
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Names" nillable="true" type="q6:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AbilityNames" nillable="true" type="tns:AbilityNames" />
+  <xs:complexType name="SkillNames">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Names" nillable="true" type="q7:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SkillNames" nillable="true" type="tns:SkillNames" />
+  <xs:complexType name="FullAbilityInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FullAbilityInfo" nillable="true" type="tns:FullAbilityInfo" />
+  <xs:complexType name="FullSkillInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Att" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SimAtt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FullSkillInfo" nillable="true" type="tns:FullSkillInfo" />
+  <xs:complexType name="HeroFullChart">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AbNames" nillable="true" type="q8:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Atk" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DontLikes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Enemies" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EyeColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Family" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Friends" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HHWB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HeroName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Int" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Krz" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Likes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mag" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Motivation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Odp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ogd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Origin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Personality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Race" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sil" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SkillNames" nillable="true" type="q9:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SocialPosition" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sw" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sz" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="US" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WW" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WhoHeServes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WhyTravel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Wt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zyw" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroFullChart" nillable="true" type="tns:HeroFullChart" />
 </xs:schema>

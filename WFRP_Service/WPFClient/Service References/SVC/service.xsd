@@ -127,116 +127,200 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddHeroSkillsAndAbilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="AbsNSki" nillable="true" type="q15:HeroAbilitiesAndSkills" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAbilityName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="IDabilities" nillable="true" type="q16:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSkillName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="IDskills" nillable="true" type="q17:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFullAbilityInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="abName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFullSkillInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="skName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddStartStats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="strSta" nillable="true" type="q18:StartStats" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHeroChart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id_acc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q15:ServerMessage" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q19:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetIdentity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q16:Identity" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="userID" nillable="true" type="q20:Identity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SetClientList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q17:ArrayOfstring" />
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q21:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="JoinedToSession">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q18:ServerMessage" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q22:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SessionInitSettings">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q19:Session" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q23:Session" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SetSessionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q20:ArrayOfstring" />
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q21:Message" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="clients" nillable="true" type="q24:ArrayOfstring" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q25:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Receive">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q22:Message" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q26:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveWhisper">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q23:Message" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q27:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SessionInitMGSettings">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q24:Session" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="session" nillable="true" type="q28:Session" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePerchment">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="fMsg" nillable="true" type="q25:FileMessage" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="fMsg" nillable="true" type="q29:FileMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveHero">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="hero" nillable="true" type="q26:Hero" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="hero" nillable="true" type="q30:Hero" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveHeroEyes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="heroEyes" nillable="true" type="q27:HeroDetails_Eyes" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="heroEyes" nillable="true" type="q31:HeroDetails_Eyes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveHeroOccupationByRace">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="Occupations" nillable="true" type="q28:AllHeroOccupations" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="Occupations" nillable="true" type="q32:AllHeroOccupations" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveOccupationInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q29:OccupationInfo" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q33:OccupationInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="HeroRegistrationPartOne">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q30:ServerMessage" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="msg" nillable="true" type="q34:ServerMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveSkillsAndAbilities">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q31:OccupationAndRaceInfo" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="info" nillable="true" type="q35:OccupationAndRaceInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveAbilityNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="abNames" nillable="true" type="q36:AbilityNames" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveSkillNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="skNames" nillable="true" type="q37:SkillNames" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveFullAbilityInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="abInfo" nillable="true" type="q38:FullAbilityInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveFullSkillInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="skInfo" nillable="true" type="q39:FullSkillInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveFullHeroChart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="chart" nillable="true" type="q40:HeroFullChart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
