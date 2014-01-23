@@ -796,7 +796,13 @@ namespace WPFClient
                 _heroModel.HeroModelDisplayWeight = chart.Weight;
                 _heroModel.HeroModelDisplayWHWB = chart.HHWB;
                 _heroModel.HeroModelDisplayWIHT = chart.WhyTravel;
-                
+                _heroModel.HeroModelDisplayWDHL = chart.Likes;
+                _heroModel.HeroModelDisplayWDNHL = chart.DontLikes;
+                _heroModel.HeroModelDisplayPersonality = chart.Personality;
+                _heroModel.HeroModelDisplayMotivations = chart.Motivation;
+                _heroModel.HeroModelDisplayFriends = chart.Friends;
+                _heroModel.HeroModelDisplayEnemys = chart.Enemies;
+                _heroModel.HeroModelDisplayWHS = chart.WhoHeServes;
             }
             catch (Exception) { }
         }

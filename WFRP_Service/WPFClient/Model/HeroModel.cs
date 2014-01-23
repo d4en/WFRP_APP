@@ -569,14 +569,102 @@ namespace WPFClient.Model
             }
             set
             {
-                _displayOrigin = value;
+                _displayWIHT = value;
                 OnPropertyChanged("HeroModelDisplayWIHT");
             }
         }
+        string _displayWHS = null;
+        public string HeroModelDisplayWHS
+        {
+            get
+            {
+                return _displayWHS;
+            }
+            set
+            {
+                _displayWHS = value;
+                OnPropertyChanged("HeroModelDisplayWHS");
+            }
+        }
+        string _displayFriends = null;
+        public string HeroModelDisplayFriends
+        {
+            get
+            {
+                return _displayFriends;
+            }
+            set
+            {
+                _displayFriends = value;
+                OnPropertyChanged("HeroModelDisplayFriends");
+            }
+        }
+        string _displayEnemys = null;
+        public string HeroModelDisplayEnemys
+        {
+            get
+            {
+                return _displayEnemys;
+            }
+            set
+            {
+                _displayEnemys = value;
+                OnPropertyChanged("HeroModelDisplayEnemys");
+            }
+        }
+        string _displayWDHL = null;
+        public string HeroModelDisplayWDHL
+        {
+            get
+            {
+                return _displayWDHL;
+            }
+            set
+            {
+                _displayWDHL = value;
+                OnPropertyChanged("HeroModelDisplayWDHL");
+            }
+        }
 
-
-
-
+        string _displayWDNHL = null;
+        public string HeroModelDisplayWDNHL
+        {
+            get
+            {
+                return _displayWDNHL;
+            }
+            set
+            {
+                _displayWDNHL = value;
+                OnPropertyChanged("HeroModelDisplayWDNHL");
+            }
+        }
+        string _displayPersonality = null;
+        public string HeroModelDisplayPersonality
+        {
+            get
+            {
+                return _displayPersonality;
+            }
+            set
+            {
+                _displayPersonality = value;
+                OnPropertyChanged("HeroModelDisplayPersonality");
+            }
+        }
+        string _displayMotivations = null;
+        public string HeroModelDisplayMotivations
+        {
+            get
+            {
+                return _displayMotivations;
+            }
+            set
+            {
+                _displayMotivations = value;
+                OnPropertyChanged("HeroModelDisplayMotivations");
+            }
+        }
 
 
 

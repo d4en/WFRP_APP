@@ -238,7 +238,9 @@
                       
             </TabItem>
             <TabItem Header="Hero Story" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <TextBox HorizontalAlignment="Left" Height="506" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1069"/>
+                </Grid>
             </TabItem>
         </TabControl>
 
