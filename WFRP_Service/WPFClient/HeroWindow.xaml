@@ -195,21 +195,21 @@
                     <Label Content="Height" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Weight" HorizontalAlignment="Left" Margin="30,400,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Eye color" HorizontalAlignment="Left" Margin="30,450,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Hair color" HorizontalAlignment="Left" Margin="769,297,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Star sign" HorizontalAlignment="Left" Margin="769,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Marks" HorizontalAlignment="Left" Margin="769,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_name" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_race" HorizontalAlignment="Left" Height="23" Margin="124,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_occupation" HorizontalAlignment="Left" Height="23" Margin="124,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_lastOccupation" HorizontalAlignment="Left" Height="23" Margin="124,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_sex" HorizontalAlignment="Left" Height="23" Margin="124,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_age" HorizontalAlignment="Left" Height="23" Margin="124,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_height" HorizontalAlignment="Left" Height="23" Margin="124,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_Weight" HorizontalAlignment="Left" Height="23" Margin="124,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_eyeColor" HorizontalAlignment="Left" Height="23" Margin="124,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="863,297,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="863,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="863,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <Label Content="Hair color" HorizontalAlignment="Left" Margin="747,297,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Star sign" HorizontalAlignment="Left" Margin="747,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Marks" HorizontalAlignment="Left" Margin="747,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_name" Text="{Binding HeroModelDisplayName}" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_race" Text="{Binding HeroModelDisplayRace}" HorizontalAlignment="Left" Height="23" Margin="124,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_occupation" Text="{Binding HeroModelDisplayOccupation}" HorizontalAlignment="Left" Height="23" Margin="124,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_lastOccupation" Text="{Binding HeroModelDisplayOccupation}" HorizontalAlignment="Left" Height="23" Margin="124,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_sex" Text="{Binding HeroModelDisplaySex}" HorizontalAlignment="Left" Height="23" Margin="124,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_age" Text="{Binding HeroModelDisplayAge}" HorizontalAlignment="Left" Height="23" Margin="124,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_height" Text="{Binding HeroModelDisplayHeight}" HorizontalAlignment="Left" Height="23" Margin="124,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_Weight" Text="{Binding HeroModelDisplayWeight}" HorizontalAlignment="Left" Height="23" Margin="124,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_eyeColor" Text="{Binding HeroModelDisplayEyeColor}" HorizontalAlignment="Left" Height="23" Margin="124,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_hairColor" HorizontalAlignment="Left" Height="23" Margin="873,297,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" IsEnabled="False"/>
+                    <TextBox x:Name="TXB_starSign" HorizontalAlignment="Left" Height="23" Margin="873,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" IsEnabled="False"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="873,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" IsEnabled="False"/>
                     <Label Content="Origin" HorizontalAlignment="Left" Margin="424,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Family" HorizontalAlignment="Left" Margin="424,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Social possition" HorizontalAlignment="Left" Margin="424,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
@@ -222,18 +222,18 @@
                     <Label Content="What doesn't he likes?" HorizontalAlignment="Left" Margin="747,247,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Personality" HorizontalAlignment="Left" Margin="747,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Motivations" HorizontalAlignment="Left" Margin="747,200,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_origin" HorizontalAlignment="Left" Height="23" Margin="540,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox x:Name="TXB_family" HorizontalAlignment="Left" Height="23" Margin="540,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="863,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="863,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="863,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_origin" Text="{Binding HeroModelDisplayOrigin}" HorizontalAlignment="Left" Height="23" Margin="540,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_family" Text="{Binding HeroModelDisplayFamily}" HorizontalAlignment="Left" Height="23" Margin="540,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_socialPosition" Text="{Binding HeroModelDisplaySocialPosition}" HorizontalAlignment="Left" Height="23" Margin="540,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_WHWB" Text="{Binding HeroModelDisplayWHWB}" HorizontalAlignment="Left" Height="23" Margin="540,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_WIHT" Text="{Binding HeroModelDisplayWIHT}" HorizontalAlignment="Left" Height="23" Margin="540,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_WHS" Text="{Binding HeroModelDisplayWHS}" HorizontalAlignment="Left" Height="23" Margin="540,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_friends" Text="{Binding HeroModelDisplayFriends}" HorizontalAlignment="Left" Height="23" Margin="540,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_enemys" Text="{Binding HeroModelDisplayEnemys}" HorizontalAlignment="Left" Height="23" Margin="540,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_WDHL" Text="{Binding HeroModelDisplayWDHL}" HorizontalAlignment="Left" Height="23" Margin="540,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_WDNHL" Text="{Binding HeroModelDisplayWDNHL}" HorizontalAlignment="Left" Height="23" Margin="873,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_personality" Text="{Binding HeroModelDisplayPersonality}" HorizontalAlignment="Left" Height="23" Margin="873,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
+                    <TextBox x:Name="TXB_motivations" Text="{Binding HeroModelDisplayMotivations}" HorizontalAlignment="Left" Height="23" Margin="873,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" IsReadOnly="True"/>
                 </Grid>
                       
             </TabItem>

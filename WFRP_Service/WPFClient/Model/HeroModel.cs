@@ -414,5 +414,177 @@ namespace WPFClient.Model
                 _displaySkillsAndAbilitiesFlag = value;
             }
         }
+        string _displayRace = null;
+        public string HeroModelDisplayRace
+        {
+            get
+            {
+                return _displayRace;
+            }
+            set
+            {
+                _displayRace = value;
+                OnPropertyChanged("HeroModelDisplayRace");
+            }
+        }
+        
+        string _displayOccupation = null;
+        public string HeroModelDisplayOccupation
+        {
+            get
+            {
+                return _displayOccupation;
+            }
+            set
+            {
+                _displayOccupation = value;
+                OnPropertyChanged("HeroModelDisplayOccupation");
+            }
+        }
+        
+        string _displaySex = null;
+        public string HeroModelDisplaySex
+        {
+            get
+            {
+                return _displaySex;
+            }
+            set
+            {
+                _displaySex = value;
+                OnPropertyChanged("HeroModelDisplaySex");
+            }
+        }
+        
+        string _displayAge = null;
+        public string HeroModelDisplayAge
+        {
+            get
+            {
+                return _displayAge;
+            }
+            set
+            {
+                _displayAge = value;
+                OnPropertyChanged("HeroModelDisplayAge");
+            }
+        }
+        string _displayHeight = null;
+        public string HeroModelDisplayHeight
+        {
+            get
+            {
+                return _displayHeight;
+            }
+            set
+            {
+                _displayHeight = value;
+                OnPropertyChanged("HeroModelDisplayHeight");
+            }
+        }
+        string _displayWeight = null;
+        public string HeroModelDisplayWeight
+        {
+            get
+            {
+                return _displayWeight;
+            }
+            set
+            {
+                _displayWeight = value;
+                OnPropertyChanged("HeroModelDisplayWeight");
+            }
+        }
+        string _displayEyeColor = null;
+        public string HeroModelDisplayEyeColor
+        {
+            get
+            {
+                return _displayEyeColor;
+            }
+            set
+            {
+                _displayEyeColor = value;
+                OnPropertyChanged("HeroModelDisplayEyeColor");
+            }
+        }
+        string _displayOrigin = null;
+        public string HeroModelDisplayOrigin
+        {
+            get
+            {
+                return _displayOrigin;
+            }
+            set
+            {
+                _displayOrigin = value;
+                OnPropertyChanged("HeroModelDisplayOrigin");
+            }
+        }
+        string _displayFamily = null;
+        public string HeroModelDisplayFamily
+        {
+            get
+            {
+                return _displayFamily;
+            }
+            set
+            {
+                _displayFamily = value;
+                OnPropertyChanged("HeroModelDisplayFamily");
+            }
+        }
+        string _displaySocialPosition = null;
+        public string HeroModelDisplaySocialPosition
+        {
+            get
+            {
+                return _displaySocialPosition;
+            }
+            set
+            {
+                _displaySocialPosition = value;
+                OnPropertyChanged("HeroModelDisplaySocialPosition");
+            }
+        }
+        string _displayWHWB = null;
+        public string HeroModelDisplayWHWB
+        {
+            get
+            {
+                return _displayWHWB;
+            }
+            set
+            {
+                _displayWHWB = value;
+                OnPropertyChanged("HeroModelDisplayWHWB");
+            }
+        }
+        string _displayWIHT = null;
+        public string HeroModelDisplayWIHT
+        {
+            get
+            {
+                return _displayWIHT;
+            }
+            set
+            {
+                _displayOrigin = value;
+                OnPropertyChanged("HeroModelDisplayWIHT");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

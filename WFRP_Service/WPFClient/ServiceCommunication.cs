@@ -783,6 +783,20 @@ namespace WPFClient
                 _heroModel.HeroModelDisplayName = chart.HeroName;
                 _heroModel.HeroModelDisplaySkillsListBox = chart.SkillNames;
                 _heroModel.HeroModelDisplayAbilitiesListBox = chart.AbNames;
+                _heroModel.HeroModelDisplaySocialPosition = chart.SocialPosition;
+                _heroModel.HeroModelDisplayAge = chart.Age;
+                _heroModel.HeroModelDisplayEyeColor = chart.EyeColor;
+                _heroModel.HeroModelDisplayFamily = chart.Family;
+                _heroModel.HeroModelDisplayHeight = chart.Height;
+                _heroModel.HeroModelDisplayOccupation = chart.Occupation;
+                _heroModel.HeroModelDisplayOrigin = chart.Origin;
+                _heroModel.HeroModelDisplayRace = chart.Race;
+                _heroModel.HeroModelDisplaySex = chart.Sex;
+                _heroModel.HeroModelDisplaySocialPosition = chart.SocialPosition;
+                _heroModel.HeroModelDisplayWeight = chart.Weight;
+                _heroModel.HeroModelDisplayWHWB = chart.HHWB;
+                _heroModel.HeroModelDisplayWIHT = chart.WhyTravel;
+                
             }
             catch (Exception) { }
         }
