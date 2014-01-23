@@ -87,6 +87,22 @@ namespace WPFClient.Model
             set
             {
                 _selectedItem = value;
+                if (SelectedItem == "człowiek")
+                {
+                    CreateHeroModelSz = "4";
+                }
+                else if (SelectedItem == "elf")
+                {
+                    CreateHeroModelSz = "5";
+                }
+                else if (SelectedItem == "krasnolud")
+                {
+                    CreateHeroModelSz = "3";
+                }
+                else if (SelectedItem == "niziołek")
+                {
+                    CreateHeroModelSz = "4";
+                }
             }
         }
         List<string> _eyeColor = new List<String>();
@@ -521,6 +537,21 @@ namespace WPFClient.Model
                 _PP = value;
 
                 OnPropertyChanged("CreateHeroModelPP");
+            }
+        }
+        string _Sz = null;
+        public string CreateHeroModelSz
+        {
+            get
+            {
+
+                return _Sz;
+            }
+            set
+            {
+
+                _Sz = value;
+
             }
         }
         string _skAbInfo = null;
@@ -961,6 +992,210 @@ namespace WPFClient.Model
             set
             {
                 _allSkills = value;
+            }
+        }
+        List<String> _randomStats = new List<string>();
+        public List<String> RandomStats
+        {
+            get
+            {
+                return _randomStats;
+            }
+            set
+            {
+                _randomStats = value;
+            }
+        }
+        public void Roll(int race)
+        {
+            Random random = new Random();
+            if (race == 0)
+            {
+                 CreateHeroModelWW = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelUS = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelK = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelOdp = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelZr = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelInt = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelSW = (20 + random.Next(1, 21)).ToString();
+                 CreateHeroModelOgd = (20 + random.Next(1, 21)).ToString();
+                 int temp = random.Next(1, 11);
+                 if (temp > 0 && temp < 4)
+                 {
+                     CreateHeroModelZyw = "10";
+                 }
+                 else if (temp >= 4 && temp < 7)
+                 {
+                     CreateHeroModelZyw = "11";
+                 }
+                 else if (temp >= 7 && temp < 10)
+                 {
+                     CreateHeroModelZyw = "12";
+                 }
+                 else if (temp == 10)
+                 {
+                     CreateHeroModelZyw = "13";
+                 }
+                 if (temp > 0 && temp < 5)
+                 {
+                     CreateHeroModelPP = "2";
+                 }
+                 else if (temp >= 5)
+                 {
+                     CreateHeroModelPP = "3";
+                 }
+            }
+            else if (race == 1)
+            {
+                CreateHeroModelWW = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelUS = (30 + random.Next(1, 21)).ToString();
+                CreateHeroModelK = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelOdp = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelZr = (30 + random.Next(1, 21)).ToString();
+                CreateHeroModelInt = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelSW = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelOgd = (20 + random.Next(1, 21)).ToString();
+                int temp = random.Next(1, 11);
+                if (temp > 0 && temp < 4)
+                {
+                    CreateHeroModelZyw = "9";
+                }
+                else if (temp >= 4 && temp < 7)
+                {
+                    CreateHeroModelZyw = "10";
+                }
+                else if (temp >= 7 && temp < 10)
+                {
+                    CreateHeroModelZyw = "11";
+                }
+                else if (temp == 10)
+                {
+                    CreateHeroModelZyw = "12";
+                }
+                if (temp > 0 && temp < 5)
+                {
+                    CreateHeroModelPP = "1";
+                }
+                else if (temp >= 5)
+                {
+                    CreateHeroModelPP = "2";
+                }
+            }
+            else if (race == 2)
+            {
+                CreateHeroModelWW = (30 + random.Next(1, 21)).ToString();
+                CreateHeroModelUS = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelK = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelOdp = (30 + random.Next(1, 21)).ToString();
+                CreateHeroModelZr = (10 + random.Next(1, 21)).ToString();
+                CreateHeroModelInt = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelSW = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelOgd = (10 + random.Next(1, 21)).ToString();
+                int temp = random.Next(1, 11);
+                if (temp > 0 && temp < 4)
+                {
+                    CreateHeroModelZyw = "11";
+                }
+                else if (temp >= 4 && temp < 7)
+                {
+                    CreateHeroModelZyw = "12";
+                }
+                else if (temp >= 7 && temp < 10)
+                {
+                    CreateHeroModelZyw = "13";
+                }
+                else if (temp == 10)
+                {
+                    CreateHeroModelZyw = "14";
+                }
+                if (temp > 0 && temp < 5)
+                {
+                    CreateHeroModelPP = "1";
+                }
+                else if (temp >= 5 && temp < 8)
+                {
+                    CreateHeroModelPP = "2";
+                }
+                else if( temp >=8 && temp <= 10)
+                {
+                    CreateHeroModelPP = "3";
+                }
+            }
+            else if (race == 3)
+            {
+                CreateHeroModelWW = (10 + random.Next(1, 21)).ToString();
+                CreateHeroModelUS = (30 + random.Next(1, 21)).ToString();
+                CreateHeroModelK = (10 + random.Next(1, 21)).ToString();
+                CreateHeroModelOdp = (10 + random.Next(1, 21)).ToString();
+                CreateHeroModelZr = (30 + random.Next(1, 21)).ToString();
+                CreateHeroModelInt = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelSW = (20 + random.Next(1, 21)).ToString();
+                CreateHeroModelOgd = (30 + random.Next(1, 21)).ToString();
+                int temp = random.Next(1, 11);
+                if (temp > 0 && temp < 4)
+                {
+                    CreateHeroModelZyw = "8";
+                }
+                else if (temp >= 4 && temp < 7)
+                {
+                    CreateHeroModelZyw = "9";
+                }
+                else if (temp >= 7 && temp < 10)
+                {
+                    CreateHeroModelZyw = "10";
+                }
+                else if (temp == 10)
+                {
+                    CreateHeroModelZyw = "11";
+                }
+                if (temp > 0 && temp < 8)
+                {
+                    CreateHeroModelPP = "2";
+                }
+                else if (temp >= 8)
+                {
+                    CreateHeroModelPP = "3";
+                }
+            }
+        }
+
+        bool _randomIsEnabled = true;
+        public bool CreateHeroModePrimaryRandomStatslIsEnabled
+        {
+            get
+            {
+                return _randomIsEnabled;
+            }
+            set
+            {
+                _randomIsEnabled = value;
+                OnPropertyChanged("CreateHeroModePrimaryRandomStatslIsEnabled");
+            }
+        }
+        bool _stSkAbIsEnabled = true;
+        public bool CreateHeroModelHeroStSkAbSubmitIsEnabled
+        {
+            get
+            {
+                return _stSkAbIsEnabled;
+            }
+            set
+            {
+                _stSkAbIsEnabled = value;
+                OnPropertyChanged("CreateHeroModelHeroStSkAbSubmitIsEnabled");
+            }
+        }
+        bool _primaryStatsSubmit = false;
+        public bool CreateHeroModelPrimaryStatsSubmitIsEnabled
+        {
+            get
+            {
+                return _primaryStatsSubmit;
+            }
+            set
+            {
+                _primaryStatsSubmit = value;
+                OnPropertyChanged("CreateHeroModelPrimaryStatsSubmitIsEnabled");
             }
         }
     }

@@ -91,9 +91,9 @@ namespace WPFClient
         {
             this.servCom.HeroBasicInfoSubmit();
             this.servCom.SendOccupationAndRace();
-            _CreateHeroModel.CreateHeroModelBasicInfoIsEnabled = false;
-            _CreateHeroModel.CreateHeroModelSubmitIsEnabled = false;
-            _CreateHeroModel.CreateHeroModelSkAbIsEnabled = true;
+         //   _CreateHeroModel.CreateHeroModelBasicInfoIsEnabled = false;
+         //   _CreateHeroModel.CreateHeroModelSubmitIsEnabled = false;
+         //   _CreateHeroModel.CreateHeroModelSkAbIsEnabled = true;
         }
 
         private void CMB_Occupation_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -128,7 +128,7 @@ namespace WPFClient
             try
             {
                 servCom.GetSkillInfo(LTB_occupationSkills.SelectedItem.ToString());
-                Console.WriteLine(_CreateHeroModel.CreateHeroModelOccupationSkillsChoose[_CreateHeroModel.OccupationSkillState][LTB_occupationSkills.SelectedIndex]);
+              //  Console.WriteLine(_CreateHeroModel.CreateHeroModelOccupationSkillsChoose[_CreateHeroModel.OccupationSkillState][LTB_occupationSkills.SelectedIndex]);
             }
             catch (Exception) { }
         }
@@ -164,13 +164,10 @@ namespace WPFClient
         {
             try
             {
-                string temp = null;
+                _CreateHeroModel.AllSkills.Add(_CreateHeroModel.CreateHeroModelOccupationSkillsChoose[_CreateHeroModel.OccupationSkillState - 1][LTB_occupationSkills.SelectedIndex]);
                 if (_CreateHeroModel.OccupationSkillState < _CreateHeroModel.CreateHeroModelOccupationSkillsChoose.Count)
                 {
                     _CreateHeroModel.CreateHeroModelOccupationSkillsListBox = _CreateHeroModel.CreateHeroModelOccupationSkillsNameChoose[_CreateHeroModel.OccupationSkillState];
-                 //   Console.WriteLine("##  "+_CreateHeroModel.CreateHeroModelOccupationSkillsChoose[_CreateHeroModel.OccupationSkillState][LTB_occupationSkills.SelectedIndex]);
-                 //   temp=_CreateHeroModel.CreateHeroModelOccupationSkillsChoose[_CreateHeroModel.OccupationSkillState][LTB_occupationSkills.SelectedIndex];
-                   // Console.WriteLine(temp);
                 }
                 _CreateHeroModel.OccupationSkillState++;
                 if (_CreateHeroModel.OccupationSkillState >= _CreateHeroModel.CreateHeroModelOccupationSkillsChoose.Count + 1)
@@ -179,17 +176,17 @@ namespace WPFClient
                     _CreateHeroModel.CreateHeroModelOccupationSkillsIsEnabled = false;
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
         }
 
         private void BTN_occupationAbilities_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                _CreateHeroModel.AllAbilities.Add(_CreateHeroModel.CreateHeroModelOccupationAbilitiesChoose[_CreateHeroModel.OccupationAbilitiesState - 1][LTB_occupationAbilities.SelectedIndex]);
                 if (_CreateHeroModel.OccupationAbilitiesState < _CreateHeroModel.CreateHeroModelOccupationAbilitiesChoose.Count)
                 {
                     _CreateHeroModel.CreateHeroModelOccupationAbilitiesListBox = _CreateHeroModel.CreateHeroModelOccupationAbilitiesNameChoose[_CreateHeroModel.OccupationAbilitiesState];
-                 //   _CreateHeroModel.AllAbilities.Add(_CreateHeroModel.CreateHeroModelOccupationAbilitiesChoose[_CreateHeroModel.OccupationAbilitiesState - 1][LTB_occupationAbilities.SelectedIndex]);
                 }
                 _CreateHeroModel.OccupationAbilitiesState++;
                 if (_CreateHeroModel.OccupationAbilitiesState >= _CreateHeroModel.CreateHeroModelOccupationAbilitiesChoose.Count+1)
@@ -205,10 +202,10 @@ namespace WPFClient
         {
             try
             {
+                _CreateHeroModel.AllSkills.Add(_CreateHeroModel.CreateHeroModelRaceSkillsChoose[_CreateHeroModel.RaceSkillsState - 1][LTB_raceSkills.SelectedIndex]);
                 if (_CreateHeroModel.RaceSkillsState < _CreateHeroModel.CreateHeroModelRaceSkillsChoose.Count)
                 {
                     _CreateHeroModel.CreateHeroModelRaceSkillsListBox = _CreateHeroModel.CreateHeroModelRaceSkillsNameChoose[_CreateHeroModel.RaceSkillsState];
-                //    _CreateHeroModel.AllSkills.Add(_CreateHeroModel.CreateHeroModelRaceSkillsChoose[_CreateHeroModel.RaceSkillsState - 1][LTB_raceSkills.SelectedIndex]);
                 }
                 _CreateHeroModel.RaceSkillsState++;
                 if (_CreateHeroModel.RaceSkillsState >= _CreateHeroModel.CreateHeroModelRaceSkillsChoose.Count + 1)
@@ -224,10 +221,10 @@ namespace WPFClient
         {
             try
             {
+                _CreateHeroModel.AllAbilities.Add(_CreateHeroModel.CreateHeroModelRaceAbilitiesChoose[_CreateHeroModel.RaceAbilitiesState - 1][LTB_raceAbilities.SelectedIndex]);
                 if (_CreateHeroModel.RaceAbilitiesState < _CreateHeroModel.CreateHeroModelRaceAbilitiesChoose.Count)
                 {
                     _CreateHeroModel.CreateHeroModelRaceAbilitiesListBox = _CreateHeroModel.CreateHeroModelRaceAbilitiesNameChoose[_CreateHeroModel.RaceAbilitiesState];
-                //    _CreateHeroModel.AllAbilities.Add(_CreateHeroModel.CreateHeroModelRaceAbilitiesChoose[_CreateHeroModel.RaceAbilitiesState - 1][LTB_raceAbilities.SelectedIndex]);
                 }
                 _CreateHeroModel.RaceAbilitiesState++;
                 if (_CreateHeroModel.RaceAbilitiesState >= _CreateHeroModel.CreateHeroModelRaceAbilitiesChoose.Count + 1)
@@ -238,5 +235,30 @@ namespace WPFClient
             }
             catch (Exception) { }
         }
+
+        private void BTN_primaryRandomStats_Click(object sender, RoutedEventArgs e)
+        {
+            _CreateHeroModel.Roll(CMB_Race.SelectedIndex);
+            _CreateHeroModel.CreateHeroModePrimaryRandomStatslIsEnabled = false;
+        }
+
+        private void BTN_Hero_St_Sk_Ab_Submit_Click(object sender, RoutedEventArgs e)
+        {
+            servCom.SendAbilitiesAndSkills(_CreateHeroModel.AllAbilities,_CreateHeroModel.AllSkills);
+            _CreateHeroModel.CreateHeroModelHeroStSkAbSubmitIsEnabled = false;
+            _CreateHeroModel.CreateHeroModelPrimaryStatsSubmitIsEnabled = true;
+        }
+
+        private void BTN_primaryStatsSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            servCom.SendPrimaryStats();
+            _CreateHeroModel.CreateHeroModelPrimaryStatsSubmitIsEnabled = false;
+        }
+
+        private void BTN_finish_Click(object sender, RoutedEventArgs e)
+        {
+            servCom.GetHeroChart();
+        }
+
     }
 }
