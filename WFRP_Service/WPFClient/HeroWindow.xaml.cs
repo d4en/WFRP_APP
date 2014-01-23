@@ -104,5 +104,15 @@ namespace WPFClient
         {
 
         }
+
+        private void LTB_displaySkills_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            servCom.GetSkillInfo(LTB_displaySkills.SelectedItem.ToString());
+        }
+
+        private void LTB_displayAbilities_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            servCom.GetAbilityInfo(LTB_displayAbilities.SelectedItem.ToString());
+        }
     }
 }

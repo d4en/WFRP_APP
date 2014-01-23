@@ -157,10 +157,27 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Skills and Abilities">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LTB_displaySkills" ItemsSource="{Binding HeroModelDisplaySkillsListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="386" Margin="44,40,0,0" VerticalAlignment="Top" Width="266" Background="White" SelectionChanged="LTB_displaySkills_SelectionChanged"/>
+                    <ListBox x:Name="LTB_displayAbilities" ItemsSource="{Binding HeroModelDisplayAbilitiesListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="386" Margin="776,40,0,0" VerticalAlignment="Top" Width="266" Background="White" SelectionChanged="LTB_displayAbilities_SelectionChanged"/>
+                    <Label Content="Skills" HorizontalAlignment="Left" Margin="156,12,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Abilities" HorizontalAlignment="Left" Margin="890,12,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="300" Margin="350,79,0,0" TextWrapping="Wrap" Text="{Binding HeroModelDisplaySkillAndAbilitiesInfo}" VerticalAlignment="Top" Width="390" IsReadOnly="True"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Inventory" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="57">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="441" Margin="26,51,0,0" VerticalAlignment="Top" Width="288" Background="White">
+                        <ListBoxItem Content="empty"/>
+                    </ListBox>
+                    <Label Content="BackPack" HorizontalAlignment="Left" Margin="138,20,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="414,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Text="0"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="414,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Text="0"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="414,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Text="0"/>
+                    <Label Content="Gold" HorizontalAlignment="Left" Margin="351,63,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Silver" HorizontalAlignment="Left" Margin="351,90,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Bronze" HorizontalAlignment="Left" Margin="351,119,0,0" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
             <TabItem Header="About Hero" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80">
                 
@@ -169,7 +186,6 @@
                         <ColumnDefinition Width="4*"/>
                         <ColumnDefinition Width="193*"/>
                     </Grid.ColumnDefinitions>
-                    
                     <Label Content="Name" HorizontalAlignment="Left" Margin="30,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Race" HorizontalAlignment="Left" Margin="30,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Occupation" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
@@ -182,15 +198,15 @@
                     <Label Content="Hair color" HorizontalAlignment="Left" Margin="769,297,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Star sign" HorizontalAlignment="Left" Margin="769,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Marks" HorizontalAlignment="Left" Margin="769,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_name" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_race" HorizontalAlignment="Left" Height="23" Margin="124,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_occupation" HorizontalAlignment="Left" Height="23" Margin="124,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_lastOccupation" HorizontalAlignment="Left" Height="23" Margin="124,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_sex" HorizontalAlignment="Left" Height="23" Margin="124,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_age" HorizontalAlignment="Left" Height="23" Margin="124,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_height" HorizontalAlignment="Left" Height="23" Margin="124,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_Weight" HorizontalAlignment="Left" Height="23" Margin="124,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_eyeColor" HorizontalAlignment="Left" Height="23" Margin="124,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="863,297,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="863,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="863,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
@@ -206,8 +222,8 @@
                     <Label Content="What doesn't he likes?" HorizontalAlignment="Left" Margin="747,247,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Personality" HorizontalAlignment="Left" Margin="747,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     <Label Content="Motivations" HorizontalAlignment="Left" Margin="747,200,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="540,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_origin" HorizontalAlignment="Left" Height="23" Margin="540,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
+                    <TextBox x:Name="TXB_family" HorizontalAlignment="Left" Height="23" Margin="540,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="540,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="540,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="540,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.Column="1"/>
@@ -222,9 +238,6 @@
                       
             </TabItem>
             <TabItem Header="Hero Story" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="History" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="57">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

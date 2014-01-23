@@ -693,11 +693,29 @@ namespace WPFClient
 
         public void ReciveFullSkillInfo(FullSkillInfo skInfo)
         {
-            _createHeroModel.CreateHeroModelSkAbInfo = skInfo.Description;
+            Console.WriteLine(_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag);
+            if (_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag)
+            {
+                Console.WriteLine("here");
+                _heroModel.HeroModelDisplaySkillAndAbilitiesInfo = skInfo.Description;
+            }
+            else
+            {
+                _createHeroModel.CreateHeroModelSkAbInfo = skInfo.Description;
+            }
         }
         public void ReciveFullAbilityInfo(FullAbilityInfo abInfo)
         {
-            _createHeroModel.CreateHeroModelSkAbInfo = abInfo.Description;
+            Console.WriteLine(_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag);
+            if (_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag)
+            {
+                Console.WriteLine("here");
+                _heroModel.HeroModelDisplaySkillAndAbilitiesInfo = abInfo.Description;
+            }
+            else
+            {
+                _createHeroModel.CreateHeroModelSkAbInfo = abInfo.Description;
+            }
         }
         //TO DO add CreateHero
         public void CreateHero()
@@ -762,7 +780,9 @@ namespace WPFClient
                 _heroModel.HeroModelDisplayMag = chart.Mag;
                 _heroModel.HeroModelDisplayPO = chart.PO;
                 _heroModel.HeroModelDisplayPP = chart.PP;
-
+                _heroModel.HeroModelDisplayName = chart.HeroName;
+                _heroModel.HeroModelDisplaySkillsListBox = chart.SkillNames;
+                _heroModel.HeroModelDisplayAbilitiesListBox = chart.AbNames;
             }
             catch (Exception) { }
         }
@@ -796,6 +816,7 @@ namespace WPFClient
         public void GetHeroChart()
         {
             this.Proxy.GetHeroChart(_optionsModel.OptionsModelID);
+            _heroModel.HeroModelDisplaySkillsAndAbilitiesFlag = true;
         }
         #region Async IWFRPCallback members
 

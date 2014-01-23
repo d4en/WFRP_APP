@@ -349,5 +349,70 @@ namespace WPFClient.Model
                 OnPropertyChanged("HeroModelDisplayArmorRightLeg");
             }
         }
+        string _displayHeroName = null;
+        public string HeroModelDisplayName
+        {
+            get
+            {
+                return _displayHeroName;
+            }
+            set
+            {
+                _displayHeroName = value;
+
+                OnPropertyChanged("HeroModelDisplayName");
+            }
+        }
+        List<String> _displaySkills = new List<string>();
+        public List<String> HeroModelDisplaySkillsListBox
+        {
+            get
+            {
+                return _displaySkills;
+            }
+            set
+            {
+                _displaySkills = value;
+                OnPropertyChanged("HeroModelDisplaySkillsListBox");
+            }
+        }
+        List<String> _displayAbilities = new List<string>();
+        public List<String> HeroModelDisplayAbilitiesListBox
+        {
+            get
+            {
+                return _displayAbilities;
+            }
+            set
+            {
+                _displayAbilities = value;
+                OnPropertyChanged("HeroModelDisplayAbilitiesListBox");
+            }
+        }
+        string _displaySkillAndAbilitiesInfo = null;
+        public string HeroModelDisplaySkillAndAbilitiesInfo
+        {
+            get
+            {
+                return _displaySkillAndAbilitiesInfo;
+            }
+            set
+            {
+                _displaySkillAndAbilitiesInfo = value;
+                OnPropertyChanged("HeroModelDisplaySkillAndAbilitiesInfo");
+            }
+        }
+        bool _displaySkillsAndAbilitiesFlag = false;
+        public bool HeroModelDisplaySkillsAndAbilitiesFlag
+        {
+            get
+            {
+                return _displaySkillsAndAbilitiesFlag;
+            }
+            set
+            {
+                _displaySkillsAndAbilitiesFlag = value;
+            }
+        }
     }
 }

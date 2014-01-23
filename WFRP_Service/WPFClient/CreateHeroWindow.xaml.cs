@@ -128,7 +128,6 @@ namespace WPFClient
             try
             {
                 servCom.GetSkillInfo(LTB_occupationSkills.SelectedItem.ToString());
-              //  Console.WriteLine(_CreateHeroModel.CreateHeroModelOccupationSkillsChoose[_CreateHeroModel.OccupationSkillState][LTB_occupationSkills.SelectedIndex]);
             }
             catch (Exception) { }
         }
