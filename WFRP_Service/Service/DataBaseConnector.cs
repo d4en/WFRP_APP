@@ -1236,7 +1236,7 @@ namespace Service
 
                 cmd.CommandText = "SELECT * FROM log_check_table WHERE id = @id_acc";
                 cmd.Parameters.AddWithValue("@id_acc", id_acc);
-
+                Console.WriteLine("Dostałem cos takiego:   "+ id_acc);
                 MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
                 Console.WriteLine(adap);
                 adap.Fill(ds);
@@ -1259,6 +1259,46 @@ namespace Service
             catch (Exception)
             {
 
+            }
+
+            return response;
+        }
+
+        public Identity getHeroID(string heroName)
+        {
+            Identity response = new Identity();
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT id FROM account_table WHERE acc_name = @name";
+                cmd.Parameters.AddWithValue("@name", heroName);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+
+                adap.Fill(ds);
+                response.AccountID = ds.Tables[0].Rows[0][0].ToString();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception w)
+            {
+                Console.WriteLine(w.ToString());
             }
 
             return response;

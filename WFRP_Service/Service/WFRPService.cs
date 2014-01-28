@@ -769,6 +769,15 @@ namespace Service
             status.Created = DataBase.checkIfHeroCreated(id_acc);
             callback.ReciveIfHeroCreated(status);
         }
+
+        public void GetHeroID(string name)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            Identity identy = new Identity();
+            identy = DataBase.getHeroID(name);
+            callback.ReciveHeroName(identy);
+        }
         #endregion
 
 
@@ -776,7 +785,10 @@ namespace Service
 
 
 
-        
+
+
+
+       
     }
 
 }

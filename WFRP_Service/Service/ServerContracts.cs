@@ -97,5 +97,8 @@ namespace Service
         [OperationContract(IsOneWay = true)]
         void CheckIfHeroCreated(string id_acc);
 
+        [OperationContract(IsOneWay = true)]
+        void GetHeroID(string name);
+
     }
 }

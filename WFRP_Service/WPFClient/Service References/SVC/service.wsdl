@@ -115,6 +115,9 @@
   <wsdl:message name="IWFRP_CheckIfHeroCreated_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckIfHeroCreated" />
   </wsdl:message>
+  <wsdl:message name="IWFRP_GetHeroID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeroID" />
+  </wsdl:message>
   <wsdl:message name="IWFRP_GetServerMessageStatus_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetServerMessageStatus" />
   </wsdl:message>
@@ -192,6 +195,9 @@
   </wsdl:message>
   <wsdl:message name="IWFRP_ReciveIfHeroCreated_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReciveIfHeroCreated" />
+  </wsdl:message>
+  <wsdl:message name="IWFRP_ReciveHeroName_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReciveHeroName" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IWFRP">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Initialize">
@@ -282,6 +288,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckIfHeroCreated">
       <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/CheckIfHeroCreated" message="tns:IWFRP_CheckIfHeroCreated_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetHeroID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWFRP/GetHeroID" message="tns:IWFRP_GetHeroID_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServerMessageStatus">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/GetServerMessageStatus" message="tns:IWFRP_GetServerMessageStatus_OutputCallbackMessage" />
     </wsdl:operation>
@@ -359,6 +368,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveIfHeroCreated">
       <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveIfHeroCreated" message="tns:IWFRP_ReciveIfHeroCreated_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReciveHeroName">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWFRP/ReciveHeroName" message="tns:IWFRP_ReciveHeroName_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IWFRP" type="tns:IWFRP">
@@ -542,6 +554,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetHeroID">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/GetHeroID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetServerMessageStatus">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/GetServerMessageStatus" style="document" />
       <wsdl:output>
@@ -694,6 +712,12 @@
     </wsdl:operation>
     <wsdl:operation name="ReciveIfHeroCreated">
       <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveIfHeroCreated" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReciveHeroName">
+      <soap12:operation soapAction="http://tempuri.org/IWFRP/ReciveHeroName" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

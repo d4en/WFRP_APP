@@ -86,5 +86,8 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void ReciveIfHeroCreated(HeroStatus status);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveHeroName(Identity name);
     }
 }

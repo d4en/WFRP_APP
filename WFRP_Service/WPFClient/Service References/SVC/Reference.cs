@@ -2714,6 +2714,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginCheckIfHeroCreated(string id_acc, System.AsyncCallback callback, object asyncState);
         
         void EndCheckIfHeroCreated(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/GetHeroID")]
+        void GetHeroID(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/GetHeroID")]
+        System.IAsyncResult BeginGetHeroID(string name, System.AsyncCallback callback, object asyncState);
+        
+        void EndGetHeroID(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2926,6 +2934,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReciveIfHeroCreated(WPFClient.SVC.HeroStatus status, System.AsyncCallback callback, object asyncState);
         
         void EndReciveIfHeroCreated(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveHeroName")]
+        void ReciveHeroName(WPFClient.SVC.Identity name);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveHeroName")]
+        System.IAsyncResult BeginReciveHeroName(WPFClient.SVC.Identity name, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveHeroName(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3129,6 +3145,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onCheckIfHeroCreatedCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetHeroIDDelegate;
+        
+        private EndOperationDelegate onEndGetHeroIDDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetHeroIDCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -3206,6 +3228,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationSkillNameCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CheckIfHeroCreatedCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetHeroIDCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -4629,6 +4653,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginCheckIfHeroCreatedDelegate, new object[] {
                         id_acc}, this.onEndCheckIfHeroCreatedDelegate, this.onCheckIfHeroCreatedCompletedDelegate, userState);
+        }
+        
+        public void GetHeroID(string name) {
+            base.Channel.GetHeroID(name);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetHeroID(string name, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetHeroID(name, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndGetHeroID(System.IAsyncResult result) {
+            base.Channel.EndGetHeroID(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetHeroID(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string name = ((string)(inValues[0]));
+            return this.BeginGetHeroID(name, callback, asyncState);
+        }
+        
+        private object[] OnEndGetHeroID(System.IAsyncResult result) {
+            this.EndGetHeroID(result);
+            return null;
+        }
+        
+        private void OnGetHeroIDCompleted(object state) {
+            if ((this.GetHeroIDCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetHeroIDCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetHeroIDAsync(string name) {
+            this.GetHeroIDAsync(name, null);
+        }
+        
+        public void GetHeroIDAsync(string name, object userState) {
+            if ((this.onBeginGetHeroIDDelegate == null)) {
+                this.onBeginGetHeroIDDelegate = new BeginOperationDelegate(this.OnBeginGetHeroID);
+            }
+            if ((this.onEndGetHeroIDDelegate == null)) {
+                this.onEndGetHeroIDDelegate = new EndOperationDelegate(this.OnEndGetHeroID);
+            }
+            if ((this.onGetHeroIDCompletedDelegate == null)) {
+                this.onGetHeroIDCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetHeroIDCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetHeroIDDelegate, new object[] {
+                        name}, this.onEndGetHeroIDDelegate, this.onGetHeroIDCompletedDelegate, userState);
         }
     }
 }
