@@ -1188,6 +1188,7 @@ namespace WPFClient.SVC {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FullAbilityInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.FullSkillInfo))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroFullChart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WPFClient.SVC.HeroStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<WPFClient.SVC.Client, object>))]
     public partial class Session : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2433,6 +2434,51 @@ namespace WPFClient.SVC {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HeroStatus", Namespace="http://schemas.datacontract.org/2004/07/Service")]
+    [System.SerializableAttribute()]
+    public partial class HeroStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CreatedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreatedField, value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SVC.IWFRP", CallbackContract=typeof(WPFClient.SVC.IWFRPCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IWFRP {
@@ -2660,6 +2706,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginGetOccupationSkillName(System.Collections.Generic.List<string> IDskills, System.AsyncCallback callback, object asyncState);
         
         void EndGetOccupationSkillName(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/CheckIfHeroCreated")]
+        void CheckIfHeroCreated(string id_acc);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/CheckIfHeroCreated")]
+        System.IAsyncResult BeginCheckIfHeroCreated(string id_acc, System.AsyncCallback callback, object asyncState);
+        
+        void EndCheckIfHeroCreated(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2864,6 +2918,14 @@ namespace WPFClient.SVC {
         System.IAsyncResult BeginReciveOccupationSkillNames(WPFClient.SVC.SkillNames skNames, System.AsyncCallback callback, object asyncState);
         
         void EndReciveOccupationSkillNames(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWFRP/ReciveIfHeroCreated")]
+        void ReciveIfHeroCreated(WPFClient.SVC.HeroStatus status);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IWFRP/ReciveIfHeroCreated")]
+        System.IAsyncResult BeginReciveIfHeroCreated(WPFClient.SVC.HeroStatus status, System.AsyncCallback callback, object asyncState);
+        
+        void EndReciveIfHeroCreated(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3061,6 +3123,12 @@ namespace WPFClient.SVC {
         
         private System.Threading.SendOrPostCallback onGetOccupationSkillNameCompletedDelegate;
         
+        private BeginOperationDelegate onBeginCheckIfHeroCreatedDelegate;
+        
+        private EndOperationDelegate onEndCheckIfHeroCreatedDelegate;
+        
+        private System.Threading.SendOrPostCallback onCheckIfHeroCreatedCompletedDelegate;
+        
         public WFRPClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
@@ -3136,6 +3204,8 @@ namespace WPFClient.SVC {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetRaceSkillNameCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> GetOccupationSkillNameCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CheckIfHeroCreatedCompleted;
         
         public bool Initialize() {
             return base.Channel.Initialize();
@@ -4510,6 +4580,55 @@ namespace WPFClient.SVC {
             }
             base.InvokeAsync(this.onBeginGetOccupationSkillNameDelegate, new object[] {
                         IDskills}, this.onEndGetOccupationSkillNameDelegate, this.onGetOccupationSkillNameCompletedDelegate, userState);
+        }
+        
+        public void CheckIfHeroCreated(string id_acc) {
+            base.Channel.CheckIfHeroCreated(id_acc);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginCheckIfHeroCreated(string id_acc, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCheckIfHeroCreated(id_acc, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndCheckIfHeroCreated(System.IAsyncResult result) {
+            base.Channel.EndCheckIfHeroCreated(result);
+        }
+        
+        private System.IAsyncResult OnBeginCheckIfHeroCreated(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string id_acc = ((string)(inValues[0]));
+            return this.BeginCheckIfHeroCreated(id_acc, callback, asyncState);
+        }
+        
+        private object[] OnEndCheckIfHeroCreated(System.IAsyncResult result) {
+            this.EndCheckIfHeroCreated(result);
+            return null;
+        }
+        
+        private void OnCheckIfHeroCreatedCompleted(object state) {
+            if ((this.CheckIfHeroCreatedCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.CheckIfHeroCreatedCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void CheckIfHeroCreatedAsync(string id_acc) {
+            this.CheckIfHeroCreatedAsync(id_acc, null);
+        }
+        
+        public void CheckIfHeroCreatedAsync(string id_acc, object userState) {
+            if ((this.onBeginCheckIfHeroCreatedDelegate == null)) {
+                this.onBeginCheckIfHeroCreatedDelegate = new BeginOperationDelegate(this.OnBeginCheckIfHeroCreated);
+            }
+            if ((this.onEndCheckIfHeroCreatedDelegate == null)) {
+                this.onEndCheckIfHeroCreatedDelegate = new EndOperationDelegate(this.OnEndCheckIfHeroCreated);
+            }
+            if ((this.onCheckIfHeroCreatedCompletedDelegate == null)) {
+                this.onCheckIfHeroCreatedCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCheckIfHeroCreatedCompleted);
+            }
+            base.InvokeAsync(this.onBeginCheckIfHeroCreatedDelegate, new object[] {
+                        id_acc}, this.onEndCheckIfHeroCreatedDelegate, this.onCheckIfHeroCreatedCompletedDelegate, userState);
         }
     }
 }

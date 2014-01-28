@@ -539,6 +539,8 @@ namespace Service
             Session session = SearchSessionByClientName(client);
 
             Hero hero = new Hero();
+
+
             hero.ClientName = SearchClientCallbackByName(client).Key.Name;
             // TO DO: more hero data (also in DataContract)
             try
@@ -618,6 +620,7 @@ namespace Service
             msg.IsStatusCorrect = dbResponse.Key;
             msg.Content = dbResponse.Value;
             callback.HeroRegistrationPartOne(msg);
+            Console.WriteLine(info.AccountID + " " + info.Age + " " + info.EyeColor + " " + info.Friends);
         }
 
         public void GetSkillsAndAbilities(HeroRaceAndOccupation info)
@@ -757,7 +760,19 @@ namespace Service
             skNames = DataBase.GetSkillName(IDskills);
             callback.ReciveOccupationSkillNames(skNames);
         }
+
+        public void CheckIfHeroCreated(string id_acc)
+        {
+            IWFRPCallback callback = CurrentCallback;
+            DBConnector DataBase = new DBConnector();
+            HeroStatus status = new HeroStatus();
+            status.Created = DataBase.checkIfHeroCreated(id_acc);
+            callback.ReciveIfHeroCreated(status);
+        }
         #endregion
+
+
+
 
 
 

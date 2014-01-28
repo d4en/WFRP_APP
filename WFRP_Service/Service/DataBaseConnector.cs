@@ -419,7 +419,8 @@ namespace Service
                         + "what_like,what_dont_like,personality,motivation,WHS) VALUES(@hero_nameI,@hero_historyI,@hero_raceI,"
                         + "@hero_sexI,@hero_friendsI,@hero_familyI,@hero_heightI,@hero_weightI,@ageI,@eye_colorI,@originI,@social_positionI,@HHWBI,"
                         + "@why_travelI,@enemiesI,@what_likeI,@what_dont_likeI,@personalityI,@motivationI,@WHSI)";
-                    
+                    Console.WriteLine("here");
+                    Console.WriteLine(info.HeroName + info.AccountID + info.Sex + info.Height + info.Origin);
                     cmd.Parameters.AddWithValue("@hero_nameI", info.HeroName);
                     cmd.Parameters.AddWithValue("@hero_historyI", info.AccountID);
                     cmd.Parameters.AddWithValue("@hero_raceI", race);
@@ -939,6 +940,34 @@ namespace Service
                 cmd.Parameters.AddWithValue("@id_acc", strSta.Id);
 
                 cmd.ExecuteNonQuery();
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                connection.Open();
+                cmd = connection.CreateCommand();
+
+                cmd.CommandText = "insert into log_check_table(id, flag) VALUES(@id, @flag)";
+                cmd.Parameters.AddWithValue("@id", strSta.Id);
+                cmd.Parameters.AddWithValue("@flag", 1);
+
+                cmd.ExecuteNonQuery();
+                
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+
+                connection.Open();
+                cmd = connection.CreateCommand();
+
+                cmd.CommandText = "UPDATE fk_table SET fk_log_check_table = @id_acc where id = @id_acc";
+                cmd.Parameters.AddWithValue("@id_acc", strSta.Id);
+
+                cmd.ExecuteNonQuery();
                 response = "done";
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
@@ -1187,6 +1216,53 @@ namespace Service
             return chart;
         }
 
+        public string checkIfHeroCreated(string id_acc)
+        {
+            string response = string.Empty;
+            MySqlConnection connection = CreateConn();
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException o)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM log_check_table WHERE id = @id_acc";
+                cmd.Parameters.AddWithValue("@id_acc", id_acc);
+
+                MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+                Console.WriteLine(adap);
+                adap.Fill(ds);
+                Console.WriteLine(ds.Tables[0].Rows.Count);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    response = "YES";
+                }
+                else
+                {
+                    response = "NO";
+                }
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return response;
+        }
     }
 }
 

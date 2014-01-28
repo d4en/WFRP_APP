@@ -167,7 +167,7 @@ namespace WPFHost
             abs.Add("1");
             abs.Add("2");
 
-            DBcon.GetHeroChart("2");
+            DBcon.checkIfHeroCreated("1");
         }
 
 

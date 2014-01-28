@@ -93,5 +93,9 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void GetOccupationSkillName(List<string> IDskills);
+
+        [OperationContract(IsOneWay = true)]
+        void CheckIfHeroCreated(string id_acc);
+
     }
 }

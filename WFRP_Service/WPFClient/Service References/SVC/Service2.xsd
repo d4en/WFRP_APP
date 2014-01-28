@@ -226,4 +226,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HeroFullChart" nillable="true" type="tns:HeroFullChart" />
+  <xs:complexType name="HeroStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroStatus" nillable="true" type="tns:HeroStatus" />
 </xs:schema>

@@ -215,6 +215,19 @@ namespace Service
     }
 
     [DataContract]
+    public class HeroStatus
+    {
+        private string _Created;
+
+        [DataMember]
+        public string Created
+        {
+            get { return _Created; }
+            set { _Created = value; }
+        }
+    }
+
+    [DataContract]
     public class AllHeroOccupations
     {
         List<string> _HeroOccupations;

@@ -204,6 +204,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CheckIfHeroCreated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id_acc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetServerMessageStatus">
     <xs:complexType>
       <xs:sequence>
@@ -377,6 +384,13 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="skNames" nillable="true" type="q48:SkillNames" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReciveIfHeroCreated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Service" minOccurs="0" name="status" nillable="true" type="q49:HeroStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

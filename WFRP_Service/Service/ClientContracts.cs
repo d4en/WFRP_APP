@@ -83,5 +83,8 @@ namespace Service
 
         [OperationContract(IsOneWay = true)]
         void ReciveOccupationSkillNames(SkillNames skNames);
+
+        [OperationContract(IsOneWay = true)]
+        void ReciveIfHeroCreated(HeroStatus status);
     }
 }
