@@ -1198,5 +1198,6 @@ namespace WPFClient.Model
                 OnPropertyChanged("CreateHeroModelPrimaryStatsSubmitIsEnabled");
             }
         }
+        
     }
 }

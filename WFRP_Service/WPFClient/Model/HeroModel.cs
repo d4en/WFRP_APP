@@ -665,7 +665,19 @@ namespace WPFClient.Model
                 OnPropertyChanged("HeroModelDisplayMotivations");
             }
         }
-
+        bool _createHeroIsEnabled = true;
+        public bool HeroModelCreateHeroIsEnabled
+        {
+            get
+            {
+                return _createHeroIsEnabled;
+            }
+            set
+            {
+                _createHeroIsEnabled = value;
+                OnPropertyChanged("HeroModelCreateHeroIsEnabled");
+            }
+        }
 
 
 

@@ -256,7 +256,7 @@ namespace WPFClient
           this.localClient.Name = _loginModel.LoginModelUserName;
           this.localClient.Password = password;
           this.Proxy.LogInAsync(this.localClient);
-             
+          
         }
 
         public void Register(string password, string passwordConf)
@@ -375,7 +375,8 @@ namespace WPFClient
             {              
                 try
                 {
-                    this.Proxy.GetHero(_sessionModel.SessionModelSelectedMember);
+                    this.Proxy.GetHeroID(_sessionModel.SessionModelSelectedMember);
+                    
                 }
                 catch (Exception) { }
             }
@@ -425,8 +426,6 @@ namespace WPFClient
         {
             HeroBasicInfo info = new HeroBasicInfo();
             info.AccountID = Convert.ToInt16(_optionsModel.OptionsModelID);
-            Console.WriteLine(_optionsModel.OptionsModelID);
-            Console.WriteLine(_createHeroModel.CreateHeroModelAge);
             info.Age = _createHeroModel.CreateHeroModelAge;
             info.DontLikes = _createHeroModel.CreateHeroModelWDNHL;
             info.Enemies = _createHeroModel.CreateHeroModelEnemys;
@@ -450,7 +449,7 @@ namespace WPFClient
             {
                 this.Proxy.AddHeroBasicInfo(info);
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            catch (Exception) { }
         }
         public void ViewHero()
         {
@@ -598,9 +597,8 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelRaceAbilitiesNameChoose.Add(temp);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e.ToString());
             }
         }
         void IWFRPCallback.ReciveOccupationAbilityNames(AbilityNames abNames)
@@ -625,9 +623,8 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelOccupationAbilitiesNameChoose.Add(temp);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e.ToString());
             }
         }
         void IWFRPCallback.ReciveRaceSkillNames(SkillNames skNames)
@@ -651,9 +648,8 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelRaceSkillsNameChoose.Add(temp);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e.ToString());
             }
         }
         void IWFRPCallback.ReciveOccupationSkillNames(SkillNames skNames)
@@ -677,26 +673,31 @@ namespace WPFClient
                     _createHeroModel.CreateHeroModelOccupationSkillsNameChoose.Add(temp);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e.ToString());
             }
         }
         public void GetSkillInfo(string name)
         {
-            this.Proxy.GetFullSkillInfo(name);
+            try
+            {
+                this.Proxy.GetFullSkillInfo(name);
+            }
+            catch (Exception) { }
         }
         public void GetAbilityInfo(string name)
         {
-            this.Proxy.GetFullAbilityInfo(name);
+            try
+            {
+                this.Proxy.GetFullAbilityInfo(name);
+            }
+            catch (Exception) { }
         }
 
         public void ReciveFullSkillInfo(FullSkillInfo skInfo)
         {
-            Console.WriteLine(_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag);
             if (_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag)
             {
-                Console.WriteLine("here");
                 _heroModel.HeroModelDisplaySkillAndAbilitiesInfo = skInfo.Description;
             }
             else
@@ -706,10 +707,8 @@ namespace WPFClient
         }
         public void ReciveFullAbilityInfo(FullAbilityInfo abInfo)
         {
-            Console.WriteLine(_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag);
             if (_heroModel.HeroModelDisplaySkillsAndAbilitiesFlag)
             {
-                Console.WriteLine("here");
                 _heroModel.HeroModelDisplaySkillAndAbilitiesInfo = abInfo.Description;
             }
             else
@@ -757,6 +756,7 @@ namespace WPFClient
                 hero.Abilities = _abilities;
                 hero.Skills = _skills;
                 this.Proxy.AddHeroSkillsAndAbilities(hero);
+                
             }
             catch (Exception) { }
         }
@@ -782,7 +782,9 @@ namespace WPFClient
                 _heroModel.HeroModelDisplayPP = chart.PP;
                 _heroModel.HeroModelDisplayName = chart.HeroName;
                 _heroModel.HeroModelDisplaySkillsListBox = chart.SkillNames;
+                
                 _heroModel.HeroModelDisplayAbilitiesListBox = chart.AbNames;
+              
                 _heroModel.HeroModelDisplaySocialPosition = chart.SocialPosition;
                 _heroModel.HeroModelDisplayAge = chart.Age;
                 _heroModel.HeroModelDisplayEyeColor = chart.EyeColor;
@@ -835,8 +837,38 @@ namespace WPFClient
         }
         public void GetHeroChart()
         {
-            this.Proxy.GetHeroChart(_optionsModel.OptionsModelID);
-            _heroModel.HeroModelDisplaySkillsAndAbilitiesFlag = true;
+            try
+            {
+                this.Proxy.GetHeroChart(_optionsModel.OptionsModelID);
+                _heroModel.HeroModelDisplaySkillsAndAbilitiesFlag = true;
+                _heroModel.HeroModelCreateHeroIsEnabled = false;
+            }
+            catch (Exception) { }
+        }
+        public void IfHeroCreated()
+        {
+            this.Proxy.CheckIfHeroCreated(_optionsModel.OptionsModelID);
+        }
+        void IWFRPCallback.ReciveIfHeroCreated(HeroStatus status)
+        {
+            if (status.Created != "NO")
+            {
+                GetHeroChart();
+            }
+        }
+        void IWFRPCallback.GetIdentity(Identity userID)
+        {
+            _optionsModel.OptionsModelID = userID.AccountID;
+            IfHeroCreated();
+        }
+        private void GetHeroIDByName(string name)
+        {
+            this.Proxy.GetHeroID(name);
+        }
+        void IWFRPCallback.ReciveHeroName(Identity name)
+        {
+            _sessionModel.SessionModelSelectedMemberID = name.AccountID;
+            this.Proxy.GetHeroChart(name.AccountID);
         }
         #region Async IWFRPCallback members
 
@@ -950,11 +982,6 @@ namespace WPFClient
                 _optionsModel.OptionsModelStatus = "Error";
                 _optionsModel.OptionsModelMsg = "Uknown server message type.";
             }
-        }
-
-        void IWFRPCallback.GetIdentity(Identity userID)
-        {
-            _optionsModel.OptionsModelID = userID.AccountID;
         }
 
         void IWFRPCallback.SetClientList(List<string> clients)
@@ -1314,16 +1341,46 @@ namespace WPFClient
         {
             throw new NotImplementedException();
         }
-        #endregion
-
-        
-
         public void ReciveAbilityNames(AbilityNames abNames)
         {
             throw new NotImplementedException();
         }
 
         public void ReciveSkillNames(SkillNames skNames)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        public IAsyncResult BeginReciveIfHeroCreated(HeroStatus status, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveIfHeroCreated(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+
+
+
+
+
+        public void ReciveHeroName(Identity name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginReciveHeroName(Identity name, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndReciveHeroName(IAsyncResult result)
         {
             throw new NotImplementedException();
         }

@@ -175,7 +175,7 @@ namespace WPFClient
                     _CreateHeroModel.CreateHeroModelOccupationSkillsIsEnabled = false;
                 }
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            catch (Exception) {  }
         }
 
         private void BTN_occupationAbilities_Click(object sender, RoutedEventArgs e)

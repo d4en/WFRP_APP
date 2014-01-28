@@ -66,7 +66,18 @@ namespace WPFClient.Model
                 OnPropertyChanged("SessionModelSelectedMember");
             }
         }
-
+        string _selectedMemberID = null;
+        public string SessionModelSelectedMemberID
+        {
+            get
+            {
+                return _selectedMemberID;
+            }
+            set
+            {
+                _selectedMemberID = value;
+            }
+        }
         string _chatTextBox = "";
         public string SessionModelChat
         {
