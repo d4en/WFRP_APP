@@ -668,7 +668,7 @@ namespace Service
 
                     cmd.CommandText = "INSERT INTO hero_abilities_table(id_acc, fk_abilities_table, state) VALUES(@id_acc, @id_skill, @state)";
                     cmd.Parameters.AddWithValue("@id_acc", AbsNSki.IDAcc);
-                    cmd.Parameters.AddWithValue("@id_skill", AbsNSki.Skills[i]);
+                    cmd.Parameters.AddWithValue("@id_skill", AbsNSki.Abilities[i]);
                     cmd.Parameters.AddWithValue("@state", true);
 
                     cmd.ExecuteNonQuery();
